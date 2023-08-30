@@ -3,7 +3,7 @@ import { l } from './Localization'
 import styled from 'styled-components'
 
 const StyledPartners = styled.div`
-		min-height: 100vh;
+		min-height: 100%;
 `
 export default function Partners() {
 		const { language } = useLanguageContext()

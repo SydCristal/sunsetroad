@@ -21,30 +21,17 @@ const Carousel = styled.div`
 `
 
 const Product = styled.div`
+		${({ onClick, $zindex, $bottleBg, ...styles }) => ({ ...styles, zIndex: $zindex })};
 		width: 200px;
 		position: absolute;
-		transform: ${({ $index }) => $index ? `rotate(${15 * $index}deg) scale(0.9) translate(${220 * $index}px, -40px)` : ''};
-		cursor: ${({ $index }) => $index ? 'pointer' : ''};
-		z-index: ${({ $zindex }) => $zindex};
 		transition: transform 0.5s ease-in-out;
 		> div {
+				background: ${({ $bottleBg }) => $bottleBg};
 				width: 100%;
 				height: 600px;
 				position: absolute;
 				top: -40px;
 		};
-`
-
-const IslandJourney = styled.div`
-		background: ${Bg('island-journey')} center center / cover no-repeat;
-`
-
-const LongRide = styled.div`
-		background: ${Bg('long-ride')} center center / cover no-repeat;
-`
-
-const GracefulTrip = styled.div`
-		background: ${Bg('graceful-trip')} center center / cover no-repeat;
 `
 
 const Description = styled.div`
@@ -95,38 +82,57 @@ export default function Products() {
 
 		const subTitle = l[`${selectedProduct}SubTitle`]
 		const description = l[`${selectedProduct}Description`]
-		const rotateCarousel = (i, product) => {
-				if (product === selectedProduct) return
-				let newShiftIndex = shiftIndex === i ? 0 : ((shiftIndex - i) % 3) % 2 ? ((shiftIndex - i) % 3) : i
+
+		const rotateCarousel = (e, position, productName) => {
+				e.preventDefault()
+				if (productName === selectedProduct) return
+				let newShiftIndex = shiftIndex === position ? 0 : ((shiftIndex - position) % 3) % 2 ? ((shiftIndex - position) % 3) : position
 				setShiftIndex(newShiftIndex)
 				setPreviousSelection(selectedProduct)
-				setSelectedProduct(product)
+				setSelectedProduct(productName)
 		}
 
-		const islandJourneyI = shiftIndex === 0 ? -1 : shiftIndex > 0 ? 0 : 1
-		const longRideI = shiftIndex
-		const gracefulTripI = shiftIndex === 0 ? 1 : shiftIndex > 0 ? -1 : 0
+		const getProps = productName => {
+				let $zindex = 0
+				if (productName === selectedProduct) $zindex = 2
+				if (productName === previousSelection) $zindex = 1
+
+				let position
+
+				switch (productName) {
+						case 'islandJourney':
+								position = shiftIndex === 0 ? -1 : shiftIndex > 0 ? 0 : 1
+								break
+						case 'gracefulTrip':
+								position = shiftIndex === 0 ? 1 : shiftIndex > 0 ? -1 : 0
+								break
+						default:
+								position = shiftIndex
+				}
+
+				return {
+						transform: `${position ? `rotate(${15 * position}deg) scale(0.9) translate(${220 * position}px, -40px)` : '' }`,
+						cursor: `${position ? 'pointer' : ''}`,
+						$zindex,
+						$bottleBg: `${Bg(productName)} center center / cover no-repeat`,
+						onMouseDown: e => rotateCarousel(e, position, productName)
+				}
+		}
 
 		return (
 				<StyledProducts>
 						<Carousel>
 								<Product
-										$index={islandJourneyI}
-										$zindex={selectedProduct === 'islandJourney' ? 2 : previousSelection === 'islandJourney' ? 1 : 0}
-										onClick={() => rotateCarousel(islandJourneyI, 'islandJourney')}>
-										<IslandJourney />
+										{...getProps('islandJourney')}>
+										<div />
 								</Product>
 								<Product
-										$index={longRideI}
-										$zindex={selectedProduct === 'longRide' ? 2 : previousSelection === 'longRide' ? 1 : 0}
-										onClick={() => rotateCarousel(longRideI, 'longRide')}>
-										<LongRide />
+										{...getProps('longRide')}>
+										<div />
 								</Product>
 								<Product
-										$index={gracefulTripI}
-										$zindex={selectedProduct === 'gracefulTrip' ? 2 : previousSelection === 'gracefulTrip' ? 1 : 0}
-										onClick={() => rotateCarousel(gracefulTripI, 'gracefulTrip')}>
-										<GracefulTrip />
+										{...getProps('gracefulTrip')}>
+										<div />
 								</Product>
 						</Carousel>
 						<Description>
