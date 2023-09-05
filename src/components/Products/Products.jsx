@@ -73,6 +73,7 @@ const titleMap = {
 		islandJourney: 'Island Journey',
 		gracefulTrip: 'Graceful Trip'
 }
+
 export default function Products() {
 		const { language } = useLanguageContext()
 		const [previousSelection, setPreviousSelection] = useState('')
