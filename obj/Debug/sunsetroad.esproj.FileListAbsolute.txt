@@ -1,2 +1,1 @@
-C:\Work\SunsetRoad\SunsetRoad\obj\Debug\sunsetroad.esproj.SuggestedBindingRedirects.cache
 C:\Work\SunsetRoad\SunsetRoad\obj\Debug\sunsetroad.esproj.CoreCompileInputs.cache

@@ -60,7 +60,7 @@ const links = [{
 
 const renderLinks = () => links.map(({ img, href }) => (
 		<a href={href} target='_blank' key={img} rel='noreferrer'>
-				<img src={`/icons/${img}.svg`} alt={img} />
+				<img src={`/icons/${img}.png`} alt={img} />
 		</a>
 ))
 export default function Footer() {

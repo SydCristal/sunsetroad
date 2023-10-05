@@ -6,3 +6,5 @@ export const CONTENT_AREA_BORDER_RADIUS = '20px'
 export const CONTENT_AREA_PADDING = '25px'
 export const H1_MARGIN = '0 0 15px'
 export const LAYOUT_EL_ZINDEX = 4
+export const MAX_MOBILE_WIDTH = 768
+export const TEXT_SHADOW = 'rgb(34, 30, 31)'

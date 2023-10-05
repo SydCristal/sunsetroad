@@ -21,7 +21,7 @@ const Carousel = styled.div`
 `
 
 const Product = styled.div`
-		${({ onClick, $zindex, $bottleBg, ...styles }) => ({ ...styles, zIndex: $zindex })};
+		${({ onClick, key, $zindex, $bottleBg, ...styles }) => ({ ...styles, zIndex: $zindex })};
 		width: 200px;
 		position: absolute;
 		transition: transform 0.5s ease-in-out;
@@ -112,6 +112,7 @@ export default function Products() {
 				}
 
 				return {
+						key: productName,
 						transform: `${position ? `rotate(${15 * position}deg) scale(0.9) translate(${220 * position}px, -40px)` : '' }`,
 						cursor: `${position ? 'pointer' : ''}`,
 						$zindex,
