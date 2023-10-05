@@ -1,5 +1,5 @@
 const getAsset = (folder, fileName, urlize = true, ext = 'png') => {
-		let result = `/${folder}/${fileName}.${ext}`
+		let result = `%PUBLIC_URL%/${folder}/${fileName}.${ext}`
 		if (urlize) result = `url(${result})`
 		return result
 }
