@@ -2,10 +2,11 @@ import styled from 'styled-components'
 import { Ic } from '../../Utils'
 
 const StlContacts = styled.div`
-		dispay: flex;
+		display: flex;
 		flex-direction: column;
-		widh: 260px;
+		width: 260px;
 		align-items: center;
+		margin: 0 auto;
 		> a {
 				font-size: 24px;
 				font-weight: 600;

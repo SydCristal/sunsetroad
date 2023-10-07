@@ -2,16 +2,15 @@ import { useState, useEffect } from 'react'
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
-import { Bg, S } from '../../Utils'
+import { Bg } from '../../Utils'
 
 const StlCarousel = styled.div`
 		min-height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		width: ${S.CONTENT_AREA_WIDTH};
 		position: relative;
-		width: 440px;
+		width: 100%;
 `
 
 const Bottles = styled.div`
@@ -23,7 +22,7 @@ const Bottles = styled.div`
 `
 
 const Product = styled.div`
-		${({ onPointerDown, key, $zindex, $bottleBg, ...styles }) => ({ ...styles, zIndex: $zindex })};
+		${({ onPointerDown, key, $zindex, $bottleBg, ...styles }) => ({ ...styles, zIndex: 1 + $zindex })};
 		width: 90px;
 		position: absolute;
 		transition: transform 0.5s ease-in-out, z-index 0.5s;
@@ -52,19 +51,19 @@ const ArrowContainer = styled.div`
 `
 
 const DescriptionContainer = styled.div`
-		margin-top: 15px;
-		width: ${({ $width }) => $width}px;
+		margin-top: 10px;
+		width: ${({ $descriptionWidth }) => $descriptionWidth}px;
+		height: 300px;
 		position: relative;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		transform: translateX(calc(-50% + 220px));
+		transform: translateX(calc(-50% + ${({ $contentWidth }) => $contentWidth / 2}px));
 `
 
 const Description = styled.div`
 		${({ children, key, ...styles }) => ({ ...styles })};
 		transition: transform 0.5s ease-in-out;
-		width: 440px;
 		position: relative;
 		left: 0;
 		display: flex;
@@ -72,8 +71,8 @@ const Description = styled.div`
 		align-items: center;
 		> p {
 			 text-align: center;
-				text-shadow: 1px 1px 28px black;
-				margin: 10px 0;
+				color: black;
+				margin: 0;
 				font-size: 20px;
 				font-weight: 600;
 				line-height: 24px;
@@ -83,6 +82,7 @@ const Description = styled.div`
 const HeadingImg = styled.img`
 		height: 61px;
 		width: auto;
+		margin-bottom: 15px;
 `
 
 const titleMap = {
@@ -93,16 +93,16 @@ const titleMap = {
 
 const productArray = Object.keys(titleMap)
 
-export default function Products() {
+export default function Products({ contentWidth }) {
 		const { language } = useLanguageContext()
 		const [previousSelection, setPreviousSelection] = useState('')
 		const [selectedProduct, setSelectedProduct] = useState('longRide')
 		const [transitioning, setTransitioning] = useState(false)
 		const [shiftIndex, setShiftIndex] = useState(0)
-		const [descriptionWidth, setDescriptionWidth] = useState(window.innerWidth + 880)
+		const [descriptionWidth, setDescriptionWidth] = useState(window.innerWidth + 2 * contentWidth)
 		l.setLanguage(language)
 
-		window.onresize = () => setDescriptionWidth(window.innerWidth + 880)
+		window.onresize = () => setDescriptionWidth(window.innerWidth + 2 * contentWidth)
 
 		const rotateCarousel = (e, position, productName) => {
 				e.preventDefault()
@@ -172,22 +172,23 @@ export default function Products() {
 
 				if (shiftIndex > 0) {
 						if (productName !== 'gracefulTrip') {
-								transform = `translateX(${(window.innerWidth / 2) + 220}px)`
+								transform = `translateX(${(window.innerWidth + contentWidth) / 2}px)`
 						} else {
-								transform = `translateX(${-window.innerWidth - 440}px)`
+								transform = `translateX(${-window.innerWidth - contentWidth}px)`
 						}
 				} else if (shiftIndex < 0) {
 						if (productName !== 'islandJourney') {
-								transform = `translateX(${-(window.innerWidth / 2) - 220}px)`
+								transform = `translateX(${-(window.innerWidth + contentWidth) / 2}px)`
 						} else {
-								transform = `translateX(${window.innerWidth + 440}px)`
+								transform = `translateX(${window.innerWidth + contentWidth}px)`
 						}
 				}
 
 				return {
 						key: productName,
 						transform,
-						opacity
+						opacity,
+						width: contentWidth
 				}
 		}
 
@@ -213,7 +214,7 @@ export default function Products() {
 								<img key='rotate-left' src={Bg('rotate-left', false)} onPointerDown={e => onArrowClick(e, 1)} />
 								<img key='rotate-right' src={Bg('rotate-right', false)} onPointerDown={e => onArrowClick(e, -1)} />
 						</ArrowContainer>
-						<DescriptionContainer $width={descriptionWidth}>
+						<DescriptionContainer $descriptionWidth={descriptionWidth} $contentWidth={contentWidth}>
 								{productArray.map(renderProductDescription)}
 						</DescriptionContainer>
 				</StlCarousel>

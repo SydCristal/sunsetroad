@@ -1,12 +1,14 @@
 import { useLanguageContext } from '../../Contexts'
 import styled from 'styled-components'
 import { useState } from 'react'
-import { Bg } from '../../Utils'
+import { Bg, S } from '../../Utils'
 
 const StlLanguageSwitch = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+		height: 35px;
+		align-items: center;
 `
 
 const Option = styled.div`
@@ -14,8 +16,12 @@ const Option = styled.div`
 		opacity: ${({ $expanded, $selected }) => $expanded || $selected ? '1' : '0'};
 		font-weight: ${({ $selected }) => $selected ? 'bold' : 'normal'};
 		margin-left: ${({ $expanded }) => $expanded ? '20px' : '0'};
+		cursor: pointer;
 		transition: all 0.5s ease-in-out;
 		font-size: 26px;
+		font-family: 'Orelega One';
+		font-weight: 400;
+		text-shadow: 1px 1px 1px ${S.TEXT_SHADOW}, -1px 1px 1px ${S.TEXT_SHADOW}, 1px -1px 1px ${S.TEXT_SHADOW}, -1px -1px 1px ${S.TEXT_SHADOW};
 `
 
 const Cloud = styled.div`
@@ -23,7 +29,7 @@ const Cloud = styled.div`
 		img {
 				position: absolute;
 				right: 20px;
-				top: -15px;
+				top: -30px;
 		}
 `
 
