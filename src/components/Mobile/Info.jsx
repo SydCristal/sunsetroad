@@ -38,7 +38,7 @@ const Text = styled.p`
 		line-height: 24px;
 		font-weight: 600;
 		padding: 0;
-		margin: 0;
+		margin: 0 0 5px;
 `
 
 const Slogan = styled.h1`

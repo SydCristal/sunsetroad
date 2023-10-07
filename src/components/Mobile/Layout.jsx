@@ -23,9 +23,8 @@ const Background = styled.div`
 
 const Sky = styled.img.attrs(({ $coef }) => ({
 		style: {
-		  top: -250 + $coef,
-		},
-  }))`
+				top: `${$coef < 0.5 ? $coef * 40 - 5 : 15}%`,
+		}}))`
 		position: absolute;
 		left: 50%;
   transform: translateX(-50%);
@@ -109,7 +108,7 @@ const Palm2 = styled.img.attrs(({ $coef }) => {
 		if ($coef < 0.3) return
 		$coef -= 0.3
 		const scale = 1 - 1.5 * $coef
-		console.log($coef);
+		//console.log($coef);
 
 		return {
 				style: {
@@ -125,9 +124,8 @@ const Palm2 = styled.img.attrs(({ $coef }) => {
 
 const Sun = styled.img.attrs(({ $coef }) => ({
 		style: {
-				bottom: 500 - $coef,
-		},
-		}))`
+				bottom: `${25 - ($coef > 0.3 ? ($coef - 0.3) * 50 : 0)}%`
+		}}))`
 		position: absolute;
 		width: 100px;
 		height: 92px;
@@ -170,20 +168,18 @@ export default function Layout() {
 
 		let contentWidth = 350
 
-		const renderBackground = percentage => {
-				//console.log(percentage);
-				let sunCoef = percentage > 1.25 ? 950 * (percentage - 1.25) : 0
-				let skyCoef = percentage < 1.5 ? 1100 * (percentage - 1) : 550
+		const renderBackground = coef => {
+				coef -= 1
 
 				return (
 						<Background>
-								<Sky src={Bg('sky-mobile', false)} alt='sky' $coef={skyCoef} />
-								<Cloud2 src={Bg('cloud2', false)} alt='cloud2' $coef={percentage - 1}/>
-								<Cloud3 src={Bg('cloud3', false)} alt='cloud3' $coef={percentage - 1}/>
-								<Cloud4 src={Bg('cloud4', false)} alt='cloud4' $coef={percentage - 1}/>
-								<Cloud5 src={Bg('cloud5', false)} alt='cloud5' $coef={percentage - 1}/>
-								<Cloud6 src={Bg('cloud6', false)} alt='cloud6' $coef={percentage - 1} />
-								<Sun src={Bg('sun', false)} alt='sun' $coef={sunCoef} />
+								<Sky src={Bg('sky-mobile', false)} alt='sky' $coef={coef} />
+								<Cloud2 src={Bg('cloud2', false)} alt='cloud2' $coef={coef}/>
+								<Cloud3 src={Bg('cloud3', false)} alt='cloud3' $coef={coef}/>
+								<Cloud4 src={Bg('cloud4', false)} alt='cloud4' $coef={coef}/>
+								<Cloud5 src={Bg('cloud5', false)} alt='cloud5' $coef={coef}/>
+								<Cloud6 src={Bg('cloud6', false)} alt='cloud6' $coef={coef} />
+								<Sun src={Bg('sun', false)} alt='sun' $coef={coef} />
 								<Landscape src={Bg('landscape', false)} alt='landscape' />
 						</Background>
 				)
@@ -205,4 +201,4 @@ export default function Layout() {
 				</StlLayout>
 		)
 }
-								//<Palm2 src={Bg('palm2', false)} alt='palm2' $coef={percentage - 1} />
+								//<Palm2 src={Bg('palm2', false)} alt='palm2' $coef={coef - 1} />

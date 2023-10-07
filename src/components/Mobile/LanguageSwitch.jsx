@@ -26,14 +26,14 @@ const Option = styled.div`
 
 const Cloud = styled.div`
 		position: relative;
+		top: -135%;
 		img {
 				position: absolute;
 				right: 20px;
-				top: -30px;
 		}
 `
 
-const languages = ['en', 'id', 'uk', 'ru']
+const languages = ['en', 'id']//, 'uk', 'ru']
 const options = languages.map(value => ({ value, label: value.toUpperCase() }))
 export function LanguageSwitch() {
 		const { language, setLanguage } = useLanguageContext()
