@@ -1,7 +1,7 @@
-const origin = `${window.location.origin}`
+const pub = process.env.PUBLIC_URL
 
 const getAsset = (folder, fileName, urlize = true, ext = 'png') => {
-		let result = `${folder}/${fileName}.${ext}`
+		let result = `${pub}/${folder}/${fileName}.${ext}`
 		if (urlize) result = `url(${result})`
 		return result
 }
