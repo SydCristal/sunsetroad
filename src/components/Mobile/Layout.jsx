@@ -65,9 +65,7 @@ const Content = styled.div`
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-		* {
-			z-index: 2;
-		};
+		z-index: 2;
 `
 
 const Main = styled.main`
@@ -212,7 +210,6 @@ const images = [{
 
 const renderBackground = coef => {
 		coef -= 1
-		console.log(coef);
 
 		return (
 				<Background>
