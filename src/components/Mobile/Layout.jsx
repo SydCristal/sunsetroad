@@ -102,7 +102,7 @@ const Image = styled.div.attrs(({ $name, $coef, $style, $func }) => {
 const renderSun = coef => {
 		coef -= 0.3
 		if (coef < 0) return {}
-		const shiftY = 1100 * coef 
+		const shiftY = 1200 * coef 
 		return {
 				transform: `translateY(${shiftY}%)`
 		}
@@ -113,7 +113,8 @@ const renderCloud2 = coef => {
 		const shiftX = -100 * coef
 		const shiftY = 1000 * coef
 		return {
-				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`,
+				zIndex: 3
 		}
 }
 
@@ -122,7 +123,8 @@ const renderCloud3 = coef => {
 		const shiftX = 80 * coef
 		const shiftY = 800 * coef
 		return {
-				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`,
+				zIndex: 3
 		}
 }
 
