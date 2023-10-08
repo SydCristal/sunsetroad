@@ -22,7 +22,8 @@ const Bottles = styled.div`
 `
 
 const Product = styled.div`
-		${({ onPointerDown, key, $zindex, $bottleBg, ...styles }) => ({ ...styles, zIndex: 1 + $zindex })};
+		${({ onPointerDown, key, $zindex, $bottleBg, ...styles }) => ({ ...styles })};
+		z-index: ${({ $zindex }) => 2 + $zindex} !important;
 		width: 90px;
 		position: absolute;
 		transition: transform 0.5s ease-in-out, z-index 0.5s;
@@ -47,6 +48,7 @@ const ArrowContainer = styled.div`
 				top: -90px;
 				position: relative;
 				cursor: pointer;
+				z-index: 2;
 		};
 `
 

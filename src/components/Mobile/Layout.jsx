@@ -32,78 +32,6 @@ const Sky = styled.img.attrs(({ $coef }) => ({
 		height: 75%;
 `
 
-const Cloud2 = styled.img.attrs(({ $coef }) => ({
-		style: {
-				transform: `translate(-${100 * $coef}%, ${1000 * $coef}%)`,
-		},
-		}))`
-		position: absolute;
-		top: 125px;
-		right: 70%;
-		width: 390px;
-		z-index: 1;
-`
-
-const Cloud3 = styled.img.attrs(({ $coef }) => ({
-		style: {
-				transform: `translate(${80 * $coef}%, ${800 * $coef}%)`,
-		},
-		}))`
-		position: absolute;
-		top: 179px;
-		width: 350px;
-		left: 70%;
-		z-index: 1;
-`
-
-const Cloud4 = styled.img.attrs(({ $coef }) => {
-		if ($coef < 0.15) return
-		$coef -=	0.15
-
-		return {
-				style: {
-						transform: `translate(${100 * $coef}%, ${1500 * $coef}%)`,
-				}
-		}})`
-		position: absolute;
-		top: 550px;
-		width: 420px;
-		left: 75%;
-		z-index: 1;
-`
-
-const Cloud5 = styled.img.attrs(({ $coef }) => {
-		if ($coef < 0.16) return
-		$coef -=	0.16
-
-		return {
-				style: {
-						transform: `translate(-${100 * $coef}%, ${1500 * $coef}%)`,
-				}
-		}})`
-		position: absolute;
-		top: 675px;
-		width: 280px;
-		right: 75%;
-		z-index: 1;
-`
-
-const Cloud6 = styled.img.attrs(({ $coef }) => {
-		if ($coef < 0.3) return
-		$coef -= 0.3
-
-		return {
-				style: {
-						transform: `translate(${200 * $coef}%, ${1000 * $coef}%)`,
-				}
-		}})`
-		position: absolute;
-		top: 1200px;
-		width: 230px;
-		left: 75%;
-		z-index: 1;
-`
-
 const Palm2 = styled.img.attrs(({ $coef }) => {
 		if ($coef < 0.3) return
 		$coef -= 0.3
@@ -122,21 +50,12 @@ const Palm2 = styled.img.attrs(({ $coef }) => {
 		z-index: 1;
 `
 
-const Sun = styled.img.attrs(({ $coef }) => ({
-		style: {
-				bottom: `${25 - ($coef > 0.3 ? ($coef - 0.3) * 50 : 0)}%`
-		}}))`
-		position: absolute;
-		width: 100px;
-		height: 92px;
-		left: 50%;
-`
-
 const Landscape = styled.img`
 		bottom: 0;
 		position: absolute;
 		left: 50%;
   transform: translateX(-50%);
+		z-index: 1;
 `
 
 const Content = styled.div`
@@ -146,6 +65,9 @@ const Content = styled.div`
 		flex-direction: column;
 		align-items: center;
 		position: relative;
+		* {
+			z-index: 2;
+		};
 `
 
 const Main = styled.main`
@@ -161,29 +83,150 @@ const Header = styled.header`
 		position: absolute;
 `
 
+const Image = styled.div.attrs(({ $name, $coef, $style, $func }) => {
+		return {
+				children: [
+						<img key={$name} src={Bg($name, false)} alt={$name} style={$func($coef)} />
+				],
+				style: $style
+		}})`
+		position: absolute;
+		img {
+				width: 100%;
+				position: absolute;
+				z-index: 1;
+				transition: all 0.3s ease;
+		};
+`
+
+const renderSun = coef => {
+		coef -= 0.3
+		if (coef < 0) return {}
+		const shiftY = 1100 * coef 
+		return {
+				transform: `translateY(${shiftY}%)`
+		}
+}
+
+const renderCloud2 = coef => {
+		const scale = 1 - Math.abs(1 * coef)
+		const shiftX = -100 * coef
+		const shiftY = 1000 * coef
+		return {
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		}
+}
+
+const renderCloud3 = coef => {
+		const scale = 1 - Math.abs(1 * coef)
+		const shiftX = 80 * coef
+		const shiftY = 800 * coef
+		return {
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		}
+}
+
+const renderCloud4 = coef => {
+		coef -= 0.29
+		const scale = 1 - Math.abs(1 * coef)
+		const shiftX = Math.abs(180 * coef)
+		const shiftY = coef <= 0 ? 700 * coef : 3000 * coef
+		return {
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		}
+}
+
+const renderCloud5 = coef => {
+		coef -= 0.29
+		const scale = 1 - Math.abs(1 * coef)
+		const shiftX = Math.abs(-200 * coef)
+		const shiftY = coef <= 0 ? 700 * coef : 2000 * coef
+		return {
+				transform: `translate(-${shiftX}%, ${shiftY}%) scale(${scale})`
+		}
+}
+
+const renderCloud6 = coef => {
+		coef -= 0.31
+		if (coef < 0) return {}
+		const scale = 1 - Math.abs(1 * coef)
+		const shiftX = Math.abs(200 * coef)
+		const shiftY = 1000 * coef
+		return {
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		}
+}
+
+const images = [{
+		$name: 'sun',
+		$style: {
+				bottom: '28%',
+				width: '100px',
+				left: '50%',
+				height: '92px'
+		},
+		$func: renderSun
+}, {
+		$name: 'cloud2',
+		$style: {
+				top: '7%',
+				right: '70%',
+				width: '390px'
+		},
+		$func: renderCloud2
+}, {
+		$name: 'cloud3',
+		$style: {
+				top: '10%',
+				left: '70%',
+				width: '350px'
+		},
+		$func: renderCloud3
+	}, {
+		$name: 'cloud4',
+		$style: {
+				top: '33%',
+				left: '35%',
+				width: '420px'
+		},
+		$func: renderCloud4
+}, {
+		$name: 'cloud5',
+		$style: {
+				top: '40%',
+				right: '55%',
+				width: '280px'
+		},
+		$func: renderCloud5
+}, {
+		$name: 'cloud6',
+		$style: {
+				top: '67%',
+				left: '55%',
+				width: '230px'
+		},
+		$func: renderCloud6
+}]
+
+const renderBackground = coef => {
+		coef -= 1
+		console.log(coef);
+
+		return (
+				<Background>
+						<Sky src={Bg('sky-mobile', false)} alt='sky' $coef={coef} />
+						{images.map(props => <Image {...props} key={props.$name} $coef={coef} />)}
+						<Landscape src={Bg('landscape', false)} alt='landscape' />
+				</Background>
+		)
+}
+
 export default function Layout() {
 		//const isSmallScreen = useMediaQuery({ query: '(max-width: 400px)' })
 		//const idMediumScreen = useMediaQuery({ query: '(max-width: 584px)' })
 		//const isLargeScreen = useMediaQuery({ query: '(max-width: 768px)' })
 
 		let contentWidth = 350
-
-		const renderBackground = coef => {
-				coef -= 1
-
-				return (
-						<Background>
-								<Sky src={Bg('sky-mobile', false)} alt='sky' $coef={coef} />
-								<Cloud2 src={Bg('cloud2', false)} alt='cloud2' $coef={coef}/>
-								<Cloud3 src={Bg('cloud3', false)} alt='cloud3' $coef={coef}/>
-								<Cloud4 src={Bg('cloud4', false)} alt='cloud4' $coef={coef}/>
-								<Cloud5 src={Bg('cloud5', false)} alt='cloud5' $coef={coef}/>
-								<Cloud6 src={Bg('cloud6', false)} alt='cloud6' $coef={coef} />
-								<Sun src={Bg('sun', false)} alt='sun' $coef={coef} />
-								<Landscape src={Bg('landscape', false)} alt='landscape' />
-						</Background>
-				)
-		}
 
 		return (
 				<StlLayout renderLayer={renderBackground}>
