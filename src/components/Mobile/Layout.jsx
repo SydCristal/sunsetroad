@@ -117,7 +117,7 @@ const renderCloud2 = coef => {
 }
 
 const renderCloud3 = coef => {
-		const scale = 1 - Math.abs(1 * coef)
+		const scale = 1 - Math.abs(0.5 * coef)
 		const shiftX = 80 * coef
 		const shiftY = 800 * coef
 		return {
@@ -128,9 +128,9 @@ const renderCloud3 = coef => {
 
 const renderCloud4 = coef => {
 		coef -= 0.29
-		const scale = 1 - Math.abs(1 * coef)
-		const shiftX = Math.abs(180 * coef)
-		const shiftY = coef <= 0 ? 700 * coef : 3000 * coef
+		const scale = 1 - Math.abs(0.5 * coef)
+		const shiftX = (coef <= 0 ? -120 : 180) * coef
+		const shiftY = (coef <= 0 ? 600 : 3000) * coef
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
@@ -138,9 +138,9 @@ const renderCloud4 = coef => {
 
 const renderCloud5 = coef => {
 		coef -= 0.29
-		const scale = 1 - Math.abs(1 * coef)
-		const shiftX = Math.abs(-200 * coef)
-		const shiftY = coef <= 0 ? 700 * coef : 2000 * coef
+		const scale = 1 - Math.abs(coef)
+		const shiftX = (coef <= 0 ? -50 : 200) * coef 
+		const shiftY = (coef <= 0 ? 700 : 2000) * coef
 		return {
 				transform: `translate(-${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
@@ -210,6 +210,7 @@ const images = [{
 
 const renderBackground = coef => {
 		coef -= 1
+		console.log(coef);
 
 		return (
 				<Background>
