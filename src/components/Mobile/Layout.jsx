@@ -94,7 +94,22 @@ const Image = styled.div.attrs(({ $name, $coef, $style, $func }) => {
 				position: absolute;
 				z-index: 1;
 				transition: all 0.3s ease;
+				pointer-events: none;
 		};
+`
+
+const Footer = styled.footer`
+		width: 260px;
+		height: 165px;
+		position: relative;
+		margin: 0 auto;
+		z-index: 3;
+		> div {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 666;
+		}
 `
 
 const renderSun = coef => {
@@ -157,6 +172,86 @@ const renderCloud6 = coef => {
 		}
 }
 
+const renderPalm1 = coef => {
+		coef -= 0.5
+
+		const defaultParams = {
+				transition: 'all 0s'
+		}
+
+		if (coef <= 0) return defaultParams
+
+		const shiftX = -250 * coef
+		const shiftY = 200 * coef
+		const scale = 1 + coef
+		const rotate = -150 * coef
+		return {
+				...defaultParams,
+				transform: `translate(${shiftX}%, ${shiftY}%)  scale(${scale}) rotate(${rotate}deg)`
+		}
+}
+
+const renderPalm2 = coef => {
+		coef -= 0.5
+
+		const defaultParams = {
+				transition: 'all 0s'
+		}
+
+		if (coef < 0) return defaultParams
+
+		const shiftX = 150 * coef
+		const shiftY = -130 * coef
+		const scale = 1 - coef
+		const rotate = 120 * coef
+		return {
+				...defaultParams,
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
+		}
+}
+
+const renderPlant1 = coef => {
+		return {}
+		//coef -= 0.5
+
+		//const defaultParams = {
+		//		zIndex: 3,
+		//		transition: 'all 0s'
+		//}
+
+		//if (coef < 0) return defaultParams
+
+		//const shiftX = 150 * coef
+		//const shiftY = -130 * coef
+		//const scale = 1 - coef
+		//const rotate = 100 * coef
+		//return {
+		//		...defaultParams,
+		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
+		//}
+}
+
+const renderPlant2 = coef => {
+		return {}
+		//coef -= 0.5
+
+		//const defaultParams = {
+		//		zIndex: 3,
+		//		transition: 'all 0s'
+		//}
+
+		//if (coef < 0) return defaultParams
+
+		//const shiftX = 150 * coef
+		//const shiftY = -130 * coef
+		//const scale = 1 - coef
+		//const rotate = 100 * coef
+		//return {
+		//		...defaultParams,
+		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
+		//}
+}
+
 const images = [{
 		$name: 'sun',
 		$style: {
@@ -206,6 +301,45 @@ const images = [{
 				width: '230px'
 		},
 		$func: renderCloud6
+}, {
+		$name: 'palm1',
+		$style: {
+				bottom: '30%',
+				right: '55%',
+				width: '218px',
+				rotate: '4deg',
+				zIndex: 3
+		},
+		$func: renderPalm1
+}, {
+		$name: 'palm2',
+		$style: {
+				bottom: '31%',
+				left: '50%',
+				width: '398px',
+				zIndex: 3
+		},
+		$func: renderPalm2
+}, {
+		$name: 'plant1',
+		$style: {
+				bottom: '11%',
+				left: '57%',
+				width: '200px',
+				rotate: '-32deg',
+				zIndex: 3
+		},
+		$func: renderPlant1
+}, {
+		$name: 'plant2',
+		$style: {
+				bottom: '12%',
+				right: '50%',
+				width: '398px',
+				rotate: '12deg',
+				zIndex: 3
+		},
+		$func: renderPlant2
 }]
 
 const renderBackground = coef => {
@@ -238,9 +372,11 @@ export default function Layout() {
 										<Info />
 										<Carousel contentWidth={contentWidth} />
 										<Partners />
-										<Contacts />
 								</Main>
 						</Content>
+						<Footer>
+								<Contacts />
+						</Footer>
 				</StlLayout>
 		)
 }
