@@ -26,7 +26,7 @@ const Sky = styled.img.attrs(({ $coef }) => ({
 				top: `${$coef < 0.5 ? $coef * 40 - 5 : 15}%`,
 		}}))`
 		position: absolute;
-		left: 50%;
+		left: calc(50% - 1px);
   transform: translateX(-50%);
 		width: 100%;
 		height: 75%;
@@ -163,17 +163,15 @@ const renderPalm1 = xCoef => {
 
 		if (xCoef <= 0) return defaultParams
 
-		const yCoef = -100 / (window.innerWidth - 768);
-
-		let shiftX = -650 * xCoef//-70
-		let shiftY = 220 * xCoef//15
+		let shiftX = -550 * xCoef
+		let shiftY = 180 * xCoef
 		const scale = 1 + 2 * xCoef
-		let rotate = -65 * xCoef//-15
+		let rotate = -85 * xCoef
 
-		if (yCoef < 0.5) {
+		if (window.innerWidth < 568) {
 				shiftX = shiftX * 0.7
-				shiftY = shiftY / 2
-				rotate = rotate * 1.5
+				shiftY = shiftY / 6
+				rotate = rotate * 1
 		}
 
 		return {
@@ -191,15 +189,14 @@ const renderPalm2 = xCoef => {
 
 		if (xCoef < 0) return defaultParams
 
-		const yCoef = -100 / (window.innerWidth - 768);
-		let shiftX = 400 * xCoef
-		let shiftY = 100 * xCoef
+		let shiftX = 300 * xCoef
+		let shiftY = 80 * xCoef
 		const scale = 1 + 2 * xCoef 
 		let rotate = 120 * xCoef
 
-		if (yCoef < 0.5) {
+		if (window.innerWidth < 568) {
 				shiftX = shiftX * 0.7
-				shiftY = shiftY / -3
+				shiftY = shiftY / -9
 				rotate = rotate * 0.75
 		}
 
@@ -207,6 +204,26 @@ const renderPalm2 = xCoef => {
 				...defaultParams,
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
+}
+
+const renderPlant1 = () => {
+		if (window.innerWidth < 568) {
+				return {
+						transform: `translate(15%, 5%)`
+				}
+		}
+
+		return {}
+}
+
+const renderPlant2 = () => {
+		if (window.innerWidth < 568) {
+				return {
+						transform: `translate(-20%, 5%)`
+				}
+		}
+
+		return {}
 }
 
 const images = [{
@@ -287,7 +304,7 @@ const images = [{
 				rotate: '-32deg',
 				zIndex: 3
 		},
-		$func: () => ({})
+		$func: renderPlant1
 }, {
 		$name: 'plant2',
 		$style: {
@@ -296,7 +313,7 @@ const images = [{
 				rotate: '12deg',
 				zIndex: 3
 		},
-		$func: () => ({})
+		$func: renderPlant2
 }]
 
 const renderBackground = coef => {
