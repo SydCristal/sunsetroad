@@ -196,7 +196,7 @@ const renderPalm2 = xCoef => {
 
 		if (window.innerWidth < 568) {
 				shiftX = shiftX * 1.2
-				shiftY = shiftY * 1.2
+				shiftY = shiftY * 1
 		}
 
 		return {
