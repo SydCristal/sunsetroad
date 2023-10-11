@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Ic } from '../../Utils'
+import { Ic, S } from '../../Utils'
 
 const StlContacts = styled.div`
 		display: flex;
@@ -8,9 +8,11 @@ const StlContacts = styled.div`
 		align-items: center;
 		margin: 0 auto;
 		> a {
-				font-size: 24px;
+				font-size: 26px;
 				font-weight: 600;
 				text-decoration: none;
+				font-family: 'Orelega One';
+				text-shadow: ${S.TEXT_OUTLINE};
 		};
 		> ul {
 				width: 100%;

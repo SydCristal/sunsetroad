@@ -14,7 +14,7 @@ const StlPartners = styled.div`
 				font-family: 'Orelega One';
 				font-size: 35px;
 				font-weight: 400;
-				text-shadow: 1px 1px 1px ${S.TEXT_SHADOW}, -1px 1px 1px ${S.TEXT_SHADOW}, 1px -1px 1px ${S.TEXT_SHADOW}, -1px -1px 1px ${S.TEXT_SHADOW};
+				text-shadow: ${S.TEXT_OUTLINE};
 		};
 		>	div {
 				width: 280px;

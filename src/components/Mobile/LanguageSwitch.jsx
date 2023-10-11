@@ -28,7 +28,7 @@ const Option = styled.div`
 		font-size: 26px;
 		font-family: 'Orelega One';
 		font-weight: 400;
-		text-shadow: 1px 1px 1px ${S.TEXT_SHADOW}, -1px 1px 1px ${S.TEXT_SHADOW}, 1px -1px 1px ${S.TEXT_SHADOW}, -1px -1px 1px ${S.TEXT_SHADOW};
+		text-shadow: ${S.TEXT_OUTLINE};
 `
 //		width: ${({ $expanded, $selected }) => $expanded || $selected ? '50px' : '0'};
 //		opacity: ${({ $expanded, $selected }) => $expanded || $selected ? '1' : '0'};
