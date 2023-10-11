@@ -26,9 +26,7 @@ const Sky = styled.img.attrs(({ $coef }) => ({
 				top: `${$coef < 0.5 ? $coef * 40 - 5 : 15}%`,
 		}}))`
 		position: absolute;
-		left: calc(50% + 1px);
-  transform: translateX(-50%);
-		width: calc(100% + 1px);
+		width: 100%;
 		height: 75%;
 `
 
@@ -164,17 +162,17 @@ const renderCloud6 = coef => {
 const renderPalm1 = () => {
 		const spaceBelow = window.scrollMaxY - window.scrollY
 
-		let shiftX = 110
+		let shiftX = 125
 		let shiftY = -15
 		let scale = 0.75
-		let rotate = 30
+		let rotate = 35
 
 		if (window?.scrollMaxY && spaceBelow <= 400) {
 				const coef = spaceBelow ? spaceBelow / 400 : 0
 				shiftX *= coef
 				shiftY *= coef
 				scale = 1 - coef / 4
-				rotate -= 20 - 20 * coef
+				rotate -= 25 - 25 * coef
 		}
 
 		return {
@@ -186,17 +184,17 @@ const renderPalm1 = () => {
 const renderPalm2 = () => {
 		const spaceBelow = window.scrollMaxY - window.scrollY
 
-		let shiftX = -80
+		let shiftX = -75
 		let shiftY = -10
 		let scale = 0.75
-		let rotate = -10
+		let rotate = -20
 
 		if (window?.scrollMaxY && spaceBelow <= 400) {
 				const coef = spaceBelow ? spaceBelow / 400 : 0
 				shiftX *= coef
 				shiftY *= coef
 				scale = 1 - coef / 4
-				rotate += 20 - 20 * coef
+				rotate += 30 - 30 * coef
 		}
 
 		return {
@@ -279,7 +277,7 @@ const images = [{
 		$style: {
 				bottom: '550px',
 				width: '200px',
-				right: '70%',
+				right: '75%',
 				zIndex: 3
 		},
 		$func: renderPalm1
@@ -287,7 +285,7 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '600px',
-				left: '60%',
+				left: '65%',
 				width: '250px',
 				zIndex: 3
 		},
