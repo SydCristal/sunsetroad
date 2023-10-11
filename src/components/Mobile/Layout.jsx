@@ -26,9 +26,9 @@ const Sky = styled.img.attrs(({ $coef }) => ({
 				top: `${$coef < 0.5 ? $coef * 40 - 5 : 15}%`,
 		}}))`
 		position: absolute;
-		left: calc(50% + 1);
+		left: calc(50% + 1px);
   transform: translateX(-50%);
-		width: calc(100% + 1);
+		width: calc(100% + 1px);
 		height: 75%;
 `
 
