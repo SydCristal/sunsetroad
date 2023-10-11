@@ -26,7 +26,7 @@ const TextContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		height: 200px;
+		height: 300px;
 		> * {
 				color: black;
 				text-align: center;

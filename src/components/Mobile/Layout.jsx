@@ -32,24 +32,6 @@ const Sky = styled.img.attrs(({ $coef }) => ({
 		height: 75%;
 `
 
-const Palm2 = styled.img.attrs(({ $coef }) => {
-		if ($coef < 0.3) return
-		$coef -= 0.3
-		const scale = 1 - 1.5 * $coef
-		//console.log($coef);
-
-		return {
-				style: {
-						transform: `scale(${scale})`//`translate(${200 * $coef}%, ${1000 * $coef}%)`,
-				}
-		}})`
-		position: absolute;
-		bottom: -60px;
-		width: 300px;
-		left: 60%;
-		z-index: 1;
-`
-
 const Landscape = styled.img`
 		bottom: 0;
 		position: absolute;
@@ -142,9 +124,9 @@ const renderCloud3 = coef => {
 }
 
 const renderCloud4 = coef => {
-		coef -= 0.29
+		coef -= 0.31
 		const scale = 1 - Math.abs(0.5 * coef)
-		const shiftX = (coef <= 0 ? -120 : 180) * coef
+		const shiftX = (coef <= 0 ? -120 : 220) * coef
 		const shiftY = (coef <= 0 ? 600 : 3000) * coef
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
@@ -152,7 +134,7 @@ const renderCloud4 = coef => {
 }
 
 const renderCloud5 = coef => {
-		coef -= 0.29
+		coef -= 0.31
 		const scale = 1 - Math.abs(coef)
 		const shiftX = (coef <= 0 ? -50 : 200) * coef 
 		const shiftY = (coef <= 0 ? 700 : 2000) * coef
@@ -172,84 +154,59 @@ const renderCloud6 = coef => {
 		}
 }
 
-const renderPalm1 = coef => {
-		coef -= 0.5
+const renderPalm1 = xCoef => {
+		xCoef -= 0.43
 
 		const defaultParams = {
 				transition: 'all 0s'
 		}
 
-		if (coef <= 0) return defaultParams
+		if (xCoef <= 0) return defaultParams
 
-		const shiftX = -250 * coef
-		const shiftY = 200 * coef
-		const scale = 1 + coef
-		const rotate = -150 * coef
+		const yCoef = -100 / (window.innerWidth - 768);
+
+		let shiftX = -650 * xCoef//-70
+		let shiftY = 220 * xCoef//15
+		const scale = 1 + 2 * xCoef
+		let rotate = -65 * xCoef//-15
+
+		if (yCoef < 0.5) {
+				shiftX = shiftX * 0.7
+				shiftY = shiftY / 2
+				rotate = rotate * 1.5
+		}
+
 		return {
 				...defaultParams,
 				transform: `translate(${shiftX}%, ${shiftY}%)  scale(${scale}) rotate(${rotate}deg)`
 		}
 }
 
-const renderPalm2 = coef => {
-		coef -= 0.5
+const renderPalm2 = xCoef => {
+		xCoef -= 0.43
 
 		const defaultParams = {
 				transition: 'all 0s'
 		}
 
-		if (coef < 0) return defaultParams
+		if (xCoef < 0) return defaultParams
 
-		const shiftX = 150 * coef
-		const shiftY = -130 * coef
-		const scale = 1 - coef
-		const rotate = 120 * coef
+		const yCoef = -100 / (window.innerWidth - 768);
+		let shiftX = 400 * xCoef
+		let shiftY = 100 * xCoef
+		const scale = 1 + 2 * xCoef 
+		let rotate = 120 * xCoef
+
+		if (yCoef < 0.5) {
+				shiftX = shiftX * 0.7
+				shiftY = shiftY / -3
+				rotate = rotate * 0.75
+		}
+
 		return {
 				...defaultParams,
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
-}
-
-const renderPlant1 = coef => {
-		return {}
-		//coef -= 0.5
-
-		//const defaultParams = {
-		//		zIndex: 3,
-		//		transition: 'all 0s'
-		//}
-
-		//if (coef < 0) return defaultParams
-
-		//const shiftX = 150 * coef
-		//const shiftY = -130 * coef
-		//const scale = 1 - coef
-		//const rotate = 100 * coef
-		//return {
-		//		...defaultParams,
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
-		//}
-}
-
-const renderPlant2 = coef => {
-		return {}
-		//coef -= 0.5
-
-		//const defaultParams = {
-		//		zIndex: 3,
-		//		transition: 'all 0s'
-		//}
-
-		//if (coef < 0) return defaultParams
-
-		//const shiftX = 150 * coef
-		//const shiftY = -130 * coef
-		//const scale = 1 - coef
-		//const rotate = 100 * coef
-		//return {
-		//		...defaultParams,
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
-		//}
 }
 
 const images = [{
@@ -280,7 +237,7 @@ const images = [{
 	}, {
 		$name: 'cloud4',
 		$style: {
-				top: '33%',
+				top: '35%',
 				left: '35%',
 				width: '420px'
 		},
@@ -288,7 +245,7 @@ const images = [{
 }, {
 		$name: 'cloud5',
 		$style: {
-				top: '40%',
+				top: '42%',
 				right: '55%',
 				width: '280px'
 		},
@@ -304,47 +261,47 @@ const images = [{
 }, {
 		$name: 'palm1',
 		$style: {
-				bottom: '30%',
-				right: '55%',
-				width: '218px',
-				rotate: '4deg',
+				bottom: '29%',
+				left: '60%',
+				width: '164px',
+				rotate: '30deg',
 				zIndex: 3
 		},
 		$func: renderPalm1
 }, {
 		$name: 'palm2',
 		$style: {
-				bottom: '31%',
-				left: '50%',
-				width: '398px',
+				bottom: '30%',
+				right: '45%',
+				width: '214px',
+				rotate: '-15deg',
 				zIndex: 3
 		},
 		$func: renderPalm2
 }, {
 		$name: 'plant1',
 		$style: {
-				bottom: '11%',
-				left: '57%',
+				bottom: '9%',
+				right: '8%',
 				width: '200px',
 				rotate: '-32deg',
 				zIndex: 3
 		},
-		$func: renderPlant1
+		$func: () => ({})
 }, {
 		$name: 'plant2',
 		$style: {
-				bottom: '12%',
-				right: '50%',
+				bottom: '11%',
 				width: '398px',
 				rotate: '12deg',
 				zIndex: 3
 		},
-		$func: renderPlant2
+		$func: () => ({})
 }]
 
 const renderBackground = coef => {
 		coef -= 1
-		console.log(coef);
+		//console.log(coef);
 
 		return (
 				<Background>
@@ -380,4 +337,3 @@ export default function Layout() {
 				</StlLayout>
 		)
 }
-								//<Palm2 src={Bg('palm2', false)} alt='palm2' $coef={coef - 1} />
