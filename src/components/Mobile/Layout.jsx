@@ -162,8 +162,8 @@ const renderCloud6 = coef => {
 const renderPalm1 = () => {
 		const spaceBelow = window.scrollMaxY - window.scrollY
 
-		let shiftX = 125
-		let shiftY = -15
+		let shiftX = 100
+		let shiftY = -10
 		let scale = 0.75
 		let rotate = 35
 
@@ -184,7 +184,7 @@ const renderPalm1 = () => {
 const renderPalm2 = () => {
 		const spaceBelow = window.scrollMaxY - window.scrollY
 
-		let shiftX = -75
+		let shiftX = -60
 		let shiftY = -10
 		let scale = 0.75
 		let rotate = -20
@@ -275,7 +275,7 @@ const images = [{
 }, {
 		$name: 'palm1',
 		$style: {
-				bottom: '550px',
+				bottom: '600px',
 				width: '200px',
 				right: '75%',
 				zIndex: 3
@@ -284,7 +284,7 @@ const images = [{
 }, {
 		$name: 'palm2',
 		$style: {
-				bottom: '600px',
+				bottom: '620px',
 				left: '65%',
 				width: '250px',
 				zIndex: 3
