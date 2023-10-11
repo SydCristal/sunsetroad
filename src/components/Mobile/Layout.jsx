@@ -94,12 +94,19 @@ const Footer = styled.footer`
 		}
 `
 
-const renderSun = coef => {
-		coef -= 0.3
-		if (coef < 0) return {}
-		const shiftY = 1200 * coef 
+const renderSun = () => {
+		const spaceBelow = window.scrollMaxY - window.scrollY
+
+		let shiftX = -350
+
+		if (window?.scrollMaxY && spaceBelow <= 550) {
+				const coef = spaceBelow ? spaceBelow / 550 : 0
+				shiftX *= coef
+		}
+
 		return {
-				transform: `translateY(${shiftY}%)`
+				transition: 'all 0s',
+				transform: `translateY(${shiftX}%)`
 		}
 }
 
@@ -154,52 +161,46 @@ const renderCloud6 = coef => {
 		}
 }
 
-const renderPalm1 = xCoef => {
-		xCoef -= 0.43
+const renderPalm1 = () => {
+		const spaceBelow = window.scrollMaxY - window.scrollY
 
-		const defaultParams = {
-				transition: 'all 0s'
-		}
+		let shiftX = 110
+		let shiftY = -15
+		let scale = 0.75
+		let rotate = 30
 
-		if (xCoef <= 0) return defaultParams
-
-		let shiftX = -550 * xCoef
-		let shiftY = 180 * xCoef
-		const scale = 1 + 2 * xCoef
-		let rotate = -100 * xCoef
-
-		if (window.innerWidth < 568) {
-				shiftX = shiftX * 0.8
-				shiftY = shiftY * 0.9
+		if (window?.scrollMaxY && spaceBelow <= 400) {
+				const coef = spaceBelow ? spaceBelow / 400 : 0
+				shiftX *= coef
+				shiftY *= coef
+				scale = 1 - coef / 4
+				rotate -= 20 - 20 * coef
 		}
 
 		return {
-				...defaultParams,
-				transform: `translate(${shiftX}%, ${shiftY}%)  scale(${scale}) rotate(${rotate}deg)`
+				transition: 'all 0s',
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
 }
 
-const renderPalm2 = xCoef => {
-		xCoef -= 0.43
+const renderPalm2 = () => {
+		const spaceBelow = window.scrollMaxY - window.scrollY
 
-		const defaultParams = {
-				transition: 'all 0s'
-		}
+		let shiftX = -80
+		let shiftY = -10
+		let scale = 0.75
+		let rotate = -10
 
-		if (xCoef < 0) return defaultParams
-
-		let shiftX = 350 * xCoef
-		let shiftY = 40 * xCoef
-		const scale = 1 + xCoef 
-		let rotate = 120 * xCoef
-
-		if (window.innerWidth < 568) {
-				shiftX = shiftX * 1.7
-				shiftY = shiftY * 1.2
+		if (window?.scrollMaxY && spaceBelow <= 400) {
+				const coef = spaceBelow ? spaceBelow / 400 : 0
+				shiftX *= coef
+				shiftY *= coef
+				scale = 1 - coef / 4
+				rotate += 20 - 20 * coef
 		}
 
 		return {
-				...defaultParams,
+				transition: 'all 0s',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
 }
@@ -227,7 +228,7 @@ const renderPlant2 = () => {
 const images = [{
 		$name: 'sun',
 		$style: {
-				bottom: '28%',
+				bottom: '200px',
 				width: '100px',
 				left: '50%',
 				height: '92px'
@@ -276,20 +277,18 @@ const images = [{
 }, {
 		$name: 'palm1',
 		$style: {
-				bottom: '29%',
-				left: '60%',
-				width: '164px',
-				rotate: '30deg',
+				bottom: '550px',
+				width: '200px',
+				right: '65%',
 				zIndex: 3
 		},
 		$func: renderPalm1
 }, {
 		$name: 'palm2',
 		$style: {
-				bottom: '30%',
-				right: '45%',
-				width: '214px',
-				rotate: '-15deg',
+				bottom: '600px',
+				left: '55%',
+				width: '250px',
 				zIndex: 3
 		},
 		$func: renderPalm2
@@ -333,6 +332,8 @@ export default function Layout() {
 		//const isLargeScreen = useMediaQuery({ query: '(max-width: 768px)' })
 
 		let contentWidth = 350
+
+		
 
 		return (
 				<StlLayout renderLayer={renderBackground}>
