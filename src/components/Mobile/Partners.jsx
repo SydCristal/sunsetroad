@@ -4,7 +4,7 @@ import { l } from './Localization'
 import { S, Lo } from '../../Utils'
 
 const StlPartners = styled.div`
-		margin-top: 50px;
+		margin-top: 65px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
