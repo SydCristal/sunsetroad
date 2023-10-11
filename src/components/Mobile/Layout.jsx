@@ -195,7 +195,7 @@ const renderPalm2 = xCoef => {
 		let rotate = 120 * xCoef
 
 		if (window.innerWidth < 568) {
-				shiftX = shiftX * 1.2
+				shiftX = shiftX * 1.3
 				shiftY = shiftY * 1
 		}
 
