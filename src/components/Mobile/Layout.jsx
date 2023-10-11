@@ -26,9 +26,9 @@ const Sky = styled.img.attrs(({ $coef }) => ({
 				top: `${$coef < 0.5 ? $coef * 40 - 5 : 15}%`,
 		}}))`
 		position: absolute;
-		left: calc(50% - 1px);
+		left: calc(50% + 1);
   transform: translateX(-50%);
-		width: 100%;
+		width: calc(100% + 1);
 		height: 75%;
 `
 
@@ -228,7 +228,7 @@ const renderPlant2 = () => {
 const images = [{
 		$name: 'sun',
 		$style: {
-				bottom: '200px',
+				bottom: '175px',
 				width: '100px',
 				left: '50%',
 				height: '92px'
@@ -279,7 +279,7 @@ const images = [{
 		$style: {
 				bottom: '550px',
 				width: '200px',
-				right: '65%',
+				right: '70%',
 				zIndex: 3
 		},
 		$func: renderPalm1
@@ -287,7 +287,7 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '600px',
-				left: '55%',
+				left: '60%',
 				width: '250px',
 				zIndex: 3
 		},
