@@ -29,10 +29,8 @@ const PartnerContainer = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 		touch-action: none;
-		&.transitioning {
-				> * {
-					 opacity: 1 !important;
-				};
+		&.disabled a {
+				pointer-events: none !important;
 		};
 		&:not(.transitioning) {
 				transition: transform 0.5s ease-in-out;
@@ -118,6 +116,7 @@ export function Partners({ contentWidth }) {
 		let swipeStartX = 0
 		let swipeDirection
 		let swipeStartTime = 0
+		let trasitioning = false
 
 		const groupCount = partnerGroups.length
 		const rowWidth = 280
@@ -128,8 +127,10 @@ export function Partners({ contentWidth }) {
 		}
 
 		const onSwipeStart = e => {
+				console.log('Bleurge!');
 				e.preventDefault()
 				e.stopPropagation()
+				if (trasitioning) return
 				const { changedTouches, timeStamp } = e
 				swipeStartX = changedTouches[0]?.pageX
 				swipeStartTime = timeStamp
@@ -140,6 +141,7 @@ export function Partners({ contentWidth }) {
 		const onSwipeMove = e => {
 				e.preventDefault()
 				e.stopPropagation()
+				if (trasitioning) return
 				const { changedTouches } = e
 				const container = containerRef.current
 				const shift = changedTouches[0]?.pageX - swipeStartX
@@ -158,6 +160,17 @@ export function Partners({ contentWidth }) {
 		const movePartners = (e, coef) => {
 				e?.preventDefault()
 				e?.stopPropagation()
+				if (trasitioning) return
+
+				const container = containerRef.current
+				container.classList.add('disabled')
+				trasitioning = true
+
+				setTimeout(() => {
+						container.classList.remove('disabled')
+						trasitioning = false
+				}, 500)
+
 				let newGroup = currentGroup + coef
 				if (newGroup === groupCount) newGroup = 0
 				if (newGroup === -1) newGroup = groupCount - 1
@@ -168,7 +181,7 @@ export function Partners({ contentWidth }) {
 		const onSwipeEnd = e => {
 				const { changedTouches, timeStamp } = e
 
-				if (timeStamp - swipeStartTime > 300) {
+				if (timeStamp - swipeStartTime > 300 || trasitioning) {
 						e.preventDefault()
 						e.stopPropagation()
 				}
@@ -180,12 +193,24 @@ export function Partners({ contentWidth }) {
 				const container = containerRef.current
 				container.classList.remove('transitioning')
 				container.style.transform = `translateX(0px)`
-				for (let i = 0; i < container.children.length; i++) {
-						if (i === currentGroup || i == prevGroup) continue
-						container.children[i].style.opacity = 0
-				}
+				swipeDirection = null
 
-				if (startSection === endSection || endSection === 1) return
+				if (trasitioning) return
+
+				if (startSection === endSection || endSection === 1) {
+						trasitioning = true
+
+						setTimeout(() => {
+								for (let i = 0; i < container.children.length; i++) {
+										if (i === currentGroup || i == prevGroup) continue
+										container.children[i].style.opacity = 0
+								}
+
+								trasitioning = false
+						}, 500)
+
+						return
+				}
 
 				const coef = startSection > endSection ? 1 : -1
 				movePartners(null, coef)
@@ -225,6 +250,15 @@ export function Partners({ contentWidth }) {
 										onPointerDown={e => movePartners(e, -1)} />
 						</PartnerGroup>
 				)
+		}
+
+		const onTouchPartner = e => {
+				console.log('Zorg!')
+				if (trasitioning) {
+						console.log('TRANS!!!');
+						e.preventDefault()
+						e.stopPropagation()
+				}
 		}
 
 		const renderPartner = partner => (

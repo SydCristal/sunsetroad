@@ -5,6 +5,11 @@ import { LanguageSwitch, Info, Partners, Contacts } from './'
 import Carousel from '../Carousel'
 //import { useMediaQuery } from 'react-responsive'
 
+const getSpaceBelow = () => {
+		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
+		return scrollHeight - clientHeight - scrollTop
+}
+
 const StlLayout = styled(Parallax)`
 		.react-parallax-bgimage {
 				padding-bottom: 310px;
@@ -21,13 +26,18 @@ const Background = styled.div`
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(({ $coef }) => ({
-		style: {
-				top: `${$coef < 0.5 ? $coef * 40 - 5 : 15}%`,
-		}}))`
+const Sky = styled.img.attrs(() => {
+		const spaceBelow = getSpaceBelow()
+		const { scrollHeight } = document.documentElement
+		const coef = spaceBelow ? 1 - spaceBelow / scrollHeight : 1
+
+		return { style: {
+				top: `${40 * coef - 25}%`
+		}
+		}})`
 		position: absolute;
 		width: 100%;
-		height: 75%;
+		height: 80%;
 `
 
 const Landscape = styled.img`
@@ -73,7 +83,7 @@ const Image = styled.div.attrs(({ $name, $coef, $style, $func }) => {
 				width: 100%;
 				position: absolute;
 				z-index: 1;
-				transition: all 0.3s ease;
+				transition: transform 0.3s ease;
 				pointer-events: none;
 		};
 `
@@ -93,18 +103,18 @@ const Footer = styled.footer`
 `
 
 const renderSun = () => {
-		const spaceBelow = window.scrollMaxY - window.scrollY
+		const spaceBelow = getSpaceBelow()
 
-		let shiftX = -350
+		let shiftY = -370
 
-		if (window?.scrollMaxY && spaceBelow <= 550) {
-				const coef = spaceBelow ? spaceBelow / 550 : 0
-				shiftX *= coef
+		if (spaceBelow <= 420) {
+				const coef = spaceBelow ? spaceBelow / 420 : 0
+				shiftY *= coef
 		}
 
 		return {
-				transition: 'all 0s',
-				transform: `translateY(${shiftX}%)`
+				transition: 'transform 0.3s ease',
+				transform: `translateY(${shiftY}%)`
 		}
 }
 
@@ -160,14 +170,14 @@ const renderCloud6 = coef => {
 }
 
 const renderPalm1 = () => {
-		const spaceBelow = window.scrollMaxY - window.scrollY
+		const spaceBelow = getSpaceBelow()
 
 		let shiftX = 100
 		let shiftY = -10
 		let scale = 0.75
 		let rotate = 35
 
-		if (window?.scrollMaxY && spaceBelow <= 400) {
+		if (spaceBelow <= 400) {
 				const coef = spaceBelow ? spaceBelow / 400 : 0
 				shiftX *= coef
 				shiftY *= coef
@@ -176,20 +186,20 @@ const renderPalm1 = () => {
 		}
 
 		return {
-				transition: 'all 0s',
+				//transition: 'all 0s',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
 }
 
 const renderPalm2 = () => {
-		const spaceBelow = window.scrollMaxY - window.scrollY
+		const spaceBelow = getSpaceBelow()
 
 		let shiftX = -60
 		let shiftY = -10
 		let scale = 0.75
 		let rotate = -20
 
-		if (window?.scrollMaxY && spaceBelow <= 400) {
+		if (spaceBelow <= 400) {
 				const coef = spaceBelow ? spaceBelow / 400 : 0
 				shiftX *= coef
 				shiftY *= coef
@@ -198,7 +208,7 @@ const renderPalm2 = () => {
 		}
 
 		return {
-				transition: 'all 0s',
+				//transition: 'all 0s',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
 }
