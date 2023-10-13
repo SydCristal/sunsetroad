@@ -277,7 +277,7 @@ const images = [{
 		$style: {
 				bottom: '600px',
 				width: '200px',
-				right: '75%',
+				right: window.innerWidth >= 568 ? '65%' : '75%',
 				zIndex: 3
 		},
 		$func: renderPalm1
@@ -285,7 +285,7 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '620px',
-				left: '65%',
+				left: window.innerWidth >= 568 ? '55%' : '65%',
 				width: '250px',
 				zIndex: 3
 		},
@@ -342,7 +342,7 @@ export default function Layout() {
 								<Main $width={contentWidth}>
 										<Info />
 										<Carousel contentWidth={contentWidth} />
-										<Partners />
+										<Partners contentWidth={contentWidth} />
 								</Main>
 						</Content>
 						<Footer>
