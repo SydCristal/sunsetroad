@@ -28,6 +28,7 @@ const PartnerContainer = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		touch-action: none;
 		&.transitioning {
 				> * {
 					 opacity: 1 !important;
