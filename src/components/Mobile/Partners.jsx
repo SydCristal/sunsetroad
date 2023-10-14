@@ -116,7 +116,6 @@ export function Partners({ contentWidth }) {
 		let swipeStartX
 		let swipeDirection
 		let swipeStartTime
-		let trasitioning
 
 		const groupCount = partnerGroups.length
 		const rowWidth = 280
@@ -171,7 +170,6 @@ export function Partners({ contentWidth }) {
 
 				setTimeout(() => {
 						container.classList.remove('disabled')
-						trasitioning = false
 				}, 500)
 
 				let newGroup = currentGroup + coef
@@ -241,16 +239,9 @@ export function Partners({ contentWidth }) {
 				)
 		}
 
-		const onTouchPartner = e => {
-				if (trasitioning) {
-						e.preventDefault()
-						e.stopPropagation()
-				}
-		}
-
 		const renderPartner = partner => (
 				<li key={partner}>
-						<a href={partnerMap[partner]} target='_blank'>
+						<a href={partnerMap[partner]} target='_blank' rel='noreferrer'>
 								<img src={Lo(partner, false)} alt={partner} />
 						</a>
 				</li>
