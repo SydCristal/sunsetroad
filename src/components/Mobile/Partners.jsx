@@ -113,10 +113,10 @@ export function Partners({ contentWidth }) {
 		const containerRef = useRef(null)
 		const windowWidth = window.innerWidth
 		l.setLanguage(language)
-		let swipeStartX = 0
+		let swipeStartX
 		let swipeDirection
-		let swipeStartTime = 0
-		let trasitioning = false
+		let swipeStartTime
+		let trasitioning
 
 		const groupCount = partnerGroups.length
 		const rowWidth = 280
@@ -127,44 +127,47 @@ export function Partners({ contentWidth }) {
 		}
 
 		const onSwipeStart = e => {
-				console.log('Bleurge!');
 				e.preventDefault()
 				e.stopPropagation()
-				if (trasitioning) return
+				const container = containerRef.current
+				if (container.classList.contains('disabled')) return
 				const { changedTouches, timeStamp } = e
 				swipeStartX = changedTouches[0]?.pageX
 				swipeStartTime = timeStamp
-				const container = containerRef.current
-				container.classList.add('transitioning')
 		}
 
 		const onSwipeMove = e => {
 				e.preventDefault()
 				e.stopPropagation()
-				if (trasitioning) return
-				const { changedTouches } = e
 				const container = containerRef.current
-				const shift = changedTouches[0]?.pageX - swipeStartX
+				if (container.classList.contains('disabled')) return
+				container.classList.add('transitioning')
+				const { changedTouches } = e
+				const { pageX } = changedTouches[0]
+				let shift = pageX - swipeStartX
+				if (pageX <= 0) shift = -windowWidth / 2
+				if (pageX >= windowWidth) shift = windowWidth / 2
+
 				const direction = shift > 0 ? 'right' : 'left'
 				container.style.transform = `translateX(${shift}px)`
 				if (swipeDirection !== direction) {
 						swipeDirection = direction
 						const displayedGroup = container.children[currentGroup]
-						let adjacentGroup
-						if (direction === 'right') adjacentGroup = displayedGroup.previousElementSibling || container.children[groupCount - 1]
-						if (direction === 'left') adjacentGroup = displayedGroup.nextElementSibling || container.children[0]
-						adjacentGroup.style.opacity = 1
+						const prevSibling = displayedGroup.previousElementSibling || container.children[groupCount - 1]
+						const nextSbling = displayedGroup.nextElementSibling || container.children[0]
+						prevSibling.style.opacity = direction === 'right' ? 1 : 0
+						nextSbling.style.opacity = direction === 'left' ? 1 : 0
 				}
+
+				if (pageX <= 0 || pageX >= windowWidth) return
 		}
 
 		const movePartners = (e, coef) => {
 				e?.preventDefault()
 				e?.stopPropagation()
-				if (trasitioning) return
 
 				const container = containerRef.current
 				container.classList.add('disabled')
-				trasitioning = true
 
 				setTimeout(() => {
 						container.classList.remove('disabled')
@@ -181,36 +184,22 @@ export function Partners({ contentWidth }) {
 		const onSwipeEnd = e => {
 				const { changedTouches, timeStamp } = e
 
-				if (timeStamp - swipeStartTime > 300 || trasitioning) {
-						e.preventDefault()
-						e.stopPropagation()
-				}
-
-				const sectionWidth = windowWidth / 3
-				const startSection = Math.floor(swipeStartX / sectionWidth)
-				const swipeEnd = changedTouches[0]?.pageX
-				const endSection = Math.floor(swipeEnd / sectionWidth)
 				const container = containerRef.current
 				container.classList.remove('transitioning')
 				container.style.transform = `translateX(0px)`
 				swipeDirection = null
 
-				if (trasitioning) return
+				if (timeStamp - swipeStartTime > 300) {
+						e.preventDefault()
+						e.stopPropagation()
+				} else return
 
-				if (startSection === endSection || endSection === 1) {
-						trasitioning = true
+				const sectionWidth = windowWidth / 3
+				const startSection = Math.floor(swipeStartX / sectionWidth)
+				const swipeEnd = changedTouches[0]?.pageX
+				const endSection = Math.floor(swipeEnd / sectionWidth)
 
-						setTimeout(() => {
-								for (let i = 0; i < container.children.length; i++) {
-										if (i === currentGroup || i == prevGroup) continue
-										container.children[i].style.opacity = 0
-								}
-
-								trasitioning = false
-						}, 500)
-
-						return
-				}
+				if (swipeEnd !== 0 && swipeEnd !== windowWidth && (startSection === endSection || endSection === 1)) return
 
 				const coef = startSection > endSection ? 1 : -1
 				movePartners(null, coef)
@@ -253,9 +242,7 @@ export function Partners({ contentWidth }) {
 		}
 
 		const onTouchPartner = e => {
-				console.log('Zorg!')
 				if (trasitioning) {
-						console.log('TRANS!!!');
 						e.preventDefault()
 						e.stopPropagation()
 				}
