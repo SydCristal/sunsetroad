@@ -1,5 +1,5 @@
 import { Parallax } from 'react-parallax';
-import { Bg } from '../../Utils'
+import { Bg, pdsp } from '../../Utils'
 import styled from 'styled-components'
 import { LanguageSwitch, Info, Partners, Contacts } from './'
 import Carousel from '../Carousel'
@@ -71,10 +71,10 @@ const Header = styled.header`
 		position: absolute;
 `
 
-const Image = styled.div.attrs(({ $name, $coef, $style, $func }) => {
+const PartnerLogo = styled.div.attrs(({ $name, $xCoef, $yCoef, $style, $func }) => {
 		return {
 				children: [
-						<img key={$name} src={Bg($name, false)} alt={$name} style={$func($coef)} />
+						<img key={$name} src={Bg($name, false)} alt={$name} style={$func($xCoef, $yCoef)} />
 				],
 				style: $style
 		}})`
@@ -118,97 +118,103 @@ const renderSun = () => {
 		}
 }
 
-const renderCloud2 = coef => {
-		const scale = 1 - Math.abs(1 * coef)
-		const shiftX = -100 * coef
-		const shiftY = 1000 * coef
+const renderCloud2 = xCoef => {
+		const scale = 1 - Math.abs(1 * xCoef)
+		const shiftX = -100 * xCoef
+		const shiftY = 1000 * xCoef
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`,
 				zIndex: 3
 		}
 }
 
-const renderCloud3 = coef => {
-		const scale = 1 - Math.abs(0.5 * coef)
-		const shiftX = 80 * coef
-		const shiftY = 800 * coef
+const renderCloud3 = xCoef => {
+		const scale = 1 - Math.abs(0.5 * xCoef)
+		const shiftX = 80 * xCoef
+		const shiftY = 800 * xCoef
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`,
 				zIndex: 3
 		}
 }
 
-const renderCloud4 = coef => {
-		coef -= 0.31
-		const scale = 1 - Math.abs(0.5 * coef)
-		const shiftX = (coef <= 0 ? -120 : 220) * coef
-		const shiftY = (coef <= 0 ? 600 : 3000) * coef
+const renderCloud4 = xCoef => {
+		xCoef -= 0.31
+		const scale = 1 - Math.abs(0.5 * xCoef)
+		const shiftX = (xCoef <= 0 ? -120 : 220) * xCoef
+		const shiftY = (xCoef <= 0 ? 600 : 3000) * xCoef
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
 }
 
-const renderCloud5 = coef => {
-		coef -= 0.31
-		const scale = 1 - Math.abs(coef)
-		const shiftX = (coef <= 0 ? -50 : 200) * coef 
-		const shiftY = (coef <= 0 ? 700 : 2000) * coef
+const renderCloud5 = cCoef => {
+		cCoef -= 0.31
+		const scale = 1 - Math.abs(cCoef)
+		const shiftX = (cCoef <= 0 ? -50 : 200) * cCoef 
+		const shiftY = (cCoef <= 0 ? 700 : 2000) * cCoef
 		return {
 				transform: `translate(-${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
 }
 
-const renderCloud6 = coef => {
-		coef -= 0.31
-		if (coef < 0) return {}
-		const scale = 1 - Math.abs(1 * coef)
-		const shiftX = Math.abs(200 * coef)
-		const shiftY = 1000 * coef
+const renderCloud6 = xCoef => {
+		xCoef -= 0.31
+		if (xCoef < 0) return {}
+		const scale = 1 - Math.abs(1 * xCoef)
+		const shiftX = Math.abs(200 * xCoef)
+		const shiftY = 1000 * xCoef
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
 }
 
-const renderPalm1 = () => {
+const renderPalm1 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = 100
-		let shiftY = -10
+		let shiftX = 30 + (30 * yCoef)//100
+		let shiftY = 5
 		let scale = 0.75
 		let rotate = 35
 
-		if (spaceBelow <= 400) {
-				const coef = spaceBelow ? spaceBelow / 400 : 0
-				shiftX *= coef
-				shiftY *= coef
-				scale = 1 - coef / 4
-				rotate -= 25 - 25 * coef
+		//console.log(yCoef);
+
+		if (spaceBelow <= 350) {//400
+				const xCoef = spaceBelow ? (spaceBelow / 350) : 0
+				shiftX *= xCoef// * yCoef
+				shiftY *= xCoef
+				scale = 1 - xCoef / 4
+				rotate -= 25 - 25 * xCoef //25
 		}
 
+		shiftX += 100 * yCoef
+
 		return {
-				//transition: 'all 0s',
+				transition: 'all 0s',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
 }
 
-const renderPalm2 = () => {
+const renderPalm2 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = -60
-		let shiftY = -10
+		let shiftX = -25 + (25 * yCoef)
+		let shiftY = 5
 		let scale = 0.75
-		let rotate = -20
+		let rotate = -15
 
-		if (spaceBelow <= 400) {
-				const coef = spaceBelow ? spaceBelow / 400 : 0
-				shiftX *= coef
-				shiftY *= coef
-				scale = 1 - coef / 4
-				rotate += 30 - 30 * coef
+		if (spaceBelow <= 350) {//400
+				const xCoef = spaceBelow ? spaceBelow / 350 : 0
+				shiftX *= xCoef
+				shiftY *= xCoef
+				scale = 1 - xCoef / 4
+				rotate += 25 - 25 * xCoef
 		}
 
+		shiftX -= 125 * yCoef
+
 		return {
-				//transition: 'all 0s',
+				transition: 'all 0s',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
 }
@@ -285,17 +291,17 @@ const images = [{
 }, {
 		$name: 'palm1',
 		$style: {
-				bottom: '600px',
+				bottom: '610px',
 				width: '200px',
-				right: window.innerWidth >= 568 ? '65%' : '75%',
+				right: '85%',
 				zIndex: 3
 		},
 		$func: renderPalm1
 }, {
 		$name: 'palm2',
 		$style: {
-				bottom: '620px',
-				left: window.innerWidth >= 568 ? '55%' : '65%',
+				bottom: '650px',
+				left: '80%',
 				width: '250px',
 				zIndex: 3
 		},
@@ -321,14 +327,20 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = coef => {
-		coef -= 1
-		//console.log(coef);
+const renderBackground = (xCoef, yCoef) => {
+		xCoef -= 1
+
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' $coef={coef} />
-						{images.map(props => <Image {...props} key={props.$name} $coef={coef} />)}
+						<Sky src={Bg('sky-mobile', false)} alt='sky' $xCoef={xCoef} />
+						{images.map(props => (
+								<PartnerLogo
+										{...props}
+										key={props.$name}
+										$xCoef={xCoef}
+										$yCoef={yCoef}
+										onPointerDown={pdsp} />))}
 						<Landscape src={Bg('landscape', false)} alt='landscape' />
 				</Background>
 		)
@@ -341,10 +353,12 @@ export default function Layout() {
 
 		let contentWidth = 350
 
-		
+		let yCoef = contentWidth / document.documentElement.clientWidth
+		yCoef > 1 && (yCoef = 1)
+		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={renderBackground}>
+				<StlLayout renderLayer={xCoef => renderBackground(xCoef, yCoef)}>
 						<Content>
 								<Header>
 										<LanguageSwitch />

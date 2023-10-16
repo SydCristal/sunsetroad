@@ -17,3 +17,8 @@ export function Lo(fileName, urlize, ext) {
 export function Ic(fileName, urlize, ext) {
 		return getAsset('icons', fileName, urlize, ext)
 }
+
+export const pdsp = (e, stopPropagation = true) => {
+		e.preventDefault()
+		if (stopPropagation) e.stopPropagation()
+}

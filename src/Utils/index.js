@@ -1,2 +1,2 @@
-export { Bg, Lo, Ic } from './Functions'
+export { Bg, Lo, Ic, pdsp } from './Functions'
 export * as S from './CSSVariables'
