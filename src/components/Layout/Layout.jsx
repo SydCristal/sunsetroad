@@ -7,6 +7,7 @@ import styled from 'styled-components'
 //import Footer from '../Footer'
 import MediaQuery from 'react-responsive'
 import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables'
+import { useState, useLayoutEffect } from 'react'
 
 //const StlLayout = styled.div`
 //		background: ${({ $section }) => Bg($section)} center center / cover no-repeat;
@@ -28,7 +29,12 @@ const StlLayout = styled.div`
 		};
 `
 export default function Layout() {
+		const [width, setWidth] = useState(0)
 		const { section } = useSectionContext()
+
+		window.addEventListener('resize', () => {
+				setWidth(document.documentElement.clientWidth)
+		})
 
 		return (
 				<StlLayout>
