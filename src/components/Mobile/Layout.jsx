@@ -301,7 +301,7 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '650px',
-				left: '75%',
+				left: '80%',
 				width: '250px',
 				zIndex: 3
 		},
