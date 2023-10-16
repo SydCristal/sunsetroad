@@ -172,19 +172,17 @@ const renderCloud6 = xCoef => {
 const renderPalm1 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = 30 + (30 * yCoef)//100
+		let shiftX = 90 + (25 * yCoef)
 		let shiftY = 5
 		let scale = 0.75
-		let rotate = 35
+		let rotate = 45
 
-		//console.log(yCoef);
-
-		if (spaceBelow <= 350) {//400
-				const xCoef = spaceBelow ? (spaceBelow / 350) : 0
-				shiftX *= xCoef// * yCoef
+		if (spaceBelow <= 250) {
+				const xCoef = spaceBelow ? (spaceBelow / 250) : 0
+				shiftX *= xCoef
 				shiftY *= xCoef
 				scale = 1 - xCoef / 4
-				rotate -= 25 - 25 * xCoef //25
+				rotate -= 35 - 35 * xCoef
 		}
 
 		shiftX += 100 * yCoef
@@ -198,17 +196,17 @@ const renderPalm1 = (c, yCoef) => {
 const renderPalm2 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = -25 + (25 * yCoef)
-		let shiftY = 5
+		let shiftX = -60 + (25 * yCoef)
+		let shiftY = 2.5
 		let scale = 0.75
-		let rotate = -15
+		let rotate = -25
 
-		if (spaceBelow <= 350) {//400
-				const xCoef = spaceBelow ? spaceBelow / 350 : 0
+		if (spaceBelow <= 250) {
+				const xCoef = spaceBelow ? spaceBelow / 250 : 0
 				shiftX *= xCoef
 				shiftY *= xCoef
 				scale = 1 - xCoef / 4
-				rotate += 25 - 25 * xCoef
+				rotate += 35 - 35 * xCoef
 		}
 
 		shiftX -= 100 * yCoef
@@ -291,7 +289,7 @@ const images = [{
 }, {
 		$name: 'palm1',
 		$style: {
-				bottom: '610px',
+				bottom: '625px',
 				width: '200px',
 				right: '85%',
 				zIndex: 3
