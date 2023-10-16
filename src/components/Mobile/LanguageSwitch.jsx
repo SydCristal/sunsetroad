@@ -42,14 +42,14 @@ const Option = styled.div`
 //		text-shadow: 1px 1px 1px ${S.TEXT_SHADOW}, -1px 1px 1px ${S.TEXT_SHADOW}, 1px -1px 1px ${S.TEXT_SHADOW}, -1px -1px 1px ${S.TEXT_SHADOW};
 //`
 
-const Cloud = styled.div`
-		position: relative;
-		top: -135%;
-		img {
-				position: absolute;
-				right: 20px;
-		}
-`
+//const Cloud = styled.div`
+//		position: relative;
+//		top: -135%;
+//		img {
+//				position: absolute;
+//				right: 20px;
+//		}
+//`
 
 const languages = ['en', 'id']//, 'uk', 'ru']
 const options = languages.map(value => ({ value, label: value.toUpperCase() }))
@@ -76,12 +76,13 @@ export function LanguageSwitch() {
 
 		return (
 				<StlLanguageSwitch>
-						<Cloud>
-								<img src={Bg('cloud1', false)} />
-						</Cloud>
-						<OptionContainer>
+						<OptionContainer className='option-container'>
 								{options.map(renderOption)}
 						</OptionContainer>
 				</StlLanguageSwitch>
 		)
 }
+
+//<Cloud>
+//		<img src={Bg('cloud1', false)} />
+//</Cloud>

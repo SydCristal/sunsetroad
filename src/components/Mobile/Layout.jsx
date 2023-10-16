@@ -3,7 +3,6 @@ import { Bg, pdsp } from '../../Utils'
 import styled from 'styled-components'
 import { LanguageSwitch, Info, Partners, Contacts } from './'
 import Carousel from '../Carousel'
-//import { useMediaQuery } from 'react-responsive'
 
 const getSpaceBelow = () => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
@@ -26,17 +25,18 @@ const Background = styled.div`
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(() => {
+const Sky = styled.img.attrs(({ $xCoef }) => {
 		const spaceBelow = getSpaceBelow()
 		const { scrollHeight } = document.documentElement
 		const coef = spaceBelow ? 1 - spaceBelow / scrollHeight : 1
 
 		return { style: {
-				top: `${40 * coef - 25}%`
+				top: `${-10 + $xCoef * 43}%`
 		}
 		}})`
 		position: absolute;
-		width: 100%;
+		width: calc(20px + 100%);
+		left: -10px;
 		height: 80%;
 `
 
@@ -172,19 +172,17 @@ const renderCloud6 = xCoef => {
 const renderPalm1 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = 30 + (30 * yCoef)//100
+		let shiftX = 30 + (30 * yCoef)
 		let shiftY = 5
 		let scale = 0.75
 		let rotate = 35
 
-		//console.log(yCoef);
-
-		if (spaceBelow <= 350) {//400
+		if (spaceBelow <= 350) {
 				const xCoef = spaceBelow ? (spaceBelow / 350) : 0
-				shiftX *= xCoef// * yCoef
+				shiftX *= xCoef
 				shiftY *= xCoef
 				scale = 1 - xCoef / 4
-				rotate -= 25 - 25 * xCoef //25
+				rotate -= 25 - 25 * xCoef
 		}
 
 		shiftX += 100 * yCoef
@@ -248,6 +246,14 @@ const images = [{
 				height: '92px'
 		},
 		$func: renderSun
+}, {
+			$name: 'cloud1',
+			$style: {
+					top: '-5px',
+					right: '18%',
+					width: '228px'
+			},
+			$func: () => ({})
 }, {
 		$name: 'cloud2',
 		$style: {
@@ -333,7 +339,7 @@ const renderBackground = (xCoef, yCoef) => {
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' $xCoef={xCoef} />
+						<Sky src={Bg('sky-mobile', false)} alt='sky' $xCoef={xCoef} className='sky-mobile' />
 						{images.map(props => (
 								<PartnerLogo
 										{...props}
