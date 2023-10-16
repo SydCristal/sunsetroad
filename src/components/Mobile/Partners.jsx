@@ -78,20 +78,20 @@ const Arrow = styled.img`
 `
 
 const partnerMap = {
-		Draniki: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		BaliWood: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		StarkBotique: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		Gabets: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		MeltingPot: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		TwoThousandEighty: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		Fabbrica: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		Hubble: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		LigaTennis: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		Izzi: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		NowBeer: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		SouthEast: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		SushiShop: 'https://www.youtube.com/watch?v=xvFZjo5PgG0',
-		WarungCanteen: 'https://www.youtube.com/watch?v=xvFZjo5PgG0'
+		Draniki: 'https://instagram.com/draniki.bali?igshid=MzRlODBiNWFlZA==',
+		BaliWood: 'https://instagram.com/baliwood.fun?igshid=MzRlODBiNWFlZA==',
+		StarkBotique: 'https://instagram.com/starkcraftbeergarden?igshid=MzRlODBiNWFlZA==',
+		Gabets: 'https://instagram.com/gabetspub?igshid=MzRlODBiNWFlZA==',
+		MeltingPot: 'https://meltingpotbali.com/',
+		TwoThousandEighty: 'https://www.2080burger.net',
+		Fabbrica: 'https://instagram.com/pizzafabbricabali?igshid=MzRlODBiNWFlZA==',
+		Hubble: 'https://instagram.com/hubblebali?igshid=MzRlODBiNWFlZA==',
+		LigaTennis: 'https://instagram.com/bali.tennis?igshid=MzRlODBiNWFlZA==',
+		Izzi: 'https://instagram.com/izzi.bali?igshid=MzRlODBiNWFlZA==',
+		NowBeer: 'https://instagram.com/nowbeerbar?igshid=MzRlODBiNWFlZA==',
+		SouthEast: 'https://instagram.com/southeastbrewing?igshid=MzRlODBiNWFlZA==',
+		SushiShop: 'https://instagram.com/sushishop.bali?igshid=MzRlODBiNWFlZA==',
+		WarungCanteen: 'https://instagram.com/warung_canteen?igshid=MzRlODBiNWFlZA=='
 }
 
 const partnerArray = Object.keys(partnerMap)
