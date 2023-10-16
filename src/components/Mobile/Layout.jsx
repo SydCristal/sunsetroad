@@ -211,7 +211,7 @@ const renderPalm2 = (c, yCoef) => {
 				rotate += 25 - 25 * xCoef
 		}
 
-		shiftX -= 100 * yCoef
+		shiftX -= 75 * yCoef
 
 		return {
 				transition: 'all 0s',
