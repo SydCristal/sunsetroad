@@ -17,11 +17,13 @@ const StlAgeFilter = styled.div`
 `
 
 const AgeFilterDialog = styled.div`
-		margin: 70px auto;
+		margin: 0px auto;
+		padding: 70px 0;
 		width: 440px;
 		display: flex;
   flex-direction: column;
 		align-items: center;
+		justify-content: space-between;
 		> * {
 				${({ opacity }) => ({ opacity })};
 		};
@@ -30,7 +32,8 @@ const AgeFilterDialog = styled.div`
 				text-align: center;
 				text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
 				font-family: Bitter;
-				font-size: 30px;
+				font-size: 28px;
+				margin: 60px 0 25px;
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
