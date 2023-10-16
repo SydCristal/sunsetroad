@@ -13,6 +13,7 @@ const StlInfo = styled.div`
 `
 
 const LogoContainer = styled.div`
+		${({ opacity }) => ({ opacity })};
 		width: 191px;
 		height: 195px;
 		margin-bottom: 55px;
@@ -23,10 +24,12 @@ const LogoContainer = styled.div`
 `
 
 const TextContainer = styled.div`
+		${({ opacity }) => ({ opacity })};
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		height: 300px;
+		transition: opacity 0.5s ease-in-out;
 		> * {
 				color: black;
 				text-align: center;
@@ -49,16 +52,16 @@ const Slogan = styled.h1`
 		font-weight: 600;
 `
 
-export function Info() {
+export function Info({ opacity }) {
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
 		return (
 				<StlInfo>
-						<LogoContainer>
+						<LogoContainer opacity={opacity}>
 								<img src={Lo('logo', false)} alt='logo' />
 						</LogoContainer>
-						<TextContainer>
+						<TextContainer opacity={opacity}>
 								<Text>{l.text}</Text>
 								<Slogan>{l.slogan}</Slogan>
 						</TextContainer>

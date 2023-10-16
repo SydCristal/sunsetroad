@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import { Bg } from '../../Utils'
 
 const StlCarousel = styled.div`
+		${({ opacity }) => ({ opacity })};
+		transition: opacity 0.5s ease-in-out;
 		min-height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -95,7 +97,7 @@ const titleMap = {
 
 const productArray = Object.keys(titleMap)
 
-export default function Products({ contentWidth }) {
+export default function Products({ contentWidth, opacity }) {
 		const { language } = useLanguageContext()
 		const [previousSelection, setPreviousSelection] = useState('')
 		const [selectedProduct, setSelectedProduct] = useState('longRide')
@@ -204,7 +206,7 @@ export default function Products({ contentWidth }) {
 		}
 
 		return (
-				<StlCarousel>
+				<StlCarousel opacity={opacity}>
 						<Bottles>
 								{productArray.map(productName => (
 										<Product {...getBottleProps(productName)}>

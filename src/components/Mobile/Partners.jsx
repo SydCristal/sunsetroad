@@ -5,6 +5,8 @@ import { S, Lo, Ic } from '../../Utils'
 import { useState, useRef } from 'react'
 
 const StlPartners = styled.div`
+		${({ opacity }) => ({ opacity })};
+		transition: opacity 0.5s ease-in-out;
 		margin-top: 65px;
 		display: flex;
 		flex-direction: column;
@@ -106,7 +108,7 @@ const partnerGroups = partnerArray.reduce((acc, partner, i) => {
 		return acc
 }, [])
 
-export function Partners({ contentWidth }) {
+export function Partners({ contentWidth, opacity }) {
 		const [currentGroup, setCurrentGroup] = useState(0)
 		const [prevGroup, setPrevGroup] = useState(0)
 		const { language } = useLanguageContext()
@@ -218,6 +220,7 @@ export function Partners({ contentWidth }) {
 
 				return (
 						<PartnerGroup
+								opacity={opacity}
 								className='partner-group'
 								key={'partnerGroup' + i}
 								style={groupStyle}>

@@ -3,6 +3,7 @@ import { Bg, pdsp } from '../../Utils'
 import styled from 'styled-components'
 import { LanguageSwitch, Info, Partners, Contacts } from './'
 import Carousel from '../Carousel'
+import { useAgeConfirmationContext } from '../../Contexts'
 
 const getSpaceBelow = () => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
@@ -60,9 +61,12 @@ const Content = styled.div`
 
 const Main = styled.main`
 		width: ${({ $width }) => $width}px;
+		opacity: 1;
 `
 
 const Header = styled.header`
+		opacity: 1;
+		transition: opacity 0.5s ease-in-out;
 		padding: 25px 40px;
 		display: flex;
 		width:	100%;
@@ -89,6 +93,8 @@ const PartnerLogo = styled.div.attrs(({ $name, $xCoef, $yCoef, $style, $func }) 
 `
 
 const Footer = styled.footer`
+		opacity: 1;
+		transition: opacity 0.5s ease-in-out;
 		width: 260px;
 		height: 165px;
 		position: relative;
@@ -353,6 +359,8 @@ const renderBackground = (xCoef, yCoef) => {
 }
 
 export default function Layout() {
+		const { ageConfirmation } = useAgeConfirmationContext()
+		const opacity = ageConfirmation ? 1 : 0
 		//const isSmallScreen = useMediaQuery({ query: '(max-width: 400px)' })
 		//const idMediumScreen = useMediaQuery({ query: '(max-width: 584px)' })
 		//const isLargeScreen = useMediaQuery({ query: '(max-width: 768px)' })
@@ -370,9 +378,9 @@ export default function Layout() {
 										<LanguageSwitch />
 								</Header>
 								<Main $width={contentWidth}>
-										<Info />
-										<Carousel contentWidth={contentWidth} />
-										<Partners contentWidth={contentWidth} />
+										<Info opacity={opacity} />
+										<Carousel opacity={opacity} contentWidth={contentWidth} />
+										<Partners opacity={opacity} contentWidth={contentWidth} />
 								</Main>
 						</Content>
 						<Footer>

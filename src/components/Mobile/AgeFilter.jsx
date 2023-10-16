@@ -4,6 +4,7 @@ import { LanguageSwitch } from './'
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import { Lo } from '../../Utils'
+import { useState, useEffect } from 'react'
 
 const StlAgeFilter = styled.div`
 		${({ display }) => ({ display })};
@@ -12,7 +13,7 @@ const StlAgeFilter = styled.div`
 		width: 100%;
 		height: 100vh;
 		z-index: 100;
-		background-color: rgba(0, 0, 0, 0.3);
+		background-color: rgba(0, 0, 0, ${({ opacity }) => opacity ? 0.3 : 0});
 `
 
 const AgeFilterDialog = styled.div`
@@ -21,6 +22,9 @@ const AgeFilterDialog = styled.div`
 		display: flex;
   flex-direction: column;
 		align-items: center;
+		> * {
+				${({ opacity }) => ({ opacity })};
+		};
 		p {
 				color: #FFF;
 				text-align: center;
@@ -31,6 +35,7 @@ const AgeFilterDialog = styled.div`
 				font-weight: 600;
 				line-height: normal;
 				margin: 50px auto;
+				transition: opacity 0.5s ease-in-out;
 		};
 `
 
@@ -44,6 +49,7 @@ const LogoContainer = styled.div`
 		width: 191px;
 		height: 195px;
 		margin: 0 auto 55px;
+		transition: opacity 0s ease-in-out;
 		img {
 			width: 100%;
 			height: 100%;
@@ -64,19 +70,23 @@ const ConfirmationButton = styled.button`
 		font-weight: 600;
 		line-height: normal;
 		padding: 0 35px;
+		transition: opacity 0.5s ease-in-out;
 `
 
-export function AgeFilter({ onClick }) {
+export function AgeFilter({ opacity }) {
 		const { ageConfirmation, setAgeConfirmation } = useAgeConfirmationContext()
+		const [display, setDisplay] = useState('block')
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
 		return (
-				<StlAgeFilter display={ageConfirmation ? 'none' : 'block'}>
+				<StlAgeFilter
+						display={display}
+						opacity={opacity}>
 						<LanguageSwitchContainer>
 								<LanguageSwitch />
 						</LanguageSwitchContainer>
-						<AgeFilterDialog>
+						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1}>
 								<LogoContainer>
 										<img src={Lo('logo', false)} alt='logo' />
 								</LogoContainer>

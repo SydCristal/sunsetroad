@@ -5,14 +5,6 @@ import { AgeFilter as MobileAgeFilter } from './components/Mobile'
 
 const StlApp = styled.div``
 
-const AgeConfirmationDialog = styled.div`
-		position: absolute;
-  right: 0;
-  top: 0;
-  padding: 25px 40px;
-		z-index: 1;
-`
-
 const AdultContent = styled.div`
 		${({ $blur }) => {
 		if (!$blur) return ''
@@ -22,13 +14,10 @@ const AdultContent = styled.div`
 				-moz-filter: blur(${$blur}px);
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
-				height: 100vh;
+				height: ${$blur ? 100 : 0}vh;
 				overflow: hidden;
 				header {
 						opacity: 0;
-				};
-				main {
-					 opacity: 0;
 				};
 				footer {
 						opacity: 0;
@@ -40,7 +29,7 @@ function App() {
 
 		return (
 				<StlApp>
-						<MobileAgeFilter />
+						<MobileAgeFilter opacity={ageConfirmation ? 0 : 1} />
 						<AdultContent $blur={ageConfirmation ? 0 : 5}>
 								<Layout />
 						</AdultContent>
