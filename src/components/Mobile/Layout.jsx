@@ -211,7 +211,7 @@ const renderPalm2 = (c, yCoef) => {
 				rotate += 25 - 25 * xCoef
 		}
 
-		shiftX -= 125 * yCoef
+		shiftX -= 100 * yCoef
 
 		return {
 				transition: 'all 0s',
@@ -301,7 +301,7 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '650px',
-				left: '80%',
+				left: '75%',
 				width: '250px',
 				zIndex: 3
 		},
