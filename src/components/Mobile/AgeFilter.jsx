@@ -18,7 +18,7 @@ const StlAgeFilter = styled.div`
 
 const AgeFilterDialog = styled.div`
 		margin: 0px auto;
-		padding: 70px 0;
+		padding: 70px 0 50px;
 		width: 350px;
 		display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@ const AgeFilterDialog = styled.div`
 				line-height: normal;
 				margin: 50px auto;
 				transition: opacity 0.5s ease-in-out;
+				padding: 0 15px;
 		};
 `
 
@@ -78,7 +79,7 @@ const ConfirmationButton = styled.button`
 
 export function AgeFilter({ opacity }) {
 		const { ageConfirmation, setAgeConfirmation } = useAgeConfirmationContext()
-		const [display, setDisplay] = useState('block')
+		const [display, setDisplay] = useState('flex')
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
