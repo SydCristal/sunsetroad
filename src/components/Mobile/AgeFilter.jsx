@@ -19,7 +19,7 @@ const StlAgeFilter = styled.div`
 const AgeFilterDialog = styled.div`
 		margin: 0px auto;
 		padding: 70px 0;
-		width: 440px;
+		width: 350px;
 		display: flex;
   flex-direction: column;
 		align-items: center;
