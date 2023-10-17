@@ -18,7 +18,7 @@ const StlAgeFilter = styled.div`
 
 const AgeFilterDialog = styled.div`
 		margin: 0px auto;
-		padding: 70px 0 50px;
+		padding: 70px 0;
 		width: 350px;
 		display: flex;
   flex-direction: column;
@@ -32,8 +32,8 @@ const AgeFilterDialog = styled.div`
 				text-align: center;
 				text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
 				font-family: Bitter;
-				font-size: 28px;
-				margin: 60px 0 25px;
+				font-size: 25px;
+				margin: 30px 0;
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
@@ -61,15 +61,15 @@ const LogoContainer = styled.div`
 `
 
 const ConfirmationButton = styled.button`
-		min-width: 290px;
-		height: 96px;
+		min-width: 275px;
+		height: 75px;
 		background-color: rgba(12, 12, 12, 0.39);
 		border: none;
 		border-radius: 15px;
 		color: #FFF;
 		text-align: center;
 		font-family: Bitter;
-		font-size: 40px;
+		font-size: 37px;
 		font-style: normal;
 		font-weight: 600;
 		line-height: normal;
