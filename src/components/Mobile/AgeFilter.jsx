@@ -20,7 +20,7 @@ const AgeFilterDialog = styled.div`
 		margin: 0px auto;
 		padding: 70px 0;
 		width: 350px;
-		display: flex;
+		display: inherit;
   flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
@@ -82,6 +82,10 @@ export function AgeFilter({ opacity }) {
 		const [display, setDisplay] = useState('flex')
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
+
+		useEffect(() => {
+				if (ageConfirmation) setDisplay('none')
+		}, [ageConfirmation])
 
 		return (
 				<StlAgeFilter
