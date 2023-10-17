@@ -26,15 +26,21 @@ const Background = styled.div`
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(({ $xCoef }) => {
-		const spaceBelow = getSpaceBelow()
-		const { scrollHeight } = document.documentElement
-		const coef = spaceBelow ? 1 - spaceBelow / scrollHeight : 1
+const Sky = styled.img.attrs(() => {
+		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
+		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
+		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
-		return { style: {
-				top: `${-10 + $xCoef * 43}%`
+		let style = {}
+		if (scrollHeight === clientHeight) {
+				style.top = '-145px'
+		} else if (spaceBelow <= 200) {
+				style.bottom = '200px'
+		} else {
+				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * xCoef)}px`
 		}
-		}})`
+
+		return { style }})`
 		position: absolute;
 		width: calc(20px + 100%);
 		left: -10px;
@@ -178,49 +184,94 @@ const renderCloud6 = xCoef => {
 const renderPalm1 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = 30 + (30 * yCoef)
-		let shiftY = 5
+		let shiftX = 100 + (60 * yCoef)
+		let shiftY = -10 * yCoef
 		let scale = 0.75
-		let rotate = 35
+		let rotate = 25 + (10 * yCoef)
 
-		if (spaceBelow <= 350) {
-				const xCoef = spaceBelow ? (spaceBelow / 350) : 0
-				shiftX *= xCoef
-				shiftY *= xCoef
-				scale = 1 - xCoef / 4
-				rotate -= 25 - 25 * xCoef
+		if (spaceBelow <= 300) {
+		//		const xCoef = spaceBelow ? spaceBelow / 350 : 0
+				shiftX = 0
+				shiftY = 0
+				scale = 1
+				rotate = 0
 		}
 
-		shiftX += 100 * yCoef
+		//shiftX -= 100 * yCoef
 
 		return {
-				transition: 'all 0s',
+				transition: 'all 1s ease',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
+
+
+		//const spaceBelow = getSpaceBelow()
+
+		//let shiftX = 30 + (30 * yCoef)
+		//let shiftY = 5
+		//let scale = 0.75
+		//let rotate = 35
+
+		//if (spaceBelow <= 350) {
+		//		const xCoef = spaceBelow ? (spaceBelow / 350) : 0
+		//		shiftX *= xCoef
+		//		shiftY *= xCoef
+		//		scale = 1 - xCoef / 4
+		//		rotate -= 25 - 25 * xCoef
+		//}
+
+		//shiftX += 100 * yCoef
+
+		//return {
+		//		transition: 'all 0s',
+		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
+		//}
 }
 
 const renderPalm2 = (c, yCoef) => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = -25 + (25 * yCoef)
+		let shiftX = -30 - (70 * yCoef)
 		let shiftY = 5
 		let scale = 0.75
-		let rotate = -15
+		let rotate = -25 - (10 * yCoef)
 
-		if (spaceBelow <= 350) {//400
-				const xCoef = spaceBelow ? spaceBelow / 350 : 0
-				shiftX *= xCoef
-				shiftY *= xCoef
-				scale = 1 - xCoef / 4
-				rotate += 25 - 25 * xCoef
+		if (spaceBelow <= 300) {
+				//const xCoef = spaceBelow ? spaceBelow / 350 : 0
+				shiftX += 65
+				shiftY = 0
+				scale = 1
+				rotate = 0
 		}
 
-		shiftX -= 100 * yCoef
+		//shiftX -= 100 * yCoef
 
 		return {
-				transition: 'all 0s',
+				transition: 'all 1s ease',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
+
+		//const spaceBelow = getSpaceBelow()
+
+		//let shiftX = -25 + (25 * yCoef)
+		//let shiftY = 5
+		//let scale = 0.75
+		//let rotate = -15
+
+		//if (spaceBelow <= 350) {
+		//		const xCoef = spaceBelow ? spaceBelow / 350 : 0
+		//		shiftX *= xCoef
+		//		shiftY *= xCoef
+		//		scale = 1 - xCoef / 4
+		//		rotate += 25 - 25 * xCoef
+		//}
+
+		//shiftX -= 100 * yCoef
+
+		//return {
+		//		transition: 'all 0s',
+		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
+		//}
 }
 
 const renderPlant1 = () => {
@@ -304,8 +355,10 @@ const images = [{
 		$name: 'palm1',
 		$style: {
 				bottom: '610px',
+				right: '65%',
+				rotate: '10deg',
 				width: '200px',
-				right: '85%',
+				//right: '85%',
 				zIndex: 3
 		},
 		$func: renderPalm1
@@ -313,7 +366,9 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '650px',
-				left: '80%',
+				//left: '80%',
+				left: '75%',
+				rotate: '10deg',
 				width: '250px',
 				zIndex: 3
 		},
