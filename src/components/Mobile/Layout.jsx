@@ -190,42 +190,16 @@ const renderPalm1 = (c, yCoef) => {
 		let rotate = 25 + (10 * yCoef)
 
 		if (spaceBelow <= 300) {
-		//		const xCoef = spaceBelow ? spaceBelow / 350 : 0
 				shiftX = 0
 				shiftY = 0
 				scale = 1
 				rotate = 0
 		}
 
-		//shiftX -= 100 * yCoef
-
 		return {
 				transition: 'all 1s ease',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
-
-
-		//const spaceBelow = getSpaceBelow()
-
-		//let shiftX = 30 + (30 * yCoef)
-		//let shiftY = 5
-		//let scale = 0.75
-		//let rotate = 35
-
-		//if (spaceBelow <= 350) {
-		//		const xCoef = spaceBelow ? (spaceBelow / 350) : 0
-		//		shiftX *= xCoef
-		//		shiftY *= xCoef
-		//		scale = 1 - xCoef / 4
-		//		rotate -= 25 - 25 * xCoef
-		//}
-
-		//shiftX += 100 * yCoef
-
-		//return {
-		//		transition: 'all 0s',
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
-		//}
 }
 
 const renderPalm2 = (c, yCoef) => {
@@ -237,41 +211,16 @@ const renderPalm2 = (c, yCoef) => {
 		let rotate = -25 - (10 * yCoef)
 
 		if (spaceBelow <= 300) {
-				//const xCoef = spaceBelow ? spaceBelow / 350 : 0
 				shiftX += 65
 				shiftY = 0
 				scale = 1
 				rotate = 0
 		}
 
-		//shiftX -= 100 * yCoef
-
 		return {
 				transition: 'all 1s ease',
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
 		}
-
-		//const spaceBelow = getSpaceBelow()
-
-		//let shiftX = -25 + (25 * yCoef)
-		//let shiftY = 5
-		//let scale = 0.75
-		//let rotate = -15
-
-		//if (spaceBelow <= 350) {
-		//		const xCoef = spaceBelow ? spaceBelow / 350 : 0
-		//		shiftX *= xCoef
-		//		shiftY *= xCoef
-		//		scale = 1 - xCoef / 4
-		//		rotate += 25 - 25 * xCoef
-		//}
-
-		//shiftX -= 100 * yCoef
-
-		//return {
-		//		transition: 'all 0s',
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale}) rotate(${rotate}deg)`
-		//}
 }
 
 const renderPlant1 = () => {
@@ -358,7 +307,6 @@ const images = [{
 				right: '65%',
 				rotate: '10deg',
 				width: '200px',
-				//right: '85%',
 				zIndex: 3
 		},
 		$func: renderPalm1
@@ -366,7 +314,6 @@ const images = [{
 		$name: 'palm2',
 		$style: {
 				bottom: '650px',
-				//left: '80%',
 				left: '75%',
 				rotate: '10deg',
 				width: '250px',
