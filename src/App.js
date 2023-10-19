@@ -1,8 +1,7 @@
 import Layout from './components/Layout'
 import styled from 'styled-components'
-import { useAgeConfirmationContext } from './Contexts'
+import { useAgeConfirmationContext, useScaleContext } from './Contexts'
 import { AgeFilter as MobileAgeFilter } from './components/Mobile'
-import { useState } from 'react'
 
 const StlApp = styled.div``
 
@@ -17,23 +16,30 @@ const AdultContent = styled.div`
 				-ms-filter: blur(${$blur}px);
 				height: ${$blur ? 100 : 0}vh;
 				overflow: hidden;
-				header {
+				header > div {
 						opacity: 0;
 				};
-				footer {
+				footer > div > a {
 						opacity: 0;
-				};
+				};	
 `}}`
 
 function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const [width, setWidth] = useState(document.documentElement.clientWidth)
-		const [height, setHeight] = useState(document.documentElement.clientHeight)
+		const { scale, setScale } = useScaleContext()
 
-		window.addEventListener('resize', () => {
-				setWidth(document.documentElement.clientWidth)
-				setHeight(document.documentElement.clientHeight)
-		})
+		const debounce = f => {
+				let timer
+				return e => {
+						if (timer) clearTimeout(timer)
+						timer = setTimeout(f, 100, e)
+				}
+		}
+
+		window.addEventListener('resize', debounce(() => {
+				const { clientWidth, clientHeight  } = document.documentElement
+				setScale({ width: clientWidth, height: clientHeight })
+		}))
 
 		return (
 				<StlApp>

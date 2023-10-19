@@ -5,7 +5,7 @@ import { LanguageSwitch } from '../Header'
 import { MobilePartners as Partners } from '../Partners'
 import { MobileInfo as Info } from '../Info'
 import { MobileFooter as Footer } from '../Footer'
-import Carousel from '../Carousel'
+import { MobileProducts as Products } from '../Products'
 import { useAgeConfirmationContext } from '../../Contexts'
 import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables';
 
@@ -497,7 +497,7 @@ export default function Layout() {
 								</Header>
 								<Main $width={contentWidth}>
 										<Info opacity={opacity} />
-										<Carousel opacity={opacity} contentWidth={contentWidth} />
+										<Products opacity={opacity} contentWidth={contentWidth} />
 										<Partners opacity={opacity} contentWidth={contentWidth} />
 								</Main>
 						</Content>

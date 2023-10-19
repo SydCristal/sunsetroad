@@ -2,26 +2,12 @@ import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
 import { Bg, S, Lo } from '../../Utils'
-import { TEXT_SHADOW } from '../../Utils/CSSVariables'
-
-const Info = styled.main`
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
-		margin-top: 20px;
-`
-
-const Heading = styled.div`
-		height: 150px;
-		background: ${Bg('heading')} center top / contain no-repeat;
-		width: 325px;
-		margin-bottom: 25px;
-`
+import { Heading, Logo } from '../Common'
 
 const Content = styled.div`
 		background-color: ${S.SHADOW_BG};
 		width: ${S.CONTENT_AREA_WIDTH};
+		height: ${S.CONTENT_AREA_HEIGHT};
 		padding: ${S.CONTENT_AREA_PADDING};
 		border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
 		display: flex;
@@ -51,31 +37,6 @@ const Content = styled.div`
 		};
 `
 
-const LogoContainer = styled.div`
-		width:	175px;
-		margin-right: 30px;
-		display: flex;
-  flex-direction: column;
-		img {
-				opacity: 1 !important;
-				margin: -10px -10px 0;
-				width: 195px;
-		};
-		h2 {
-				color: #FFF;
-				text-align: center;
-				text-shadow: 0px 0px 18px #000;
-				font-family: Bitter;
-				font-size: 20px;
-				font-style: normal;
-				font-weight: 800;
-				line-height: normal;
-				text-transform: uppercase;
-				margin: 15px 0 -5px;
-				opacity: ${S.TEXT_REGULAR_OPACITY};
-		}
-`
-
 const TextContainer = styled.div`
 		flex: 1;
 `
@@ -84,18 +45,15 @@ export default function DesktopInfo() {
 		l.setLanguage(language)
 
 		return (
-				<Info>
+				<main>
 						<Heading />
 						<Content>
-								<LogoContainer>
-										<img src={Lo('logo', false)} />
-										<h2>{l.brewed}</h2>
-								</LogoContainer>
+								<Logo />
 								<TextContainer>
 										<h1>{l.slogan}</h1>
 										<p>{l.text}</p>
 								</TextContainer>
 						</Content>
-				</Info>
+				</main>
 		)
 }

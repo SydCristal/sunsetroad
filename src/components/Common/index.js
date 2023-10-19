@@ -1,2 +1,4 @@
 export { Select } from './Select'
-//export { l } from './Localization'
+export { Heading } from './Heading'
+export { l } from './Localization'
+export { Logo } from './Logo'

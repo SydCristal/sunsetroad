@@ -1,39 +1,67 @@
 import { useState, useEffect } from 'react'
-import { useLanguageContext } from '../../Contexts'
+import { useLanguageContext, useScaleContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
-import { Bg } from '../../Utils'
+import { Bg, S } from '../../Utils'
 
 const StlCarousel = styled.div`
 		${({ opacity }) => ({ opacity })};
 		transition: opacity 0.5s ease-in-out;
-		min-height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
 		position: relative;
 		width: 100%;
+		&.mobile-products {
+				min-height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+		};
+		&.desktop-products {
+				height: 265px;
+				background-color: ${S.SHADOW_BG};
+				width: ${S.CONTENT_AREA_WIDTH};
+				padding: ${S.CONTENT_AREA_PADDING};
+				border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
+		};
 `
 
 const Bottles = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		position: relative;
-		height: 350px;
+		.mobile-products & {
+				position: relative;
+				height: 350px;
+		};
+		.desktop-products & {
+				position: absolute;
+				bottom: 50px;
+				right: 0;
+				height: 475px;
+				width: 350px;
+		};
 `
 
 const Product = styled.div`
 		${({ onPointerDown, key, $zindex, $bottleBg, ...styles }) => ({ ...styles })};
 		z-index: ${({ $zindex }) => 2 + $zindex} !important;
-		width: 90px;
 		position: absolute;
 		transition: transform 0.5s ease-in-out, z-index 0.5s;
+		.mobile-products & {
+				width: 90px;
+		};
+		.desktop-products & {
+				width: 125px;
+		};
 		> div {
 				background: ${({ $bottleBg }) => $bottleBg};
 				width: 100%;
-				height: 350px;
 				position: absolute;
+				.mobile-products & {
+						height: 350px;
+				};
+				.desktop-products & {
+						height: 475px;
+				};
 		};
 `
 
@@ -41,9 +69,18 @@ const ArrowContainer = styled.div`
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		width: 100%;
-		height: 0;
-		position: relative;
+		.mobile-products & {
+				width: 100%;
+				height: 0;
+				position: relative;
+		};
+		.desktop-products & {
+				position: absolute;
+				bottom: 25px;
+				right: 15px;
+				width: 330px;
+				height: 0px;
+		};
 		> img {
 				width: 90px;
 				height: 80px;
@@ -54,39 +91,95 @@ const ArrowContainer = styled.div`
 		};
 `
 
-const DescriptionContainer = styled.div`
-		margin-top: 10px;
-		width: ${({ $descriptionWidth }) => $descriptionWidth}px;
-		height: 300px;
+const DescriptionContainer = styled.div.attrs(({ $descriptionWidth }) => {
+		return {
+				style: {
+						width: `${$descriptionWidth}px`
+				}
+		}})`
 		position: relative;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		transform: translateX(calc(-50% + ${({ $contentWidth }) => $contentWidth / 2}px));
+		.mobile-products & {
+				margin-top: 10px;
+				height: 300px;
+		};
+		.desktop-products & {
+				h2 {
+						margin: 0;
+						position: absolute;
+						bottom: -45px;color: #FFF;
+						text-align: center;
+						text-shadow: 0px 0px 18px #000;
+						font-family: Bitter;
+						font-size: 20px;
+						font-style: normal;
+						font-weight: 800;
+						line-height: normal;
+						text-transform: uppercase;
+						opacity: ${S.TEXT_REGULAR_OPACITY};
+						width: 185px;
+				};
+				width: 460px;
+				height: 185px;
+				p {
+					color: white;
+					opacity: ${S.TEXT_REGULAR_OPACITY};
+				}
+		};
 `
 
 const Description = styled.div`
 		${({ children, key, ...styles }) => ({ ...styles })};
-		transition: transform 0.5s ease-in-out;
 		position: relative;
 		left: 0;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		left: 0;
+		.mobile-products & {
+				align-items: center;
+				position: relative;
+				transition: transform 0.5s ease-in-out;
+				> p {
+						text-align: center;
+						color: black;
+						font-size: 20px;
+						line-height: 24px;
+				};
+		};
+		.desktop-products & {
+				align-items: flex-start;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 460px;
+				height: 185px;
+				transition: opacity 0.5s ease-in-out;
+				> p {
+						text-align: left;
+						color: white;
+						font-size: 16px;
+						line-height: 22px;
+				};
+		};
 		> p {
-			 text-align: center;
-				color: black;
 				margin: 0;
-				font-size: 20px;
 				font-weight: 600;
-				line-height: 24px;
 		};
 `
 
 const HeadingImg = styled.img`
 		height: 61px;
 		width: auto;
-		margin-bottom: 15px;
+		.mobile-products & {
+				margin-bottom: 15px;
+		};
+		.desktop-products & {
+				margin-left: 15px;
+				margin-bottom: 5px;
+		};
 `
 
 const titleMap = {
@@ -97,16 +190,21 @@ const titleMap = {
 
 const productArray = Object.keys(titleMap)
 
-export default function Products({ contentWidth, opacity }) {
+export function Carousel({ contentWidth, opacity, className }) {
 		const { language } = useLanguageContext()
+		const { scale } = useScaleContext()
 		const [previousSelection, setPreviousSelection] = useState('')
 		const [selectedProduct, setSelectedProduct] = useState('longRide')
 		const [transitioning, setTransitioning] = useState(false)
 		const [shiftIndex, setShiftIndex] = useState(0)
-		const [descriptionWidth, setDescriptionWidth] = useState(window.innerWidth + 2 * contentWidth)
 		l.setLanguage(language)
+		const isDesktop = className === 'desktop-products'
+		const [descriptionWidth, setDescriptionWidth] = useState(isDesktop ? 460 : (scale.width + 2 * contentWidth))
 
-		window.onresize = () => setDescriptionWidth(window.innerWidth + 2 * contentWidth)
+		useEffect(() => {
+				if (isDesktop) return
+				setDescriptionWidth(scale.width + 2 * (isDesktop ? 460 : contentWidth))
+		}, [scale.width])
 
 		const rotateCarousel = (e, position, productName) => {
 				e.preventDefault()
@@ -148,13 +246,27 @@ export default function Products({ contentWidth, opacity }) {
 				}
 
 				let transform
+				let rotate = 0
+				let scale = 1
+				let translateX = 0
+				let translateY = 0
 
 				switch (position) {
 						case -1:
-								transform = 'rotate(-16deg) scale(0.8) translate(-150px, 0)'
+								rotate = -16
+								scale = isDesktop ? 0.75 : 0.8
+								translateX = isDesktop ? -215 : -150
+								translateY = isDesktop ? 25 : 0
+
+								transform = `rotate(${rotate}deg) scale(${scale}) translate(${translateX}px, ${translateY}px)`
 								break
 						case 1:
-								transform = 'rotate(12deg) scale(0.7) translate(160px, 90px)'
+								rotate = 12
+								scale = 0.7
+								translateX = isDesktop ? 215 : 160
+								translateY = isDesktop ? 110 : 90
+
+								transform = `rotate(${rotate}deg) scale(${scale}) translate(${translateX}px, ${translateY}px)`
 								break
 						default:
 								transform = ''
@@ -171,21 +283,26 @@ export default function Products({ contentWidth, opacity }) {
 		}
 
 		const getDescriptionProps = productName => {
-				const opacity = productName === selectedProduct || productName === previousSelection ? 1 : 0
+				let opacity = 0
 				let transform = ''
 
-				if (shiftIndex > 0) {
-						if (productName !== 'gracefulTrip') {
-								transform = `translateX(${(window.innerWidth + contentWidth) / 2}px)`
-						} else {
-								transform = `translateX(${-window.innerWidth - contentWidth}px)`
+				if (!isDesktop) {
+						opacity = productName === selectedProduct || productName === previousSelection ? 1 : 0
+						if (shiftIndex > 0) {
+								if (productName !== 'gracefulTrip') {
+										transform = `translateX(${(window.innerWidth + contentWidth) / 2}px)`
+								} else {
+										transform = `translateX(${-window.innerWidth - contentWidth}px)`
+								}
+						} else if (shiftIndex < 0) {
+								if (productName !== 'islandJourney') {
+										transform = `translateX(${-(window.innerWidth + contentWidth) / 2}px)`
+								} else {
+										transform = `translateX(${window.innerWidth + contentWidth}px)`
+								}
 						}
-				} else if (shiftIndex < 0) {
-						if (productName !== 'islandJourney') {
-								transform = `translateX(${-(window.innerWidth + contentWidth) / 2}px)`
-						} else {
-								transform = `translateX(${window.innerWidth + contentWidth}px)`
-						}
+				} else {
+						opacity = productName === selectedProduct ? 1 : 0
 				}
 
 				return {
@@ -206,7 +323,7 @@ export default function Products({ contentWidth, opacity }) {
 		}
 
 		return (
-				<StlCarousel opacity={opacity}>
+				<StlCarousel opacity={opacity} className={className}>
 						<Bottles>
 								{productArray.map(productName => (
 										<Product {...getBottleProps(productName)}>
@@ -220,6 +337,7 @@ export default function Products({ contentWidth, opacity }) {
 						</ArrowContainer>
 						<DescriptionContainer $descriptionWidth={descriptionWidth} $contentWidth={contentWidth}>
 								{productArray.map(renderProductDescription)}
+								{isDesktop && <h2>{l.brewed}</h2>}
 						</DescriptionContainer>
 				</StlCarousel>
 		)

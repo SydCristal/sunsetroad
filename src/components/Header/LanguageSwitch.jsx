@@ -23,7 +23,7 @@ const Option = styled.div`
 		position: absolute;
 		height: 100%;
 		cursor: pointer;
-		transition: all 0.5s ease-in-out;
+		transition: opacity 0.5s ease-in-out;
 		font-weight: 400;
 		opacity: ${({ $selected }) => $selected ? 0 : S.UI_EL_OPACITY};
 		pointer-events: ${({ $selected }) => $selected ? 'none' : 'all'};

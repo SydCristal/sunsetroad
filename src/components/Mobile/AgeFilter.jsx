@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { useAgeConfirmationContext } from '../../Contexts'
+import { useAgeConfirmationContext, useScaleContext } from '../../Contexts'
 import { LanguageSwitch } from '../Header'
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
-import { Lo, Bg } from '../../Utils'
+import { Lo, Bg, S } from '../../Utils'
 import { useState, useEffect } from 'react'
 
 const StlAgeFilter = styled.div`
@@ -30,7 +30,7 @@ const AgeFilterDialog = styled.div`
 		p {
 				color: #FFF;
 				text-align: center;
-				text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
+				text-shadow: ${S.TEXT_SHADOW};
 				font-family: Bitter;
 				font-size: ${({ $short }) => $short ? 20 : 25}px;
 				font-style: normal;
@@ -43,9 +43,14 @@ const AgeFilterDialog = styled.div`
 `
 
 const LanguageSwitchContainer = styled.div`
-		padding: 25px 40px;
+		padding: 5px 30px;
 		position: absolute;
 		right: 0;
+		height: 35px;
+		&.mobile-language-switch-container {
+				padding: 25px 40px;
+				height: 85px;
+		}
 `
 
 const LogoContainer = styled.div`
@@ -62,7 +67,7 @@ const LogoContainer = styled.div`
 const ConfirmationButton = styled.button`
 		min-width: 275px;
 		height: 75px;
-		background-color: rgba(12, 12, 12, 0.39);
+		background-color: rgba(12, 12, 12, 0.5);
 		border: none;
 		border-radius: 15px;
 		color: #FFF;
@@ -74,15 +79,17 @@ const ConfirmationButton = styled.button`
 		line-height: normal;
 		padding: 0 35px;
 		transition: opacity 0.5s ease-in-out;
+		cursor: pointer;
 `
 
 export function AgeFilter({ opacity }) {
 		const { ageConfirmation, setAgeConfirmation } = useAgeConfirmationContext()
+		const { scale } = useScaleContext()
 		const [display, setDisplay] = useState('flex')
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
-		const { clientHeight } = document.documentElement
+		const className = scale.width <= S.MAX_MOBILE_WIDTH && 'mobile-language-switch'
 
 		useEffect(() => {
 				if (ageConfirmation) setDisplay('none')
@@ -92,14 +99,14 @@ export function AgeFilter({ opacity }) {
 				<StlAgeFilter
 						display={display}
 						opacity={opacity}>
-						<LanguageSwitchContainer>
-								<LanguageSwitch className='mobile-language-switch' />
+						<LanguageSwitchContainer className={className + '-container'}>
+								<LanguageSwitch className={className} />
 						</LanguageSwitchContainer>
-						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={clientHeight < 700 && 15}>
-								<LogoContainer display={clientHeight > 500 ? 'block' : 'none'} $short={clientHeight < 700}>
+						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={scale.height < 700 && 15}>
+								<LogoContainer display={scale.height > 500 ? 'block' : 'none'} $short={scale.height < 700}>
 										<img src={Lo('logo', false)} alt='logo' />
 								</LogoContainer>
-								<LogoContainer display={clientHeight < 500 ? 'block' : 'none'} $short={true}>
+								<LogoContainer display={scale.height < 500 ? 'block' : 'none'} $short={true}>
 										<img src={Bg('heading', false)} alt='heading' />
 								</LogoContainer>
 								<p>

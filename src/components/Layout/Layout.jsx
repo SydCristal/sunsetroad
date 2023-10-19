@@ -1,6 +1,6 @@
 ﻿import { MobileLayout } from '../Mobile'
-import { useSectionContext, useAgeConfirmationContext } from '../../Contexts'
-import { Bg } from '../../Utils'
+import { useSectionContext, useAgeConfirmationContext, useScaleContext } from '../../Contexts'
+import { Bg, S } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -9,17 +9,6 @@ import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables'
 import Info from '../Info'
 import Products from '../Products'
 import Partners from '../Partners'
-//export function DesktopContent() {
-//		const { section } = useSectionContext()
-//		switch (section) {
-//				case 'info':
-//						return <Info />
-//				case 'partners':
-//						return <Partners />
-//				default:
-//						return <Products />
-//		}
-//}
 
 const DesktopLayout = styled.div`
 		display: flex;
@@ -28,20 +17,15 @@ const DesktopLayout = styled.div`
 		width: 100%;
 		main {
 				flex: 1;
+				width: ${S.CONTENT_AREA_WIDTH};
+				margin: 0 auto;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				margin-top: 20px;
+				align-items: center;
 		}
 `
-
-//const StlLayout = styled.div`
-//		background: ${({ $section }) => Bg($section)} center center / cover no-repeat;
-//		min-height: 100%;
-//		width: 100%;
-//		main {
-//				padding: 65px 0 125px;
-//				min-height: 100vh;
-//				display: flex;
-//				justify-content: center;
-//		};
-//`
 
 const StlLayout = styled.div.attrs(({ $background }) => {
 		if (!$background) return {}
@@ -59,9 +43,10 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 `
 export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
+		const { scale } = useScaleContext()
 		const { section } = useSectionContext()
-		let content
-		const background = document.documentElement.clientWidth > MAX_MOBILE_WIDTH ? section : null
+		let content = <main />
+		const background = scale.width > MAX_MOBILE_WIDTH ? section : null
 
 		if (ageConfirmation) {
 				switch (section) {
@@ -90,19 +75,4 @@ export default function Layout() {
 						</MediaQuery>
 				</StlLayout>
 		)
-
-		//return (
-		//		<StlLayout $section={section} >
-		//				<Header />
-		//				<main>
-		//						<MediaQuery maxWidth={768}>
-		//								<MobileContent />
-		//						</MediaQuery>
-		//						<MediaQuery minWidth={769}>
-		//								<DesktopContent />
-		//						</MediaQuery>
-		//				</main>
-		//				<Footer />
-		//		</StlLayout>
-		//)
 }
