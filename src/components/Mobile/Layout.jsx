@@ -1,5 +1,5 @@
 import { Parallax } from 'react-parallax';
-import { Bg, pdsp } from '../../Utils'
+import { Bg, pdsp, S } from '../../Utils'
 import styled from 'styled-components'
 import { LanguageSwitch } from '../Header'
 import { MobilePartners as Partners } from '../Partners'
@@ -7,6 +7,7 @@ import { MobileInfo as Info } from '../Info'
 import { MobileFooter as Footer } from '../Footer'
 import Carousel from '../Carousel'
 import { useAgeConfirmationContext } from '../../Contexts'
+import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables';
 
 const getSpaceBelow = () => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
@@ -50,11 +51,24 @@ const Sky = styled.img.attrs(() => {
 		height: 80%;
 `
 
-const Landscape = styled.img`
-		bottom: 0;
+const Landscape = styled.img.attrs(() => {
+		const { clientWidth } = document.documentElement
+		const minWidth = 778
+		const xCoef = (clientWidth - 768) / (S.MAX_MOBILE_WIDTH - minWidth)
+		let bottom = -5
+		if (xCoef > 0) {
+				bottom -= 65 * xCoef
+		}
+		return {
+				style: {
+						bottom: bottom + 'px',
+						minWidth: minWidth + 'px'
+				}
+		}})`
 		position: absolute;
 		left: 50%;
   transform: translateX(-50%);
+		width: 100%;
 		z-index: 1;
 `
 
@@ -84,14 +98,14 @@ const Header = styled.header`
 		position: absolute;
 `
 
-const ImgContainer = styled.div.attrs(({ $name, $xCoef, $yCoef, $style, $func, $imgStyle = {} }) => {
+const ImgContainer = styled.div.attrs(({ $name, $yCoef, $style, $func, $imgStyle = {} }) => {
 		return {
 				children: [
 						<img
 								key={$name}
 								src={Bg($name, false)}
 								alt={$name}
-								style={{ ...$imgStyle, ...$func($xCoef, $yCoef) }}	/>
+								style={{ ...$imgStyle, ...$func($yCoef) }}	/>
 				],
 				style: $style
 		}})`
@@ -141,7 +155,7 @@ const renderCloud1 = () => {
 		}
 }
 
-const renderCloud2 = xCoef => {
+const renderCloud2 = () => {
 		const { scrollTop } = document.documentElement
 
 		let shiftX = 0
@@ -166,7 +180,7 @@ const renderCloud2 = xCoef => {
 		//}
 }
 
-const renderCloud3 = xCoef => {
+const renderCloud3 = () => {
 		const { scrollTop } = document.documentElement
 
 		let shiftX = 0
@@ -195,7 +209,7 @@ const renderCloud3 = xCoef => {
 		//}
 }
 
-const renderCloud4 = xCoef => {
+const renderCloud4 = () => {
 		const { scrollTop } = document.documentElement
 
 		let shiftX = 0
@@ -224,7 +238,7 @@ const renderCloud4 = xCoef => {
 		//}
 }
 
-const renderCloud5 = cCoef => {
+const renderCloud5 = () => {
 		const { scrollTop } = document.documentElement
 
 		let shiftX = 0
@@ -253,7 +267,7 @@ const renderCloud5 = cCoef => {
 		//}
 }
 
-const renderCloud6 = (c, yCoef) => {
+const renderCloud6 = yCoef => {
 		const spaceBelow = getSpaceBelow()
 
 		let shiftX = 0
@@ -279,7 +293,7 @@ const renderCloud6 = (c, yCoef) => {
 		//}
 }
 
-const renderPalm1 = (c, yCoef) => {
+const renderPalm1 = yCoef => {
 		const spaceBelow = getSpaceBelow()
 
 		let shiftX = 100 + (60 * yCoef)
@@ -299,7 +313,7 @@ const renderPalm1 = (c, yCoef) => {
 		}
 }
 
-const renderPalm2 = (c, yCoef) => {
+const renderPalm2 = yCoef => {
 		const spaceBelow = getSpaceBelow()
 
 		let shiftX = -30 - (70 * yCoef)
@@ -446,20 +460,18 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = (xCoef, yCoef) => {
-		xCoef -= 1
+const renderBackground = yCoef => {
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' $xCoef={xCoef} className='sky-mobile' />
+						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
 										key={props.$name}
-										$xCoef={xCoef}
 										$yCoef={yCoef}
 										onPointerDown={pdsp} />))}
-						<Landscape src={Bg('landscape', false)} alt='landscape' />
+						<Landscape src={Bg('landscape', false)} alt='landscape'/>
 				</Background>
 		)
 }
@@ -478,7 +490,7 @@ export default function Layout() {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={xCoef => renderBackground(xCoef, yCoef)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef)}>
 						<Content>
 								<Header>
 										<LanguageSwitch className='mobile-language-switch' />

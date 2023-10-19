@@ -61,10 +61,10 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 export default function Layout() {
 		const [width, setWidth] = useState(document.documentElement.clientWidth)
 		const { section } = useSectionContext()
-		const onScaleChange = match => {
-				if (!match) return
+
+		window.addEventListener('resize', () => {
 				setWidth(document.documentElement.clientWidth)
-		}
+		})
 
 		let content
 		const background = width > MAX_MOBILE_WIDTH ? section : null
@@ -82,10 +82,10 @@ export default function Layout() {
 
 		return (
 				<StlLayout $background={background}>
-						<MediaQuery maxWidth={MAX_MOBILE_WIDTH} onChange={onScaleChange}>
+						<MediaQuery maxWidth={MAX_MOBILE_WIDTH}>
 								<MobileLayout />
 						</MediaQuery>
-						<MediaQuery minWidth={MAX_MOBILE_WIDTH + 1} onChange={onScaleChange}>
+						<MediaQuery minWidth={MAX_MOBILE_WIDTH + 1}>
 								<DesktopLayout>
 										<Header />
 										{content}

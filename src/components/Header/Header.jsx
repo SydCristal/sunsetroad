@@ -17,7 +17,6 @@ export default function Header() {
 		return (
 				<StlHeader>
 						<Navigation />
-						{document.documentElement.clientWidth}
 						<LanguageSwitch />
 				</StlHeader>
 		)
