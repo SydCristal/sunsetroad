@@ -11,12 +11,15 @@ const Footer = styled.footer`
 		flex-direction: column;
 		align-items: center;
 		padding: 15px 0;
-		margin-top: 70px;
+		margin-top: 20px;
 		> div {
 				position: absolute;
 				bottom: 0;
 				left: 50%;
 				transform: translateX(-50%);
+				> ul {
+					margin-top:20px;
+				};
 		};
 `
 

@@ -55,7 +55,7 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 		min-height: 100%;
 		width: 100%;
 		> * {
-				min-height: 100vh;
+				min-height: 100%;
 		};
 `
 export default function Layout() {
