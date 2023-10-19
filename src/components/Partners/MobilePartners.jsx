@@ -108,7 +108,7 @@ const partnerGroups = partnerArray.reduce((acc, partner, i) => {
 		return acc
 }, [])
 
-export function Partners({ contentWidth, opacity }) {
+export function MobilePartners({ contentWidth, opacity }) {
 		const [currentGroup, setCurrentGroup] = useState(0)
 		const [prevGroup, setPrevGroup] = useState(0)
 		const { language } = useLanguageContext()

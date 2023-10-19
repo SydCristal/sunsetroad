@@ -2,14 +2,13 @@ import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
 
-const StyledPartners = styled.div`
-		min-height: 100%;
+const Partners = styled.main`
 `
-export default function Partners() {
+export default function DesktopPartners() {
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
 		return (
-				<StyledPartners />
+				<Partners />
 		)
 }

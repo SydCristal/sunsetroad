@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useAgeConfirmationContext } from '../../Contexts'
-import { LanguageSwitch } from './'
+import { LanguageSwitch } from '../Header'
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import { Lo } from '../../Utils'
@@ -92,7 +92,7 @@ export function AgeFilter({ opacity }) {
 						display={display}
 						opacity={opacity}>
 						<LanguageSwitchContainer>
-								<LanguageSwitch />
+								<LanguageSwitch mobile={true} />
 						</LanguageSwitchContainer>
 						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1}>
 								<LogoContainer>

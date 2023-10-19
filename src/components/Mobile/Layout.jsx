@@ -1,7 +1,10 @@
 import { Parallax } from 'react-parallax';
 import { Bg, pdsp } from '../../Utils'
 import styled from 'styled-components'
-import { LanguageSwitch, Info, Partners, Contacts } from './'
+import { LanguageSwitch } from '../Header'
+import { MobilePartners as Partners } from '../Partners'
+import { MobileInfo as Info } from '../Info'
+import { MobileFooter as Footer } from '../Footer'
 import Carousel from '../Carousel'
 import { useAgeConfirmationContext } from '../../Contexts'
 
@@ -102,22 +105,6 @@ const ImgContainer = styled.div.attrs(({ $name, $xCoef, $yCoef, $style, $func, $
 		};
 `
 
-const Footer = styled.footer`
-		opacity: 1;
-		transition: opacity 0.5s ease-in-out;
-		width: 260px;
-		height: 165px;
-		position: relative;
-		margin: 0 auto;
-		z-index: 3;
-		> div {
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: 666;
-		}
-`
-
 const renderSun = () => {
 		const spaceBelow = getSpaceBelow()
 
@@ -161,7 +148,7 @@ const renderCloud2 = xCoef => {
 		let shiftY = 0
 		let scale = 1
 
-		if (scrollTop >= 150) {
+		if (scrollTop >= 125) {
 				shiftX = -20
 				shiftY = 250
 				scale = 0.75
@@ -219,7 +206,7 @@ const renderCloud4 = xCoef => {
 				shiftX = 20
 				shiftY = 700
 				scale = 0.75
-		} else if (scrollTop >= 400) {
+		} else if (scrollTop >= 450) {
 				shiftX = -50
 				shiftY = 250
 				scale = 1
@@ -248,7 +235,7 @@ const renderCloud5 = cCoef => {
 				shiftX = -25
 				shiftY = 750
 				scale = 0.75
-		} else if (scrollTop >= 450) {
+		} else if (scrollTop >= 400) {
 				shiftX = 75
 				shiftY = 300
 				scale = 1
@@ -365,7 +352,7 @@ const images = [{
 			$name: 'cloud1',
 			$style: {
 					top: '-5px',
-					right: '18%',
+					right: '25%',
 					width: '228px'
 		},
 		$imgStyle: {
@@ -494,7 +481,7 @@ export default function Layout() {
 				<StlLayout renderLayer={xCoef => renderBackground(xCoef, yCoef)}>
 						<Content>
 								<Header>
-										<LanguageSwitch />
+										<LanguageSwitch className='mobile-language-switch' />
 								</Header>
 								<Main $width={contentWidth}>
 										<Info opacity={opacity} />
@@ -502,9 +489,7 @@ export default function Layout() {
 										<Partners opacity={opacity} contentWidth={contentWidth} />
 								</Main>
 						</Content>
-						<Footer>
-								<Contacts />
-						</Footer>
+						<Footer />
 				</StlLayout>
 		)
 }

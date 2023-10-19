@@ -13,6 +13,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="public\fonts\" />
-    <Folder Include="src\components\Footer\" />
   </ItemGroup>
 </Project>

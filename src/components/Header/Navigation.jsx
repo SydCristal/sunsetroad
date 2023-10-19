@@ -4,7 +4,7 @@ import { l } from './'
 import { S } from '../../Utils'
 
 const StlNavigation = styled.nav`
-		height: 30px;
+		height: 35px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -12,8 +12,11 @@ const StlNavigation = styled.nav`
 const Link = styled.a`
 		opacity: ${({ $selected }) => $selected ? S.ACTIVE_UI_EL_OPACITY : S.UI_EL_OPACITY};
 		text-decoration: none;
-		margin-right: 15px;
-		font-weight: bold;
+		margin-right: 30px;
+		font-family: 'Fira Sans', sans-serif;
+		font-size: 20px;
+		font-weight: 400;
+		line-height: normal;
 		&:hover {
 				opacity: ${S.ACTIVE_UI_EL_OPACITY};
 		};

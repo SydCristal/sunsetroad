@@ -1,2 +1,2 @@
-export { default } from './Products'
+export { default } from './DesktopProducts'
 export { l } from './Localization'

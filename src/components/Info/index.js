@@ -1,2 +1,3 @@
-export { default } from './Info'
+export { default } from './DesktopInfo'
 export { l } from './Localization'
+export { MobileInfo } from './MobileInfo'

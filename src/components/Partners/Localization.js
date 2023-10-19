@@ -2,11 +2,15 @@
 
 export const l = new LocalizedStrings({
 		en: {
-		},
-		ru: {
+				partners: 'Partners'
 		},
 		id: {
-		},
-		uk: {
-		}
+				partners: 'Mitra'
+		}//,
+		//ru: {
+		//		partners: 'Партнёры'
+		//},
+		//uk: {
+		//		partners: 'Партнёри'
+		//}
 })

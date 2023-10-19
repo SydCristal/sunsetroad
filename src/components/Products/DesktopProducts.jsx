@@ -4,7 +4,7 @@ import { l } from './Localization'
 import styled from 'styled-components'
 import { Bg, S } from '../../Utils'
 
-const StyledProducts = styled.div`
+const Products = styled.main`
 		min-height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -74,7 +74,7 @@ const titleMap = {
 		gracefulTrip: 'Graceful Trip'
 }
 
-export default function Products() {
+export default function DesktopProducts() {
 		const { language } = useLanguageContext()
 		const [previousSelection, setPreviousSelection] = useState('')
 		const [selectedProduct, setSelectedProduct] = useState('longRide')
@@ -122,7 +122,7 @@ export default function Products() {
 		}
 
 		return (
-				<StyledProducts>
+				<Products>
 						<Carousel>
 								<Product
 										{...getProps('islandJourney')}>
@@ -147,6 +147,6 @@ export default function Products() {
 								</HeadingContainer>
 								<p>{description}</p>
 						</Description>
-				</StyledProducts>
+				</Products>
 		)
 }

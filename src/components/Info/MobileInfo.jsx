@@ -3,7 +3,7 @@ import { l } from './Localization'
 import styled from 'styled-components'
 import { Lo } from '../../Utils'
 
-const StlInfo = styled.div`
+const Info = styled.div`
 		width: 100%;
 		margin-top: 70px;
 		margin-bottom: 50px;
@@ -52,12 +52,12 @@ const Slogan = styled.h1`
 		font-weight: 600;
 `
 
-export function Info({ opacity }) {
+export function MobileInfo({ opacity }) {
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
 		return (
-				<StlInfo>
+				<Info>
 						<LogoContainer opacity={opacity}>
 								<img src={Lo('logo', false)} alt='logo' />
 						</LogoContainer>
@@ -65,6 +65,6 @@ export function Info({ opacity }) {
 								<Text>{l.text}</Text>
 								<Slogan>{l.slogan}</Slogan>
 						</TextContainer>
-				</StlInfo>
+				</Info>
 		)
 }
