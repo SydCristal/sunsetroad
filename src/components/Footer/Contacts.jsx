@@ -30,7 +30,7 @@ const ContactsContainer = styled.div`
 				justify-content: space-between;
 				padding: 0;
 				list-style: none;
-				margin: 12px auto;
+				margin: 10px auto 5px;
 				>	li img {
 						width: 45px;
 						height: 45px;

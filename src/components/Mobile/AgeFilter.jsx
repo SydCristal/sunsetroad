@@ -92,7 +92,7 @@ export function AgeFilter({ opacity }) {
 						display={display}
 						opacity={opacity}>
 						<LanguageSwitchContainer>
-								<LanguageSwitch mobile={true} />
+								<LanguageSwitch className='mobile-language-switch' />
 						</LanguageSwitchContainer>
 						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1}>
 								<LogoContainer>
