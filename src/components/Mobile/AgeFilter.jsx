@@ -33,11 +33,10 @@ const AgeFilterDialog = styled.div`
 				text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
 				font-family: Bitter;
 				font-size: 25px;
-				margin: 30px 0;
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
-				margin: 50px auto;
+				margin: ${({ $short }) => $short ? 20 : 50}px 0;
 				transition: opacity 0.5s ease-in-out;
 				padding: 0 15px;
 		};
@@ -50,9 +49,10 @@ const LanguageSwitchContainer = styled.div`
 `
 
 const LogoContainer = styled.div`
+		${({ display }) => ({ display })};
 		width: 191px;
 		height: 195px;
-		margin: 0 auto 55px;
+		margin: 0 auto ${({ $short }) => $short ? 10 : 55}px;
 		transition: opacity 0s ease-in-out;
 		img {
 			width: 100%;
@@ -83,6 +83,8 @@ export function AgeFilter({ opacity }) {
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
 
+		const { clientHeight } = document.documentElement
+
 		useEffect(() => {
 				if (ageConfirmation) setDisplay('none')
 		}, [ageConfirmation])
@@ -94,8 +96,8 @@ export function AgeFilter({ opacity }) {
 						<LanguageSwitchContainer>
 								<LanguageSwitch className='mobile-language-switch' />
 						</LanguageSwitchContainer>
-						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1}>
-								<LogoContainer>
+						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={clientHeight < 700}>
+								<LogoContainer display={clientHeight > 500 ? 'block' : 'none'} $short={clientHeight < 700}>
 										<img src={Lo('logo', false)} alt='logo' />
 								</LogoContainer>
 								<p>

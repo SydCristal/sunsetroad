@@ -2,6 +2,7 @@ import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext } from './Contexts'
 import { AgeFilter as MobileAgeFilter } from './components/Mobile'
+import { useState } from 'react'
 
 const StlApp = styled.div``
 
@@ -26,6 +27,13 @@ const AdultContent = styled.div`
 
 function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
+		const [width, setWidth] = useState(document.documentElement.clientWidth)
+		const [height, setHeight] = useState(document.documentElement.clientHeight)
+
+		window.addEventListener('resize', () => {
+				setWidth(document.documentElement.clientWidth)
+				setHeight(document.documentElement.clientHeight)
+		})
 
 		return (
 				<StlApp>

@@ -59,15 +59,9 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 		};
 `
 export default function Layout() {
-		const [width, setWidth] = useState(document.documentElement.clientWidth)
 		const { section } = useSectionContext()
-
-		window.addEventListener('resize', () => {
-				setWidth(document.documentElement.clientWidth)
-		})
-
 		let content
-		const background = width > MAX_MOBILE_WIDTH ? section : null
+		const background = document.documentElement.clientWidth > MAX_MOBILE_WIDTH ? section : null
 
 		switch (section) {
 				case 'products':
