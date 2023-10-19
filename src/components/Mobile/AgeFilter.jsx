@@ -32,7 +32,7 @@ const AgeFilterDialog = styled.div`
 				text-align: center;
 				text-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
 				font-family: Bitter;
-				font-size: 25px;
+				font-size: ${({ $short }) => $short ? 20 : 25}px;
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
