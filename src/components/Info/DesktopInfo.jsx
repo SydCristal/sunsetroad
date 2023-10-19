@@ -27,7 +27,6 @@ const Content = styled.div`
 		display: flex;
 		flex-direction: row;
 		* {
-				opacity: ${S.TEXT_REGULAR_OPACITY};
 				text-shadow: ${S.TEXT_SHADOW};
 		};
 		> img {
@@ -40,6 +39,7 @@ const Content = styled.div`
 				font-family: Bitter;
 				font-size: 24px;
 				font-weight: 600;
+				opacity: ${S.TEXT_REGULAR_OPACITY};
 		};
 		p {
 				margin: 0;
@@ -47,29 +47,32 @@ const Content = styled.div`
 				font-size: 18px;
 				font-weight: 600;
 				line-height: 24px;
+				opacity: ${S.TEXT_REGULAR_OPACITY};
 		};
 `
 
 const LogoContainer = styled.div`
-		width: 215px;
-		margin-right: 25px;
+		width:	175px;
+		margin-right: 30px;
 		display: flex;
   flex-direction: column;
 		img {
-				opacity: 1;
-				margin: 0 auto;
+				opacity: 1 !important;
+				margin: -10px -10px 0;
+				width: 195px;
 		};
 		h2 {
 				color: #FFF;
 				text-align: center;
 				text-shadow: 0px 0px 18px #000;
 				font-family: Bitter;
-				font-size: 24px;
+				font-size: 20px;
 				font-style: normal;
 				font-weight: 800;
 				line-height: normal;
 				text-transform: uppercase;
-				margin: 15px 0 0;
+				margin: 15px 0 -5px;
+				opacity: ${S.TEXT_REGULAR_OPACITY};
 		}
 `
 
