@@ -3,12 +3,11 @@
 const AgeConfirmationContext = createContext(null)
 
 const AgeConfirmationProvider = ({ children }) => {
-		const [ageConfirmation, setAgeConfirmation] = useState(JSON.parse(sessionStorage.getItem('ageConfirmation')) || false)
+		const [ageConfirmation, setAgeConfirmation] = useState(false)
 
 		const value = {
 				ageConfirmation,
 				setAgeConfirmation: ageConfirmation => {
-						sessionStorage.setItem('ageConfirmation', ageConfirmation)
 						setAgeConfirmation(ageConfirmation)
 				}
 		}

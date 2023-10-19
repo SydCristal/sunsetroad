@@ -3,7 +3,7 @@ import { useAgeConfirmationContext } from '../../Contexts'
 import { LanguageSwitch } from '../Header'
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
-import { Lo } from '../../Utils'
+import { Lo, Bg } from '../../Utils'
 import { useState, useEffect } from 'react'
 
 const StlAgeFilter = styled.div`
@@ -18,12 +18,12 @@ const StlAgeFilter = styled.div`
 
 const AgeFilterDialog = styled.div`
 		margin: 0px auto;
-		padding: 70px 0;
+		padding: ${({ $short }) => $short || 70}px 0;
 		width: 350px;
 		display: inherit;
   flex-direction: column;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: ${({ $short }) => $short ? 'space-around' : 'space-between'};
 		> * {
 				${({ opacity }) => ({ opacity })};
 		};
@@ -36,7 +36,7 @@ const AgeFilterDialog = styled.div`
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
-				margin: ${({ $short }) => $short ? 20 : 50}px 0;
+				margin: ${({ $short }) => $short || 50}px 0;
 				transition: opacity 0.5s ease-in-out;
 				padding: 0 15px;
 		};
@@ -50,13 +50,12 @@ const LanguageSwitchContainer = styled.div`
 
 const LogoContainer = styled.div`
 		${({ display }) => ({ display })};
-		width: 191px;
-		height: 195px;
+		max-width: 250px;
+		max-height: 195px;
 		margin: 0 auto ${({ $short }) => $short ? 10 : 55}px;
 		transition: opacity 0s ease-in-out;
 		img {
 			width: 100%;
-			height: 100%;
 		};
 `
 
@@ -96,9 +95,12 @@ export function AgeFilter({ opacity }) {
 						<LanguageSwitchContainer>
 								<LanguageSwitch className='mobile-language-switch' />
 						</LanguageSwitchContainer>
-						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={clientHeight < 700}>
+						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={clientHeight < 700 && 15}>
 								<LogoContainer display={clientHeight > 500 ? 'block' : 'none'} $short={clientHeight < 700}>
 										<img src={Lo('logo', false)} alt='logo' />
+								</LogoContainer>
+								<LogoContainer display={clientHeight < 500 ? 'block' : 'none'} $short={true}>
+										<img src={Bg('heading', false)} alt='heading' />
 								</LogoContainer>
 								<p>
 										{l.ageFilterText}

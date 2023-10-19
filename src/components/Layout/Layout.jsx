@@ -1,12 +1,11 @@
 ﻿import { MobileLayout } from '../Mobile'
-import { useSectionContext } from '../../Contexts'
+import { useSectionContext, useAgeConfirmationContext } from '../../Contexts'
 import { Bg } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
 import Footer from '../Footer'
 import MediaQuery from 'react-responsive'
 import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables'
-import { useState, useLayoutEffect } from 'react'
 import Info from '../Info'
 import Products from '../Products'
 import Partners from '../Partners'
@@ -59,19 +58,22 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 		};
 `
 export default function Layout() {
+		const { ageConfirmation } = useAgeConfirmationContext()
 		const { section } = useSectionContext()
 		let content
 		const background = document.documentElement.clientWidth > MAX_MOBILE_WIDTH ? section : null
 
-		switch (section) {
-				case 'products':
-						content = <Products />
-						break
-				case 'partners':
-						content = <Partners />
-						break
-				default:
-						content = <Info />
+		if (ageConfirmation) {
+				switch (section) {
+						case 'products':
+								content = <Products />
+								break
+						case 'partners':
+								content = <Partners />
+								break
+						default:
+								content = <Info />
+				}
 		}
 
 		return (
