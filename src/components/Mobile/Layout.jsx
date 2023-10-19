@@ -32,7 +32,7 @@ const Sky = styled.img.attrs(() => {
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
 		let style = {}
-		if (scrollHeight === clientHeight) {
+		if (scrollTop === 0 || scrollHeight === clientHeight) {
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
 				style.bottom = '200px'
@@ -97,7 +97,7 @@ const ImgContainer = styled.div.attrs(({ $name, $xCoef, $yCoef, $style, $func, $
 				width: 100%;
 				position: absolute;
 				z-index: 1;
-				transition: transform 1s ease;
+				transition: all 1s ease;
 				pointer-events: none;
 		};
 `
@@ -209,34 +209,87 @@ const renderCloud3 = xCoef => {
 }
 
 const renderCloud4 = xCoef => {
-		xCoef -= 0.31
-		const scale = 1 - Math.abs(0.5 * xCoef)
-		const shiftX = (xCoef <= 0 ? -120 : 220) * xCoef
-		const shiftY = (xCoef <= 0 ? 600 : 3000) * xCoef
+		const { scrollTop } = document.documentElement
+
+		let shiftX = 0
+		let shiftY = 0
+		let scale = 0.75
+
+		if (scrollTop >= 800) {
+				shiftX = 20
+				shiftY = 700
+				scale = 0.75
+		} else if (scrollTop >= 400) {
+				shiftX = -50
+				shiftY = 250
+				scale = 1
+		}
+
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
+		//xCoef -= 0.31
+		//const scale = 1 - Math.abs(0.5 * xCoef)
+		//const shiftX = (xCoef <= 0 ? -120 : 220) * xCoef
+		//const shiftY = (xCoef <= 0 ? 600 : 3000) * xCoef
+		//return {
+		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		//}
 }
 
 const renderCloud5 = cCoef => {
-		cCoef -= 0.31
-		const scale = 1 - Math.abs(cCoef)
-		const shiftX = (cCoef <= 0 ? -50 : 200) * cCoef 
-		const shiftY = (cCoef <= 0 ? 700 : 2000) * cCoef
-		return {
-				transform: `translate(-${shiftX}%, ${shiftY}%) scale(${scale})`
-		}
-}
+		const { scrollTop } = document.documentElement
 
-const renderCloud6 = xCoef => {
-		xCoef -= 0.31
-		if (xCoef < 0) return {}
-		const scale = 1 - Math.abs(1 * xCoef)
-		const shiftX = Math.abs(200 * xCoef)
-		const shiftY = 1000 * xCoef
+		let shiftX = 0
+		let shiftY = 0
+		let scale = 0.75
+
+		if (scrollTop >= 750) {
+				shiftX = -25
+				shiftY = 750
+				scale = 0.75
+		} else if (scrollTop >= 450) {
+				shiftX = 75
+				shiftY = 300
+				scale = 1
+		}
+
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
+		//cCoef -= 0.31
+		//const scale = 1 - Math.abs(cCoef)
+		//const shiftX = (cCoef <= 0 ? -50 : 200) * cCoef
+		//const shiftY = (cCoef <= 0 ? 700 : 2000) * cCoef
+		//return {
+		//		transform: `translate(-${shiftX}%, ${shiftY}%) scale(${scale})`
+		//}
+}
+
+const renderCloud6 = (c, yCoef) => {
+		const spaceBelow = getSpaceBelow()
+
+		let shiftX = 0
+		let shiftY = 0
+		let scale = 1
+
+		if (spaceBelow <= 450) {
+				scale = 0.75
+				shiftX = 50 + (50 * yCoef)
+				shiftY = 300
+		}
+
+		return {
+				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		}
+		//xCoef -= 0.31
+		//if (xCoef < 0) return {}
+		//const scale = 1 - Math.abs(1 * xCoef)
+		//const shiftX = Math.abs(200 * xCoef)
+		//const shiftY = 1000 * xCoef
+		//return {
+		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
+		//}
 }
 
 const renderPalm1 = (c, yCoef) => {
@@ -344,23 +397,17 @@ const images = [{
 	}, {
 		$name: 'cloud4',
 		$style: {
-				top: '35%',
-				left: '35%',
+				top: '30%',
+				left: '60%',
 				width: '420px'
-		},
-		$imgStyle: {
-				transition: 'all 0.3sec ease'
 		},
 		$func: renderCloud4
 }, {
 		$name: 'cloud5',
 		$style: {
-				top: '42%',
-				right: '55%',
+				top: '35%',
+				right: '75%',
 				width: '280px'
-		},
-		$imgStyle: {
-				transition: 'all 0.3sec ease'
 		},
 		$func: renderCloud5
 }, {
@@ -414,7 +461,6 @@ const images = [{
 
 const renderBackground = (xCoef, yCoef) => {
 		xCoef -= 1
-
 
 		return (
 				<Background>
