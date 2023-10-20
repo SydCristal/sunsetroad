@@ -190,7 +190,7 @@ export function MobilePartners({ contentWidth, opacity }) {
 				container.style.transform = `translateX(0px)`
 				swipeDirection = null
 
-				if (timeStamp - swipeStartTime > 300) {
+				if (timeStamp - swipeStartTime > 100) {
 						e.preventDefault()
 						e.stopPropagation()
 				} else return
