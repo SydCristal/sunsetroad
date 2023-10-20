@@ -122,7 +122,7 @@ const ImgContainer = styled.div.attrs(({ $name, $yCoef, $style, $func, $imgStyle
 const renderSun = () => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftY = -370
+		let shiftY = -345
 
 		if (spaceBelow <= 450) {
 				shiftY = 0
@@ -414,7 +414,7 @@ const images = [{
 }, {
 		$name: 'cloud6',
 		$style: {
-				top: '67%',
+				top: '68%',
 				left: '55%',
 				width: '230px'
 		},

@@ -32,6 +32,9 @@ const TitleContainer = styled.div`
 `
 
 const PartnerContainer = styled.div`
+		.disabled & {
+					pointer-events: none !important;
+		};
 		position: absolute;
 		height: 180px;
 		bottom: 0;
@@ -116,12 +119,16 @@ export function MobilePartners({ contentWidth, opacity }) {
 		const [currentGroup, setCurrentGroup] = useState(0)
 		const [prevGroup, setPrevGroup] = useState(0)
 		const { language } = useLanguageContext()
-		const partnerRef = useRef(null)
+		const blockRef = useRef(null)
+		const containerRef = useRef(null)
 		const windowWidth = window.innerWidth
 		l.setLanguage(language)
 		let swipeStartX
+		let swipeCurrentX
 		let swipeDirection
 		let swipeStartTime
+		let prevSibling
+		let nextSibling
 
 		const groupCount = partnerGroups.length
 		const rowWidth = 280
@@ -134,38 +141,48 @@ export function MobilePartners({ contentWidth, opacity }) {
 		const onSwipeStart = e => {
 				e.preventDefault()
 				e.stopPropagation()
-				const partnerBlock = partnerRef.current
+				const partnerBlock = blockRef.current
 				if (partnerBlock.classList.contains('disabled')) return
-				const { changedTouches, timeStamp } = e
+				partnerBlock.classList.add('disabled')
+				const container = containerRef.current
+				container.classList.add('transitioning')
+				const { changedTouches, timeStamp, target } = e
 				swipeStartX = changedTouches[0]?.pageX
+				swipeCurrentX = changedTouches[0]?.pageX
 				swipeStartTime = timeStamp
 		}
 
 		const onSwipeMove = e => {
 				e.preventDefault()
 				e.stopPropagation()
-				const partnerBlock = partnerRef.current
-				if (partnerBlock.classList.contains('disabled')) return
-				//container.classList.add('transitioning')
-				const { changedTouches, target } = e
-				const container = target.closest('.partner-container')
+				const partnerBlock = blockRef.current
+				//f (partnerBlock.classList.contains('disabled')) return
+				const container = containerRef.current
+				const { changedTouches } = e
+				const groups	= container.children
+				prevSibling = groups[currentGroup >= 1 ? (currentGroup - 1) : (groups.length - 1)]
+				nextSibling = groups[currentGroup < (groups.length - 1) ? (currentGroup + 1) : 0]
 				const { pageX } = changedTouches[0]
 				let shift = pageX - swipeStartX
 				if (pageX <= 0) shift = -windowWidth / 2
 				if (pageX >= windowWidth) shift = windowWidth / 2
+				let direction
 
-				const direction = (shift > 0) ? 'right' : 'left'
-				container.style.transform = `translateX(${shift}px)`
-				if (swipeDirection !== direction) {
-						swipeStartX	= pageX
-						swipeDirection = direction
-						const displayedGroup = container.children[currentGroup]
-						const prevSibling = displayedGroup.previousElementSibling || container.children[groupCount - 1]
-						const nextSbling = displayedGroup.nextElementSibling || container.children[0]
-						prevSibling.style.opacity = direction === 'right' ? 1 : 0
-						nextSbling.style.opacity = direction === 'left' ? 1 : 0
+				if (pageX > swipeCurrentX) {
+						prevSibling.style.opacity = 1
+						nextSibling.style.opacity = 0
+						direction = 'right'
 				}
 
+				if (pageX < swipeCurrentX) {
+						prevSibling.style.opacity = 0
+						nextSibling.style.opacity = 1
+						direction = 'left'
+				}
+
+				container.style.transform = `translateX(${shift}px)`
+				swipeCurrentX = pageX
+				if (swipeDirection !== direction)	swipeDirection = direction
 				if (pageX <= 0 || pageX >= windowWidth) return
 		}
 
@@ -173,10 +190,11 @@ export function MobilePartners({ contentWidth, opacity }) {
 				e?.preventDefault()
 				e?.stopPropagation()
 
-				const partnerBlock = partnerRef.current
+				const partnerBlock = blockRef.current
+				const container = containerRef.current
 				partnerBlock.classList.add('disabled')
 
-				setTimeout(() => {
+				if (e) setTimeout(() => {
 						partnerBlock.classList.remove('disabled')
 				}, 500)
 
@@ -188,9 +206,15 @@ export function MobilePartners({ contentWidth, opacity }) {
 		}
 
 		const onSwipeEnd = e => {
-				const { changedTouches, timeStamp, target } = e
-
-				const container = target.closest('.partner-container')
+				const { timeStamp } = e
+				const container = containerRef.current
+				const partnerBlock = blockRef.current
+				container.classList.remove('transitioning')
+				if (prevSibling) prevSibling.style.opacity = (swipeDirection === 'left') ? 0 : 1
+				if (nextSibling) nextSibling.style.opacity = (swipeDirection === 'right') ? 0 : 1
+				setTimeout(() => {
+						partnerBlock.classList.remove('disabled')
+				}, 500)
 				container.style.transform = `translateX(0px)`
 
 				if (timeStamp - swipeStartTime > 100) {
@@ -198,17 +222,8 @@ export function MobilePartners({ contentWidth, opacity }) {
 						e.stopPropagation()
 				} else return
 
-				//const sectionWidth = windowWidth / 3
-				//const startSection = Math.floor(swipeStartX / sectionWidth)
-				const swipeEnd = changedTouches[0]?.pageX
-				//const endSection = Math.floor(swipeEnd / sectionWidth)
-
-				//if (swipeEnd !== 0 && swipeEnd !== windowWidth && (startSection === endSection || endSection === 1)) return
-				console.log(swipeDirection);
-
-				const coef = swipeDirection === 'left' ? 1 : -1
+				movePartners(null, swipeDirection === 'left' ? 1 : -1)
 				swipeDirection = null
-				movePartners(null, coef)
 		}
 
 		const renderPartnerGroup = (group, i) => {
@@ -216,21 +231,19 @@ export function MobilePartners({ contentWidth, opacity }) {
 				const lowerRow = group.slice(2)
 				const coef = ((i + groupCount - currentGroup + 1) % groupCount) - i
 				const shift = coef * (contentWidth + spaceBetween)
-				const opacity = i === currentGroup || i === prevGroup ? 1 : 0
+				//const opacity = ((i === currentGroup) || (i === prevGroup)) ? 1 : 0
 
 				const groupStyle = {
 						width: contentWidth,
-						opacity,
+						//opacity,
 						transform: `translateX(${shift}px)`
 				}
 
 				return (
 						<PartnerGroup
-								opacity={opacity}
 								className='partner-group'
 								key={'partnerGroup' + i}
 								style={groupStyle}>
-								
 								<PartnerRow style={{ width: contentWidth }}>
 										{apperRow.map(renderPartner)}
 								</PartnerRow>
@@ -250,7 +263,7 @@ export function MobilePartners({ contentWidth, opacity }) {
 		)
 
 		return (
-				<Partners ref={partnerRef}>
+				<Partners ref={blockRef}>
 						<TitleContainer>
 								<Arrow
 										src={Ic('scroll-left', false)}
@@ -269,7 +282,8 @@ export function MobilePartners({ contentWidth, opacity }) {
 								onTouchStart={onSwipeStart}
 								onTouchMove={onSwipeMove}
 								onTouchEnd={onSwipeEnd}
-								style={containerStyles}>
+								style={containerStyles}
+								ref={containerRef}>
 								{partnerGroups.map(renderPartnerGroup)}
 						</PartnerContainer>
 				</Partners>
