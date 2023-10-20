@@ -31,6 +31,7 @@ const PartnerContainer = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 		touch-action: none;
+		&.disabled img,
 		&.disabled a {
 				pointer-events: none !important;
 		};
@@ -194,14 +195,14 @@ export function MobilePartners({ contentWidth, opacity }) {
 						e.stopPropagation()
 				} else return
 
-				const sectionWidth = windowWidth / 3
-				const startSection = Math.floor(swipeStartX / sectionWidth)
+				//const sectionWidth = windowWidth / 3
+				//const startSection = Math.floor(swipeStartX / sectionWidth)
 				const swipeEnd = changedTouches[0]?.pageX
-				const endSection = Math.floor(swipeEnd / sectionWidth)
+				//const endSection = Math.floor(swipeEnd / sectionWidth)
 
-				if (swipeEnd !== 0 && swipeEnd !== windowWidth && (startSection === endSection || endSection === 1)) return
+				//if (swipeEnd !== 0 && swipeEnd !== windowWidth && (startSection === endSection || endSection === 1)) return
 
-				const coef = startSection > endSection ? 1 : -1
+				const coef = swipeStartX > swipeEnd ? 1 : -1
 				movePartners(null, coef)
 		}
 
