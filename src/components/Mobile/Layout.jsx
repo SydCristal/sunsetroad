@@ -343,10 +343,18 @@ const renderPlant1 = () => {
 		return {}
 }
 
-const renderPlant2 = () => {
+const renderPlant2 = yCoef => {
+		yCoef = (0.4 - yCoef) * 5
+		if (yCoef < 0) yCoef = 0
+		if (yCoef > 1) yCoef = 1
+
+		const shiftX = -(20 + 20 * yCoef)
+		const shiftY = 5 + 5 * yCoef
+		const rotate = -15 * yCoef
+
 		if (window.innerWidth < 568) {
 				return {
-						transform: `translate(-20%, 5%)`
+						transform: `translate(${shiftX}%, ${shiftY}%) rotate(${rotate}deg)`
 				}
 		}
 
@@ -454,8 +462,7 @@ const images = [{
 		$style: {
 				bottom: '11%',
 				width: '398px',
-				left: '-10%',
-				rotate: '-5deg',
+				rotate: '12deg',
 				zIndex: 3
 		},
 		$func: renderPlant2
