@@ -27,7 +27,7 @@ const AdultContent = styled.div`
 function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const { scale, setScale } = useScaleContext()
-		//window.scrollTo(0, 0)
+		if (!ageConfirmation) window.scrollTo(0, 0)
 
 		const debounce = f => {
 				let timer
