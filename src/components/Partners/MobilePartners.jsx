@@ -203,7 +203,7 @@ export function MobilePartners({ contentWidth, opacity }) {
 
 				//if (swipeEnd !== 0 && swipeEnd !== windowWidth && (startSection === endSection || endSection === 1)) return
 
-				const coef = swipeStartX > swipeEnd ? 1 : -1
+				const coef = swipeDirection === 'left' ? 1 : -1
 				movePartners(null, coef)
 		}
 
