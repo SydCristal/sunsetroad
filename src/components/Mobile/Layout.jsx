@@ -454,7 +454,8 @@ const images = [{
 		$style: {
 				bottom: '11%',
 				width: '398px',
-				rotate: '12deg',
+				left: '-10%',
+				rotate: '-5deg',
 				zIndex: 3
 		},
 		$func: renderPlant2

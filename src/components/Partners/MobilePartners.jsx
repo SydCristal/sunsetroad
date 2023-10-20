@@ -117,7 +117,7 @@ const partnerGroups = partnerArray.reduce((acc, partner, i) => {
 
 export function MobilePartners({ contentWidth, opacity }) {
 		const [currentGroup, setCurrentGroup] = useState(0)
-		const [prevGroup, setPrevGroup] = useState(0)
+		const [prevGroup, setPrevGroup] = useState(null)
 		const { language } = useLanguageContext()
 		const blockRef = useRef(null)
 		const containerRef = useRef(null)
@@ -142,9 +142,8 @@ export function MobilePartners({ contentWidth, opacity }) {
 				e.preventDefault()
 				e.stopPropagation()
 				const partnerBlock = blockRef.current
-				if (partnerBlock.classList.contains('disabled')) return
-				partnerBlock.classList.add('disabled')
 				const container = containerRef.current
+				partnerBlock.classList.add('disabled')
 				container.classList.add('transitioning')
 				const { changedTouches, timeStamp, target } = e
 				swipeStartX = changedTouches[0]?.pageX
@@ -156,7 +155,6 @@ export function MobilePartners({ contentWidth, opacity }) {
 				e.preventDefault()
 				e.stopPropagation()
 				const partnerBlock = blockRef.current
-				//f (partnerBlock.classList.contains('disabled')) return
 				const container = containerRef.current
 				const { changedTouches } = e
 				const groups	= container.children
@@ -168,17 +166,11 @@ export function MobilePartners({ contentWidth, opacity }) {
 				if (pageX >= windowWidth) shift = windowWidth / 2
 				let direction
 
-				if (pageX > swipeCurrentX) {
-						prevSibling.style.opacity = 1
-						nextSibling.style.opacity = 0
-						direction = 'right'
-				}
+				prevSibling.style.opacity = 1
+				nextSibling.style.opacity = 1
 
-				if (pageX < swipeCurrentX) {
-						prevSibling.style.opacity = 0
-						nextSibling.style.opacity = 1
-						direction = 'left'
-				}
+				if (pageX > swipeCurrentX) direction = 'right'
+				if (pageX < swipeCurrentX) direction = 'left'
 
 				container.style.transform = `translateX(${shift}px)`
 				swipeCurrentX = pageX
@@ -192,35 +184,50 @@ export function MobilePartners({ contentWidth, opacity }) {
 
 				const partnerBlock = blockRef.current
 				const container = containerRef.current
-				partnerBlock.classList.add('disabled')
 
-				if (e) setTimeout(() => {
-						partnerBlock.classList.remove('disabled')
-				}, 500)
+				if (e) {
+						partnerBlock.classList.add('disabled')
+
+						setTimeout(() => {
+								partnerBlock.classList.remove('disabled')
+						}, 500)
+				}
 
 				let newGroup = currentGroup + coef
 				if (newGroup === groupCount) newGroup = 0
 				if (newGroup === -1) newGroup = groupCount - 1
+
+				for (let i = 0; i < groupCount; i++) {
+						const opacity = ((i === newGroup) || (i === currentGroup)) ? 1 : 0
+
+						container.children[i].style.opacity = opacity
+				}
+
 				setPrevGroup(currentGroup)
 				setCurrentGroup(newGroup)
 		}
 
 		const onSwipeEnd = e => {
 				const { timeStamp } = e
-				const container = containerRef.current
 				const partnerBlock = blockRef.current
+				const container = containerRef.current
 				container.classList.remove('transitioning')
+				container.style.transform = `translateX(0px)`
+
+				if (timeStamp - swipeStartTime > 100) {
+						e.preventDefault()
+						e.stopPropagation()
+				} else {
+						partnerBlock.classList.remove('disabled')
+						return
+				}
+
 				if (prevSibling) prevSibling.style.opacity = (swipeDirection === 'left') ? 0 : 1
 				if (nextSibling) nextSibling.style.opacity = (swipeDirection === 'right') ? 0 : 1
 				setTimeout(() => {
 						partnerBlock.classList.remove('disabled')
 				}, 500)
 				container.style.transform = `translateX(0px)`
-
-				if (timeStamp - swipeStartTime > 100) {
-						e.preventDefault()
-						e.stopPropagation()
-				} else return
 
 				movePartners(null, swipeDirection === 'left' ? 1 : -1)
 				swipeDirection = null
@@ -231,11 +238,11 @@ export function MobilePartners({ contentWidth, opacity }) {
 				const lowerRow = group.slice(2)
 				const coef = ((i + groupCount - currentGroup + 1) % groupCount) - i
 				const shift = coef * (contentWidth + spaceBetween)
-				//const opacity = ((i === currentGroup) || (i === prevGroup)) ? 1 : 0
+				const opacity = ((i === currentGroup) || (i === prevGroup)) ? 1 : 0
 
 				const groupStyle = {
 						width: contentWidth,
-						//opacity,
+						opacity,
 						transform: `translateX(${shift}px)`
 				}
 
