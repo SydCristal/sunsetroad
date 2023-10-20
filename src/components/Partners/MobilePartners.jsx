@@ -153,6 +153,7 @@ export function MobilePartners({ contentWidth, opacity }) {
 				const direction = shift > 0 ? 'right' : 'left'
 				container.style.transform = `translateX(${shift}px)`
 				if (swipeDirection !== direction) {
+						swipeStartX	= pageX
 						swipeDirection = direction
 						const displayedGroup = container.children[currentGroup]
 						const prevSibling = displayedGroup.previousElementSibling || container.children[groupCount - 1]
