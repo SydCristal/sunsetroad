@@ -1,8 +1,8 @@
-import { Carousel } from './'
+import { ProductCarousel } from './'
 
 export function MobileProducts(props) {
 		return (
-				<Carousel
+				<ProductCarousel
 						className='mobile-products'
 						{...props} />
 		)

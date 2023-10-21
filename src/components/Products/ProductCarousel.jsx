@@ -190,7 +190,7 @@ const titleMap = {
 
 const productArray = Object.keys(titleMap)
 
-export function Carousel({ contentWidth, opacity, className }) {
+export function ProductCarousel({ contentWidth, opacity, className }) {
 		const { language } = useLanguageContext()
 		const { scale } = useScaleContext()
 		const [previousSelection, setPreviousSelection] = useState('')

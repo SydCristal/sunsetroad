@@ -3,6 +3,7 @@ import { l } from './Localization'
 import styled from 'styled-components'
 import { Heading, Logo } from '../Common'
 import { S } from '../../Utils'
+import { PartnerCarousel } from './'
 
 const Content = styled.div`
 		background-color: ${S.SHADOW_BG};
@@ -10,6 +11,8 @@ const Content = styled.div`
 		height: ${S.CONTENT_AREA_HEIGHT};
 		padding: ${S.CONTENT_AREA_PADDING};
 		border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
+		display: flex;
+		flex-direction: row;
 	`
 export default function DesktopPartners() {
 		const { language } = useLanguageContext()
@@ -20,6 +23,7 @@ export default function DesktopPartners() {
 						<Heading />
 						<Content>
 								<Logo />
+								<PartnerCarousel contentWidth={455} />
 						</Content>
 				</main>
 		)
