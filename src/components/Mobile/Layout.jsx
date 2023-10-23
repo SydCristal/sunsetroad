@@ -42,10 +42,14 @@ const Sky = styled.img.attrs(({ $isMasked }) => {
 		}
 
 		if (scrollTop === 0 || scrollHeight === clientHeight) {
+				//console.log('Zorg!');
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
+				//console.log('Bleurge!!!');
 				style.bottom = '200px'
 		} else {
+				//console.log('Jog!');
+				//console.log(xCoef);
 				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * xCoef)}px`
 		}
 
