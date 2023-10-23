@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext } from '../../Contexts'
 import { LanguageSwitch } from '../Header'
 import { useLanguageContext } from '../../Contexts'
-import { l } from './Localization'
+import { l } from './'
 import { Lo, Bg, S } from '../../Utils'
 import { useState, useEffect } from 'react'
 

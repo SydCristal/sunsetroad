@@ -1,7 +1,7 @@
 import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext } from './Contexts'
-import { AgeFilter as MobileAgeFilter } from './components/Mobile'
+import { AgeFilter } from './components/Layout'
 
 const StlApp = styled.div``
 
@@ -44,7 +44,7 @@ function App() {
 
 		return (
 				<StlApp>
-						<MobileAgeFilter opacity={ageConfirmation ? 0 : 1} />
+						<AgeFilter opacity={ageConfirmation ? 0 : 1} />
 						<AdultContent $blur={ageConfirmation ? 0 : 5}>
 								<Layout />
 						</AdultContent>

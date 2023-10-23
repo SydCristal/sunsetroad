@@ -7,6 +7,11 @@ import { useState, useRef } from 'react'
 const Partners = styled.div`
 		flex: 1;
 		position: relative;
+		&.mobile-partners {
+				> img {
+						display: none;
+				};
+		};
 `
 
 const PartnersContainer = styled.div`
@@ -31,9 +36,6 @@ const PartnersContainer = styled.div`
 				padding: 0 60px 25px;
 		};
 		.mobile-partners & {
-				> img {
-						display: none;
-				};
 				height: 260px;
 				margin: 55px auto 100px;
 		};
@@ -75,6 +77,7 @@ const PartnerContainer = styled.div`
 `
 
 const PartnerGroup = styled.div`
+		${() => ({ })}
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -90,19 +93,17 @@ const PartnerRow = styled.ul`
 		position: relative;
 		margin: 0 0 10px;
 		padding: 0;
-		.desktop-partners & {
-				justify-content: ${({ children }) => children?.length < 4 ? 'space-around' : 'space-between'};
-		};
-		.mobile-partners & {
-				justify-content: ${({ children }) => children?.length === 3 ? 'space-between' : 'space-around'};
-		};
+		justify-content: space-around;
 		a {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				width: 90px;
 				height: 90px;
-		}
+		};
+		> .wide-logo-item a {
+				width: 180px;
+		};
 `
 
 const Arrow = styled.img`
@@ -121,41 +122,38 @@ const Arrow = styled.img`
 				};
 		};
 		.mobile-partners & {
-				height: 30px;
-				top: 5px;
+				height: 20px;
+				top: 10px;
 				&:first-child {
-						left: -35px;
+						left: -40px;
 				};
 				&:last-child {
-						right: -35px;
+						right: -40px;
 				};
 		};
 `
 
-const partnerMap = {
+const doublePartnerMap = {
+		Fabbrica: 'https://instagram.com/pizzafabbricabali?igshid=MzRlODBiNWFlZA==', //x2
+		Hubble: 'https://instagram.com/hubblebali?igshid=MzRlODBiNWFlZA==', //x2
+		LigaTennis: 'https://instagram.com/bali.tennis?igshid=MzRlODBiNWFlZA==', //x2
+		SouthEast: 'https://instagram.com/southeastbrewing?igshid=MzRlODBiNWFlZA==' //x2
+}
+
+const singlePartnerMap = {
 		Draniki: 'https://instagram.com/draniki.bali?igshid=MzRlODBiNWFlZA==',
 		BaliWood: 'https://instagram.com/baliwood.fun?igshid=MzRlODBiNWFlZA==',
 		StarkBotique: 'https://instagram.com/starkcraftbeergarden?igshid=MzRlODBiNWFlZA==',
 		Gabets: 'https://instagram.com/gabetspub?igshid=MzRlODBiNWFlZA==',
 		MeltingPot: 'https://meltingpotbali.com/',
 		TwoThousandEighty: 'https://www.2080burger.net',
-		Fabbrica: 'https://instagram.com/pizzafabbricabali?igshid=MzRlODBiNWFlZA==',
-		Hubble: 'https://instagram.com/hubblebali?igshid=MzRlODBiNWFlZA==',
-		LigaTennis: 'https://instagram.com/bali.tennis?igshid=MzRlODBiNWFlZA==',
 		Izzi: 'https://instagram.com/izzi.bali?igshid=MzRlODBiNWFlZA==',
 		NowBeer: 'https://instagram.com/nowbeerbar?igshid=MzRlODBiNWFlZA==',
-		SouthEast: 'https://instagram.com/southeastbrewing?igshid=MzRlODBiNWFlZA==',
 		SushiShop: 'https://instagram.com/sushishop.bali?igshid=MzRlODBiNWFlZA==',
-		WarungCanteen: 'https://instagram.com/warung_canteen?igshid=MzRlODBiNWFlZA==',
-		facebook: 'https://www.facebook.com/people/SunsetroadBeer/100088255544244/',
-		instagram: 'https://www.instagram.com/sunsetroad.beer/',
-		whatsapp: 'https://wa.me/6281936549298',
-		telegram: 'https://t.me/gasss77'
+		WarungCanteen: 'https://instagram.com/warung_canteen?igshid=MzRlODBiNWFlZA=='
 }
 
-const partnerArray = Object.keys(partnerMap)
-
-export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desktop-partners' }) {
+export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'desktop-partners' }) {
 		const [currentGroup, setCurrentGroup] = useState(0)
 		const [prevGroup, setPrevGroup] = useState(null)
 		const { language } = useLanguageContext()
@@ -163,6 +161,8 @@ export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desk
 		const containerRef = useRef(null)
 		const windowWidth = window.innerWidth
 		const isDesktop = className === 'desktop-partners'
+		const doublePartnerArray = Object.keys(doublePartnerMap)
+		const singlePartnerArray = Object.keys(singlePartnerMap)
 		l.setLanguage(language)
 		let swipeStartX
 		let swipeCurrentX
@@ -171,22 +171,77 @@ export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desk
 		let prevSibling
 		let nextSibling
 
-		const partnerGroups = partnerArray.reduce((acc, partner, i) => {
-				if (i % groupSize === 0) {
-						acc.push([partner])
-				} else {
-						acc[acc.length - 1].push(partner)
+		const partnerGroups = []
+
+		const totalGroupSlots = singlePartnerArray.length + doublePartnerArray.length * 2
+		const partnerGroupCount = Math.ceil(totalGroupSlots / maxGroupSize)
+		const averageGroupSize = Math.ceil(totalGroupSlots / partnerGroupCount)
+		const doublePartnerPerGroupCount = Math.floor(doublePartnerArray.length / partnerGroupCount)
+		let doublePartnerPerGroupRemainder = doublePartnerArray.length % partnerGroupCount
+
+		for (let i = 0; i < partnerGroupCount; i++) {
+				const totalGroupsRemains = singlePartnerArray.length + doublePartnerArray.length * 2
+				const currentGroupSize = totalGroupsRemains >= averageGroupSize ? averageGroupSize : totalGroupsRemains
+				const shortRowSlotCount = Math.ceil(currentGroupSize / 2)
+				const longRowSlotCount = currentGroupSize - shortRowSlotCount
+				let doublePartnerPerCurrentGroupCount = doublePartnerPerGroupCount
+				if (doublePartnerPerGroupRemainder) { 
+						doublePartnerPerCurrentGroupCount++
+						doublePartnerPerGroupRemainder--
+				}
+				console.log(doublePartnerPerCurrentGroupCount);
+				let longRowVacantSlots = longRowSlotCount
+				let doublePartnerPerShortRowCount = Math.ceil(doublePartnerPerCurrentGroupCount / 2)
+				let shortRowVacantSlots = shortRowSlotCount
+				let doublePartnerPerLongRowCount = doublePartnerPerCurrentGroupCount - doublePartnerPerShortRowCount
+				let longRow = []
+				let shortRow = []
+
+				while (shortRowVacantSlots > 0) {
+						if (doublePartnerPerShortRowCount) {
+								const name = doublePartnerArray.pop()
+								const link = doublePartnerMap[name]
+								shortRow.push({ name, link, double: true })
+								doublePartnerPerShortRowCount--
+								shortRowVacantSlots -= 2
+						}
+
+						if (shortRowVacantSlots) {
+								const name = singlePartnerArray.pop()
+								const link = singlePartnerMap[name]
+								shortRow.push({ name, link })
+								shortRowVacantSlots--
+						}
 				}
 
-				return acc
-		}, [])
+				while (longRowVacantSlots > 0) {
+						if (longRowVacantSlots) {
+								const name = singlePartnerArray.pop()
+								const link = singlePartnerMap[name]
+								longRow.push({ name, link })
+								longRowVacantSlots--
+						}
 
-		const groupCount = partnerGroups.length
+						if (doublePartnerPerLongRowCount) {
+								const name = doublePartnerArray.pop()
+								const link = doublePartnerMap[name]
+								longRow.push({ name, link, double: true })
+								doublePartnerPerLongRowCount--
+								longRowVacantSlots -= 2
+						}
+				}
+
+				partnerGroups.push({
+						longRow,
+						shortRow
+				})
+		}
+
 		const spaceBetween = isDesktop ? 60 : ((windowWidth - contentWidth) / 2)
 		const left = (isDesktop ? 0 : -spaceBetween) - contentWidth + 'px'
 		const containerStyles = {
 				left,
-				width: spaceBetween * (groupCount - 1) + groupCount * contentWidth + 'px'
+				width: spaceBetween * (partnerGroupCount - 1) + partnerGroupCount * contentWidth + 'px'
 		}
 
 		const onSwipeStart = e => {
@@ -244,10 +299,10 @@ export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desk
 				}
 
 				let newGroup = currentGroup + coef
-				if (newGroup === groupCount) newGroup = 0
-				if (newGroup === -1) newGroup = groupCount - 1
+				if (newGroup === partnerGroupCount) newGroup = 0
+				if (newGroup === -1) newGroup = partnerGroupCount - 1
 
-				for (let i = 0; i < groupCount; i++) {
+				for (let i = 0; i < partnerGroupCount; i++) {
 						const opacity = ((i === newGroup) || (i === currentGroup)) ? 1 : 0
 
 						container.children[i].style.opacity = opacity
@@ -284,9 +339,8 @@ export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desk
 		}
 
 		const renderPartnerGroup = (group, i) => {
-				const apperRow = groupSize === 7 ? group.slice(0, Math.round(group.length / 2)) : group.slice(0, Math.floor(group.length / 2))
-				const lowerRow = groupSize === 7 ? group.slice(Math.round(group.length / 2)) : group.slice(Math.floor(group.length / 2))
-				const coef = ((i + groupCount - currentGroup + 1) % groupCount) - i
+				const { longRow, shortRow } = group
+				const coef = ((i + partnerGroupCount - currentGroup + 1) % partnerGroupCount) - i
 				const shift = coef * (contentWidth + spaceBetween)
 				const opacity = ((i === currentGroup) || (i === prevGroup)) ? 1 : 0
 
@@ -302,19 +356,19 @@ export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desk
 								key={'partnerGroup' + i}
 								style={groupStyle}>
 								<PartnerRow style={{ width: contentWidth }}>
-										{apperRow.map(renderPartner)}
+										{(isDesktop ? longRow : shortRow).map(renderPartner)}
 								</PartnerRow>
 								<PartnerRow style={{ width: contentWidth }}>
-										{lowerRow.map(renderPartner)}
+										{(isDesktop ? shortRow : longRow).map(renderPartner)}
 								</PartnerRow>
 						</PartnerGroup>
 				)
 		}
 
-		const renderPartner = partner => (
-				<li key={partner}>
-						<a href={partnerMap[partner]} target='_blank' rel='noreferrer'>
-								<img src={Lo(partner, false)} alt={partner} />
+		const renderPartner = ({ name, link, double }) => (
+				<li key={name} className={double ? 'wide-logo-item' : ''}>
+						<a href={link} target='_blank' rel='noreferrer'>
+								<img src={Lo(name, false)} alt={name} />
 						</a>
 				</li>
 		)
@@ -347,13 +401,14 @@ export function PartnerCarousel({ contentWidth, groupSize = 7, className = 'desk
 										onTouchEnd={onSwipeEnd}
 										style={containerStyles}
 										ref={containerRef}>
-												{partnerGroups.map(renderPartnerGroup)}
+										{partnerGroups.map(renderPartnerGroup)}
 								</PartnerContainer>
 						</PartnersContainer>
 						<Arrow
 								src={Ic('scroll-next', false)}
 								alt='scroll-right'
 								onPointerDown={e => movePartners(e, -1)} />
+
 				</Partners>
 		)
 }

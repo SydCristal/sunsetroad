@@ -4,7 +4,7 @@ export function MobilePartners({ contentWidth, opacity }) {
 				contentWidth,
 				opacity,
 				className: 'mobile-partners',
-				groupSize: 5
+				maxGroupSize: 5
 		}
 
 

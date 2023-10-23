@@ -5,7 +5,8 @@ import { useLanguageContext } from '../../Contexts'
 
 const LogoContainer = styled.div`
 		width:	185px;
-		margin-right: 30px;
+		margin-right: 40px;
+		margin-left: -10px;
 		display: flex;
   flex-direction: column;
 		img {
