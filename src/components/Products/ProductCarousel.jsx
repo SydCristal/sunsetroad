@@ -35,7 +35,7 @@ const Bottles = styled.div`
 		.desktop-products & {
 				position: absolute;
 				bottom: 50px;
-				right: 0;
+				right: 10px;
 				height: 475px;
 				width: 350px;
 		};
@@ -122,7 +122,7 @@ const DescriptionContainer = styled.div.attrs(({ $descriptionWidth }) => {
 						opacity: ${S.TEXT_REGULAR_OPACITY};
 						width: 185px;
 				};
-				width: 460px;
+				width: 470px;
 				height: 185px;
 				p {
 					color: white;
@@ -154,7 +154,7 @@ const Description = styled.div`
 				position: absolute;
 				left: 0;
 				top: 0;
-				width: 460px;
+				width: 470px;
 				height: 185px;
 				transition: opacity 0.5s ease-in-out;
 				> p {
@@ -199,11 +199,11 @@ export function ProductCarousel({ contentWidth, opacity, className }) {
 		const [shiftIndex, setShiftIndex] = useState(0)
 		l.setLanguage(language)
 		const isDesktop = className === 'desktop-products'
-		const [descriptionWidth, setDescriptionWidth] = useState(isDesktop ? 460 : (scale.width + 2 * contentWidth))
+		const [descriptionWidth, setDescriptionWidth] = useState(isDesktop ? 470 : (scale.width + 2 * contentWidth))
 
 		useEffect(() => {
 				if (isDesktop) return
-				setDescriptionWidth(scale.width + 2 * (isDesktop ? 460 : contentWidth))
+				setDescriptionWidth(scale.width + 2 * (isDesktop ? 470 : contentWidth))
 		}, [scale.width, isDesktop, contentWidth])
 
 		const rotateCarousel = (e, position, productName) => {

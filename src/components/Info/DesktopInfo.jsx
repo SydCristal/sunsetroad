@@ -21,7 +21,7 @@ const Content = styled.div`
 				opacity: 1;
 		};
 		h1 {
-				margin: 0 0 5px;
+				margin: 0 0 10px;
 				font-family: Bitter;
 				font-size: 24px;
 				font-weight: 600;
@@ -32,7 +32,7 @@ const Content = styled.div`
 				font-family: Bitter;
 				font-size: 18px;
 				font-weight: 600;
-				line-height: 20px;
+				line-height: 22px;
 				opacity: ${S.TEXT_REGULAR_OPACITY};
 		};
 `

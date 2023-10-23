@@ -5,6 +5,7 @@ import { S, Lo, Ic } from '../../Utils'
 import { useState, useRef } from 'react'
 
 const Partners = styled.div`
+		${({ opacity }) => ({ opacity })};
 		flex: 1;
 		position: relative;
 		&.mobile-partners {
@@ -30,10 +31,10 @@ const PartnersContainer = styled.div`
 				flex: 1;
 				overflow: hidden;
 				-webkit-mask-image: linear-gradient(to right, transparent, rgb(10, 10, 10)), linear-gradient(rgb(10, 10, 10), rgb(10, 10, 10)), linear-gradient(to right, rgb(10, 10, 10), transparent);
-				-webkit-mask-size: 60px 100%, 455px 100%, 60px 100%;
+				-webkit-mask-size: 85px 100%, 455px 100%, 85px 100%;
 				-webkit-mask-repeat: no-repeat;
 				-webkit-mask-position: left center, center center, right center;
-				padding: 0 60px 25px;
+				padding: 0 85px 25px;
 		};
 		.mobile-partners & {
 				height: 260px;
@@ -115,10 +116,10 @@ const Arrow = styled.img`
 				top: 95px;
 				transform: translateY(-50%);
 				&:first-child {
-						left: 0px;
+						left: 10px;
 				};
 				&:last-child {
-						right: 0px;
+						right: 10px;
 				};
 		};
 		.mobile-partners & {
@@ -153,7 +154,7 @@ const singlePartnerMap = {
 		WarungCanteen: 'https://instagram.com/warung_canteen?igshid=MzRlODBiNWFlZA=='
 }
 
-export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'desktop-partners' }) {
+export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'desktop-partners', opacity }) {
 		const [currentGroup, setCurrentGroup] = useState(0)
 		const [prevGroup, setPrevGroup] = useState(null)
 		const { language } = useLanguageContext()
@@ -236,7 +237,7 @@ export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'd
 				})
 		}
 
-		const spaceBetween = isDesktop ? 60 : ((windowWidth - contentWidth) / 2)
+		const spaceBetween = isDesktop ? 85 : ((windowWidth - contentWidth) / 2)
 		const left = (isDesktop ? 0 : -spaceBetween) - contentWidth + 'px'
 		const containerStyles = {
 				left,
@@ -373,7 +374,9 @@ export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'd
 		)
 
 		return (
-				<Partners className={className}>
+				<Partners
+						className={className}
+						opacity={opacity}>
 						<Arrow
 								src={Ic('scroll-prev', false)}
 								alt='scroll-left'

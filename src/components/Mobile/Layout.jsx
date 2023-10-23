@@ -30,12 +30,17 @@ const Background = styled.div`
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(() => {
+const Sky = styled.img.attrs(({ $isMasked }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
-		let style = {}
+
+
+		let style = {
+				height: ($isMasked ? 100 : 80) + '%',
+		}
+
 		if (scrollTop === 0 || scrollHeight === clientHeight) {
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
@@ -48,7 +53,6 @@ const Sky = styled.img.attrs(() => {
 		position: absolute;
 		width: calc(20px + 100%);
 		left: -10px;
-		height: 80%;
 `
 
 const Landscape = styled.img.attrs(() => {
@@ -468,11 +472,11 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = yCoef => {
+const renderBackground = (yCoef, isAdult) => {
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' />
+						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={!isAdult} />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
@@ -498,7 +502,7 @@ export default function Layout() {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation)}>
 						<Content>
 								<Header>
 										<LanguageSwitch className='mobile-language-switch' />

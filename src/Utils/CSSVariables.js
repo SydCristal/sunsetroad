@@ -1,7 +1,7 @@
 export const SHADOW_BG = '#00000095'
 export const UI_EL_OPACITY = 0.5
 export const ACTIVE_UI_EL_OPACITY = 0.8
-export const CONTENT_AREA_WIDTH = '850px'
+export const CONTENT_AREA_WIDTH = '900px'
 export const CONTENT_AREA_HEIGHT = '265px'
 export const CONTENT_AREA_BORDER_RADIUS = '20px'
 export const CONTENT_AREA_PADDING = '20px 30px'
