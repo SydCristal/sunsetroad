@@ -88,6 +88,7 @@ export function AgeFilter({ opacity }) {
 		const [display, setDisplay] = useState('flex')
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
+		const { clientHeight, offsetHeight, scrollHeight } = document.documentElement
 
 		const className = scale.width <= S.MAX_MOBILE_WIDTH && 'mobile-language-switch'
 
@@ -110,7 +111,7 @@ export function AgeFilter({ opacity }) {
 										<img src={Bg('heading', false)} alt='heading' />
 								</LogoContainer>
 								<p className='unselectable'>
-										{l.ageFilterText}
+										{'clientHeight: ' + scrollHeight + ', offsetHeight: ' + offsetHeight + ', scrollHeight: ' + scrollHeight}
 								</p>
 								<ConfirmationButton className='unselectable' onClick={() => setAgeConfirmation(true)}>
 										{l.confirm}
@@ -119,3 +120,4 @@ export function AgeFilter({ opacity }) {
 				</StlAgeFilter>
 		)		
 }
+//{ l.ageFilterText }

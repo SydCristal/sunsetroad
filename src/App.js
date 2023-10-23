@@ -49,6 +49,7 @@ function App() {
 
 		window.addEventListener('resize', debounce(() => {
 				const { clientWidth, clientHeight } = document.documentElement
+				console.log(document.documentElement);
 				setScale({ width: clientWidth, height: clientHeight })
 		}))
 
