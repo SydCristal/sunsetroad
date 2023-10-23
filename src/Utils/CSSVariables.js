@@ -12,3 +12,4 @@ export const TEXT_SHADOW_COLOR = 'rgb(34, 30, 31)'
 export const TEXT_OUTLINE = `1px 1px 1px ${TEXT_SHADOW_COLOR}, -1px 1px 1px ${TEXT_SHADOW_COLOR}, 1px -1px 1px ${TEXT_SHADOW_COLOR}, -1px -1px 1px ${TEXT_SHADOW_COLOR}`
 export const TEXT_SHADOW = `0px 0px 18px #000`
 export const TEXT_REGULAR_OPACITY = 0.8
+export const MIN_DESKTOP_HEIGHT = 600

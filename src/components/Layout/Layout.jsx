@@ -51,7 +51,7 @@ export default function Layout() {
 		let height = '100vh'
 
 		if (isDesktop) {
-				height = scale.height > 715 ? `${scale.height}px` : '715px'
+				height = (scale.height > S.MIN_DESKTOP_HEIGHT ? scale.height : S.MIN_DESKTOP_HEIGHT) + 'px'		
 		}
 
 		if (ageConfirmation) {

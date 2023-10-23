@@ -37,8 +37,8 @@ const TextContainer = styled.div`
 `
 
 const Text = styled.p`
-		font-size: 20px;
-		line-height: 24px;
+		font-size: 18px;
+		line-height: 20px;
 		font-weight: 600;
 		padding: 0;
 		margin: 0 0 5px;
