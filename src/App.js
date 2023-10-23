@@ -51,7 +51,6 @@ function App() {
 				const { clientWidth, clientHeight } = document.documentElement
 				setScale({ width: clientWidth, height: clientHeight })
 		}))
-		console.log(scale.height);
 
 		return (
 				<StlApp $height={scale.height} >
