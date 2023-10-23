@@ -13,7 +13,7 @@ import Partners from '../Partners'
 const DesktopLayout = styled.div`
 		display: flex;
 		flex-direction: column;
-		height: 100vh;
+		height: ${({ $height }) => $height};
 		width: 100%;
 		main {
 				flex: 1;
@@ -46,7 +46,13 @@ export default function Layout() {
 		const { scale } = useScaleContext()
 		const { section } = useSectionContext()
 		let content = <main />
-		const background = scale.width > MAX_MOBILE_WIDTH ? section : null
+		const isDesktop = scale.width > MAX_MOBILE_WIDTH
+		const background = isDesktop ? section : null
+		let height = '100vh'
+
+		if (isDesktop) {
+				height = scale.height > 715 ? `${scale.height}px` : '715px'
+		}
 
 		if (ageConfirmation) {
 				switch (section) {
@@ -62,12 +68,12 @@ export default function Layout() {
 		}
 
 		return (
-				<StlLayout $background={background}>
+				<StlLayout $background={background} $height={height}>
 						<MediaQuery maxWidth={MAX_MOBILE_WIDTH}>
 								<MobileLayout />
 						</MediaQuery>
 						<MediaQuery minWidth={MAX_MOBILE_WIDTH + 1}>
-								<DesktopLayout>
+								<DesktopLayout $height={height} >
 										<Header />
 										{content}
 										<Footer />

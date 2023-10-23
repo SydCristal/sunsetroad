@@ -4,21 +4,28 @@ import { useAgeConfirmationContext, useScaleContext } from './Contexts'
 import { AgeFilter } from './components/Layout'
 
 const StlApp = styled.div`
-		min-height: 715px;
-		height: 100%;
 `
 
 const AdultContent = styled.div`
 		${({ $blur, $height }) => {
-		if (!$blur) return ''
+		if (!$blur) return `
+				height: ${$height}px;
+				min-height: 100%;
+		`
+
+		const height = $blur ? $height : 0
+
 		return `
 				filter: blur(${$blur}px);
 				-webkit-filter: blur(${$blur}px);
 				-moz-filter: blur(${$blur}px);
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
-				height: ${$blur ? $height : 0}px;
+				height: ${height}px;
 				overflow: hidden;
+				> div {
+						height: ${height}px;
+				};
 				header > div {
 						opacity: 0;
 				};
@@ -41,16 +48,16 @@ function App() {
 		}
 
 		window.addEventListener('resize', debounce(() => {
-				const { clientWidth, clientHeight  } = document.documentElement
+				const { clientWidth, clientHeight } = document.documentElement
 				setScale({ width: clientWidth, height: clientHeight })
 		}))
 		console.log(scale.height);
 
 		return (
-				<StlApp>
+				<StlApp $height={scale.height} >
 						<AgeFilter opacity={ageConfirmation ? 0 : 1} />
 						<AdultContent $blur={ageConfirmation ? 0 : 5} $height={scale.height}>
-								<Layout />
+								<Layout  />
 						</AdultContent>
 				</StlApp>
 		)

@@ -8,6 +8,7 @@ const Footer = styled.footer`
 		background-color: ${S.SHADOW_BG};
 		z-index: ${S.LAYOUT_EL_ZINDEX};
 		display: flex;
+		position: relative;
 		flex-direction: column;
 		align-items: center;
 		padding: 15px 0;
