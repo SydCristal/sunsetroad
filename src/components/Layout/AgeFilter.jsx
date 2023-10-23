@@ -102,17 +102,17 @@ export function AgeFilter({ opacity }) {
 						<LanguageSwitchContainer className={className + '-container'}>
 								<LanguageSwitch className={className} />
 						</LanguageSwitchContainer>
-						<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={scale.height < 700 && 15}>
+						<AgeFilterDialog className='unselectable' opacity={ageConfirmation ? 0 : 1} $short={scale.height < 700 && 15}>
 								<LogoContainer display={scale.height > 500 ? 'block' : 'none'} $short={scale.height < 700}>
 										<img src={Lo('logo', false)} alt='logo' />
 								</LogoContainer>
 								<LogoContainer display={scale.height < 500 ? 'block' : 'none'} $short={true}>
 										<img src={Bg('heading', false)} alt='heading' />
 								</LogoContainer>
-								<p>
+								<p className='unselectable'>
 										{l.ageFilterText}
 								</p>
-								<ConfirmationButton onClick={() => setAgeConfirmation(true)}>
+								<ConfirmationButton className='unselectable' onClick={() => setAgeConfirmation(true)}>
 										{l.confirm}
 								</ConfirmationButton>
 						</AgeFilterDialog>

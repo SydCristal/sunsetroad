@@ -1,7 +1,7 @@
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
-import { Bg, S, Lo } from '../../Utils'
+import { S } from '../../Utils'
 import { Heading, Logo } from '../Common'
 
 const Content = styled.div`
@@ -49,7 +49,7 @@ export default function DesktopInfo() {
 						<Heading />
 						<Content>
 								<Logo />
-								<TextContainer>
+								<TextContainer className='unselectable'>
 										<h1>{l.slogan}</h1>
 										<p>{l.text}</p>
 								</TextContainer>

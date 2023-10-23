@@ -189,7 +189,6 @@ export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'd
 						doublePartnerPerCurrentGroupCount++
 						doublePartnerPerGroupRemainder--
 				}
-				console.log(doublePartnerPerCurrentGroupCount);
 				let longRowVacantSlots = longRowSlotCount
 				let doublePartnerPerShortRowCount = Math.ceil(doublePartnerPerCurrentGroupCount / 2)
 				let shortRowVacantSlots = shortRowSlotCount

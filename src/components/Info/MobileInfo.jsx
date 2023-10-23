@@ -57,13 +57,13 @@ export function MobileInfo({ opacity }) {
 		l.setLanguage(language)
 
 		return (
-				<Info>
+				<Info className='unselectable'>
 						<LogoContainer opacity={opacity}>
 								<img src={Lo('logo', false)} alt='logo' />
 						</LogoContainer>
 						<TextContainer opacity={opacity}>
-								<Text>{l.text}</Text>
-								<Slogan>{l.slogan}</Slogan>
+								<Text className='unselectable'>{l.text}</Text>
+								<Slogan className='unselectable'>{l.slogan}</Slogan>
 						</TextContainer>
 				</Info>
 		)

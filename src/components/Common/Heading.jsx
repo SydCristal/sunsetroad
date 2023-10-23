@@ -9,5 +9,5 @@ const StlHeading = styled.div`
 `
 
 export function Heading() {
-		return <StlHeading />
+		return <StlHeading className='unselectable' />
 }

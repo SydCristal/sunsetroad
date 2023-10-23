@@ -33,8 +33,8 @@ export function Logo() {
 		l.setLanguage(language)
 
 		return (
-				<LogoContainer>
-						<img src={Lo('logo', false)} />
+				<LogoContainer className='unselectable'>
+						<img src={Lo('logo', false)} alt='logo'/>
 						<h2>{l.brewed}</h2>
 				</LogoContainer>
 		)

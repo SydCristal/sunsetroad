@@ -204,7 +204,7 @@ export function ProductCarousel({ contentWidth, opacity, className }) {
 		useEffect(() => {
 				if (isDesktop) return
 				setDescriptionWidth(scale.width + 2 * (isDesktop ? 460 : contentWidth))
-		}, [scale.width])
+		}, [scale.width, isDesktop, contentWidth])
 
 		const rotateCarousel = (e, position, productName) => {
 				e.preventDefault()
@@ -332,10 +332,13 @@ export function ProductCarousel({ contentWidth, opacity, className }) {
 								))}
 						</Bottles>
 						<ArrowContainer>
-								<img key='rotate-left' src={Bg('rotate-left', false)} onPointerDown={e => onArrowClick(e, 1)} />
-								<img key='rotate-right' src={Bg('rotate-right', false)} onPointerDown={e => onArrowClick(e, -1)} />
+								<img key='rotate-left' alt='rotate-left' src={Bg('rotate-left', false)} onPointerDown={e => onArrowClick(e, 1)} />
+								<img key='rotate-right' alt='rotate-right' src={Bg('rotate-right', false)} onPointerDown={e => onArrowClick(e, -1)} />
 						</ArrowContainer>
-						<DescriptionContainer $descriptionWidth={descriptionWidth} $contentWidth={contentWidth}>
+						<DescriptionContainer
+								className='unselectable'
+								$descriptionWidth={descriptionWidth}
+								$contentWidth={contentWidth}>
 								{productArray.map(renderProductDescription)}
 								{isDesktop && <h2>{l.brewed}</h2>}
 						</DescriptionContainer>
