@@ -4,17 +4,20 @@ import { useAgeConfirmationContext, useScaleContext } from './Contexts'
 import { AgeFilter } from './components/Layout'
 import { useLayoutEffect } from 'react'
 
-const StlApp = styled.div`
-`
+const StlApp = styled.div.attrs(({ $height }) => {
+		return {
+				style: {
+						height:	`${$height}px`
+				}
+		}
+})``
 
 const AdultContent = styled.div`
 		${({ $blur, $height }) => {
 		if (!$blur) return `
-				height: 100%;
-				min-height: ${$height}px;
+				height: ${$height}px;
+				min-height: 100%;
 		`
-
-		const height = $blur ? $height : 0
 
 		return `
 				filter: blur(${$blur}px);
@@ -22,10 +25,11 @@ const AdultContent = styled.div`
 				-moz-filter: blur(${$blur}px);
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
-				height: ${height}px;
+				height: ${$height}px;
+				min-height: ${$height}px;
 				overflow: hidden;
 				> div {
-						height: ${height}px;
+						height: 100%;
 				};
 				header > div {
 						opacity: 0;
@@ -48,15 +52,9 @@ function App() {
 				}
 		}
 
-		//window.addEventListener('resize', debounce(() => {
-		//		//const { clientWidth, clientHeight } = document.documentElement
-		//		alert(document.documentElement.clientHeight);
-		//		setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
-		//}))
-
-		useLayoutEffect(debounce(() => {
+		window.addEventListener('resize', debounce(() => {
 				setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
-		}), [document.documentElement.clientHeight, document.documentElement.clientWidth])
+		}))
 
 		return (
 				<StlApp $height={scale.height} >
