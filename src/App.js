@@ -48,17 +48,17 @@ function App() {
 				}
 		}
 
-		window.addEventListener('resize', debounce(() => {
-				//const { clientWidth, clientHeight } = document.documentElement
-				alert(document.documentElement.clientHeight);
-				setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
-		}))
-
-		//useLayoutEffect(debounce(() => {
+		//window.addEventListener('resize', debounce(() => {
 		//		//const { clientWidth, clientHeight } = document.documentElement
-		//		alert(document.documentElement.clientHeight)
+		//		alert(document.documentElement.clientHeight);
 		//		setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
-		//}), [document.documentElement.clientHeight, document.documentElement.clientWidth])
+		//}))
+
+		useLayoutEffect(debounce(() => {
+				//const { clientWidth, clientHeight } = document.documentElement
+				alert(document.documentElement.clientHeight)
+				setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
+		}), [document.documentElement.clientHeight, document.documentElement.clientWidth])
 
 		return (
 				<StlApp $height={scale.height} >
