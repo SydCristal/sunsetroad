@@ -11,7 +11,7 @@ const StlAgeFilter = styled.div`
 		position: fixed;
 		left: 0;
 		width: 100%;
-		height: 100vh;
+		height: 100%;
 		z-index: 100;
 		background-color: rgba(0, 0, 0, ${({ opacity }) => opacity ? 0.3 : 0});
 `
