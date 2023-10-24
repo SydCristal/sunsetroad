@@ -15,6 +15,7 @@ const getSpaceBelow = () => {
 }
 
 const StlLayout = styled(Parallax)`
+		height: ${({ $height }) => $height};
 		.react-parallax-bgimage {
 				padding-bottom: 310px;
 		};
@@ -492,7 +493,7 @@ const renderBackground = (yCoef, isAdult) => {
 		)
 }
 
-export default function Layout() {
+export default function Layout({ $height }) {
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const { scale } = useScaleContext()
 		const opacity = ageConfirmation ? 1 : 0
@@ -507,7 +508,7 @@ export default function Layout() {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation, scale)}>
+				<StlLayout $height={$height} renderLayer={() => renderBackground(yCoef, ageConfirmation, scale)}>
 						<Content>
 								<Header>
 										<LanguageSwitch className='mobile-language-switch' />

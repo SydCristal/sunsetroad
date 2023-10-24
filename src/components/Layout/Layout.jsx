@@ -70,7 +70,7 @@ export default function Layout() {
 		return (
 				<StlLayout $background={background}>
 						<MediaQuery maxWidth={MAX_MOBILE_WIDTH}>
-								<MobileLayout />
+								<MobileLayout $height={height} />
 						</MediaQuery>
 						<MediaQuery minWidth={MAX_MOBILE_WIDTH + 1}>
 								<DesktopLayout $height={height} >
