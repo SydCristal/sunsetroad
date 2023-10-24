@@ -6,7 +6,7 @@ import { MobilePartners as Partners } from '../Partners'
 import { MobileInfo as Info } from '../Info'
 import { MobileFooter as Footer } from '../Footer'
 import { MobileProducts as Products } from '../Products'
-import { useAgeConfirmationContext } from '../../Contexts'
+import { useAgeConfirmationContext, useScaleContext } from '../../Contexts'
 import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables';
 
 const getSpaceBelow = () => {
@@ -494,6 +494,7 @@ const renderBackground = (yCoef, isAdult) => {
 
 export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
+		const { scale } = useScaleContext()
 		const opacity = ageConfirmation ? 1 : 0
 		//const isSmallScreen = useMediaQuery({ query: '(max-width: 400px)' })
 		//const idMediumScreen = useMediaQuery({ query: '(max-width: 584px)' })
@@ -506,7 +507,7 @@ export default function Layout() {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation, scale)}>
 						<Content>
 								<Header>
 										<LanguageSwitch className='mobile-language-switch' />
