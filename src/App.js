@@ -7,7 +7,8 @@ import { useLayoutEffect } from 'react'
 const StlApp = styled.div.attrs(({ $height }) => {
 		return {
 				style: {
-						height:	`${$height}px`
+						minHeight: `${$height}px`,
+						height: '100%'
 				}
 		}
 })``
