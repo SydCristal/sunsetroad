@@ -10,7 +10,7 @@ const StlApp = styled.div`
 const AdultContent = styled.div`
 		${({ $blur, $height }) => {
 		if (!$blur) return `
-				height: 100%;
+				height: ${$height}px;
 				min-height: 100%;
 		`
 
@@ -54,11 +54,11 @@ function App() {
 				setScale({ width: clientWidth, height: clientHeight })
 		}), [document.documentElement.clientHeight, document.documentElement.clientWidth])
 
-		window.addEventListener('resize', debounce(() => {
-				const { clientWidth, clientHeight } = document.documentElement
-				console.log(document.documentElement);
-				setScale({ width: clientWidth, height: clientHeight })
-		}))
+		//window.addEventListener('resize', debounce(() => {
+		//		const { clientWidth, clientHeight } = document.documentElement
+		//		console.log(document.documentElement);
+		//		setScale({ width: clientWidth, height: clientHeight })
+		//}))
 
 		return (
 				<StlApp $height={scale.height} >
