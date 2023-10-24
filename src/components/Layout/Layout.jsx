@@ -48,7 +48,7 @@ export default function Layout() {
 		let content = <main />
 		const isDesktop = scale.width > MAX_MOBILE_WIDTH
 		const background = isDesktop ? section : null
-		let height = '120vh'
+		let height = '100vh'
 
 		if (isDesktop) {
 				height = (scale.height > S.MIN_DESKTOP_HEIGHT ? scale.height : S.MIN_DESKTOP_HEIGHT) + 'px'		

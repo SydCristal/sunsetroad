@@ -2,6 +2,7 @@ import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext } from './Contexts'
 import { AgeFilter } from './components/Layout'
+import { useLayoutEffect } from 'react'
 
 const StlApp = styled.div`
 `
@@ -46,6 +47,12 @@ function App() {
 						timer = setTimeout(f, 100, e)
 				}
 		}
+
+		useLayoutEffect(debounce(() => {
+				const { clientHeight, clientWidth } = document.documentElement
+				console.log(clientHeight, clientWidth);
+				setScale({ width: clientWidth, height: clientHeight })
+		}), [document.documentElement.clientHeight, document.documentElement.clientWidth])
 
 		window.addEventListener('resize', debounce(() => {
 				const { clientWidth, clientHeight } = document.documentElement
