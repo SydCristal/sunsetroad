@@ -15,7 +15,6 @@ const getSpaceBelow = () => {
 }
 
 const StlLayout = styled(Parallax)`
-		height: ${({ $height }) => $height};
 		.react-parallax-bgimage {
 				padding-bottom: 310px;
 		};
@@ -31,15 +30,13 @@ const Background = styled.div`
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(({ $isMasked }) => {
+const Sky = styled.img.attrs(({ $isMasked, $height }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
-
-
 		let style = {
-				height: ($isMasked ? 100 : 80) + '%',
+				height: $isMasked ? `${$height}px` : '80%',
 		}
 
 		if (scrollTop === 0 || scrollHeight === clientHeight) {
@@ -477,11 +474,11 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = (yCoef, isAdult) => {
+const renderBackground = (yCoef, isAdult, height) => {
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={!isAdult} />
+						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={!isAdult} $height={height} />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
@@ -508,7 +505,7 @@ export default function Layout({ $height }) {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout $height={$height} renderLayer={() => renderBackground(yCoef, ageConfirmation, scale)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation, $height)}>
 						<Content>
 								<Header>
 										<LanguageSwitch className='mobile-language-switch' />
