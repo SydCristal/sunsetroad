@@ -24,20 +24,22 @@ const StlLayout = styled(Parallax)`
 		};
 `
 
-const Background = styled.div`
+const Background = styled.div.attrs(({ $isMasked, $height }) => {
+		return {
+				style: {
+						height: $isMasked	? $height : '100%'
+				}
+		}})`
 		width: 100%;
-		height: 100%;
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(({ $isMasked, $height }) => {
+const Sky = styled.img.attrs(() => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
-		let style = {
-				height: $isMasked ? `${$height}px` : '80%',
-		}
+		let style = {}
 
 		if (scrollTop === 0 || scrollHeight === clientHeight) {
 				//console.log('Zorg!');
@@ -55,6 +57,7 @@ const Sky = styled.img.attrs(({ $isMasked, $height }) => {
 		position: absolute;
 		width: calc(20px + 100%);
 		left: -10px;
+		height: 80%;
 `
 
 const Landscape = styled.img.attrs(() => {
@@ -477,8 +480,8 @@ const images = [{
 const renderBackground = (yCoef, isAdult, height) => {
 
 		return (
-				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={!isAdult} $height={height} />
+				<Background $isMasked={!isAdult} $height={height}>
+						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
