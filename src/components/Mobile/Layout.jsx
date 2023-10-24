@@ -35,20 +35,16 @@ const Sky = styled.img.attrs(({ $isMasked }) => {
 		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
-
-
-		let style = {
-				height: ($isMasked ? 100 : 80) + '%',
-		}
+		let style = {}
 
 		if (scrollTop === 0 || scrollHeight === clientHeight) {
-				//console.log('Zorg!');
+				console.log('Zorg!');
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
-				//console.log('Bleurge!!!');
+				console.log('Bleurge!!!');
 				style.bottom = '200px'
 		} else {
-				//console.log('Jog!');
+				console.log('Jog!');
 				//console.log(xCoef);
 				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * xCoef)}px`
 		}
@@ -57,6 +53,7 @@ const Sky = styled.img.attrs(({ $isMasked }) => {
 		position: absolute;
 		width: calc(20px + 100%);
 		left: -10px;
+		height: 80%;
 `
 
 const Landscape = styled.img.attrs(() => {
