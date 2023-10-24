@@ -48,7 +48,7 @@ export default function Layout() {
 		let content = <main />
 		const isDesktop = scale.width > MAX_MOBILE_WIDTH
 		const background = isDesktop ? section : null
-		let height = '100%'
+		let height = '100vh'
 
 		if (isDesktop) {
 				height = (scale.height > S.MIN_DESKTOP_HEIGHT ? scale.height : S.MIN_DESKTOP_HEIGHT) + 'px'		
@@ -68,9 +68,9 @@ export default function Layout() {
 		}
 
 		return (
-				<StlLayout $background={background}>
+				<StlLayout $background={background} $height={height}>
 						<MediaQuery maxWidth={MAX_MOBILE_WIDTH}>
-								<MobileLayout $height={height} />
+								<MobileLayout />
 						</MediaQuery>
 						<MediaQuery minWidth={MAX_MOBILE_WIDTH + 1}>
 								<DesktopLayout $height={height} >

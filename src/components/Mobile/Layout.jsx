@@ -6,7 +6,7 @@ import { MobilePartners as Partners } from '../Partners'
 import { MobileInfo as Info } from '../Info'
 import { MobileFooter as Footer } from '../Footer'
 import { MobileProducts as Products } from '../Products'
-import { useAgeConfirmationContext, useScaleContext } from '../../Contexts'
+import { useAgeConfirmationContext } from '../../Contexts'
 import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables';
 
 const getSpaceBelow = () => {
@@ -24,22 +24,22 @@ const StlLayout = styled(Parallax)`
 		};
 `
 
-const Background = styled.div.attrs(({ $isMasked, $height }) => {
-		return {
-				style: {
-						height: $isMasked	? $height : '100%'
-				}
-		}})`
+const Background = styled.div`
 		width: 100%;
+		height: 100%;
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(() => {
+const Sky = styled.img.attrs(({ $isMasked }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
 
-		let style = {}
+
+
+		let style = {
+				height: ($isMasked ? 100 : 80) + '%',
+		}
 
 		if (scrollTop === 0 || scrollHeight === clientHeight) {
 				//console.log('Zorg!');
@@ -57,7 +57,6 @@ const Sky = styled.img.attrs(() => {
 		position: absolute;
 		width: calc(20px + 100%);
 		left: -10px;
-		height: 80%;
 `
 
 const Landscape = styled.img.attrs(() => {
@@ -477,11 +476,11 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = (yCoef, isAdult, height) => {
+const renderBackground = (yCoef, isAdult) => {
 
 		return (
-				<Background $isMasked={!isAdult} $height={height}>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' />
+				<Background>
+						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={!isAdult} />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
@@ -493,9 +492,8 @@ const renderBackground = (yCoef, isAdult, height) => {
 		)
 }
 
-export default function Layout({ $height }) {
+export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const { scale } = useScaleContext()
 		const opacity = ageConfirmation ? 1 : 0
 		//const isSmallScreen = useMediaQuery({ query: '(max-width: 400px)' })
 		//const idMediumScreen = useMediaQuery({ query: '(max-width: 584px)' })
@@ -508,7 +506,7 @@ export default function Layout({ $height }) {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation, $height)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation)}>
 						<Content>
 								<Header>
 										<LanguageSwitch className='mobile-language-switch' />

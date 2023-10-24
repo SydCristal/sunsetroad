@@ -11,7 +11,7 @@ const StlAgeFilter = styled.div`
 		position: fixed;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 		z-index: 100;
 		background-color: rgba(0, 0, 0, ${({ opacity }) => opacity ? 0.3 : 0});
 `
@@ -111,7 +111,7 @@ export function AgeFilter({ opacity }) {
 										<img src={Bg('heading', false)} alt='heading' />
 								</LogoContainer>
 								<p className='unselectable'>
-										{'clientHeight: ' + scrollHeight + ', offsetHeight: ' + offsetHeight + ', scrollHeight: ' + scrollHeight}
+										{l.ageFilterText}
 								</p>
 								<ConfirmationButton className='unselectable' onClick={() => setAgeConfirmation(true)}>
 										{l.confirm}
@@ -120,4 +120,4 @@ export function AgeFilter({ opacity }) {
 				</StlAgeFilter>
 		)		
 }
-// {l.ageFilterText}
+// { 'clientHeight: ' + scrollHeight + ', offsetHeight: ' + offsetHeight + ', scrollHeight: ' + scrollHeight }
