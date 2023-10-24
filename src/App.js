@@ -10,8 +10,8 @@ const StlApp = styled.div`
 const AdultContent = styled.div`
 		${({ $blur, $height }) => {
 		if (!$blur) return `
-				height: ${$height}px;
-				min-height: 100%;
+				height: 100%;
+				min-height: ${$height}px;
 		`
 
 		const height = $blur ? $height : 0
@@ -55,8 +55,6 @@ function App() {
 		//}))
 
 		useLayoutEffect(debounce(() => {
-				//const { clientWidth, clientHeight } = document.documentElement
-				alert(document.documentElement.clientHeight)
 				setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
 		}), [document.documentElement.clientHeight, document.documentElement.clientWidth])
 
