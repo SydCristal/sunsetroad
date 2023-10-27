@@ -26,7 +26,7 @@ const AdultContent = styled.div`
 				-moz-filter: blur(${$blur}px);
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
-				height: ${$height}px;
+				height: 100%;
 				min-height: 100%;
 				overflow: hidden;
 				> div {
