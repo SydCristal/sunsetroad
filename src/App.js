@@ -1,7 +1,7 @@
 import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext } from './Contexts'
-import { AgeFilter } from './components/Modals'
+import { AgeFilter, ContactForm } from './components/Modals'
 import { useLayoutEffect } from 'react'
 
 const StlApp = styled.div.attrs(({ $height }) => {
@@ -27,7 +27,7 @@ const AdultContent = styled.div`
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
 				height: ${$height}px;
-				min-height: ${$height}px;
+				min-height: 100%;
 				overflow: hidden;
 				> div {
 						height: 100%;
