@@ -14,9 +14,8 @@ const StlApp = styled.div.attrs(({ $height }) => {
 })``
 
 const AdultContent = styled.div`
-		${({ $blur, $height }) => {
+		${({ $blur }) => {
 		if (!$blur) return `
-				height: ${$height}px;
 				min-height: 100%;
 		`
 
