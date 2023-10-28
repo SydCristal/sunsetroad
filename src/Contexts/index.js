@@ -2,3 +2,4 @@ export { LanguageContext, LanguageProvider, useLanguageContext } from './Languag
 export { SectionContext, SectionProvider, useSectionContext } from './SectionContext'
 export { AgeConfirmationContext, AgeConfirmationProvider, useAgeConfirmationContext } from './AgeConfirmationContext'
 export { ScaleContext, ScaleProvider, useScaleContext } from './ScaleContext'
+export { ContactFormContext, ContactFormProvider, useContactFormContext } from './ContactFormContext'

@@ -1,5 +1,5 @@
 import { useLanguageContext } from '../../Contexts'
-import { l } from './Localization'
+import { l } from './'
 import styled from 'styled-components'
 import { Heading, Logo } from '../Common'
 import { S } from '../../Utils'

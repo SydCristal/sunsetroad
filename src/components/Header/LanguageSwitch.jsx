@@ -13,10 +13,7 @@ const StlLanguageSwitch = styled.div`
 const OptionContainer = styled.div`
 		position: relative;
 		height: 100%;
-		width: 150px;
-		.mobile-language-switch & {
-				width: 50px;
-		};
+		width: ${({ $isMobile }) => $isMobile ? 50 : 150}px;
 `
 
 const Option = styled.div`
@@ -25,26 +22,27 @@ const Option = styled.div`
 		cursor: pointer;
 		transition: opacity 0.5s ease-in-out;
 		font-weight: 400;
-		opacity: ${({ $selected }) => $selected ? 0 : S.UI_EL_OPACITY};
 		pointer-events: ${({ $selected }) => $selected ? 'none' : 'all'};
 		right: 0;
 		text-align: center;
-		font-family: 'Fira Sans', sans-serif;
-		font-size: 20px;
-		line-height: 35px;
 		&:hover {
 				opacity: ${({ $selected }) => $selected ? 0 : S.ACTIVE_UI_EL_OPACITY};
 		};
-		.mobile-language-switch & {
-				opacity: ${({ $selected }) => $selected ? 0 : 1};
+		${({ $isMobile, $selected }) => $isMobile ? `
+				opacity: ${$selected ? 0 : 1};
 				left:	50%;
 				transform: translateX(-50%);
 				font-size: 26px;
 				font-family: 'Orelega One', serif;
 				text-shadow: ${S.TEXT_OUTLINE};
-		};
+		` : `
+				opacity: ${$selected ? 0 : S.UI_EL_OPACITY};
+				font-family: 'Fira Sans', sans-serif;
+				font-size: 20px;
+				line-height: 35px;
+		`};
 `
-export function LanguageSwitch({ className }) {
+export function LanguageSwitch({ isMobile = false }) {
 		const { language, setLanguage } = useLanguageContext()
 		const languages = {
 				en: 'English',
@@ -53,7 +51,7 @@ export function LanguageSwitch({ className }) {
 
 		let options
 
-		if (className === 'mobile-language-switch') {
+		if (isMobile) {
 				options = Object.keys(languages).map(value => ({ value, label: value.toUpperCase() }))
 		} else {
 				options = Object.entries(languages).map(([value, label]) => ({ value, label }))
@@ -68,6 +66,7 @@ export function LanguageSwitch({ className }) {
 		const renderOption = ({ value, label }) => {
 				return (
 						<Option
+								$isMobile={isMobile}
 								onPointerDown={onSwitchLanguage}
 								$selected={value === language}
 								key={value}>
@@ -77,9 +76,8 @@ export function LanguageSwitch({ className }) {
 		}
 
 		return (
-				<StlLanguageSwitch className={className}>
-						<OptionContainer
-								className='option-container'>
+				<StlLanguageSwitch>
+						<OptionContainer $isMobile={isMobile}>
 								{options.map(renderOption)}
 						</OptionContainer>
 				</StlLanguageSwitch>

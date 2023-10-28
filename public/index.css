@@ -10,7 +10,7 @@ body {
 		background-color: black;
 }
 
-*.unselectable {
+* {
 		-moz-user-select: -moz-none;
 		-khtml-user-select: none;
 		-webkit-user-select: none;

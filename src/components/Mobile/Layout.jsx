@@ -6,8 +6,7 @@ import { MobilePartners as Partners } from '../Partners'
 import { MobileInfo as Info } from '../Info'
 import { MobileFooter as Footer } from '../Footer'
 import { MobileProducts as Products } from '../Products'
-import { useAgeConfirmationContext } from '../../Contexts'
-import { MAX_MOBILE_WIDTH } from '../../Utils/CSSVariables';
+import { useAgeConfirmationContext, useContactFormContext } from '../../Contexts'
 
 const getSpaceBelow = () => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
@@ -30,22 +29,34 @@ const Background = styled.div`
 		position: absolute;
 `
 
-const Sky = styled.img.attrs(({ $isMasked }) => {
+const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrollTop
+		//const scrlTop = $scrollTop || scrollTop
+		//const coefY = scrlTop ? (scrlTop / scrollHeight) - 1 : 0
+		//const shift = scrollHeight * coefY
+		//let bottom = scrollHeight - 175 - shift
+		//if (bottom < 200) bottom = 200
+		//const style = {
+		//		bottom: bottom + 'px'
+		//}
 
 		let style = {}
 
-		if (scrollTop === 0 || scrollHeight === clientHeight) {
-				console.log('Zorg!');
+		if ($isMasked) {
+				const coefY = $scrollTop ? ($scrollTop / scrollHeight) - 1 : 0
+				const shift = scrollHeight * coefY
+				let bottom = scrollHeight - 175 - shift
+				if (bottom < 200) bottom = 200
+				style = {
+						bottom: bottom + 'px'
+				}
+		} else if (scrollTop === 0 || scrollHeight === clientHeight) {
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
-				console.log('Bleurge!!!');
 				style.bottom = '200px'
 		} else {
-				console.log('Jog!');
-				//console.log(xCoef);
 				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * xCoef)}px`
 		}
 
@@ -88,7 +99,7 @@ const Content = styled.div`
 `
 
 const Main = styled.main`
-		width: ${({ $width }) => $width}px;
+		width: ${S.MOBILE_CONTENT_WIDTH}px;
 		opacity: 1;
 `
 
@@ -411,7 +422,7 @@ const images = [{
 	}, {
 		$name: 'cloud4',
 		$style: {
-				top: '30%',
+				top: '32%',
 				left: '60%',
 				width: '420px'
 		},
@@ -473,11 +484,11 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = (yCoef, isAdult) => {
+const renderBackground = (yCoef, isMasked, scrollTop) => {
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={!isAdult} />
+						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={isMasked} $scrollTop={scrollTop} />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
@@ -491,24 +502,26 @@ const renderBackground = (yCoef, isAdult) => {
 
 export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
+		const { contactForm, scrollTop } = useContactFormContext()
 		const opacity = ageConfirmation ? 1 : 0
 		//const isSmallScreen = useMediaQuery({ query: '(max-width: 400px)' })
 		//const idMediumScreen = useMediaQuery({ query: '(max-width: 584px)' })
 		//const isLargeScreen = useMediaQuery({ query: '(max-width: 768px)' })
+		const isMasked = !ageConfirmation || contactForm
 
-		let contentWidth = 350
+		let contentWidth = S.MOBILE_CONTENT_WIDTH
 
 		let yCoef = contentWidth / document.documentElement.clientWidth
 		yCoef > 1 && (yCoef = 1)
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef, ageConfirmation)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef, isMasked, scrollTop)}>
 						<Content>
 								<Header>
-										<LanguageSwitch className='mobile-language-switch' />
+										<LanguageSwitch isMobile={true} />
 								</Header>
-								<Main $width={contentWidth}>
+								<Main>
 										<Info opacity={opacity} />
 										<Products opacity={opacity} contentWidth={contentWidth} />
 										<Partners opacity={opacity} contentWidth={contentWidth} />

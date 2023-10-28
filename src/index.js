@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { LanguageProvider, SectionProvider, AgeConfirmationProvider, ScaleProvider } from './Contexts'
+import { LanguageProvider, SectionProvider, AgeConfirmationProvider, ScaleProvider, ContactFormProvider } from './Contexts'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -11,7 +11,9 @@ root.render(
       <AgeConfirmationProvider>
         <LanguageProvider>
           <SectionProvider>
-            <App />
+            <ContactFormProvider>
+              <App />
+            </ContactFormProvider>
           </SectionProvider>
         </LanguageProvider>
       </AgeConfirmationProvider>

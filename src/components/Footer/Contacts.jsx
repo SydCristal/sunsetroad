@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Ic, S } from '../../Utils'
+import { useContactFormContext } from '../../Contexts'
 
 const ContactsContainer = styled.div`
 		display: flex;
@@ -72,6 +73,7 @@ const contactsMap = {
 const contactsArray = Object.keys(contactsMap)
 
 export function Contacts({ className }) {
+		const { setContactForm } = useContactFormContext()
 		const renderContacts = contact => (
 				<li key={contact}>
 						<a href={contactsMap[contact]} target='_blank'>
@@ -80,9 +82,19 @@ export function Contacts({ className }) {
 				</li>
 		)
 
+		const onEmailClick = e => {
+				e.preventDefault()
+				e.stopPropagation()
+				setContactForm(true)
+		}
+
 		return (
 				<ContactsContainer className={className}>
-						<a href='mailto:info@sunsetroad.beer'>info@sunsetroad.beer</a>
+						<a
+								href='mailto:info@sunsetroad.beer'
+								onPointerDown={onEmailClick}>
+								info@sunsetroad.beer
+						</a>
 						<ul>
 								{contactsArray.map(renderContacts)}
 						</ul>

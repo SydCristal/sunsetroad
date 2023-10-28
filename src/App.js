@@ -1,20 +1,17 @@
 import Layout from './components/Layout'
 import styled from 'styled-components'
-import { useAgeConfirmationContext, useScaleContext } from './Contexts'
-import { AgeFilter, ContactForm } from './components/Modals'
-import { useLayoutEffect } from 'react'
+import { useAgeConfirmationContext, useScaleContext, useContactFormContext } from './Contexts'
+import { ModalMask, AgeFilter, ContactForm } from './components/Modals'
+import { useEffect } from 'react'
+import { S } from './Utils'
 
-const StlApp = styled.div.attrs(({ $height }) => {
-		return {
-				style: {
-						minHeight: `100%`,
-						height: '100%'
-				}
-		}
-})``
+const StlApp = styled.div`
+		min-height: 100%;
+		height: 100%;
+`
 
 const AdultContent = styled.div`
-		${({ $blur }) => {
+		${({ $blur, overflow, $contentScrollTop }) => {
 		if (!$blur) return `
 				min-height: 100%;
 		`
@@ -25,11 +22,12 @@ const AdultContent = styled.div`
 				-moz-filter: blur(${$blur}px);
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
-				height: 100%;
+				height: 100vh;
 				min-height: 100%;
-				overflow: hidden;
+				overflow: ${overflow};
 				> div {
 						height: 100%;
+						transform: translateY(-${$contentScrollTop}px);
 				};
 				header > div {
 						opacity: 0;
@@ -39,10 +37,18 @@ const AdultContent = styled.div`
 				};	
 `}}`
 
-function App() {
+export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
+		const { contactForm, scrollTop } = useContactFormContext()
 		const { scale, setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
+		const displayModalFilter = !ageConfirmation || contactForm
+
+		const AdultContentProps = {
+				$blur: displayModalFilter ? 5 : 0,
+				overflow: displayModalFilter ? 'hidden' : 'inherit',
+				$contentScrollTop: (scale.width <= S.MAX_MOBILE_WIDTH && scrollTop) || 0
+		}
 
 		const debounce = f => {
 				let timer
@@ -56,14 +62,19 @@ function App() {
 				setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
 		}))
 
+		useEffect(() => {
+				if (!contactForm) window.scrollTo(0, scrollTop)
+		}, [contactForm, scrollTop])
+
 		return (
-				<StlApp $height={scale.height} >
-						<AgeFilter opacity={ageConfirmation ? 0 : 1} />
-						<AdultContent $blur={ageConfirmation ? 0 : 5} $height={scale.height}>
-								<Layout  />
+				<StlApp>
+						<ModalMask>
+								{!ageConfirmation && <AgeFilter />}
+								{contactForm && <ContactForm />}
+						</ModalMask>
+						<AdultContent {...AdultContentProps}>
+								<Layout />
 						</AdultContent>
 				</StlApp>
 		)
 }
-
-export default App
