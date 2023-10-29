@@ -52,7 +52,7 @@ export default function App() {
 		const AdultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
 				overflow: displayModalFilter ? 'hidden' : 'inherit',
-				$contentScrollTop: contentHeight - scale.height
+				$contentScrollTop: contactForm ? contentHeight - scale.height : 0
 		}
 
 		const debounce = f => {
