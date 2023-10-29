@@ -9,7 +9,7 @@ const StlModalMask = styled.div`
 		position: fixed;
 		left: 0;
 		width: 100%;
-		height: 100vh;
+		height: 100%;
 		min-height: 570px;
 		z-index: 100;
 		background-color: rgba(0, 0, 0, 0.3);
