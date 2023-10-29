@@ -72,9 +72,7 @@ export default function App() {
 
 		return (
 				<StlApp>
-						<ModalMask>
-								
-						</ModalMask>
+						<ModalMask />
 						<AdultContent {...AdultContentProps}>
 								<Layout />
 						</AdultContent>

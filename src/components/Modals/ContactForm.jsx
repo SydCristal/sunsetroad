@@ -13,7 +13,8 @@ const ContactFormContainer = styled.div`
 		left: 50%;
 		transform: translate(-50%, -50%);
 		background-color: ${S.MODAL_SHADOW};
-		height: 400px;
+		min-height: 400px;
+		height: 70%;
 		border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
 		display: none;
 		flex-direction: column;
@@ -101,10 +102,9 @@ const SubmitButton = styled.button`
 		margin: 0px auto;
 		display: block;
 		font-family: 'Orelega One', serif;
-		text-transform: uppercase;
-		font-size: 50px;
+		font-size: 40px;
 		color: #fff;
-		-webkit-text-stroke: 2px rgb(34, 30, 31);
+		-webkit-text-stroke: 1.5px rgb(34, 30, 31);
 		text-shadow: ${S.TEXT_OUTLINE};
 		&:focus {
 				outline: none;

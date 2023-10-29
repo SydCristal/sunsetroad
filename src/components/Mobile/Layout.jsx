@@ -31,8 +31,10 @@ const Background = styled.div`
 
 const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
-		const xCoef = (scrollTop || 1) / (scrollHeight - clientHeight);
-		const spaceBelow = scrollHeight - clientHeight - scrollTop
+		//console.log($scrollTop, scrollTop);
+		const scrlTop = $isMasked ? $scrollTop : scrollTop
+		const yCoef = (scrlTop || 1) / (scrollHeight - clientHeight);
+		const spaceBelow = scrollHeight - clientHeight - scrlTop
 		//const scrlTop = $scrollTop || scrollTop
 		//const coefY = scrlTop ? (scrlTop / scrollHeight) - 1 : 0
 		//const shift = scrollHeight * coefY
@@ -41,23 +43,26 @@ const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		//const style = {
 		//		bottom: bottom + 'px'
 		//}
-
 		let style = {}
 
-		if ($isMasked) {
-				const coefY = $scrollTop ? ($scrollTop / scrollHeight) - 1 : 0
-				const shift = scrollHeight * coefY
-				let bottom = scrollHeight - 175 - shift
-				if (bottom < 200) bottom = 200
-				style = {
-						bottom: bottom + 'px'
-				}
-		} else if (scrollTop === 0 || scrollHeight === clientHeight) {
+		//if ($isMasked) {
+		//		//console.log($scrollTop);
+		//		const coefY = scrlTop ? (scrlTop / scrollHeight) - 1 : 0
+		//		const shift = scrollHeight * coefY
+		//		//console.log(shift);
+		//		let bottom = scrollHeight - 175 - shift
+		//		//console.log(bottom);
+		//		if (bottom <= 200) bottom = 200
+		//		style = {
+		//				bottom: bottom + 'px'
+		//		}
+		//} else
+		if (scrlTop === 0 || (scrollHeight === clientHeight && !$isMasked)) {
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
 				style.bottom = '200px'
 		} else {
-				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * xCoef)}px`
+				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * yCoef)}px`
 		}
 
 		return { style }})`
