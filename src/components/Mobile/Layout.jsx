@@ -31,32 +31,11 @@ const Background = styled.div`
 
 const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
-		//console.log($scrollTop, scrollTop);
 		const scrlTop = $isMasked ? $scrollTop : scrollTop
 		const yCoef = (scrlTop || 1) / (scrollHeight - clientHeight);
 		const spaceBelow = scrollHeight - clientHeight - scrlTop
-		//const scrlTop = $scrollTop || scrollTop
-		//const coefY = scrlTop ? (scrlTop / scrollHeight) - 1 : 0
-		//const shift = scrollHeight * coefY
-		//let bottom = scrollHeight - 175 - shift
-		//if (bottom < 200) bottom = 200
-		//const style = {
-		//		bottom: bottom + 'px'
-		//}
 		let style = {}
 
-		//if ($isMasked) {
-		//		//console.log($scrollTop);
-		//		const coefY = scrlTop ? (scrlTop / scrollHeight) - 1 : 0
-		//		const shift = scrollHeight * coefY
-		//		//console.log(shift);
-		//		let bottom = scrollHeight - 175 - shift
-		//		//console.log(bottom);
-		//		if (bottom <= 200) bottom = 200
-		//		style = {
-		//				bottom: bottom + 'px'
-		//		}
-		//} else
 		if (scrlTop === 0 || (scrollHeight === clientHeight && !$isMasked)) {
 				style.top = '-145px'
 		} else if (spaceBelow <= 200) {
@@ -192,13 +171,6 @@ const renderCloud2 = () => {
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
-		//const scale = 1 - Math.abs(1 * xCoef)
-		//const shiftX = -100 * xCoef
-		//const shiftY = 1000 * xCoef
-		//return {
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`,
-		//		zIndex: 3
-		//}
 }
 
 const renderCloud3 = () => {
@@ -221,13 +193,6 @@ const renderCloud3 = () => {
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
-		//const scale = 1 - Math.abs(0.5 * xCoef)
-		//const shiftX = 80 * xCoef
-		//const shiftY = 800 * xCoef
-		//return {
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`,
-		//		zIndex: 3
-		//}
 }
 
 const renderCloud4 = () => {
@@ -250,13 +215,6 @@ const renderCloud4 = () => {
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
-		//xCoef -= 0.31
-		//const scale = 1 - Math.abs(0.5 * xCoef)
-		//const shiftX = (xCoef <= 0 ? -120 : 220) * xCoef
-		//const shiftY = (xCoef <= 0 ? 600 : 3000) * xCoef
-		//return {
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
-		//}
 }
 
 const renderCloud5 = () => {
@@ -279,13 +237,6 @@ const renderCloud5 = () => {
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
-		//cCoef -= 0.31
-		//const scale = 1 - Math.abs(cCoef)
-		//const shiftX = (cCoef <= 0 ? -50 : 200) * cCoef
-		//const shiftY = (cCoef <= 0 ? 700 : 2000) * cCoef
-		//return {
-		//		transform: `translate(-${shiftX}%, ${shiftY}%) scale(${scale})`
-		//}
 }
 
 const renderCloud6 = yCoef => {
@@ -304,14 +255,6 @@ const renderCloud6 = yCoef => {
 		return {
 				transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
 		}
-		//xCoef -= 0.31
-		//if (xCoef < 0) return {}
-		//const scale = 1 - Math.abs(1 * xCoef)
-		//const shiftX = Math.abs(200 * xCoef)
-		//const shiftY = 1000 * xCoef
-		//return {
-		//		transform: `translate(${shiftX}%, ${shiftY}%) scale(${scale})`
-		//}
 }
 
 const renderPalm1 = yCoef => {
@@ -509,9 +452,6 @@ export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const { contactForm, scrollTop } = useContactFormContext()
 		const opacity = ageConfirmation ? 1 : 0
-		//const isSmallScreen = useMediaQuery({ query: '(max-width: 400px)' })
-		//const idMediumScreen = useMediaQuery({ query: '(max-width: 584px)' })
-		//const isLargeScreen = useMediaQuery({ query: '(max-width: 768px)' })
 		const isMasked = !ageConfirmation || contactForm
 
 		let contentWidth = S.MOBILE_CONTENT_WIDTH
