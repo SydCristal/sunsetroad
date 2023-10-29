@@ -47,11 +47,12 @@ export default function App() {
 		const { scale, setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
+		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight
 
 		const AdultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
 				overflow: displayModalFilter ? 'hidden' : 'inherit',
-				$contentScrollTop: (scale.width <= S.MAX_MOBILE_WIDTH && scrollTop) || 0
+				$contentScrollTop: contentHeight - scale.height
 		}
 
 		const debounce = f => {
@@ -63,7 +64,8 @@ export default function App() {
 		}
 
 		window.addEventListener('resize', debounce(() => {
-				setScale({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
+				const { clientHeight, clientWidth } = document.documentElement
+				setScale({ width: clientWidth, height: clientHeight })
 		}))
 
 		useEffect(() => {
