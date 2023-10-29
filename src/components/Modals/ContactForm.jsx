@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { useContactFormContext, useLanguageContext } from '../../Contexts'
-import { S } from '../../Utils'
+import { S, Ic } from '../../Utils'
 import { Heading } from '../Common'
 import { l } from './'
 import { useState } from 'react'
@@ -51,14 +51,8 @@ const ModalHeader = styled.div`
 		}
 `
 
-const CloseModalIcon = styled.div`
-		display: flex;
+const CloseModalIcon = styled.img`
 		height: 25px;
-		justify-content: flex-end;
-		font-family: 'Orelega One';
-		font-size: 25px;
-		font-weight: 400;
-		text-shadow: ${S.TEXT_OUTLINE};
 		cursor: pointer;
 `
 
@@ -74,7 +68,7 @@ const inputStyles = css`
 		outline: ${({ $isInvalid }) => $isInvalid ? '3px solid red' : 'none'};
 		color: #616161;
 		&:focus {
-				outline: 4px solid #fd8228;
+				outline: 3px solid #fd8228;
 		};
 		&::placeholder {
 				color: #616161;
@@ -100,20 +94,23 @@ const ErrorMessage = styled.p`
 `
 
 const SubmitButton = styled.button`
-		display: ${({ $display }) => $display};
+		opacity: ${({ $opacity }) => $opacity};
 		border: none;
 		background-color: transparent;
 		padding: 0;
-		margin: 10px auto 0;
+		margin: 0px auto;
+		display: block;
 		font-family: 'Orelega One', serif;
 		text-transform: uppercase;
 		font-size: 50px;
 		color: #fff;
-		cursor: pointer;
 		-webkit-text-stroke: 2px rgb(34, 30, 31);
 		text-shadow: ${S.TEXT_OUTLINE};
 		&:focus {
 				outline: none;
+		};
+		&:not(:disabled) {			
+				cursor: pointer;
 		};
 `
 
@@ -178,16 +175,16 @@ export function ContactForm() {
 				console.log(data);
 		}
 
-		const displaySubmitButton = (invalidFields.length === 0 && name && email && message) ? 'block' : 'none'
+		const submitButtonIsActive = (invalidFields.length === 0 && name && email && message)
 
 		return (
 				<ContactFormContainer id='contact-form'>
 						<ModalHeader>
 								<Heading />
 								<CloseModalIcon
-										onPointerDown={closeModal}>
-										X
-								</CloseModalIcon>
+										src={Ic('close', false, 'svg')}
+										alt='close'
+										onPointerDown={closeModal} />
 						</ModalHeader>
 						<form>
 								<Input
@@ -213,9 +210,10 @@ export function ContactForm() {
 										onBlur={({ target: { value } }) => onInputBlur(value, 'message', setMessage, setHighlightMessage)}
 										value={message} />
 								<div>
-										{highlightMessage && <ErrorMessage>{l.messageIsInvalid}</ErrorMessage>}
+										<ErrorMessage>{highlightMessage && l.messageIsInvalid}</ErrorMessage>
 										<SubmitButton
-												$display={displaySubmitButton}
+												disabled={!submitButtonIsActive}
+												$opacity={submitButtonIsActive ? 1 : 0.5}
 												onClick={onFormSubmit}>
 												{l.submit}
 										</SubmitButton>
