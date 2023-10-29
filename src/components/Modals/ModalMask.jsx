@@ -10,7 +10,6 @@ const StlModalMask = styled.div`
 		left: 0;
 		width: 100%;
 		height: 100%;
-		min-height: 570px;
 		z-index: 100;
 		background-color: rgba(0, 0, 0, 0.3);
 		display: flex;
@@ -30,8 +29,6 @@ export function ModalMask() {
 		const { contactForm, setContactForm } = useContactFormContext()
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const isMobile = scale.width <= S.MAX_MOBILE_WIDTH
-		const ageFilterRef = useRef(null)
-		const contactFormRef = useRef(null)
 		let languageSwitchContainerStyles = {
 				padding: isMobile ? '25px 40px' : '5px 30px',
 				height: isMobile ? '85px' : '35px'
@@ -42,8 +39,10 @@ export function ModalMask() {
 				const ageFilterEl = document.getElementById('age-filter')
 				const contactFormEl = document.getElementById('contact-form')
 				if (contactForm && contactFormEl) {
+						modalMaskEl.style.minHeight = '570px'
 						contactFormEl.style.display = 'flex'
 				} else {
+						modalMaskEl?.style?.removeProperty('min-height')
 						setTimeout(() => {
 								if (contactFormEl) contactFormEl.style.display = 'none'
 						}, 300)
