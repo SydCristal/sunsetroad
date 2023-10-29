@@ -10,6 +10,7 @@ const StlModalMask = styled.div`
 		left: 0;
 		width: 100%;
 		height: 100%;
+		min-height: 570px;
 		z-index: 100;
 		background-color: rgba(0, 0, 0, 0.3);
 		display: flex;
@@ -39,10 +40,8 @@ export function ModalMask() {
 				const ageFilterEl = document.getElementById('age-filter')
 				const contactFormEl = document.getElementById('contact-form')
 				if (contactForm && contactFormEl) {
-						modalMaskEl.style.minHeight = '570px'
 						contactFormEl.style.display = 'flex'
 				} else {
-						modalMaskEl?.style?.removeProperty('min-height')
 						setTimeout(() => {
 								if (contactFormEl) contactFormEl.style.display = 'none'
 						}, 300)
