@@ -11,9 +11,9 @@ const landscapeMonile = `@media (orientation: landscape) and (max-width: ${S.MAX
 const ContactFormContainer = styled.div`
 		width: ${S.MOBILE_CONTENT_WIDTH}px;
 		position: absolute;
-		top: 50%;
+		bottom: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, 50%);
 		background-color: ${S.MODAL_SHADOW};
 		min-height: 400px;
 		height: 70%;
@@ -27,6 +27,8 @@ const ContactFormContainer = styled.div`
 				width: 70%;
 				height: 80%;
 				min-height: 0;
+				bottom: 10%;
+				transform: translate(-50%, 0);
 				> div:first-child {
 						height: 0px;
 						padding: 0 20px;
