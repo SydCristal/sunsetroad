@@ -6,6 +6,8 @@ import { l } from './'
 import { useState } from 'react'
 import * as EmailValidator from 'email-validator'
 
+const landscapeMonile = `orientation: landscape && max-width: ${S.MAX_MOBILE_WIDTH}`
+
 const ContactFormContainer = styled.div`
 		width: ${S.MOBILE_CONTENT_WIDTH}px;
 		position: absolute;
@@ -21,6 +23,11 @@ const ContactFormContainer = styled.div`
 		align-items: center;
 		padding: ${S.CONTENT_AREA_PADDING};
 		margin: -5px -5px 0;
+		@media (${landscapeMonile}) {
+				width: 70%;
+				height: 80%;
+				min-height: 0;
+		};
 		form {
 				flex: 1;
 				display: flex;
@@ -32,6 +39,12 @@ const ContactFormContainer = styled.div`
 						font-style: normal;
 						font-weight: 600;
 						line-height: normal;
+				};
+				@media (${landscapeMonile}) {
+						input {
+								margin: 0 15px 4px 225px;
+								width: calc(100% - 265px);
+						};
 				};
 				> div {
 						height: 60px;
@@ -49,7 +62,13 @@ const ModalHeader = styled.div`
 				width: 210px;
 				height: 85px;
 				margin-bottom: 0;
-		}
+		};
+		@media (${landscapeMonile}) {
+				padding: 20px;
+				position: absolute;
+				top: 0;
+				width: 100%;
+		};
 `
 
 const CloseModalIcon = styled.img`

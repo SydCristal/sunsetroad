@@ -16,9 +16,6 @@ const StlModalMask = styled.div`
 		opacity: ${({ $opacity }) => $opacity};
 		transition: opacity 0.3s ease-in-out;
 		opacity: 1;
-		@media (orientation: landscape) {
-				min-height: 570px;
-		};
 `
 
 const LanguageSwitchContainer = styled.div`
