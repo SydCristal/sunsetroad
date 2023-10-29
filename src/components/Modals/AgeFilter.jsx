@@ -9,7 +9,7 @@ const AgeFilterDialog = styled.div`
 		margin: 0px auto;
 		padding: ${({ $short }) => $short || 70}px 0;
 		width: 350px;
-		display: inherit;
+		display: none;
   flex-direction: column;
 		align-items: center;
 		justify-content: ${({ $short }) => $short ? 'space-around' : 'space-between'};
@@ -69,7 +69,7 @@ export function AgeFilter() {
 		}, [ageConfirmation])
 
 		return (
-				<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={scale.height < 700 && 15}>
+				<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={scale.height < 700 && 15} id='age-filter' >
 						<LogoContainer display={scale.height > 500 ? 'block' : 'none'} $short={scale.height < 700}>
 								<img src={Lo('logo', false)} alt='logo' />
 						</LogoContainer>

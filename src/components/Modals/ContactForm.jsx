@@ -3,6 +3,8 @@ import { useContactFormContext, useLanguageContext } from '../../Contexts'
 import { S } from '../../Utils'
 import { Heading } from '../Common'
 import { l } from './'
+import { useState } from 'react'
+import * as EmailValidator from 'email-validator'
 
 const ContactFormContainer = styled.div`
 		width: ${S.MOBILE_CONTENT_WIDTH}px;
@@ -13,7 +15,7 @@ const ContactFormContainer = styled.div`
 		background-color: ${S.MODAL_SHADOW};
 		height: 400px;
 		border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
-		display: flex;
+		display: none;
 		flex-direction: column;
 		align-items: center;
 		padding: ${S.CONTENT_AREA_PADDING};
@@ -23,6 +25,16 @@ const ContactFormContainer = styled.div`
 				display: flex;
 				flex-direction: column;
 				width: 100%;
+				input, textarea {
+						font-family: Bitter;
+						font-size: 14px;
+						font-style: normal;
+						font-weight: 600;
+						line-height: normal;
+				};
+				> div {
+						height: 60px;
+				};
 		};
 `
 
@@ -50,30 +62,22 @@ const CloseModalIcon = styled.div`
 		cursor: pointer;
 `
 
-const inputTextStyles = css`
-		color: #616161;
-		font-family: Bitter;
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 600;
-		line-height: normal;
-`
-
 const inputStyles = css`
 		background-color: ${S.INPUT_BG_COLOR};
 		border: ${S.INPUT_BORDER};
 		border-radius: ${S.INPUT_BORDER_RADIUS};
 		width: 100%;
 		min-height: 35px;
-		margin-bottom: 15px;
+		margin: 3px auto;
 		color: rgba(97, 97, 97, 1);
 		padding: 0 5px;
-		${inputTextStyles};
+		outline: ${({ $isInvalid }) => $isInvalid ? '3px solid red' : 'none'};
+		color: #616161;
 		&:focus {
-				outline: 3px solid #fd8228;
+				outline: 4px solid #fd8228;
 		};
 		&::placeholder {
-				${inputTextStyles};
+				color: #616161;
 		};
 `
 
@@ -88,10 +92,41 @@ const Textarea = styled.textarea`
 		resize: none;
 `
 
+const ErrorMessage = styled.p`
+		color: red;
+		height: 17px;
+		margin: 0;
+		font-size: 15px;
+`
+
+const SubmitButton = styled.button`
+		display: ${({ $display }) => $display};
+		border: none;
+		background-color: transparent;
+		padding: 0;
+		margin: 10px auto 0;
+		font-family: 'Orelega One', serif;
+		text-transform: uppercase;
+		font-size: 50px;
+		color: #fff;
+		cursor: pointer;
+		-webkit-text-stroke: 2px rgb(34, 30, 31);
+		text-shadow: ${S.TEXT_OUTLINE};
+		&:focus {
+				outline: none;
+		};
+`
 
 export function ContactForm() {
+		const [name, setName] = useState('')
+		const [email, setEmail] = useState('')
+		const [message, setMessage] = useState('')
+		const [invalidFields, setInvalidFields] = useState([])
 		const { setContactForm } = useContactFormContext()
 		const { language } = useLanguageContext()
+		const [highlightName, setHighlightName] = useState(false)
+		const [highlightEmail, setHighlightEmail] = useState(false)
+		const [highlightMessage, setHighlightMessage] = useState(false)
 		const closeModal = e => {
 				e.preventDefault()
 				e.stopPropagation()
@@ -100,8 +135,53 @@ export function ContactForm() {
 
 		l.setLanguage(language)
 
+		const validate = (value, inputName, highlightError) => {
+				let isInvalid = false
+				const wasInvalid = invalidFields.includes(inputName)
+
+				switch (inputName) {
+						case 'email':
+								if (!EmailValidator.validate(value)) isInvalid = true
+								break
+						default:
+								if (value.length < 2) isInvalid = true
+				}
+
+				if (isInvalid) {
+						wasInvalid || setInvalidFields([...invalidFields, inputName])
+				} else {
+						wasInvalid && setInvalidFields(invalidFields.filter(field => field !== inputName))
+				}
+
+				if (highlightError) highlightError(isInvalid)
+		}
+
+		const onInputChange = (value, inputName, setValue, highlightError) => {
+				validate(value, inputName)
+				highlightError(false)
+				setValue(value)
+		}
+
+		const onInputBlur = (value, inputName, setValue, highlightError) => {
+				value = value.trim()
+				validate(value, inputName, highlightError)
+				setValue(value)
+		}
+
+		const onFormSubmit = e => {
+				e.preventDefault()
+				e.stopPropagation()
+				const data = {
+						name, email, message
+				}
+
+				console.log(data);
+		}
+
+		const displaySubmitButton = (invalidFields.length === 0 && name && email && message) ? 'block' : 'none'
+
 		return (
-				<ContactFormContainer>
+				<ContactFormContainer id='contact-form'>
 						<ModalHeader>
 								<Heading />
 								<CloseModalIcon
@@ -110,9 +190,36 @@ export function ContactForm() {
 								</CloseModalIcon>
 						</ModalHeader>
 						<form>
-								<Input type='text' placeholder={l.name}/>
-								<Input type='text' placeholder={l.email}/>
-								<Textarea placeholder={l.message} />
+								<Input
+										type='text'
+										placeholder={l.name}
+										onChange={({ target: { value } }) => onInputChange(value, 'name', setName, setHighlightName)}
+										$isInvalid={highlightName}
+										onBlur={({ target: { value } }) => onInputBlur(value, 'name', setName, setHighlightName)}
+										value={name} />
+								<ErrorMessage>{highlightName && l.nameIsInvalid}</ErrorMessage>
+								<Input
+										type='text'
+										placeholder={l.email}
+										onChange={({ target: { value } }) => onInputChange(value, 'email', setEmail, setHighlightEmail)}
+										$isInvalid={highlightEmail}
+										onBlur={({ target: { value } }) => onInputBlur(value, 'email', setEmail, setHighlightEmail)}
+										value={email} />
+								<ErrorMessage>{highlightEmail && l.emailIsInvalid}</ErrorMessage>
+								<Textarea
+										placeholder={l.message}
+										onChange={({ target: { value } }) => onInputChange(value, 'message', setMessage, setHighlightMessage)}
+										$isInvalid={highlightMessage}
+										onBlur={({ target: { value } }) => onInputBlur(value, 'message', setMessage, setHighlightMessage)}
+										value={message} />
+								<div>
+										{highlightMessage && <ErrorMessage>{l.messageIsInvalid}</ErrorMessage>}
+										<SubmitButton
+												$display={displaySubmitButton}
+												onClick={onFormSubmit}>
+												{l.submit}
+										</SubmitButton>
+								</div>
 						</form>
 				</ContactFormContainer>
 		)

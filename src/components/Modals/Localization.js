@@ -6,14 +6,22 @@ export const l = new LocalizedStrings({
 				confirm: 'Confirm',
 				name: 'Name',
 				email: 'Email',
-				message:	'Message'
+				message: 'Message',
+				nameIsInvalid: 'Name cannot be less than 2 characters',
+				emailIsInvalid: 'Email is invalid',
+				messageIsInvalid: 'Message cannot be less than 2 characters',
+				submit: 'Submit'
 		},
 		id: {
 				ageFilterText: 'Dengan mengklik tombol, Anda mengkonfirmasi bahwa Anda berusia di atas 21 tahun',
 				confirm: 'Konfirmasi',
 				name: 'Nama',
 				email: 'Email',
-				message:	'Pesan'
+				message: 'Pesan',
+				nameIsInvalid: 'Nama tidak boleh kurang dari 2 karakter',
+				emailIsInvalid: 'Email tidak valid',
+				messageIsInvalid: 'Pesan tidak boleh kurang dari 2 karakter',
+				submit: 'Kirim'
 		}//,
 		//ru: {
 		//		ageFilterText: 'Нажимая на кнопку, вы подтверждаете, что вам исполнилось 21 год',

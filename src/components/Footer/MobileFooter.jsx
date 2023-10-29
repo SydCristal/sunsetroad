@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { Contacts	} from './Contacts'
 
 const Footer = styled.footer`
-		opacity: 1;
 		transition: opacity 0.5s ease-in-out;
 		width: 260px;
 		height: 165px;

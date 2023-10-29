@@ -1,5 +1,5 @@
 ﻿import { MobileLayout } from '../Mobile'
-import { useSectionContext, useAgeConfirmationContext, useScaleContext, useContactFormContext } from '../../Contexts'
+import { useSectionContext, useScaleContext } from '../../Contexts'
 import { Bg, S } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
@@ -16,6 +16,7 @@ const DesktopLayout = styled.div`
 		main {
 				flex: 1;
 				width: ${S.CONTENT_AREA_WIDTH};
+				transition: opacity 0.3s ease-in-out;
 				margin: 0 auto;
 				display: flex;
 				flex-direction: column;
@@ -40,8 +41,6 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 		};
 `
 export default function Layout() {
-		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm } = useContactFormContext()
 		const { scale } = useScaleContext()
 		const { section } = useSectionContext()
 		let layout
@@ -53,17 +52,15 @@ export default function Layout() {
 				height = (scale.height > S.MIN_DESKTOP_HEIGHT ? scale.height : S.MIN_DESKTOP_HEIGHT) + 'px'
 				let content = <main />
 
-				if (ageConfirmation && !contactForm) {
-						switch (section) {
-								case 'products':
-										content = <Products />
-										break
-								case 'partners':
-										content = <Partners />
-										break
-								default:
-										content = <Info />
-						}
+				switch (section) {
+						case 'products':
+								content = <Products />
+								break
+						case 'partners':
+								content = <Partners />
+								break
+						default:
+								content = <Info />
 				}
 
 				layout = (

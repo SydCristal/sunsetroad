@@ -32,8 +32,12 @@ const AdultContent = styled.div`
 				header > div {
 						opacity: 0;
 				};
-				footer > div > a {
+				main {
 						opacity: 0;
+						transition: opacity 0.3s ease-in-out;
+				};
+				footer > div > a {
+						opacity: 0 !important;
 				};	
 `}}`
 
@@ -69,8 +73,7 @@ export default function App() {
 		return (
 				<StlApp>
 						<ModalMask>
-								{!ageConfirmation && <AgeFilter />}
-								{contactForm && <ContactForm />}
+								
 						</ModalMask>
 						<AdultContent {...AdultContentProps}>
 								<Layout />
