@@ -63,16 +63,31 @@ export default function App() {
 				}
 		}
 
-		window.addEventListener('resize', debounce(() => {
+		const onOrientationChange = () => {
+				if (!contactForm) {
+						window.scrollTo(0, formPosition)
+				}
+		}
+
+		const onResize = debounce(() => {
 				const { clientHeight, clientWidth } = document.documentElement
 				setScale({ width: clientWidth, height: clientHeight })
-		}))
+		})
 
 		useEffect(() => {
 				if (!contactForm) {
 						window.scrollTo(0, formPosition)
 				}
 		}, [contactForm, formPosition])
+
+		useEffect(() => {
+				window.screen.addEventListener('orientationchange', onOrientationChange)
+				window.addEventListener('resize', onResize)
+				return () => {
+						window.screen.removeEventListener('orientationchange', onOrientationChange)
+						window.removeEventListener('resize', onResize)
+				}
+		}, [])
 
 		return (
 				<StlApp>
