@@ -69,10 +69,10 @@ export default function App() {
 				}
 		}
 
-		const onResize = debounce(() => {
+		const onResize = () => {
 				const { clientHeight, clientWidth } = document.documentElement
 				setScale({ width: clientWidth, height: clientHeight })
-		})
+		}
 
 		useEffect(() => {
 				if (!contactForm) {
@@ -81,11 +81,11 @@ export default function App() {
 		}, [contactForm, formPosition])
 
 		useEffect(() => {
-				window.screen.addEventListener('orientationchange', onOrientationChange)
-				window.addEventListener('resize', onResize)
+				window.addEventListener('orientationchange', onOrientationChange)
+				window.addEventListener('resize', debounce(onResize))
 				return () => {
-						window.screen.removeEventListener('orientationchange', onOrientationChange)
-						window.removeEventListener('resize', onResize)
+						window.removeEventListener('orientationchange', onOrientationChange)
+						window.removeEventListener('resize', debounce(onResize))
 				}
 		}, [])
 
