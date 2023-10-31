@@ -19,7 +19,7 @@ const ContactFormProvider = ({ children }) => {
 		const value = {
 				formPosition,
 				contactForm,
-				updateFormPosition,
+				updateFormPosition: () => { contactForm && updateFormPosition() },
 				setContactForm: display => {
 						if (display) updateFormPosition()
 						setContactForm(display)
