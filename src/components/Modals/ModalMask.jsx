@@ -6,7 +6,9 @@ import { AgeFilter, ContactForm } from './'
 import { useEffect, useRef } from 'react'
 
 const StlModalMask = styled.div`
-		position: fixed;
+		position: absolute;
+		top: 0;
+		overflow: scroll;
 		left: 0;
 		width: 100%;
 		height: 100%;

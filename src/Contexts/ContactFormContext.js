@@ -10,7 +10,13 @@ const ContactFormProvider = ({ children }) => {
 				formPosition,
 				contactForm,
 				setContactForm: display => {
-						if (display) setFormPosition(document.documentElement.scrollTop)
+						if (display) {
+								let { scrollTop } = document.documentElement
+								const containerHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight
+								const maxScrollTop = containerHeight - 350
+								if (scrollTop > maxScrollTop) scrollTop = maxScrollTop
+								setFormPosition(scrollTop)
+						}
 						setContactForm(display)
 				},
 		}
