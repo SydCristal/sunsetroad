@@ -10,7 +10,8 @@ export const l = new LocalizedStrings({
 				nameIsInvalid: 'Name cannot be less than 2 characters',
 				emailIsInvalid: 'Email is invalid',
 				messageIsInvalid: 'Message cannot be less than 2 characters',
-				submit: 'Submit'
+				submit: 'Submit',
+				cancel: 'Cancel'
 		},
 		id: {
 				ageFilterText: 'Dengan mengklik tombol, Anda mengkonfirmasi bahwa Anda berusia di atas 21 tahun',
@@ -21,7 +22,8 @@ export const l = new LocalizedStrings({
 				nameIsInvalid: 'Nama tidak boleh kurang dari 2 karakter',
 				emailIsInvalid: 'Email tidak valid',
 				messageIsInvalid: 'Pesan tidak boleh kurang dari 2 karakter',
-				submit: 'Kirim'
+				submit: 'Kirim',
+				cancel: 'Batal'
 		}//,
 		//ru: {
 		//		ageFilterText: 'Нажимая на кнопку, вы подтверждаете, что вам исполнилось 21 год',

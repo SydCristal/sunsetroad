@@ -6,7 +6,7 @@ import { l } from './'
 import { useState } from 'react'
 import * as EmailValidator from 'email-validator'
 
-const landscapeMonile = `@media (orientation: landscape) and (max-width: ${S.MAX_MOBILE_WIDTH}px)`
+const landscapeMobile = `@media (orientation: landscape) and (max-width: ${S.MAX_MOBILE_WIDTH}px)`
 
 const ContactFormContainer = styled.div`
 		width: ${S.MOBILE_CONTENT_WIDTH}px;
@@ -23,7 +23,7 @@ const ContactFormContainer = styled.div`
 		align-items: center;
 		padding: ${S.CONTENT_AREA_PADDING};
 		margin: -5px -5px 0;
-		${landscapeMonile} {
+		${landscapeMobile} {
 				width: 70%;
 				height: 80%;
 				min-height: 0;
@@ -49,10 +49,10 @@ const ContactFormContainer = styled.div`
 						font-weight: 600;
 						line-height: normal;
 				};
-				${landscapeMonile} {
+				${landscapeMobile} {
 						input, > p {
 								margin: 0 15px 4px 225px;
-								width: calc(100% - 265px);
+								width: calc(100% - 225px);
 						};
 				};
 				> div {
@@ -72,7 +72,7 @@ const ModalHeader = styled.div`
 				height: 85px;
 				margin-bottom: 0;
 		};
-		${landscapeMonile} {
+		${landscapeMobile} {
 				padding: 20px;
 				position: absolute;
 				top: 0;
@@ -83,6 +83,9 @@ const ModalHeader = styled.div`
 const CloseModalIcon = styled.img`
 		height: 25px;
 		cursor: pointer;
+		${landscapeMobile} {
+				display: none;
+		};
 `
 
 const inputStyles = css`
@@ -122,7 +125,12 @@ const ErrorMessage = styled.p`
 		font-size: 15px;
 `
 
-const SubmitButton = styled.button`
+const FormControls = styled.div`
+		display: flex;
+		flex-direction: row;
+`
+
+const ControlButton = styled.button`
 		opacity: ${({ $opacity }) => $opacity};
 		border: none;
 		background-color: transparent;
@@ -140,6 +148,9 @@ const SubmitButton = styled.button`
 		&:not(:disabled) {			
 				cursor: pointer;
 		};
+		&:first-child {
+				display: ${landscapeMobile ? 'block' : 'none'};
+		};
 `
 
 export function ContactForm() {
@@ -152,7 +163,7 @@ export function ContactForm() {
 		const [highlightName, setHighlightName] = useState(false)
 		const [highlightEmail, setHighlightEmail] = useState(false)
 		const [highlightMessage, setHighlightMessage] = useState(false)
-		const closeModal = e => {
+		const onCloseModal = e => {
 				e.preventDefault()
 				e.stopPropagation()
 				setContactForm(false)
@@ -212,7 +223,7 @@ export function ContactForm() {
 								<CloseModalIcon
 										src={Ic('close', false, 'svg')}
 										alt='close'
-										onPointerDown={closeModal} />
+										onPointerDown={onCloseModal} />
 						</ModalHeader>
 						<form>
 								<Input
@@ -239,12 +250,20 @@ export function ContactForm() {
 										value={message} />
 								<div>
 										<ErrorMessage>{highlightMessage && l.messageIsInvalid}</ErrorMessage>
-										<SubmitButton
-												disabled={!submitButtonIsActive}
-												$opacity={submitButtonIsActive ? 1 : 0.5}
-												onClick={onFormSubmit}>
-												{l.submit}
-										</SubmitButton>
+										<FormControls>
+												<ControlButton
+														disabled={false}
+														$opacity={1}
+														onClick={onCloseModal}>
+														{l.cancel}
+												</ControlButton>
+												<ControlButton
+														disabled={!submitButtonIsActive}
+														$opacity={submitButtonIsActive ? 1 : 0.5}
+														onClick={onFormSubmit}>
+														{l.submit}
+												</ControlButton>
+										</FormControls>
 								</div>
 						</form>
 				</ContactFormContainer>
