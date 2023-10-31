@@ -82,9 +82,9 @@ export default function App() {
 		}, [])
 
 		useEffect(() => {
-				window.addEventListener('orientationchange', updateFormPosition)
+				window.screen.addEventListener('orientationchange', updateFormPosition)
 				return () => {
-						window.removeEventListener('orientationchange', updateFormPosition)
+						window.screen.removeEventListener('orientationchange', updateFormPosition)
 				}
 		}, [])
 
