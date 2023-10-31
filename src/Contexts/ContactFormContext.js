@@ -9,10 +9,17 @@ const ContactFormProvider = ({ children }) => {
 				let { scrollTop } = document.documentElement
 				const content = document.getElementsByClassName('react-parallax')[0]
 				const contentHeight = content?.clientHeight || 0
-				const containerHeight = content?.parentElement?.clientHeight || 0
-				const maxScrollTop = contentHeight - 350
-				if (scrollTop == 0) scrollTop = contentHeight - containerHeight
-				if (scrollTop > maxScrollTop) scrollTop = maxScrollTop
+				console.log(contentHeight);
+				const container = content?.parentElement
+				console.log(container);
+				const containerHeight = container?.offsetHeight || 0
+				console.log(containerHeight);
+				const maxScrollTop = contentHeight - containerHeight
+				console.log(maxScrollTop);
+				if (scrollTop == 0 || scrollTop > maxScrollTop) {
+						scrollTop = maxScrollTop
+				}
+
 				setFormPosition(scrollTop)
 		}
 
