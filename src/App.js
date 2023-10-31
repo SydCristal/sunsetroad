@@ -44,7 +44,7 @@ const AdultContent = styled.div`
 
 export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm, formPosition } = useContactFormContext()
+		const { contactForm, formPosition, updateFormPosition } = useContactFormContext()
 		const { setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
@@ -55,25 +55,6 @@ export default function App() {
 				$contentScrollTop: formPosition
 		}
 
-		const debounce = f => {
-				let timer
-				return e => {
-						if (timer) clearTimeout(timer)
-						timer = setTimeout(f, 100, e)
-				}
-		}
-
-		const onOrientationChange = () => {
-				if (!contactForm) {
-						window.scrollTo(0, formPosition)
-				}
-		}
-
-		const onResize = () => {
-				const { clientHeight, clientWidth } = document.documentElement
-				setScale({ width: clientWidth, height: clientHeight })
-		}
-
 		useEffect(() => {
 				if (!contactForm) {
 						window.scrollTo(0, formPosition)
@@ -81,11 +62,29 @@ export default function App() {
 		}, [contactForm, formPosition])
 
 		useEffect(() => {
-				window.addEventListener('orientationchange', onOrientationChange)
+				const debounce = f => {
+						let timer
+						return e => {
+								if (timer) clearTimeout(timer)
+								timer = setTimeout(f, 100, e)
+						}
+				}
+
+				const onResize = () => {
+						const { clientHeight, clientWidth } = document.documentElement
+						setScale({ width: clientWidth, height: clientHeight })
+				}
+
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
-						window.removeEventListener('orientationchange', onOrientationChange)
 						window.removeEventListener('resize', debounce(onResize))
+				}
+		}, [])
+
+		useEffect(() => {
+				window.addEventListener('orientationchange', updateFormPosition)
+				return () => {
+						window.removeEventListener('orientationchange', updateFormPosition)
 				}
 		}, [])
 
