@@ -136,7 +136,7 @@ const ControlButton = styled.button`
 		background-color: transparent;
 		padding: 0;
 		margin: 0px auto;
-		display: block;
+		display: none;
 		font-family: 'Orelega One', serif;
 		font-size: 40px;
 		color: #fff;
@@ -148,8 +148,11 @@ const ControlButton = styled.button`
 		&:not(:disabled) {			
 				cursor: pointer;
 		};
-		&:first-child {
-				display: ${landscapeMobile ? 'block' : 'none'};
+		${landscapeMobile} {
+				display: block;
+		};
+		&:not(:first-child) {
+				display: block;
 		};
 `
 
