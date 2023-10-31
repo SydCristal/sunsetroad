@@ -34,10 +34,8 @@ const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const containerHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
 		const skyHeight = S.SKY_HEIGHT
 		if (!$isMasked) $scrollTop = scrollTop
-		console.log(containerHeight, clientHeight, $scrollTop);
 		const yCoef = containerHeight !== clientHeight ? ($scrollTop / (containerHeight - clientHeight)) : 0
 		const skyShift = (containerHeight - skyHeight) * yCoef
-		console.log(yCoef, skyShift);
 		return {
 				style: {
 						transform: `translateY(${skyShift}px)`,
@@ -95,14 +93,14 @@ const Header = styled.header`
 		position: absolute;
 `
 
-const ImgContainer = styled.div.attrs(({ $name, $yCoef, $style, $func, $imgStyle = {} }) => {
+const ImgContainer = styled.div.attrs(({ $name, $xCoef, $style, $func, $imgStyle = {} }) => {
 		return {
 				children: [
 						<img
 								key={$name}
 								src={Bg($name, false)}
 								alt={$name}
-								style={{ ...$imgStyle, ...$func($yCoef) }}	/>
+								style={{ ...$imgStyle, ...$func($xCoef) }}	/>
 				],
 				style: $style
 		}})`
@@ -236,7 +234,7 @@ const renderCloud5 = () => {
 		}
 }
 
-const renderCloud6 = yCoef => {
+const renderCloud6 = xCoef => {
 		const spaceBelow = getSpaceBelow()
 
 		let shiftX = 0
@@ -245,7 +243,7 @@ const renderCloud6 = yCoef => {
 
 		if (spaceBelow <= 450) {
 				scale = 0.75
-				shiftX = 50 + (50 * yCoef)
+				shiftX = 50 + (50 * xCoef)
 				shiftY = 300
 		}
 
@@ -254,13 +252,13 @@ const renderCloud6 = yCoef => {
 		}
 }
 
-const renderPalm1 = yCoef => {
+const renderPalm1 = xCoef => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = 100 + (60 * yCoef)
-		let shiftY = -10 * yCoef
+		let shiftX = 100 + (60 * xCoef)
+		let shiftY = -10 * xCoef
 		let scale = 0.75
-		let rotate = 25 + (10 * yCoef)
+		let rotate = 25 + (10 * xCoef)
 
 		if (spaceBelow <= 300) {
 				shiftX = 0
@@ -274,13 +272,13 @@ const renderPalm1 = yCoef => {
 		}
 }
 
-const renderPalm2 = yCoef => {
+const renderPalm2 = xCoef => {
 		const spaceBelow = getSpaceBelow()
 
-		let shiftX = -30 - (70 * yCoef)
+		let shiftX = -30 - (70 * xCoef)
 		let shiftY = 5
 		let scale = 0.75
-		let rotate = -25 - (10 * yCoef)
+		let rotate = -25 - (10 * xCoef)
 
 		if (spaceBelow <= 300) {
 				shiftX += 65
@@ -304,14 +302,14 @@ const renderPlant1 = () => {
 		return {}
 }
 
-const renderPlant2 = yCoef => {
-		yCoef = (0.4 - yCoef) * 5
-		if (yCoef < 0) yCoef = 0
-		if (yCoef > 1) yCoef = 1
+const renderPlant2 = xCoef => {
+		xCoef = (0.4 - xCoef) * 5
+		if (xCoef < 0) xCoef = 0
+		if (xCoef > 1) xCoef = 1
 
-		const shiftX = -(20 + 20 * yCoef)
-		const shiftY = 5 + 5 * yCoef
-		const rotate = -15 * yCoef
+		const shiftX = -(20 + 20 * xCoef)
+		const shiftY = 5 + 5 * xCoef
+		const rotate = -15 * xCoef
 
 		if (window.innerWidth < 568) {
 				return {
@@ -435,7 +433,7 @@ const images = [{
 		$func: renderPlant2
 }]
 
-const renderBackground = (yCoef, isMasked, scrollTop) => {
+const renderBackground = (xCoef, isMasked, scrollTop) => {
 
 		return (
 				<Background>
@@ -444,7 +442,7 @@ const renderBackground = (yCoef, isMasked, scrollTop) => {
 								<ImgContainer
 										{...props}
 										key={props.$name}
-										$yCoef={yCoef}
+										$xCoef={xCoef}
 										onPointerDown={pdsp} />))}
 						<Landscape src={Bg('landscape', false)} alt='landscape'/>
 				</Background>
@@ -459,12 +457,12 @@ export default function Layout() {
 
 		let contentWidth = S.MOBILE_CONTENT_WIDTH
 
-		let yCoef = contentWidth / document.documentElement.clientWidth
-		yCoef > 1 && (yCoef = 1)
-		yCoef = 1 - yCoef
+		let xCoef = contentWidth / document.documentElement.clientWidth
+		xCoef > 1 && (xCoef = 1)
+		xCoef = 1 - xCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef, isMasked, formPosition)}>
+				<StlLayout renderLayer={() => renderBackground(xCoef, isMasked, formPosition)}>
 						<Content>
 								<Header>
 										<LanguageSwitch isMobile={true} />
