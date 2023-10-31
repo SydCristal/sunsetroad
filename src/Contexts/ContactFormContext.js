@@ -4,14 +4,13 @@ const ContactFormContext = createContext(null)
 
 const ContactFormProvider = ({ children }) => {
 		const [contactForm, setContactForm] = useState(false)
-		const [scrollTop, setScrollTop] = useState(0)
+		const [formPosition, setFormPosition] = useState(0)
 
 		const value = {
-				scrollTop,
+				formPosition,
 				contactForm,
 				setContactForm: display => {
-						const newScrollTop = document.documentElement.scrollTop
-						if (newScrollTop) setScrollTop(newScrollTop)
+						if (display) setFormPosition(document.documentElement.scrollTop)
 						setContactForm(display)
 				},
 		}

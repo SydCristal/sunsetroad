@@ -2,7 +2,7 @@ import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext, useContactFormContext } from './Contexts'
 import { ModalMask, AgeFilter, ContactForm } from './components/Modals'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { S } from './Utils'
 
 const StlApp = styled.div`
@@ -44,16 +44,15 @@ const AdultContent = styled.div`
 
 export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm, scrollTop } = useContactFormContext()
-		const { scale, setScale } = useScaleContext()
+		const { contactForm, formPosition } = useContactFormContext()
+		const { setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
-		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight
 
-		const AdultContentProps = {
+		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
 				overflow: displayModalFilter ? 'hidden' : 'inherit',
-				$contentScrollTop: contactForm ? contentHeight - scale.height : 0
+				$contentScrollTop: formPosition
 		}
 
 		const debounce = f => {
@@ -70,13 +69,15 @@ export default function App() {
 		}))
 
 		useEffect(() => {
-				if (!contactForm) window.scrollTo(0, scrollTop)
-		}, [contactForm, scrollTop])
+				if (!contactForm) {
+						window.scrollTo(0, formPosition)
+				}
+		}, [contactForm, formPosition])
 
 		return (
 				<StlApp>
 						<ModalMask />
-						<AdultContent {...AdultContentProps}>
+						<AdultContent {...adultContentProps}>
 								<Layout />
 						</AdultContent>
 				</StlApp>

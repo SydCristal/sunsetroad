@@ -50,7 +50,7 @@ export default function Layout() {
 
 		if (isDesktop) {
 				height = (scale.height > S.MIN_DESKTOP_HEIGHT ? scale.height : S.MIN_DESKTOP_HEIGHT) + 'px'
-				let content = <main />
+				let content
 
 				switch (section) {
 						case 'products':

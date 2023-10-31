@@ -18,3 +18,4 @@ export const MODAL_SHADOW = 'rgba(12, 12, 12, 0.5)'
 export const INPUT_BORDER_RADIUS = '5px'
 export const INPUT_BORDER = '1px solid #B5B5B5'
 export const INPUT_BG_COLOR = '#D9D9D9'
+export const SKY_HEIGHT = 1550

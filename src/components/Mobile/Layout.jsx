@@ -31,24 +31,21 @@ const Background = styled.div`
 
 const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
-		const scrlTop = $isMasked ? $scrollTop : scrollTop
-		const yCoef = (scrlTop || 1) / (scrollHeight - clientHeight);
-		const spaceBelow = scrollHeight - clientHeight - scrlTop
-		let style = {}
-
-		if (scrlTop === 0 || (scrollHeight === clientHeight && !$isMasked)) {
-				style.top = '-145px'
-		} else if (spaceBelow <= 200) {
-				style.bottom = '200px'
-		} else {
-				style.bottom = `${spaceBelow <= 200 ? 200 : (530 - 400 * yCoef)}px`
-		}
-
-		return { style }})`
+		const containerHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
+		const skyHeight = S.SKY_HEIGHT
+		if (!$isMasked) $scrollTop = scrollTop
+		console.log(containerHeight, clientHeight, $scrollTop);
+		const yCoef = containerHeight !== clientHeight ? ($scrollTop / (containerHeight - clientHeight)) : 0
+		const skyShift = (containerHeight - skyHeight) * yCoef
+		console.log(yCoef, skyShift);
+		return {
+				style: {
+						transform: `translateY(${skyShift}px)`,
+				}
+		}})`
+		top: 0;
 		position: absolute;
-		width: calc(20px + 100%);
-		left: -10px;
-		height: 80%;
+		min-width: 100%;
 `
 
 const Landscape = styled.img.attrs(() => {
@@ -74,7 +71,7 @@ const Landscape = styled.img.attrs(() => {
 
 const Content = styled.div`
 		width: 100%;
-		min-height: 100vh;
+		min-height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -114,7 +111,7 @@ const ImgContainer = styled.div.attrs(({ $name, $yCoef, $style, $func, $imgStyle
 				width: 100%;
 				position: absolute;
 				z-index: 1;
-				transition: all 1s ease;
+				transition: all 2s ease;
 				pointer-events: none;
 		};
 `
@@ -400,6 +397,9 @@ const images = [{
 				width: '200px',
 				zIndex: 3
 		},
+		$imgStyle: {
+				transition: 'all 1s ease'
+		},
 		$func: renderPalm1
 }, {
 		$name: 'palm2',
@@ -409,6 +409,9 @@ const images = [{
 				rotate: '10deg',
 				width: '250px',
 				zIndex: 3
+		},
+		$imgStyle: {
+				transition: 'all 1s ease'
 		},
 		$func: renderPalm2
 }, {
@@ -436,7 +439,7 @@ const renderBackground = (yCoef, isMasked, scrollTop) => {
 
 		return (
 				<Background>
-						<Sky src={Bg('sky-mobile', false)} alt='sky' className='sky-mobile' $isMasked={isMasked} $scrollTop={scrollTop} />
+						<Sky src={Bg('sky', false, 'jpg')} alt='sky' $isMasked={isMasked} $scrollTop={scrollTop} />
 						{images.map(props => (
 								<ImgContainer
 										{...props}
@@ -450,7 +453,7 @@ const renderBackground = (yCoef, isMasked, scrollTop) => {
 
 export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm, scrollTop } = useContactFormContext()
+		const { contactForm, formPosition } = useContactFormContext()
 		const opacity = ageConfirmation ? 1 : 0
 		const isMasked = !ageConfirmation || contactForm
 
@@ -461,7 +464,7 @@ export default function Layout() {
 		yCoef = 1 - yCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(yCoef, isMasked, scrollTop)}>
+				<StlLayout renderLayer={() => renderBackground(yCoef, isMasked, formPosition)}>
 						<Content>
 								<Header>
 										<LanguageSwitch isMobile={true} />
