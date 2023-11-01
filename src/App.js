@@ -55,11 +55,11 @@ export default function App() {
 				$contentScrollTop: formPosition
 		}
 
-		useEffect(() => {
-				if (!contactForm) {
-						window.scrollTo(0, formPosition)
-				}
-		}, [contactForm, formPosition])
+		//useEffect(() => {
+		//		if (!contactForm) {
+		//				window.scrollTo(0, formPosition)
+		//		}
+		//}, [contactForm, formPosition])
 
 		useEffect(() => {
 				const debounce = f => {
@@ -73,6 +73,7 @@ export default function App() {
 				const onResize = () => {
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
+						updateFormPosition()
 				}
 
 				window.addEventListener('resize', debounce(onResize))
@@ -82,9 +83,9 @@ export default function App() {
 		}, [])
 
 		useEffect(() => {
-				window.screen.addEventListener('orientationchange', updateFormPosition)
+				window.addEventListener('orientationchange', updateFormPosition)
 				return () => {
-						window.screen.removeEventListener('orientationchange', updateFormPosition)
+						window.removeEventListener('orientationchange', updateFormPosition)
 				}
 		}, [])
 
