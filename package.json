@@ -1,7 +1,7 @@
 {
   "name": "sunsetroad",
   "version": "0.1.0",
-  "homepage": "https://sunsetbeer.github.io/sunsetroad",
+  "homepage": "https://SunsetRoadBeer.github.io/sunsetroad",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
