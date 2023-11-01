@@ -48,6 +48,7 @@ export default function App() {
 		const { setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
+		//const deviceScreen = screen || window.screen
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
@@ -55,11 +56,11 @@ export default function App() {
 				$contentScrollTop: formPosition
 		}
 
-		//useEffect(() => {
-		//		if (!contactForm) {
-		//				window.scrollTo(0, formPosition)
-		//		}
-		//}, [contactForm, formPosition])
+		useEffect(() => {
+				if (!contactForm) {
+						window.scrollTo(0, formPosition)
+				}
+		}, [contactForm, formPosition])
 
 		useEffect(() => {
 				const debounce = f => {
@@ -71,6 +72,7 @@ export default function App() {
 				}
 
 				const onResize = () => {
+						//console.log('Hobo!')
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
 						updateFormPosition()
@@ -82,12 +84,20 @@ export default function App() {
 				}
 		}, [])
 
-		useEffect(() => {
-				window.addEventListener('orientationchange', updateFormPosition)
-				return () => {
-						window.removeEventListener('orientationchange', updateFormPosition)
-				}
-		}, [])
+		//const onOrientationChange = txt => {
+		//		console.log(txt)
+		//		updateFormPosition()
+		//}
+
+		//Screen.onOrientationChange = () => onOrientationChange('Áë¸urge!!!')
+
+		//useEffect(() => {
+		//		//Screen.onOrientationChange = updateFormPosition
+		//		window.addEventListener('orientationchange', () => onOrientationChange('Zorg!'))
+		//		return () => {
+		//				window.removeEventListener('orientationchange', () => onOrientationChange('Zorg!'))
+		//		}
+		//}, [])
 
 		return (
 				<StlApp>

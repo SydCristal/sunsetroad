@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+﻿import styled, { css } from 'styled-components'
 import { useContactFormContext, useLanguageContext } from '../../Contexts'
 import { S, Ic } from '../../Utils'
 import { Heading } from '../Common'
@@ -167,9 +167,12 @@ export function ContactForm() {
 		const [highlightEmail, setHighlightEmail] = useState(false)
 		const [highlightMessage, setHighlightMessage] = useState(false)
 		const onCloseModal = e => {
-				e.preventDefault()
-				e.stopPropagation()
+				e?.preventDefault()
+				e?.stopPropagation()
 				setContactForm(false)
+				setName('')
+				setEmail('')
+				setMessage('')
 		}
 
 		l.setLanguage(language)
@@ -210,11 +213,16 @@ export function ContactForm() {
 		const onFormSubmit = e => {
 				e.preventDefault()
 				e.stopPropagation()
-				const data = {
-						name, email, message
-				}
 
-				console.log(data);
+				if (window.Email) window.Email.send({
+						SecureToken: '6c90def1-e8d8-4302-a7f3-62c5524d6110',
+						To: 'info@sunsetroad.beer',
+						From: 'customer@sunsetroad.beer',
+						Subject: email,
+						Body: `
+								${name} отправил(а) вам сообщение:<br /><br />${message}
+						`
+				}).then(message => onCloseModal())
 		}
 
 		const submitButtonIsActive = (invalidFields.length === 0 && name && email && message)
@@ -272,3 +280,13 @@ export function ContactForm() {
 				</ContactFormContainer>
 		)
 }
+
+//customer: C6283A91FBFC22726A2A8A8231FB8DD15C3AC1415E007A0246B4657797F2CA4A90E7912EE6288F04659AD2EF335A6E89
+
+//info@sunset.beer: CF1124B15D4E6E858A6DD903734BC5716CAC
+
+//server: smtp.elasticemail.com
+
+//port: 2525
+
+//security-token: 6c90def1-e8d8-4302-a7f3-62c5524d6110
