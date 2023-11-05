@@ -3,7 +3,7 @@
 export const l = new LocalizedStrings({
 		en: {
 				text: 'Sunset Road Beer is crafted on the Island of the Gods - your perfect journey companion, provides a sense of freedom and a taste of adventure.\n Belgian malts, German hops, and French yeasts mature and naturally carbonate our beer during 30 sunsets without artificial additives.\nWhether going on a trip or just enjoying your moment of relaxation - grab Sunset Road Beer, fill up your life with sunny and flavorful experience.',
-				slogan: 'Find your pleasure...',
+				slogan: 'Find your pleasing...',
 				brewed: 'Brewed in Bali'
 		},
 		id: {
