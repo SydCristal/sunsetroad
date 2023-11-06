@@ -72,10 +72,10 @@ export default function App() {
 				}
 
 				const onResize = () => {
-						//console.log('Hobo!')
+						//console.log('Zorg!');
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
-						updateFormPosition()
+						//updateFormPosition(true)
 				}
 
 				window.addEventListener('resize', debounce(onResize))
@@ -84,20 +84,20 @@ export default function App() {
 				}
 		}, [])
 
-		//const onOrientationChange = txt => {
-		//		console.log(txt)
-		//		updateFormPosition()
-		//}
+		const onOrientationChange = txt => {
+				//console.log(txt)
+				updateFormPosition(true)
+		}
 
 		//Screen.onOrientationChange = () => onOrientationChange('Áë¸urge!!!')
 
-		//useEffect(() => {
-		//		//Screen.onOrientationChange = updateFormPosition
-		//		window.addEventListener('orientationchange', () => onOrientationChange('Zorg!'))
-		//		return () => {
-		//				window.removeEventListener('orientationchange', () => onOrientationChange('Zorg!'))
-		//		}
-		//}, [])
+		useEffect(() => {
+				//Screen.onOrientationChange = updateFormPosition
+				window.addEventListener('orientationchange', () => onOrientationChange('Zorg!'))
+				return () => {
+						window.removeEventListener('orientationchange', () => onOrientationChange('Zorg!'))
+				}
+		}, [])
 
 		return (
 				<StlApp>
