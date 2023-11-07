@@ -23,7 +23,7 @@ const AdultContent = styled.div`
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
 				transition: filter 0.3s ease-in-out;
-				height: 100vh;
+				height: 100%;
 				min-height: 350px;
 				overflow: ${overflow};
 				> div {
@@ -35,7 +35,6 @@ const AdultContent = styled.div`
 				};
 				main {
 						opacity: 0;
-						transition: opacity 0.3s ease-in-out;
 				};
 				footer > div > a {
 						opacity: 0 !important;

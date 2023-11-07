@@ -8,14 +8,14 @@ import { useEffect, useRef } from 'react'
 const StlModalMask = styled.div`
 		position: absolute;
 		top: 0;
-		overflow: scroll;
+		overflow: auto;
 		left: 0;
 		width: 100%;
 		height: 100%;
 		min-height: 350px;
 		z-index: 100;
-		background-color: rgba(0, 0, 0, 0.3);
 		display: flex;
+		background-color: rgba(0, 0, 0, 0.3);
 		opacity: ${({ $opacity }) => $opacity};
 		transition: opacity 0.3s ease-in-out;
 		opacity: 1;
