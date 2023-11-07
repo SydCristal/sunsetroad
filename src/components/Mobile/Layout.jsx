@@ -80,7 +80,7 @@ const Content = styled.div`
 const Main = styled.main`
 		width: ${S.MOBILE_CONTENT_WIDTH}px;
 		opacity: 1;
-						transition: opacity 0.3s ease-in-out;
+		transition: opacity 0.3s ease-in-out;
 `
 
 const Header = styled.header`

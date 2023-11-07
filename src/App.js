@@ -72,13 +72,14 @@ export default function App() {
 				const onResize = () => {
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
+						updateFormPosition(displayModalFilter)
 				}
 
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
 						window.removeEventListener('resize', debounce(onResize))
 				}
-		}, [])
+		}, [displayModalFilter])
 
 		const onOrientationChange = update => {
 				updateFormPosition(update)
