@@ -215,7 +215,7 @@ export function ContactForm() {
 				e.stopPropagation()
 
 				if (window.Email) window.Email.send({
-						SecureToken: 'e5b64a96-bab7-4b64-b3c5-0ea9f5add832',
+						SecureToken: '773f46eb-8c97-4e10-8cae-f4bd15432259',
 						To: 'info@sunsetroad.beer',
 						From: 'customer@sunsetroad.beer',
 						Subject: email,
@@ -283,4 +283,4 @@ export function ContactForm() {
 
 //customer: 8CD017949895C54DEBE04E9E91BA82D58E782131BB912DC89EC11B7916E6182FCCCC73AC43158947C6F03B27F1DB9E21
 //password: 685DF188C26DD176C28E28224E1D9730C90C
-//security key: e5b64a96-bab7-4b64-b3c5-0ea9f5add832
+//security key: 773f46eb-8c97-4e10-8cae-f4bd15432259

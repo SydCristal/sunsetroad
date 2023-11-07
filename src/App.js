@@ -1,8 +1,8 @@
 import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext, useContactFormContext } from './Contexts'
-import { ModalMask, AgeFilter, ContactForm } from './components/Modals'
-import { useEffect, useState } from 'react'
+import { ModalMask } from './components/Modals'
+import { useEffect } from 'react'
 import { S } from './Utils'
 
 const StlApp = styled.div`
@@ -48,7 +48,6 @@ export default function App() {
 		const { setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
-		//const deviceScreen = screen || window.screen
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
@@ -72,10 +71,8 @@ export default function App() {
 				}
 
 				const onResize = () => {
-						//console.log('Zorg!');
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
-						//updateFormPosition(true)
 				}
 
 				window.addEventListener('resize', debounce(onResize))
@@ -84,20 +81,16 @@ export default function App() {
 				}
 		}, [])
 
-		const onOrientationChange = txt => {
-				//console.log(txt)
-				updateFormPosition(true)
+		const onOrientationChange = update => {
+				updateFormPosition(update)
 		}
 
-		//Screen.onOrientationChange = () => onOrientationChange('Áë¸urge!!!')
-
 		useEffect(() => {
-				//Screen.onOrientationChange = updateFormPosition
-				window.addEventListener('orientationchange', () => onOrientationChange('Zorg!'))
+				window.addEventListener('orientationchange', () => onOrientationChange(displayModalFilter))
 				return () => {
-						window.removeEventListener('orientationchange', () => onOrientationChange('Zorg!'))
+						window.removeEventListener('orientationchange', () => onOrientationChange(displayModalFilter))
 				}
-		}, [])
+		}, [displayModalFilter])
 
 		return (
 				<StlApp>
