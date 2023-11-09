@@ -29,18 +29,23 @@ const Background = styled.div`
 		width: 100%;
 		height: 100%;
 		position: absolute;
+`
+
+const SkyContainer = styled.div`
+		width: 100%;
+		height: 100%;
+		position: absolute;
 		perspective: 1px;
 		perspective-origin: 0 0;
 `
 
-const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
+const Sky = styled.img.attrs(() => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
-		//if ($scrollTop === null) $scrollTop = scrollTop
 		const yCoef = contentHeight !== clientHeight ? (scrollTop / (contentHeight - clientHeight)) : 0
 		return {
 				style: {
-						transform: `translateZ(-${6 - 2 * yCoef}px) scale(${6 + 0.5 * yCoef})`,
+						transform: `translateZ(-${6 - 2 * yCoef}px) scale(${6 + yCoef})`,
 				}
 		}})`
 		top: 0;
@@ -442,7 +447,10 @@ const images = [{
 const renderBackground = (xCoef, isMasked, scrollTop) => {
 		return (
 				<Background>
-						<Sky src={Bg('sky', false, 'jpg')} alt='sky' $isMasked={isMasked} $scrollTop={scrollTop} />
+						<SkyContainer>
+								<Sky src={Bg('sky', false, 'jpg')} alt='sky'/>
+						</SkyContainer>
+						
 						{images.map(props => (
 								<ImgContainer
 										{...props}
