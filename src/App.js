@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext, useContactFormContext } from './Contexts'
 import { ModalMask } from './components/Modals'
 import { useEffect } from 'react'
-import { S } from './Utils'
 
 const StlApp = styled.div`
 		min-height: 100%;
@@ -44,7 +43,7 @@ const AdultContent = styled.div`
 export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const { contactForm, formPosition, updateFormPosition } = useContactFormContext()
-		const { setScale } = useScaleContext()
+		const { scale, setScale } = useScaleContext()
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
 
@@ -61,6 +60,10 @@ export default function App() {
 		}, [contactForm, formPosition])
 
 		useEffect(() => {
+				if (contactForm && scale) updateFormPosition()
+		}, [scale, contactForm])
+
+		useEffect(() => {
 				const debounce = f => {
 						let timer
 						return e => {
@@ -72,7 +75,6 @@ export default function App() {
 				const onResize = () => {
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
-						updateFormPosition()
 				}
 
 				window.addEventListener('resize', debounce(onResize))
