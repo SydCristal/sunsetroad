@@ -203,8 +203,8 @@ export function ProductCarousel({ contentWidth, opacity, className }) {
 
 		useEffect(() => {
 				if (isDesktop) return
-				setDescriptionWidth(screen.width + 2 * (isDesktop ? 470 : contentWidth))
-		}, [screen.width, isDesktop, contentWidth])
+				setDescriptionWidth(screen.width + 2 * contentWidth)
+		}, [screen?.width, isDesktop, contentWidth])
 
 		const rotateCarousel = (e, position, productName) => {
 				e.preventDefault()
