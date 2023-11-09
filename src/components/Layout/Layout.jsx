@@ -22,9 +22,12 @@ const DesktopLayout = styled.div`
 				justify-content: space-between;
 				margin-top: 20px;
 				align-items: center;
-				> div:not(:first-child) {
-						transition: opacity 0.3s ease-in-out;
-				}
+				transition: opacity 0.3s ease-in-out;
+				opacity: ${({ $contentOpacity }) => $contentOpacity};
+		};
+		footer > div > a {
+				transition: opacity 0.3s ease-in-out;
+				opacity: ${({ $contentOpacity }) => $contentOpacity};
 		}
 `
 
@@ -42,7 +45,7 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 				min-height: 100%;
 		};
 `
-export default function Layout() {
+export default function Layout({ $contentOpacity }) {
 		const { screen } = useScreenContext()
 		const { section } = useSectionContext()
 		let layout
@@ -66,7 +69,7 @@ export default function Layout() {
 				}
 
 				layout = (
-						<DesktopLayout $height={height}>
+						<DesktopLayout $height={height} $contentOpacity={$contentOpacity}>
 								<Header />
 								{content}
 								<Footer />

@@ -93,7 +93,7 @@ export default function App() {
 				<StlApp>
 						<ModalMask />
 						<AdultContent {...adultContentProps}>
-								<Layout />
+								<Layout $contentOpacity={displayModalFilter ? 0 : 1} />
 						</AdultContent>
 				</StlApp>
 		)
