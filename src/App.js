@@ -46,6 +46,7 @@ export default function App() {
 		const { screen, setScreen } = useScreenContext()
 		const displayModalFilter = !ageConfirmation || contactForm
 		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
+		let resizeFired = false
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
@@ -64,24 +65,31 @@ export default function App() {
 						if (scrollTop) setScreen({ ...screen, scrollTop })
 				}
 		}, [displayModalFilter, screen?.scrollTop])
-
-		const debounce = f => {
-				let timer
-				return e => {
-						if (timer) clearTimeout(timer)
-						timer = setTimeout(f, 100, e)
-				}
-		}
-
-		const onResize = () => {
-				const { clientHeight, clientWidth, scrollHeight, scrollTop: top } = document.documentElement
-				const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
-				const scrollTopMax = contentHeight - clientHeight
-				const scrollTop = top > scrollTopMax ? scrollTopMax : top
-				setScreen({ scrollTop, width: clientWidth, height: clientHeight })
-		}
-
+		
 		useEffect(() => {
+				const debounce = f => {
+						let timer
+						return e => {
+								if (timer) clearTimeout(timer)
+								timer = setTimeout(f, 100, e)
+						}
+				}
+
+				const onResize = () => {
+						if (resizeFired) {
+								resizeFired = false
+								return
+						}
+
+						resizeFired = true
+						const { clientHeight, clientWidth, scrollHeight, scrollTop: top } = document.documentElement
+						const result = { ...screen, width: clientWidth, height: clientHeight }
+						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
+						const scrollTopMax = contentHeight - clientHeight
+						if (top > scrollTopMax) { result.scrollTop = scrollTopMax }
+						setScreen(result)
+				}
+
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
 						window.removeEventListener('resize', debounce(onResize))

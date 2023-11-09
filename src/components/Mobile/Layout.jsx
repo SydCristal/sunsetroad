@@ -42,7 +42,7 @@ const SkyContainer = styled.div`
 const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
-		if ($scrollTop === null || !$isMasked) $scrollTop = scrollTop
+		if ($scrollTop === null || !$isMasked) $scrollTop = $scrollTop || scrollTop
 		const yCoef = contentHeight !== clientHeight ? ($scrollTop / (contentHeight - clientHeight)) : 0
 		return {
 				style: {
