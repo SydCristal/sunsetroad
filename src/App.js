@@ -2,7 +2,7 @@ import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScreenContext, useContactFormContext } from './Contexts'
 import { ModalMask } from './components/Modals'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 const StlApp = styled.div`
 		min-height: 100vh;
@@ -44,8 +44,6 @@ export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const { contactForm } = useContactFormContext()
 		const { screen, setScreen } = useScreenContext()
-		//const [ scrollTop, setScrollTop ] = useState(0)
-		//if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
 		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
 
@@ -66,26 +64,6 @@ export default function App() {
 						if (scrollTop) setScreen({ ...screen, scrollTop })
 				}
 		}, [displayModalFilter, screen?.scrollTop])
-
-		//const translateContent = coef => {
-		//		adultContentProps = {
-		//				$blur: 5,
-		//				overflow: 'hidden',
-		//				$translateContent: coef
-		//		}
-		//}
-
-		//useEffect(() => {
-		//		if (!contactForm) {
-		//				window.scrollTo(0, formPosition)
-		//		}
-		//}, [contactForm, formPosition])
-
-		//useEffect(() => {
-		//		if (contactForm && (screen?.height || screen?.width)) {
-		//				updateFormPosition(screen?.height || 0, translateContent)
-		//		}
-		//}, [screen?.height, screen?.width, contactForm])
 
 		useEffect(() => {
 				const debounce = f => {

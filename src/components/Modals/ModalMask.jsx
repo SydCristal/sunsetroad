@@ -3,7 +3,7 @@ import { LanguageSwitch } from '../Header'
 import { useScreenContext, useContactFormContext, useAgeConfirmationContext } from '../../Contexts'
 import { S } from '../../Utils'
 import { AgeFilter, ContactForm } from './'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 const StlModalMask = styled.div`
 		position: fixed;
