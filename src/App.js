@@ -48,8 +48,8 @@ export default function App() {
 		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
 
 		const adultContentProps = {
-				$blur: displayModalMask ? 5 : 0,
-				overflow: displayModalMask ? 'hidden' : 'inherit'
+				$blur: displayModalFilter ? 5 : 0,
+				overflow: displayModalFilter ? 'hidden' : 'inherit'
 		}
 
 		if (displayModalMask && screen?.scrollTop) adultContentProps.$translateContent	= screen?.scrollTop
