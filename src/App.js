@@ -46,7 +46,6 @@ export default function App() {
 		const { screen, setScreen } = useScreenContext()
 		const displayModalFilter = !ageConfirmation || contactForm
 		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
-		let resizeFired = false
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
@@ -76,12 +75,6 @@ export default function App() {
 				}
 
 				const onResize = () => {
-						if (resizeFired) {
-								resizeFired = false
-								return
-						}
-
-						resizeFired = true
 						const { clientHeight, clientWidth, scrollHeight, scrollTop: top } = document.documentElement
 						const result = { ...screen, width: clientWidth, height: clientHeight }
 						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
