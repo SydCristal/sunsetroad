@@ -70,7 +70,6 @@ export default function App() {
 				}
 
 				const onResize = () => {
-						alert('Size changed');
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
 						updateFormPosition()
@@ -79,18 +78,6 @@ export default function App() {
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
 						window.removeEventListener('resize', debounce(onResize))
-				}
-		}, [])
-
-		const onOrientationChange = () => {
-				alert('Orientation changed')
-				updateFormPosition()
-		}
-
-		useEffect(() => {
-				window.addEventListener('orientationchange', () => onOrientationChange())
-				return () => {
-						window.removeEventListener('orientationchange', () => onOrientationChange())
 				}
 		}, [])
 
