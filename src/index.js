@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { LanguageProvider, SectionProvider, AgeConfirmationProvider, ScaleProvider, ContactFormProvider } from './Contexts'
+import { LanguageProvider, SectionProvider, AgeConfirmationProvider, ScreenProvider, ContactFormProvider } from './Contexts'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
-    <ScaleProvider>
+    <ScreenProvider>
       <AgeConfirmationProvider>
         <LanguageProvider>
           <SectionProvider>
@@ -17,6 +17,6 @@ root.render(
           </SectionProvider>
         </LanguageProvider>
       </AgeConfirmationProvider>
-    </ScaleProvider>
+    </ScreenProvider>
   </React.StrictMode>
 )

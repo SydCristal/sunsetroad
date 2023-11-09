@@ -6,7 +6,7 @@ import { MobilePartners as Partners } from '../Partners'
 import { MobileInfo as Info } from '../Info'
 import { MobileFooter as Footer } from '../Footer'
 import { MobileProducts as Products } from '../Products'
-import { useAgeConfirmationContext, useContactFormContext } from '../../Contexts'
+import { useAgeConfirmationContext, useContactFormContext, useScreenContext } from '../../Contexts'
 
 const getSpaceBelow = () => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
@@ -31,11 +31,11 @@ const Background = styled.div`
 
 const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
-		const containerHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
+		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
 		const skyHeight = S.SKY_HEIGHT
-		if (!$isMasked) $scrollTop = scrollTop
-		const yCoef = containerHeight !== clientHeight ? ($scrollTop / (containerHeight - clientHeight)) : 0
-		const skyShift = (containerHeight - skyHeight) * yCoef
+		if ($scrollTop === null) $scrollTop = scrollTop
+		const yCoef = contentHeight !== clientHeight ? ($scrollTop / (contentHeight - clientHeight)) : 0
+		const skyShift = ((contentHeight - skyHeight) * yCoef) - 50
 		return {
 				style: {
 						transform: `translateY(${skyShift}px)`,
@@ -80,7 +80,9 @@ const Content = styled.div`
 const Main = styled.main`
 		width: ${S.MOBILE_CONTENT_WIDTH}px;
 		opacity: 1;
-		transition: opacity 0.3s ease-in-out;
+		>	div:not(:first-child) {
+				transition: opacity 0.3s ease-in-out;
+		}
 `
 
 const Header = styled.header`
@@ -435,7 +437,6 @@ const images = [{
 }]
 
 const renderBackground = (xCoef, isMasked, scrollTop) => {
-
 		return (
 				<Background>
 						<Sky src={Bg('sky', false, 'jpg')} alt='sky' $isMasked={isMasked} $scrollTop={scrollTop} />
@@ -452,9 +453,11 @@ const renderBackground = (xCoef, isMasked, scrollTop) => {
 
 export default function Layout() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm, formPosition } = useContactFormContext()
-		const opacity = ageConfirmation ? 1 : 0
+		const { contactForm } = useContactFormContext()
+		const { screen } = useScreenContext()
 		const isMasked = !ageConfirmation || contactForm
+		const opacity = isMasked ? 0 : 1
+		const scrollTop = screen?.scrollTop
 
 		let contentWidth = S.MOBILE_CONTENT_WIDTH
 
@@ -463,7 +466,7 @@ export default function Layout() {
 		xCoef = 1 - xCoef
 
 		return (
-				<StlLayout renderLayer={() => renderBackground(xCoef, isMasked, formPosition)}>
+				<StlLayout renderLayer={() => renderBackground(xCoef, isMasked, scrollTop)}>
 						<Content>
 								<Header>
 										<LanguageSwitch isMobile={true} />

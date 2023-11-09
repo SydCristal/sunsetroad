@@ -1,6 +1,6 @@
 import Layout from './components/Layout'
 import styled from 'styled-components'
-import { useAgeConfirmationContext, useScaleContext, useContactFormContext } from './Contexts'
+import { useAgeConfirmationContext, useScreenContext, useContactFormContext } from './Contexts'
 import { ModalMask } from './components/Modals'
 import { useEffect, useState } from 'react'
 
@@ -42,29 +42,50 @@ const AdultContent = styled.div`
 
 export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm, formPosition, updateFormPosition } = useContactFormContext()
-		const { scale, setScale } = useScaleContext()
-		const [ translateContent, setTranslateContent ] = useState(0)
-		if (!ageConfirmation) window.scrollTo(0, 0)
+		const { contactForm } = useContactFormContext()
+		const { screen, setScreen } = useScreenContext()
+		//const [ scrollTop, setScrollTop ] = useState(0)
+		//if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
+		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
 
 		const adultContentProps = {
-				$blur: displayModalFilter ? 5 : 0,
-				overflow: displayModalFilter ? 'hidden' : 'inherit',
-				$translateContent: translateContent
+				$blur: displayModalMask ? 5 : 0,
+				overflow: displayModalMask ? 'hidden' : 'inherit'
 		}
 
-		useEffect(() => {
-				if (!contactForm) {
-						window.scrollTo(0, formPosition)
-				}
-		}, [contactForm, formPosition])
+		if (displayModalMask && screen?.scrollTop) adultContentProps.$translateContent	= screen?.scrollTop
 
 		useEffect(() => {
-				if (contactForm && (scale?.height || scale?.width)) {
-						updateFormPosition(scale?.height || 0, setTranslateContent)
+				if (!displayModalFilter) {
+						const prevScrollTop = screen?.scrollTop
+						setScreen({ ...screen, scrollTop: null })
+						if (prevScrollTop) window.scrollTo(0, prevScrollTop)
+				} else {
+						const { scrollTop } = document.documentElement
+						if (scrollTop) setScreen({ ...screen, scrollTop })
 				}
-		}, [scale?.height, scale?.width, contactForm])
+		}, [displayModalFilter, screen?.scrollTop])
+
+		//const translateContent = coef => {
+		//		adultContentProps = {
+		//				$blur: 5,
+		//				overflow: 'hidden',
+		//				$translateContent: coef
+		//		}
+		//}
+
+		//useEffect(() => {
+		//		if (!contactForm) {
+		//				window.scrollTo(0, formPosition)
+		//		}
+		//}, [contactForm, formPosition])
+
+		//useEffect(() => {
+		//		if (contactForm && (screen?.height || screen?.width)) {
+		//				updateFormPosition(screen?.height || 0, translateContent)
+		//		}
+		//}, [screen?.height, screen?.width, contactForm])
 
 		useEffect(() => {
 				const debounce = f => {
@@ -76,15 +97,19 @@ export default function App() {
 				}
 
 				const onResize = () => {
-						const { clientHeight, clientWidth } = document.documentElement
-						setScale({ width: clientWidth, height: clientHeight })
+						const { clientHeight, clientWidth, scrollHeight } = document.documentElement
+						const top = screen?.scrollTop || 0
+						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
+						const scrollTopMax = contentHeight - clientHeight
+						const scrollTop = top > scrollTopMax ? scrollTopMax : top
+						setScreen({ scrollTop, width: clientWidth, height: clientHeight })
 				}
 
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
 						window.removeEventListener('resize', debounce(onResize))
 				}
-		}, [])
+		}, [screen?.scrollTop])
 
 		return (
 				<StlApp>

@@ -1,5 +1,5 @@
 ﻿import { MobileLayout } from '../Mobile'
-import { useSectionContext, useScaleContext } from '../../Contexts'
+import { useSectionContext, useScreenContext } from '../../Contexts'
 import { Bg, S } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
@@ -16,13 +16,15 @@ const DesktopLayout = styled.div`
 		main {
 				flex: 1;
 				width: ${S.CONTENT_AREA_WIDTH};
-				transition: opacity 0.3s ease-in-out;
 				margin: 0 auto;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				margin-top: 20px;
 				align-items: center;
+				> div:not(:first-child) {
+						transition: opacity 0.3s ease-in-out;
+				}
 		}
 `
 
@@ -41,15 +43,15 @@ const StlLayout = styled.div.attrs(({ $background }) => {
 		};
 `
 export default function Layout() {
-		const { scale } = useScaleContext()
+		const { screen } = useScreenContext()
 		const { section } = useSectionContext()
 		let layout
-		const isDesktop = scale.width > S.MAX_MOBILE_WIDTH
+		const isDesktop = screen.width > S.MAX_MOBILE_WIDTH
 		const background = isDesktop ? section : null
-		let height = scale.height
+		let height = screen.height
 
 		if (isDesktop) {
-				height = (scale.height > S.MIN_DESKTOP_HEIGHT ? scale.height : S.MIN_DESKTOP_HEIGHT) + 'px'
+				height = (screen.height > S.MIN_DESKTOP_HEIGHT ? screen.height : S.MIN_DESKTOP_HEIGHT) + 'px'
 				let content
 
 				switch (section) {

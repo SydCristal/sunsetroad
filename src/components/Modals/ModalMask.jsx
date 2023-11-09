@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { LanguageSwitch } from '../Header'
-import { useScaleContext, useContactFormContext, useAgeConfirmationContext } from '../../Contexts'
+import { useScreenContext, useContactFormContext, useAgeConfirmationContext } from '../../Contexts'
 import { S } from '../../Utils'
 import { AgeFilter, ContactForm } from './'
 import { useEffect, useRef } from 'react'
@@ -28,10 +28,10 @@ const LanguageSwitchContainer = styled.div`
 `
 
 export function ModalMask() {
-		const { scale } = useScaleContext()
+		const { screen } = useScreenContext()
 		const { contactForm, setContactForm } = useContactFormContext()
 		const { ageConfirmation } = useAgeConfirmationContext()
-		const isMobile = scale.width <= S.MAX_MOBILE_WIDTH
+		const isMobile = screen.width <= S.MAX_MOBILE_WIDTH
 		let languageSwitchContainerStyles = {
 				padding: isMobile ? '25px 40px' : '5px 30px',
 				height: isMobile ? '85px' : '35px'

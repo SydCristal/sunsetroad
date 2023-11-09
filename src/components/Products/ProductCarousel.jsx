@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLanguageContext, useScaleContext } from '../../Contexts'
+import { useLanguageContext, useScreenContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
 import { Bg, S } from '../../Utils'
@@ -192,19 +192,19 @@ const productArray = Object.keys(titleMap)
 
 export function ProductCarousel({ contentWidth, opacity, className }) {
 		const { language } = useLanguageContext()
-		const { scale } = useScaleContext()
+		const { screen } = useScreenContext()
 		const [previousSelection, setPreviousSelection] = useState('')
 		const [selectedProduct, setSelectedProduct] = useState('longRide')
 		const [transitioning, setTransitioning] = useState(false)
 		const [shiftIndex, setShiftIndex] = useState(0)
 		l.setLanguage(language)
 		const isDesktop = className === 'desktop-products'
-		const [descriptionWidth, setDescriptionWidth] = useState(isDesktop ? 470 : (scale.width + 2 * contentWidth))
+		const [descriptionWidth, setDescriptionWidth] = useState(isDesktop ? 470 : (screen.width + 2 * contentWidth))
 
 		useEffect(() => {
 				if (isDesktop) return
-				setDescriptionWidth(scale.width + 2 * (isDesktop ? 470 : contentWidth))
-		}, [scale.width, isDesktop, contentWidth])
+				setDescriptionWidth(screen.width + 2 * (isDesktop ? 470 : contentWidth))
+		}, [screen.width, isDesktop, contentWidth])
 
 		const rotateCarousel = (e, position, productName) => {
 				e.preventDefault()

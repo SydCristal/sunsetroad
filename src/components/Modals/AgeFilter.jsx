@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useAgeConfirmationContext, useScaleContext } from '../../Contexts'
+import { useAgeConfirmationContext, useScreenContext } from '../../Contexts'
 import { useLanguageContext } from '../../Contexts'
 import { l } from './'
 import { Lo, Bg, S } from '../../Utils'
@@ -59,7 +59,7 @@ const ConfirmationButton = styled.button`
 
 export function AgeFilter() {
 		const { ageConfirmation, setAgeConfirmation } = useAgeConfirmationContext()
-		const { scale } = useScaleContext()
+		const { screen } = useScreenContext()
 		const [display, setDisplay] = useState('flex')
 		const { language } = useLanguageContext()
 		l.setLanguage(language)
@@ -69,11 +69,11 @@ export function AgeFilter() {
 		}, [ageConfirmation])
 
 		return (
-				<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={scale.height < 700 && 15} id='age-filter' >
-						<LogoContainer display={scale.height > 500 ? 'block' : 'none'} $short={scale.height < 700}>
+				<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={screen.height < 700 && 15} id='age-filter' >
+						<LogoContainer display={screen.height > 500 ? 'block' : 'none'} $short={screen.height < 700}>
 								<img src={Lo('logo', false)} alt='logo' />
 						</LogoContainer>
-						<LogoContainer display={scale.height < 500 ? 'block' : 'none'} $short={true}>
+						<LogoContainer display={screen.height < 500 ? 'block' : 'none'} $short={true}>
 								<img src={Bg('heading', false)} alt='heading' />
 						</LogoContainer>
 						<p>
