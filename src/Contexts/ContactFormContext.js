@@ -10,6 +10,7 @@ const ContactFormProvider = ({ children }) => {
 				const content = document.getElementsByClassName('react-parallax')[0]
 				const contentHeight = content?.clientHeight || 0
 				const maxScrollTop = contentHeight - clientHeight
+				console.log(`clientHeight: ${clientHeight}, contentHeight: ${contentHeight}, scrollTop: ${scrollTop}`)
 				alert(`clientHeight: ${clientHeight}, contentHeight: ${contentHeight}, scrollTop: ${scrollTop}`)
 				if ((scrollTop == 0) || scrollTop > maxScrollTop) {
 						scrollTop = maxScrollTop
