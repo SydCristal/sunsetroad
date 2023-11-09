@@ -5,8 +5,8 @@ import { ModalMask } from './components/Modals'
 import { useEffect } from 'react'
 
 const StlApp = styled.div`
-		min-height: 100%;
-		height: 100%;
+		min-height: 100vh;
+		height: 100vh;
 `
 
 const AdultContent = styled.div`
@@ -22,7 +22,7 @@ const AdultContent = styled.div`
 				-o-filter: blur(${$blur}px);
 				-ms-filter: blur(${$blur}px);
 				transition: filter 0.3s ease-in-out;
-				height: 100%;
+				height: 100vh;
 				min-height: 350px;
 				overflow: ${overflow};
 				> div {

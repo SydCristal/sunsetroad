@@ -11,7 +11,7 @@ const StlModalMask = styled.div`
 		overflow: auto;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 		min-height: 350px;
 		z-index: 100;
 		display: flex;
