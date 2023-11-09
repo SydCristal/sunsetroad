@@ -38,10 +38,10 @@ const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
 		if ($scrollTop === null) $scrollTop = scrollTop
 		const yCoef = contentHeight !== clientHeight ? ($scrollTop / (contentHeight - clientHeight)) : 0
-		const skyShift = 4 + 2 * yCoef
+		const skyShift = 3
 		return {
 				style: {
-						transform: `translateZ(-4px) scale(${skyShift})`,
+						transform: `translateZ(-${6 - 2 * yCoef}px) scale(${6 + 0.5 * yCoef})`,
 				}
 		}})`
 		top: 0;
