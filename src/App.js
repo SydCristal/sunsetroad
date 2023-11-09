@@ -70,27 +70,29 @@ export default function App() {
 				}
 
 				const onResize = () => {
+						alert('Size changed');
 						const { clientHeight, clientWidth } = document.documentElement
 						setScale({ width: clientWidth, height: clientHeight })
-						updateFormPosition(displayModalFilter)
+						updateFormPosition()
 				}
 
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
 						window.removeEventListener('resize', debounce(onResize))
 				}
-		}, [displayModalFilter])
+		}, [])
 
-		const onOrientationChange = update => {
-				updateFormPosition(update)
+		const onOrientationChange = () => {
+				alert('Orientation changed')
+				updateFormPosition()
 		}
 
 		useEffect(() => {
-				window.addEventListener('orientationchange', () => onOrientationChange(displayModalFilter))
+				window.addEventListener('orientationchange', () => onOrientationChange())
 				return () => {
-						window.removeEventListener('orientationchange', () => onOrientationChange(displayModalFilter))
+						window.removeEventListener('orientationchange', () => onOrientationChange())
 				}
-		}, [displayModalFilter])
+		}, [])
 
 		return (
 				<StlApp>

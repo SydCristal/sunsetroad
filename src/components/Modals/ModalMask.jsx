@@ -41,6 +41,7 @@ export function ModalMask() {
 				const modalMaskEl = document.getElementById('modal-mask')
 				const ageFilterEl = document.getElementById('age-filter')
 				const contactFormEl = document.getElementById('contact-form')
+
 				if (contactForm && contactFormEl) {
 						contactFormEl.style.display = 'flex'
 				} else {
