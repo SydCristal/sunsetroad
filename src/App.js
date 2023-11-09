@@ -49,7 +49,7 @@ export default function App() {
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
-				overflow: displayModalFilter ? 'hidden' : 'inherit'
+				overflow: displayModalMask ? 'hidden' : 'inherit'
 		}
 
 		if (displayModalMask && screen?.scrollTop) adultContentProps.$translateContent	= screen?.scrollTop
