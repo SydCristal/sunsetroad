@@ -56,15 +56,15 @@ export default function App() {
 
 		useEffect(() => {
 				if (!contactForm) {
-						console.log('scroll back');
 						window.scrollTo(0, formPosition)
-				} else if (formPosition) {
-						console.log('scroll to form');
+				} else {
 						setTranslateContent(formPosition)
 				}
+		}, [contactForm, formPosition])
 
+		useEffect(() => {
 				if (contactForm && (scale?.height || scale?.width)) updateFormPosition(scale?.height || 0)
-		}, [contactForm, formPosition, scale?.height, scale?.width])
+		}, [scale?.height, scale?.width, contactForm])
 
 		useEffect(() => {
 				const debounce = f => {
