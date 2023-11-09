@@ -13,6 +13,10 @@ const Partners = styled.div`
 						display: none;
 				};
 		};
+		&.disabled img,
+		&.disabled a {
+				pointer-events: none !important;
+		};
 `
 
 const PartnersContainer = styled.div`
@@ -22,10 +26,6 @@ const PartnersContainer = styled.div`
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-		&.disabled img,
-		&.disabled a {
-				pointer-events: none !important;
-		};
 		.desktop-partners & {
 				height: 100%;
 				flex: 1;
@@ -376,13 +376,13 @@ export function PartnerCarousel({ contentWidth, maxGroupSize = 7, className = 'd
 		return (
 				<Partners
 						className={className}
-						opacity={opacity}>
+						opacity={opacity}
+						ref={blockRef}>
 						<Arrow
 								src={Ic('scroll-prev', false)}
 								alt='scroll-left'
 								onPointerDown={e => movePartners(e, 1)} />
-						<PartnersContainer
-								ref={blockRef}>
+						<PartnersContainer>
 								<TitleContainer>
 										<Arrow
 												src={Ic('scroll-left', false)}

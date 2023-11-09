@@ -35,6 +35,7 @@ const SkyContainer = styled.div`
 		min-width: 100%;
 		height: 100%;
 		position: absolute;
+		top: -75px;
 		perspective: 1px;
 		perspective-origin: 0 0;
 `
