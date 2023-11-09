@@ -6,7 +6,7 @@ import { AgeFilter, ContactForm } from './'
 import { useEffect, useRef } from 'react'
 
 const StlModalMask = styled.div`
-		position: absolute;
+		position: fixed;
 		top: 0;
 		overflow: auto;
 		left: 0;
@@ -16,13 +16,12 @@ const StlModalMask = styled.div`
 		z-index: 100;
 		display: flex;
 		background-color: rgba(0, 0, 0, 0.3);
-		opacity: ${({ $opacity }) => $opacity};
 		transition: opacity 0.3s ease-in-out;
 		opacity: 1;
 `
 
 const LanguageSwitchContainer = styled.div`
-		${({ styles }) => ({ ...styles })};
+		${({ $styles }) => ({ ...$styles })};
 		position: absolute;
 		right: 0;
 `
@@ -44,30 +43,24 @@ export function ModalMask() {
 
 				if (contactForm && contactFormEl) {
 						contactFormEl.style.display = 'flex'
-				} else {
-						setTimeout(() => {
-								if (contactFormEl) contactFormEl.style.display = 'none'
-						}, 300)
 				}
 
 				if (!ageConfirmation && ageFilterEl) {
 						ageFilterEl.style.display = 'flex'
-				} else {
-						setTimeout(() => {
-								if (ageFilterEl) ageFilterEl.style.display = 'none'
-						}, 300)
 				}
 
-				if (!ageConfirmation || contactForm) {
+				if (ageConfirmation && !contactForm) {
+						modalMaskEl.style.opacity = 0
+						setTimeout(() => {
+								modalMaskEl.style.display = 'none'
+								if (!contactForm && contactFormEl) contactFormEl.style.display = 'none'
+								if (ageConfirmation && ageFilterEl) ageFilterEl.style.display = 'none'
+						}, 300)
+				} else {
 						modalMaskEl.style.display = 'flex'
 						setTimeout(() => {
 								modalMaskEl.style.opacity = 1
 						}, 0)
-				} else {
-						modalMaskEl.style.opacity	= 0
-						setTimeout(() => {
-								modalMaskEl.style.display = 'none'
-						}, 300)
 				}
 		}, [contactForm, ageConfirmation])
 
@@ -83,7 +76,7 @@ export function ModalMask() {
 				<StlModalMask
 						id='modal-mask'
 						onPointerDown={onMaskClick}>
-						<LanguageSwitchContainer styles={languageSwitchContainerStyles}>
+						<LanguageSwitchContainer $styles={{...languageSwitchContainerStyles }}>
 								<LanguageSwitch isMobile={isMobile} />
 						</LanguageSwitchContainer>
 						<AgeFilter/>
