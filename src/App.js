@@ -63,7 +63,7 @@ export default function App() {
 		}, [contactForm, formPosition])
 
 		useEffect(() => {
-				if (contactForm && (scale?.height || scale?.width)) updateFormPosition()
+				if (contactForm && (scale?.height || scale?.width)) updateFormPosition(scale?.height)
 		}, [scale?.height, scale?.width, contactForm])
 
 		useEffect(() => {
