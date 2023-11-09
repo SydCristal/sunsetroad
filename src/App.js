@@ -2,7 +2,7 @@ import Layout from './components/Layout'
 import styled from 'styled-components'
 import { useAgeConfirmationContext, useScaleContext, useContactFormContext } from './Contexts'
 import { ModalMask } from './components/Modals'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const StlApp = styled.div`
 		min-height: 100vh;
@@ -10,7 +10,7 @@ const StlApp = styled.div`
 `
 
 const AdultContent = styled.div`
-		${({ $blur, overflow, $contentScrollTop }) => {
+		${({ $blur, overflow, $translateContent }) => {
 		if (!$blur) return `
 				min-height: 100%;
 		`
@@ -27,7 +27,7 @@ const AdultContent = styled.div`
 				overflow: ${overflow};
 				> div {
 						height: 100%;
-						transform: translateY(-${$contentScrollTop}px);
+						transform: translateY(-${$translateContent}px);
 				};
 				header > div {
 						opacity: 0;
@@ -44,18 +44,21 @@ export default function App() {
 		const { ageConfirmation } = useAgeConfirmationContext()
 		const { contactForm, formPosition, updateFormPosition } = useContactFormContext()
 		const { scale, setScale } = useScaleContext()
+		const [ translateContent, setTranslateContent ] = useState(0)
 		if (!ageConfirmation) window.scrollTo(0, 0)
 		const displayModalFilter = !ageConfirmation || contactForm
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
 				overflow: displayModalFilter ? 'hidden' : 'inherit',
-				$contentScrollTop: formPosition
+				$translateContent: translateContent
 		}
 
 		useEffect(() => {
 				if (!contactForm) {
 						window.scrollTo(0, formPosition)
+				} else {
+						setTranslateContent(formPosition)
 				}
 		}, [contactForm, formPosition])
 
