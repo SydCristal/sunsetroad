@@ -26,13 +26,13 @@ const StlLayout = styled(Parallax)`
 `
 
 const Background = styled.div`
-		width: 100%;
+		min-width: 100%;
 		height: 100%;
 		position: absolute;
 `
 
 const SkyContainer = styled.div`
-		width: 100%;
+		min-width: 100%;
 		height: 100%;
 		position: absolute;
 		perspective: 1px;
@@ -46,7 +46,7 @@ const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const yCoef = contentHeight !== clientHeight ? ($scrollTop / (contentHeight - clientHeight)) : 0
 		return {
 				style: {
-						transform: `translateZ(-${6 - 2 * yCoef}px) scale(${6 + yCoef})`,
+						transform: `translateZ(-${5 - 1 * yCoef}px) scale(${6 + yCoef})`,
 				}
 		}})`
 		top: 0;

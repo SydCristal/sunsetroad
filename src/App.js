@@ -65,29 +65,28 @@ export default function App() {
 				}
 		}, [displayModalFilter, screen?.scrollTop])
 
+		const debounce = f => {
+				let timer
+				return e => {
+						if (timer) clearTimeout(timer)
+						timer = setTimeout(f, 100, e)
+				}
+		}
+
+		const onResize = () => {
+				const { clientHeight, clientWidth, scrollHeight, scrollTop: top } = document.documentElement
+				const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
+				const scrollTopMax = contentHeight - clientHeight
+				const scrollTop = top > scrollTopMax ? scrollTopMax : top
+				setScreen({ scrollTop, width: clientWidth, height: clientHeight })
+		}
+
 		useEffect(() => {
-				const debounce = f => {
-						let timer
-						return e => {
-								if (timer) clearTimeout(timer)
-								timer = setTimeout(f, 100, e)
-						}
-				}
-
-				const onResize = () => {
-						const { clientHeight, clientWidth, scrollHeight } = document.documentElement
-						const top = screen?.scrollTop || 0
-						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
-						const scrollTopMax = contentHeight - clientHeight
-						const scrollTop = top > scrollTopMax ? scrollTopMax : top
-						setScreen({ scrollTop, width: clientWidth, height: clientHeight })
-				}
-
 				window.addEventListener('resize', debounce(onResize))
 				return () => {
 						window.removeEventListener('resize', debounce(onResize))
 				}
-		}, [screen?.scrollTop])
+		}, [])
 
 		return (
 				<StlApp>
