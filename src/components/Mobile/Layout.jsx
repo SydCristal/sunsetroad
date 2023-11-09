@@ -14,6 +14,8 @@ const getSpaceBelow = () => {
 }
 
 const StlLayout = styled(Parallax)`
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 		.react-parallax-bgimage {
 				padding-bottom: 310px;
 		};
@@ -27,23 +29,25 @@ const Background = styled.div`
 		width: 100%;
 		height: 100%;
 		position: absolute;
+		perspective: 1px;
+		perspective-origin: 0 0;
 `
 
 const Sky = styled.img.attrs(({ $isMasked, $scrollTop }) => {
 		const { scrollHeight, clientHeight, scrollTop } = document.documentElement
 		const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
-		const skyHeight = S.SKY_HEIGHT
 		if ($scrollTop === null) $scrollTop = scrollTop
 		const yCoef = contentHeight !== clientHeight ? ($scrollTop / (contentHeight - clientHeight)) : 0
-		const skyShift = ((contentHeight - skyHeight) * yCoef) - 50
+		const skyShift = 4 + 2 * yCoef
 		return {
 				style: {
-						transform: `translateY(${skyShift}px)`,
+						transform: `translateZ(-4px) scale(${skyShift})`,
 				}
 		}})`
 		top: 0;
-		position: absolute;
+		position: sticky;
 		min-width: 100%;
+		transform-origin: 0 0;
 `
 
 const Landscape = styled.img.attrs(() => {
