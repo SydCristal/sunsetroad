@@ -57,13 +57,13 @@ export default function App() {
 		useEffect(() => {
 				if (!contactForm) {
 						window.scrollTo(0, formPosition)
-				} else {
-						setTranslateContent(formPosition)
 				}
 		}, [contactForm, formPosition])
 
 		useEffect(() => {
-				if (contactForm && (scale?.height || scale?.width)) updateFormPosition(scale?.height || 0)
+				if (contactForm && (scale?.height || scale?.width)) {
+						updateFormPosition(scale?.height || 0, setTranslateContent)
+				}
 		}, [scale?.height, scale?.width, contactForm])
 
 		useEffect(() => {

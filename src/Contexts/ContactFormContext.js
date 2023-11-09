@@ -5,8 +5,8 @@ const ContactFormContext = createContext(null)
 const ContactFormProvider = ({ children }) => {
 		const [contactForm, setContactForm] = useState(false)
 		const [formPosition, setFormPosition] = useState(0)
-		const updateFormPosition = clientHeight => {
-				if (!clientHeight) clientHeight = document.documentElement.clientHeight
+		const updateFormPosition = (clientHeight, callback) => {
+				if (!clientHeight && clientHeight !== 0) clientHeight = document.documentElement.clientHeight
 				let { scrollTop } = document.documentElement
 				const content = document.getElementsByClassName('react-parallax')[0]
 				const contentHeight = content?.clientHeight || 0
@@ -15,17 +15,17 @@ const ContactFormProvider = ({ children }) => {
 						scrollTop = maxScrollTop
 				}
 
+				console.log(scrollTop);
+
 				setFormPosition(scrollTop)
+				callback(scrollTop)
 		}
 
 		const value = {
 				formPosition,
 				contactForm,
 				updateFormPosition,
-				setContactForm: display => {
-						setContactForm(display)
-						updateFormPosition()
-				},
+				setContactForm,
 		}
 
 		return (
