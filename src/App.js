@@ -64,8 +64,8 @@ export default function App() {
 						if (prevScrollTop) window.scrollTo(0, prevScrollTop)
 				} else {
 						let contentShiftY = +contentRef?.current?.attributes?.getNamedItem('shiftcontenty')?.value
-						alert(`document.documentElement.scrollTop: ${document.documentElement.scrollTop}, prevScrollTop: ${prevScrollTop}, contentShiftY: ${contentShiftY}`)
-						const scrollTop = document.documentElement.scrollTop || prevScrollTop
+						//alert(`document.documentElement.scrollTop: ${document.documentElement.scrollTop}, prevScrollTop: ${prevScrollTop}, contentShiftY: ${contentShiftY}`)
+						const scrollTop = prevScrollTop || document.documentElement.scrollTop// || prevScrollTop
 						if (!scrollTop) return
 						setScreen({ ...screen, scrollTop })
 						prevScrollTop = scrollTop
@@ -89,7 +89,7 @@ export default function App() {
 						if (contentShiftY > scrollTopMax) {
 								contentShiftY = scrollTopMax
 						}
-						alert(`contentShiftY: ${contentShiftY}, contentHeight: ${contentHeight}, clientHeight: ${clientHeight}, scrollTopMax: ${scrollTopMax}`)
+						//alert(`contentShiftY: ${contentShiftY}, contentHeight: ${contentHeight}, clientHeight: ${clientHeight}, scrollTopMax: ${scrollTopMax}`)
 						setScreen({ scrollTop: contentShiftY, width: clientWidth, height: clientHeight })
 						if (contentShiftY) prevScrollTop = contentShiftY
 				}
