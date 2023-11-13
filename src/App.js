@@ -80,13 +80,14 @@ export default function App() {
 				}
 
 				const onResize = () => {
-						const { clientHeight, clientWidth, scrollHeight, } = document.documentElement
+						const { clientHeight, clientWidth, scrollHeight } = document.documentElement
 						let contentShiftY = +contentRef?.current?.attributes?.getNamedItem('shiftcontenty')?.value
 						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
 						const scrollTopMax = contentHeight - clientHeight
 						if (contentShiftY > scrollTopMax) {
 								contentShiftY = scrollTopMax
 						}
+						alert(contentShiftY, contentHeight, clientHeight, scrollTopMax)
 						setScreen({ scrollTop: contentShiftY, width: clientWidth, height: clientHeight })
 						if (contentShiftY) prevScrollTop = contentShiftY
 				}
