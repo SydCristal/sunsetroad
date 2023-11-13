@@ -63,6 +63,8 @@ export default function App() {
 						setScreen({ ...screen, scrollTop: null })
 						if (prevScrollTop) window.scrollTo(0, prevScrollTop)
 				} else {
+						let contentShiftY = +contentRef?.current?.attributes?.getNamedItem('shiftcontenty')?.value
+						alert(`document.documentElement.scrollTop: ${document.documentElement.scrollTop}, prevScrollTop: ${prevScrollTop}, contentShiftY: ${contentShiftY}`)
 						const scrollTop = document.documentElement.scrollTop || prevScrollTop
 						if (!scrollTop) return
 						setScreen({ ...screen, scrollTop })
