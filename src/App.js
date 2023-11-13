@@ -87,7 +87,7 @@ export default function App() {
 						if (contentShiftY > scrollTopMax) {
 								contentShiftY = scrollTopMax
 						}
-						alert(contentShiftY, contentHeight, clientHeight, scrollTopMax)
+						alert(`contentShiftY: ${contentShiftY}, contentHeight: ${contentHeight}, clientHeight: ${clientHeight}, scrollTopMax: ${scrollTopMax}`)
 						setScreen({ scrollTop: contentShiftY, width: clientWidth, height: clientHeight })
 						if (contentShiftY) prevScrollTop = contentShiftY
 				}
