@@ -46,13 +46,14 @@ export default function App() {
 		const { screen, setScreen } = useScreenContext()
 		const displayModalFilter = !ageConfirmation || contactForm
 		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
+		let prevScrollTop = screen?.scrollTop
 
 		const adultContentProps = {
 				$blur: displayModalFilter ? 5 : 0,
 				overflow: displayModalMask ? 'hidden' : 'inherit'
 		}
 
-		if (displayModalMask && screen?.scrollTop) adultContentProps.$translateContent	= screen?.scrollTop
+		if (displayModalMask && screen?.scrollTop) adultContentProps.$translateContent = prevScrollTop
 
 		useEffect(() => {
 				if (!displayModalFilter) {
@@ -60,8 +61,9 @@ export default function App() {
 						setScreen({ ...screen, scrollTop: null })
 						if (prevScrollTop) window.scrollTo(0, prevScrollTop)
 				} else {
-						const { scrollTop } = document.documentElement
-						if (scrollTop) setScreen({ ...screen, scrollTop })
+						//const { scrollTop } = document.documentElement
+						//console.log(scrollTop, screen?.scrollTop)
+						//if (scrollTop) setScreen({ ...screen, scrollTop })
 				}
 		}, [displayModalFilter, screen?.scrollTop])
 		
@@ -76,10 +78,15 @@ export default function App() {
 
 				const onResize = () => {
 						const { clientHeight, clientWidth, scrollHeight, scrollTop: top } = document.documentElement
-						const result = { ...screen, width: clientWidth, height: clientHeight }
+						const result = { scrollTop: prevScrollTop, width: clientWidth, height: clientHeight }
+						prevScrollTop = top || prevScrollTop
 						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
 						const scrollTopMax = contentHeight - clientHeight
-						if (top > scrollTopMax) { result.scrollTop = scrollTopMax }
+						console.log(`screen.scrollTop: ${screen.scrollTop}, result.scrollTop: ${result.scrollTop}, scrollTopMax: ${scrollTopMax}`);
+						if (result.scrollTop > scrollTopMax) {
+								result.scrollTop = scrollTopMax
+
+						}
 						setScreen(result)
 				}
 

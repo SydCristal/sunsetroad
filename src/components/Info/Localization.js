@@ -8,7 +8,7 @@ export const l = new LocalizedStrings({
 		},
 		id: {
 				text: 'Sunset Road Beer dibuat di Pulau Dewata - teman perjalanan Anda yang sempurna, memberikan rasa kebebasan dan cita rasa petualangan.\nMalt Belgia, hop Jerman, dan ragi Prancis matang dan mengkarbonasi bir kami secara alami selama 30 matahari terbenam tanpa bahan tambahan buatan.\nBaik sedang bepergian atau sekadar menikmati momen relaksasi Anda - nikmati Sunset Road Beer, penuhi hidup Anda dengan pengalaman yang cerah dan beraroma.',
-				slogan: 'Temukan kesenangan Anda',
+				slogan: 'Find your pleasing',
 				brewed: 'Dibuat di Bali'
 		}//,
 		//ru: {

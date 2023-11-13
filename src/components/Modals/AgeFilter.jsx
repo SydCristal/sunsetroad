@@ -7,7 +7,8 @@ import { useState, useEffect } from 'react'
 
 const AgeFilterDialog = styled.div`
 		margin: 0px auto;
-		padding: ${({ $short }) => $short || 70}px 0;
+		padding-top: ${({ $short }) => $short ? 15 : 70}px;
+		padding-bottom: ${({ $short }) => $short ? 15 : 90}px;
 		width: 350px;
 		display: none;
   flex-direction: column;
@@ -22,7 +23,7 @@ const AgeFilterDialog = styled.div`
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
-				margin: ${({ $short }) => $short || 50}px 0;
+				margin: ${({ $short }) => $short ? 15 : 50}px 0;
 				transition: opacity 0.5s ease-in-out;
 				padding: 0 15px;
 		};
@@ -32,7 +33,7 @@ const LogoContainer = styled.div`
 		${({ display }) => ({ display })};
 		max-width: 250px;
 		max-height: 195px;
-		margin: 0 auto ${({ $short }) => $short ? 10 : 55}px;
+		margin: 0 auto ${({ $short }) => $short ? 0 : 55}px;
 		transition: opacity 0s ease-in-out;
 		img {
 			width: 100%;
@@ -62,6 +63,7 @@ export function AgeFilter() {
 		const { screen } = useScreenContext()
 		const [display, setDisplay] = useState('flex')
 		const { language } = useLanguageContext()
+		const short = screen.height < 700
 		l.setLanguage(language)
 
 		useEffect(() => {
@@ -69,11 +71,11 @@ export function AgeFilter() {
 		}, [ageConfirmation])
 
 		return (
-				<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={screen.height < 700 && 15} id='age-filter' >
-						<LogoContainer display={screen.height > 500 ? 'block' : 'none'} $short={screen.height < 700}>
+				<AgeFilterDialog opacity={ageConfirmation ? 0 : 1} $short={short} id='age-filter' >
+						<LogoContainer display={short ? 'none' : 'block'} $short={false}>
 								<img src={Lo('logo', false)} alt='logo' />
 						</LogoContainer>
-						<LogoContainer display={screen.height < 500 ? 'block' : 'none'} $short={true}>
+						<LogoContainer display={short ? 'block' : 'none'} $short={true}>
 								<img src={Bg('heading', false)} alt='heading' />
 						</LogoContainer>
 						<p>
