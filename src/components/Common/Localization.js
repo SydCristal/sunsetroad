@@ -2,13 +2,11 @@
 
 export const l = new LocalizedStrings({
 		en: {
-				brewed: 'Brewed in Bali'
+				brewed: 'Brewed in Bali',
+				slogan: 'Find your pleasing'
 		},
 		id: {
-				brewed: 'Dibuat  di Bali'
-		}//,
-		//ru: {
-		//},
-		//uk: {
-		//}
+				brewed: 'Dibuat  di Bali',
+				slogan: 'Find your pleasing'
+		}
 })

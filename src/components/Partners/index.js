@@ -1,4 +1,6 @@
-export { default } from './DesktopPartners'
+export { PartnerCarousel } from './PartnerCarousel'
 export { MobilePartners } from './MobilePartners'
 export { l } from './Localization'
-export { PartnerCarousel } from './PartnerCarousel'
+export { DesktopPartners } from './DesktopPartners'
+export { PartnerGroup } from './PartnerGroup'
+export { PartnerIcon } from './PartnerIcon'

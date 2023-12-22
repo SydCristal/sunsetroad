@@ -22,3 +22,11 @@ export const pdsp = (e, stopPropagation = true) => {
 		e.preventDefault()
 		if (stopPropagation) e.stopPropagation()
 }
+
+export const debounce = (f, t) => {
+		let timer
+		return e => {
+				if (timer) clearTimeout(timer)
+				timer = setTimeout(f, t, e)
+		}
+}

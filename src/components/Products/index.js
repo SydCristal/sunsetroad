@@ -1,4 +1,6 @@
-export { default } from './DesktopProducts'
+export { DesktopProducts } from './DesktopProducts'
 export { MobileProducts } from './MobileProducts'
 export { ProductCarousel } from './ProductCarousel'
+export { ProductDescription } from './ProductDescription'
 export { l } from './Localization'
+export { ProductImage } from './ProductImage'

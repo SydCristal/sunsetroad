@@ -24,13 +24,5 @@ export const l = new LocalizedStrings({
 				messageIsInvalid: 'Pesan tidak boleh kurang dari 2 karakter',
 				submit: 'Kirim',
 				cancel: 'Batal'
-		}//,
-		//ru: {
-		//		ageFilterText: 'Нажимая на кнопку, вы подтверждаете, что вам исполнилось 21 год',
-		//		confirm: 'Подтвердить'
-		//},
-		//uk: {
-		//		ageFilterText: 'Натискаючи на кнопку, ви підтверджуєте, що вам виповнилось 21 рік',
-		//		confirm: 'Підтвердити'
-		//}
+		}
 })

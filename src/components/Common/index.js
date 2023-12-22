@@ -1,4 +1,4 @@
-export { Select } from './Select'
 export { Heading } from './Heading'
-export { l } from './Localization'
-export { Logo } from './Logo'
+export { Input } from './Input'
+export { ContactFormTrigger } from './ContactFormTrigger'
+export { DistributorMapTrigger } from './DistributorMapTrigger'

@@ -1,33 +1,20 @@
 import styled from 'styled-components'
-import { S } from '../../Utils'
-import { Contacts	} from './Contacts'
+import { C } from '../../Utils'
+import { SocialMediaList } from './'
 
-const Footer = styled.footer`
-		width: 100%;
-		height: 40px;
-		background-color: ${S.SHADOW_BG};
-		z-index: ${S.LAYOUT_EL_ZINDEX};
-		display: flex;
-		position: relative;
-		flex-direction: column;
-		align-items: center;
-		padding: 15px 0;
-		margin-top: 20px;
-		> div {
-				position: absolute;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
-				> ul {
-					margin-top:20px;
-				};
-		};
-`
-
-export default function DesktopFooter() {
+const DesktopFooter = () => {
 		return (
-				<Footer>
-						<Contacts />
-				</Footer>
+				<StlDesktopFooter>
+						<SocialMediaList/>
+				</StlDesktopFooter>
 		)
 }
+
+const StlDesktopFooter = styled.footer`
+		height: 40px;
+		background-color: ${C.SHADOW_BG};
+		z-index: ${C.LAYOUT_EL_ZINDEX};
+		margin-top: 20px;
+`
+
+export { DesktopFooter }

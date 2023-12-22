@@ -1,70 +1,39 @@
+import styled, { css } from 'styled-components'
+import { DistributorMapTrigger } from '../Common'
+import { l } from './'
 import { useLanguageContext } from '../../Contexts'
-import { l } from './Localization'
-import styled from 'styled-components'
-import { Lo } from '../../Utils'
+import { useMemo } from 'react'
+import { C } from '../../Utils'
 
-const Info = styled.div`
-		width: 100%;
-		margin-top: 70px;
+const MobileInfo = () => {
+		const { language } = useLanguageContext()
+		useMemo(() => l.setLanguage(language), [language])
+
+		return (
+				<StlMobileInfo>	
+						<Text>{l.text}</Text>
+						<DistributorMapTrigger
+								device='mobile'>
+								{l.slogan}
+						</DistributorMapTrigger>
+				</StlMobileInfo>
+		)
+}
+
+const StlMobileInfo = styled.section`
 		margin-bottom: 50px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-`
-
-const LogoContainer = styled.div`
-		${({ opacity }) => ({ opacity })};
-		width: 191px;
-		height: 195px;
-		margin-bottom: 55px;
-		img {
-			width: 100%;
-			height: 100%;
-		};
-`
-
-const TextContainer = styled.div`
-		${({ opacity }) => ({ opacity })};
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		height: 300px;
-		transition: opacity 0.5s ease-in-out;
-		> * {
-				color: black;
-				text-align: center;
-		};
+		min-height: 300px;
+		position: relative;
 `
 
 const Text = styled.p`
 		font-size: 18px;
-		line-height: 20px;
-		font-weight: 600;
-		padding: 0;
-		margin: 0 0 5px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 0px;
+  margin: 0px 0px 10px;
+		color: black;
+		font-family: 'Bitter';
 `
 
-const Slogan = styled.h1`
-		padding: 0;
-		margin: 0;
-		font-size: 24px;
-		line-height: 29px;
-		font-weight: 600;
-`
-
-export function MobileInfo({ opacity }) {
-		const { language } = useLanguageContext()
-		l.setLanguage(language)
-
-		return (
-				<Info className='unselectable'>
-						<LogoContainer opacity={opacity}>
-								<img src={Lo('logo', false)} alt='logo' />
-						</LogoContainer>
-						<TextContainer opacity={opacity}>
-								<Text className='unselectable'>{l.text}</Text>
-								<Slogan className='unselectable'>{l.slogan}</Slogan>
-						</TextContainer>
-				</Info>
-		)
-}
+export { MobileInfo }

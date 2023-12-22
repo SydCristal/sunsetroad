@@ -3,18 +3,11 @@
 const ScreenContext = createContext(null)
 
 const ScreenProvider = ({ children }) => {
-		const { clientWidth, clientHeight, scrollTop } = document.documentElement
-		const [screen, setScreen] = useState({
-				width: clientWidth || 0,
-				height: clientHeight || 0,
-				scrollTop: scrollTop || 0
-		})
+		const [screenWidth, setScreenWidth] = useState(document.documentElement.clientWidth)
 
 		const value = {
-				screen,
-				setScreen: screen => {
-						setScreen(screen)
-				}
+				screenWidth,
+				setScreenWidth
 		}
 
 		return (

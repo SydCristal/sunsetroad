@@ -1,59 +1,41 @@
 import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
-import { S } from '../../Utils'
-import { Heading, Logo } from '../Common'
+import { C } from '../../Utils'
+import { useMemo, memo } from 'react'
 
-const Content = styled.div`
-		background-color: ${S.SHADOW_BG};
-		width: ${S.CONTENT_AREA_WIDTH};
-		height: ${S.CONTENT_AREA_HEIGHT};
-		padding: ${S.CONTENT_AREA_PADDING};
-		border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
-		display: flex;
-		flex-direction: row;
-		* {
-				text-shadow: ${S.TEXT_SHADOW};
-		};
-		> img {
-				width: 200px;
-				margin: -15px 10px -15px -15px;
-				opacity: 1;
-		};
-		h1 {
-				margin: 0 0 10px;
-				font-family: Bitter;
-				font-size: 24px;
-				font-weight: 600;
-				opacity: ${S.TEXT_REGULAR_OPACITY};
-		};
-		p {
-				margin: 0;
-				font-family: Bitter;
-				font-size: 18px;
-				font-weight: 600;
-				line-height: 22px;
-				opacity: ${S.TEXT_REGULAR_OPACITY};
-		};
-`
-
-const TextContainer = styled.div`
-		flex: 1;
-`
-export default function DesktopInfo() {
+const DesktopInfo = memo(() => {
 		const { language } = useLanguageContext()
-		l.setLanguage(language)
+		useMemo(() => l.setLanguage(language), [language])
+
+		console.log('RENDER DESKTOP INFO')
 
 		return (
-				<main>
-						<Heading />
-						<Content>
-								<Logo />
-								<TextContainer className='unselectable'>
-										<h1>{l.slogan}</h1>
-										<p>{l.text}</p>
-								</TextContainer>
-						</Content>
-				</main>
+				<StlDesktopInfo>
+						<Slogan>{l.slogan}</Slogan>
+						<Text>{l.text}</Text>
+				</StlDesktopInfo>
 		)
-}
+})
+
+const StlDesktopInfo = styled.div`
+		font-family: Bitter;
+		font-weight: 600;
+		text-shadow: ${C.TEXT_SHADOW};
+		opacity: ${C.TEXT_REGULAR_OPACITY};
+		margin-right: 20px;
+		width: 625px;
+`
+
+const Slogan = styled.h1`
+		margin: 0 0 10px;
+		font-size: 24px;
+`
+
+const Text = styled.p`
+		margin: 0;
+		font-size: 18px;
+		line-height: 22px;
+`
+
+export { DesktopInfo }

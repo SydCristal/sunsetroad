@@ -1,5 +1,5 @@
 export { LanguageContext, LanguageProvider, useLanguageContext } from './LanguageContext'
 export { SectionContext, SectionProvider, useSectionContext } from './SectionContext'
-export { AgeConfirmationContext, AgeConfirmationProvider, useAgeConfirmationContext } from './AgeConfirmationContext'
 export { ScreenContext, ScreenProvider, useScreenContext } from './ScreenContext'
-export { ContactFormContext, ContactFormProvider, useContactFormContext } from './ContactFormContext'
+export { ScrollTopContext, ScrollTopProvider, useScrollTopContext } from './ScrollTopContext'
+export { ModalContext, ModalProvider, useModalContext } from './ModalContext'

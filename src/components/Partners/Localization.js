@@ -6,11 +6,5 @@ export const l = new LocalizedStrings({
 		},
 		id: {
 				partners: 'Mitra'
-		}//,
-		//ru: {
-		//		partners: 'Партнёры'
-		//},
-		//uk: {
-		//		partners: 'Партнёри'
-		//}
+		}
 })

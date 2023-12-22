@@ -1,25 +1,25 @@
 import styled from 'styled-components'
-import { Contacts	} from './Contacts'
+import { SocialMediaList } from './'
+import { ContactFormTrigger } from '../Common'
 
-const Footer = styled.footer`
-		transition: opacity 0.5s ease-in-out;
-		width: 260px;
-		height: 165px;
-		position: relative;
-		margin: 0 auto;
-		z-index: 3;
-		> div {
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: 666;
-		}
-`
-
-export function MobileFooter() {
+const MobileFooter = () => {
 		return (
-				<Footer>
-						<Contacts className='mobile-contacts' />
-				</Footer>
+				<StlMobileFooter>
+						<ContactFormTrigger />
+						<SocialMediaList />
+				</StlMobileFooter>
 		)
 }
+
+const StlMobileFooter = styled.footer`
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		z-index: 5;
+		bottom: -225px;
+		left: 50%;
+		transform: translateX(-50%);
+`
+
+export { MobileFooter }

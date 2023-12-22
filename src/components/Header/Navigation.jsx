@@ -1,31 +1,12 @@
 ﻿import styled from 'styled-components'
 import { useSectionContext, useLanguageContext } from '../../Contexts'
 import { l } from './'
-import { S } from '../../Utils'
+import { C } from '../../Utils'
+import { useMemo, memo } from 'react'
 
-const StlNavigation = styled.nav`
-		height: 35px;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-`
-const Link = styled.a`
-		opacity: ${({ $selected }) => $selected ? S.ACTIVE_UI_EL_OPACITY : S.UI_EL_OPACITY};
-		text-decoration: none;
-		margin-right: 30px;
-		font-family: 'Fira Sans', sans-serif;
-		font-size: 20px;
-		font-weight: 400;
-		line-height: normal;
-		&:hover {
-				opacity: ${S.ACTIVE_UI_EL_OPACITY};
-		};
-`
-
-export function Navigation() {
-		const { section, setSection } = useSectionContext()
+const Navigation = memo(() => {
+		const { setSection } = useSectionContext()
 		const { language } = useLanguageContext()
-		l.setLanguage(language)
 		const sections = [{
 				value: 'products',
 				label: l.products
@@ -37,10 +18,14 @@ export function Navigation() {
 				label: l.info
 		}]
 
+		useMemo(() => l.setLanguage(language), [language])
+
 		const onLinkClink = (e, value) => {
 				e.preventDefault()
 				setSection(value)
 		}
+
+		console.log('RENDER DESKTOP NAVIGATION');
 
 		return (
 				<StlNavigation>
@@ -49,11 +34,32 @@ export function Navigation() {
 										key={value}
 										href={`/${value}`}
 										target='_blank'
-										$selected={section === value}
+										$section={value}
 										onClick={e => onLinkClink(e, value)}>
 										{label}
 								</Link>
 						))}
 				</StlNavigation>
 		)
-}
+})
+
+const StlNavigation = styled.nav`
+		display: flex;
+		align-items: center;
+`
+const Link = styled.a`
+		.${({ $section }) => $section} & {
+				opacity: ${C.ACTIVE_UI_EL_OPACITY};
+		};
+		opacity: ${C.UI_EL_OPACITY};
+		transition: opacity 0.2s ease-in-out;
+		text-decoration: none;
+		margin-right: 30px;
+		font-family: 'Fira Sans', sans-serif;
+		font-size: 20px;
+		&:hover {
+				opacity: ${C.ACTIVE_UI_EL_OPACITY};
+		};
+`
+
+export { Navigation }

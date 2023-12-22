@@ -1,111 +1,85 @@
-import Layout from './components/Layout'
 import styled from 'styled-components'
-import { useAgeConfirmationContext, useScreenContext, useContactFormContext } from './Contexts'
-import { ModalMask } from './components/Modals'
+import { Sky } from './components/MobileLayout'
+import LanguageSwitch from './components/LanguageSwitch'
 import { useEffect, useRef } from 'react'
+import { C } from './Utils'
+import DesktopLayout from './components/DesktopLayout'
+import MobileLayout from './components/MobileLayout'
+import { useScrollTopContext, useScreenContext } from './Contexts'
+import Modal from './components/Modals/'
 
-const StlApp = styled.div`
-		min-height: 100vh;
-		height: 100vh;
-`
+const App = () => {
+		const appRef = useRef(null)
+		const { setScrollTop } = useScrollTopContext()
+		const { setScreenWidth } = useScreenContext()
+		const isDesktop = document.documentElement.clientWidth > C.MAX_MOBILE_WIDTH
+		const desktopLayoutRef = useRef(isDesktop ? <DesktopLayout /> : null)
+		const mobileLayoutRef = useRef(isDesktop ? null : <MobileLayout />)
 
-const AdultContent = styled.div`
-		${({ $blur, overflow, $shiftContentY }) => {
-		if (!$blur) return `
-				min-height: 100%;
-		`
-
-		return `
-				filter: blur(${$blur}px);
-				-webkit-filter: blur(${$blur}px);
-				-moz-filter: blur(${$blur}px);
-				-o-filter: blur(${$blur}px);
-				-ms-filter: blur(${$blur}px);
-				transition: filter 0.3s ease-in-out;
-				height: 100vh;
-				min-height: 350px;
-				overflow: ${overflow};
-				> div {
-						height: 100%;
-						transform: translateY(-${$shiftContentY}px);
-				};
-				header > div {
-						opacity: 0;
-				};
-				main {
-						opacity: 0;
-				};
-				footer > div > a {
-						opacity: 0 !important;
-				};	
-`}}`
-
-export default function App() {
-		const { ageConfirmation } = useAgeConfirmationContext()
-		const { contactForm } = useContactFormContext()
-		const { screen, setScreen } = useScreenContext()
-		const contentRef = useRef(null)
-		const displayModalFilter = !ageConfirmation || contactForm
-		let prevScrollTop = screen?.scrollTop
-		const displayModalMask = screen?.scrollTop !== null && displayModalFilter
-		const shiftContentY = (displayModalMask && screen?.scrollTop) || 0
-
-		const adultContentProps = {
-				$blur: displayModalFilter ? 5 : 0,
-				overflow: displayModalMask ? 'hidden' : 'inherit',
-				$shiftContentY: shiftContentY,
-				shiftcontenty: shiftContentY,
-				ref: contentRef
-		}
+		console.log('RENDER APP');
 
 		useEffect(() => {
-				if (!displayModalFilter) {
-						setScreen({ ...screen, scrollTop: null })
-						if (prevScrollTop) window.scrollTo(0, prevScrollTop)
-				} else {
-						let contentShiftY = +contentRef?.current?.attributes?.getNamedItem('shiftcontenty')?.value
-						//alert(`document.documentElement.scrollTop: ${document.documentElement.scrollTop}, prevScrollTop: ${prevScrollTop}, contentShiftY: ${contentShiftY}`)
-						const scrollTop = prevScrollTop || document.documentElement.scrollTop// || prevScrollTop
-						if (!scrollTop) return
-						setScreen({ ...screen, scrollTop })
-						prevScrollTop = scrollTop
+				appRef.current?.scrollTo(0, 0)
+
+					const onScroll = ({ target }) => {
+						appRef.current.dataset.scrollTop = target.scrollTop
+						setScrollTop(target.scrollTop)
 				}
-		}, [displayModalFilter, screen?.scrollTop])
-		
-		useEffect(() => {
-				const debounce = f => {
-						let timer
-						return e => {
-								if (timer) clearTimeout(timer)
-								timer = setTimeout(f, 100, e)
+
+				if (!isDesktop) appRef.current.addEventListener('scroll', onScroll)
+				const handleResize = () => {
+						const { clientWidth } = document.documentElement
+						const isCurrentlyDesktop = clientWidth > C.MAX_MOBILE_WIDTH
+						setScreenWidth(clientWidth)
+
+						console.log('ON RESIZE');
+
+						if (isCurrentlyDesktop) {
+								appRef.current.scrollTo(0, 0)
+								if (!desktopLayoutRef.current) {
+										desktopLayoutRef.current = <DesktopLayout />
+								}
+								appRef.current.removeEventListener('scroll', onScroll)
+						} else {
+								if (!mobileLayoutRef.current) mobileLayoutRef.current = <MobileLayout />
+								appRef.current.addEventListener('scroll', onScroll)
 						}
 				}
 
-				const onResize = () => {
-						const { clientHeight, clientWidth, scrollHeight } = document.documentElement
-						let contentShiftY = +contentRef?.current?.attributes?.getNamedItem('shiftcontenty')?.value
-						const contentHeight = document.getElementsByClassName('react-parallax')[0]?.clientHeight || scrollHeight
-						const scrollTopMax = contentHeight - clientHeight
-						if (contentShiftY > scrollTopMax) {
-								contentShiftY = scrollTopMax
-						}
-						//alert(`contentShiftY: ${contentShiftY}, contentHeight: ${contentHeight}, clientHeight: ${clientHeight}, scrollTopMax: ${scrollTopMax}`)
-						setScreen({ scrollTop: contentShiftY, width: clientWidth, height: clientHeight })
-						if (contentShiftY) prevScrollTop = contentShiftY
-				}
-
-				window.addEventListener('resize', debounce(onResize))
+				window.addEventListener('resize', handleResize)
 				return () => {
-						window.removeEventListener('resize', debounce(onResize))
+						window.removeEventListener('resize', handleResize)
 				}
 		}, [])
 
 		return (
-				<StlApp>
-						<ModalMask />
-						<AdultContent {...adultContentProps}>
-								<Layout $contentOpacity={displayModalFilter ? 0 : 1} />
-						</AdultContent>
+				<StlApp
+						id='app'
+						ref={appRef}
+						className='blurred'>
+						<Sky />
+						<LanguageSwitch />
+						<Modal appRef={appRef} />
+						{desktopLayoutRef.current}
+						{mobileLayoutRef.current}
 				</StlApp>
 		)
 }
+	
+const StlApp = styled.div`
+		height: 100vh;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		perspective: 2px;
+		width: 100%;
+		position: relative;
+		&.blurred {
+				overflow: hidden;
+		}
+`
+
+export default App
+
+//email client:
+//customer: 8CD017949895C54DEBE04E9E91BA82D58E782131BB912DC89EC11B7916E6182FCCCC73AC43158947C6F03B27F1DB9E21
+//password: 685DF188C26DD176C28E28224E1D9730C90C

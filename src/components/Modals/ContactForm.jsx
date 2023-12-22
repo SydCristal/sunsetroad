@@ -1,133 +1,202 @@
 ﻿import styled, { css } from 'styled-components'
-import { useContactFormContext, useLanguageContext } from '../../Contexts'
-import { S, Ic } from '../../Utils'
-import { Heading } from '../Common'
+import { useLanguageContext, useModalContext } from '../../Contexts'
+import { C, Ic } from '../../Utils'
+import { Heading, Input } from '../Common'
 import { l } from './'
-import { useState } from 'react'
+import { useState, useEffect, useMemo, forwardRef, memo } from 'react'
 import * as EmailValidator from 'email-validator'
 
-const landscapeMobile = `@media (orientation: landscape) and (max-width: ${S.MAX_MOBILE_WIDTH}px)`
+const ContactForm = memo(forwardRef((props, ref) => {
+		const { displayedModal, setDisplayedModal } = useModalContext()
+		const { language } = useLanguageContext()
+		const [name, setName] = useState('')
+		const [email, setEmail] = useState('')
+		const [message, setMessage] = useState('')
+		const [invalidFields, setInvalidFields] = useState([])
 
-const ContactFormContainer = styled.div`
-		width: ${S.MOBILE_CONTENT_WIDTH}px;
+		useMemo(() => l.setLanguage(language), [language])
+
+		useMemo(() => {
+				if (displayedModal !== 'ContactForm') return
+				setName('')
+				setEmail('')
+				setMessage('')
+				setInvalidFields([])
+		}, [displayedModal])
+
+		const onInputChange = (inputName, value, isValid) => {
+				if (isValid && invalidFields.includes(inputName)) {
+						setInvalidFields(invalidFields.filter(field => field !== inputName))
+				}
+
+				if (!isValid && !invalidFields.includes(inputName)) {
+						setInvalidFields([...invalidFields, inputName])
+				}
+
+				switch (inputName) {
+						case 'email':
+								setEmail(value)
+								break
+						case 'message':
+								setMessage(value)
+								break
+						default:
+								setName(value)
+								break
+				}
+		}
+
+		const submitButtonIsActive = invalidFields.length === 0 && name && email && message
+
+		const onFormSubmit = e => {
+				e.preventDefault()
+				e.stopPropagation()
+
+				if (window.Email) window.Email.send({
+						SecureToken: C.EMAIL_SECURITY_KEY,
+						To: C.RECEIVING_EMAIL,
+						From: C.SENDER_EMAIL,
+						Subject: email,
+						Body: `${name} отправил(а) вам сообщение:<br /><br />${message}`
+				}).then(() => setDisplayedModal(null))
+		}
+
+		console.log('RENDER CONTACT FORM');
+
+		return (
+				<StlContactForm ref={ref}>
+						<UpperBlock>
+								<ModalHeader>
+										<Heading $styles={headingStyles} />
+										<CloseModalIcon
+												src={Ic('close', false, 'svg')}
+												alt='close'
+												onPointerDown={e => setDisplayedModal(null)} />
+								</ModalHeader>
+								<InputContainer>
+										<Input
+												value={name}
+												onChange={(value, isValid) => onInputChange('name', value, isValid)}
+												$validate={value => value?.length > 2}
+												placeholder={l.name}
+												$errorTip={l.nameIsInvalid}/>
+										<Input
+												type='email'
+												value={email}
+												onChange={(value, isValid) => onInputChange('email', value, isValid)}
+												$validate={value => EmailValidator.validate(value)}
+												placeholder={l.email}
+												$errorTip={l.emailIsInvalid} />
+								</InputContainer>
+						</UpperBlock>
+						<Textarea
+								forwardedAs='textarea'
+								value={message}
+								onChange={(value, isValid) => onInputChange('message', value, isValid)}
+								$validate={value => value?.length > 2}
+								placeholder={l.message}
+								$errorTip={l.messageIsInvalid} />
+						<FormControls>
+								<ControlButton
+										disabled={false}
+										$opacity={1}
+										onClick={e => setDisplayedModal(null)}>
+										{l.cancel}
+								</ControlButton>
+								<ControlButton
+										disabled={!submitButtonIsActive}
+										$opacity={submitButtonIsActive ? 1 : 0.5}
+										onClick={onFormSubmit}>
+										{l.submit}
+								</ControlButton>
+						</FormControls>
+				</StlContactForm>
+		)
+}))
+
+const isFlipped = C.mediaAnd([C.isMobile, C.isHorizontal, C.isShort])
+
+const StlContactForm = styled.form`
+		width: ${C.MOBILE_CONTENT_WIDTH}px;
+		opacity: 0;
+		display: none;
 		position: absolute;
-		bottom: 50%;
+		top: 50%;
 		left: 50%;
-		transform: translate(-50%, 50%);
-		background-color: ${S.MODAL_SHADOW};
+		transform: translate(-50%, -50%);
+		background-color: ${C.MODAL_SHADOW};
 		min-height: 400px;
 		height: 70%;
-		border-radius: ${S.CONTENT_AREA_BORDER_RADIUS};
-		display: none;
+		border-radius: ${C.CONTENT_AREA_BORDER_RADIUS};
+		border: none;
 		flex-direction: column;
 		align-items: center;
-		padding: ${S.CONTENT_AREA_PADDING};
-		margin: -5px -5px 0;
-		${landscapeMobile} {
+		padding: ${C.MODAL_PADDING};
+		transition: opacity 0.5s ease-in-out;
+		${isFlipped} {
 				width: 70%;
 				height: 80%;
-				min-height: 0;
-				bottom: 10%;
-				transform: translate(-50%, 0);
-				> div:first-child {
-						height: 0px;
-						padding: 0 20px;
-						> * {
-								margin-top: 20px;
-						};
-				}
+				min-height: auto;
 		};
-		form {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				width: 100%;
-				input, textarea {
-						font-family: Bitter;
-						font-size: 14px;
-						font-style: normal;
-						font-weight: 600;
-						line-height: normal;
-				};
-				${landscapeMobile} {
-						input, > p {
-								margin: 0 15px 4px 225px;
-								width: calc(100% - 225px);
-						};
-				};
-				> div {
-						height: 60px;
-				};
+		.blurred & {
+				opacity: 1;
+		};
+`
+
+const UpperBlock = styled.div`
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		${isFlipped} {
+				flex-direction: row;
 		};
 `
 
 const ModalHeader = styled.div`
-		width: 100%;
+		width: calc(100% + 20px);
+		transform: translateX(-10px);
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		margin-bottom: 20px;
-		> div:first-child {
-				width: 210px;
-				height: 85px;
-				margin-bottom: 0;
-		};
-		${landscapeMobile} {
-				padding: 20px;
-				position: absolute;
-				top: 0;
-				width: 100%;
+		${isFlipped} {
+				flex: 0;
 		};
 `
 
 const CloseModalIcon = styled.img`
 		height: 25px;
 		cursor: pointer;
-		${landscapeMobile} {
+		${isFlipped} {
 				display: none;
 		};
 `
 
-const inputStyles = css`
-		background-color: ${S.INPUT_BG_COLOR};
-		border: ${S.INPUT_BORDER};
-		border-radius: ${S.INPUT_BORDER_RADIUS};
-		width: 100%;
-		min-height: 35px;
-		margin: 3px auto;
-		color: rgba(97, 97, 97, 1);
-		padding: 0 5px;
-		outline: ${({ $isInvalid }) => $isInvalid ? '3px solid red' : 'none'};
-		color: #616161;
-		&:focus {
-				outline: 3px solid #fd8228;
-		};
-		&::placeholder {
-				color: #616161;
+const headingStyles = css`
+		width: 250px;
+		height: 96px;
+		margin-bottom: 0;
+		margin-right: 5px;
+`
+
+const InputContainer = styled.div`
+		${isFlipped} {
+				flex: 1;
 		};
 `
 
-const Input = styled.input`
-		${inputStyles};
-`
-
-const Textarea = styled.textarea`
-		${inputStyles};
+const Textarea = styled(Input)`
 		flex: 1;
-		padding: 5px;
-		resize: none;
-`
-
-const ErrorMessage = styled.p`
-		color: red;
-		height: 17px;
-		margin: 0;
-		font-size: 15px;
+		width: 100%;
+		> * {
+			resize: none;
+		};
 `
 
 const FormControls = styled.div`
 		display: flex;
 		flex-direction: row;
+		width: 100%;
 `
 
 const ControlButton = styled.button`
@@ -141,14 +210,15 @@ const ControlButton = styled.button`
 		font-size: 40px;
 		color: #fff;
 		-webkit-text-stroke: 1.5px rgb(34, 30, 31);
-		text-shadow: ${S.TEXT_OUTLINE};
+		text-shadow: ${C.TEXT_OUTLINE};
+		transition: opacity 0.3s ease-in-out;
 		&:focus {
 				outline: none;
 		};
 		&:not(:disabled) {			
 				cursor: pointer;
 		};
-		${landscapeMobile} {
+		${isFlipped} {
 				display: block;
 		};
 		&:not(:first-child) {
@@ -156,131 +226,4 @@ const ControlButton = styled.button`
 		};
 `
 
-export function ContactForm() {
-		const [name, setName] = useState('')
-		const [email, setEmail] = useState('')
-		const [message, setMessage] = useState('')
-		const [invalidFields, setInvalidFields] = useState([])
-		const { setContactForm } = useContactFormContext()
-		const { language } = useLanguageContext()
-		const [highlightName, setHighlightName] = useState(false)
-		const [highlightEmail, setHighlightEmail] = useState(false)
-		const [highlightMessage, setHighlightMessage] = useState(false)
-		const onCloseModal = e => {
-				e?.preventDefault()
-				e?.stopPropagation()
-				setContactForm(false)
-				setName('')
-				setEmail('')
-				setMessage('')
-		}
-
-		l.setLanguage(language)
-
-		const validate = (value, inputName, highlightError) => {
-				let isInvalid = false
-				const wasInvalid = invalidFields.includes(inputName)
-
-				switch (inputName) {
-						case 'email':
-								if (!EmailValidator.validate(value)) isInvalid = true
-								break
-						default:
-								if (value.length < 2) isInvalid = true
-				}
-
-				if (isInvalid) {
-						wasInvalid || setInvalidFields([...invalidFields, inputName])
-				} else {
-						wasInvalid && setInvalidFields(invalidFields.filter(field => field !== inputName))
-				}
-
-				if (highlightError) highlightError(isInvalid)
-		}
-
-		const onInputChange = (value, inputName, setValue, highlightError) => {
-				validate(value, inputName)
-				highlightError(false)
-				setValue(value)
-		}
-
-		const onInputBlur = (value, inputName, setValue, highlightError) => {
-				value = value.trim()
-				validate(value, inputName, highlightError)
-				setValue(value)
-		}
-
-		const onFormSubmit = e => {
-				e.preventDefault()
-				e.stopPropagation()
-
-				if (window.Email) window.Email.send({
-						SecureToken: '773f46eb-8c97-4e10-8cae-f4bd15432259',
-						To: 'info@sunsetroad.beer',
-						From: 'customer@sunsetroad.beer',
-						Subject: email,
-						Body: `
-								${name} отправил(а) вам сообщение:<br /><br />${message}
-						`
-				}).then(message => onCloseModal())
-		}
-
-		const submitButtonIsActive = (invalidFields.length === 0 && name && email && message)
-
-		return (
-				<ContactFormContainer id='contact-form'>
-						<ModalHeader>
-								<Heading />
-								<CloseModalIcon
-										src={Ic('close', false, 'svg')}
-										alt='close'
-										onPointerDown={onCloseModal} />
-						</ModalHeader>
-						<form>
-								<Input
-										type='text'
-										placeholder={l.name}
-										onChange={({ target: { value } }) => onInputChange(value, 'name', setName, setHighlightName)}
-										$isInvalid={highlightName}
-										onBlur={({ target: { value } }) => onInputBlur(value, 'name', setName, setHighlightName)}
-										value={name} />
-								<ErrorMessage>{highlightName && l.nameIsInvalid}</ErrorMessage>
-								<Input
-										type='text'
-										placeholder={l.email}
-										onChange={({ target: { value } }) => onInputChange(value, 'email', setEmail, setHighlightEmail)}
-										$isInvalid={highlightEmail}
-										onBlur={({ target: { value } }) => onInputBlur(value, 'email', setEmail, setHighlightEmail)}
-										value={email} />
-								<ErrorMessage>{highlightEmail && l.emailIsInvalid}</ErrorMessage>
-								<Textarea
-										placeholder={l.message}
-										onChange={({ target: { value } }) => onInputChange(value, 'message', setMessage, setHighlightMessage)}
-										$isInvalid={highlightMessage}
-										onBlur={({ target: { value } }) => onInputBlur(value, 'message', setMessage, setHighlightMessage)}
-										value={message} />
-								<div>
-										<ErrorMessage>{highlightMessage && l.messageIsInvalid}</ErrorMessage>
-										<FormControls>
-												<ControlButton
-														disabled={false}
-														$opacity={1}
-														onClick={onCloseModal}>
-														{l.cancel}
-												</ControlButton>
-												<ControlButton
-														disabled={!submitButtonIsActive}
-														$opacity={submitButtonIsActive ? 1 : 0.5}
-														onClick={onFormSubmit}>
-														{l.submit}
-												</ControlButton>
-										</FormControls>
-								</div>
-						</form>
-				</ContactFormContainer>
-		)
-}
-
-//customer: 8CD017949895C54DEBE04E9E91BA82D58E782131BB912DC89EC11B7916E6182FCCCC73AC43158947C6F03B27F1DB9E21
-//password: 685DF188C26DD176C28E28224E1D9730C90C
-//security key: 773f46eb-8c97-4e10-8cae-f4bd15432259
+export { ContactForm }
