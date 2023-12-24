@@ -13,13 +13,12 @@ const Content = memo(() => {
 		const [info, setInfo] = useState(section === 'info' ? <DesktopInfo /> : null)
 
 		useEffect(() => {
-				console.log('—“¿–Œ≈!!!');
 				if (!products) setProducts(<DesktopProducts />)
 				if (!partners) setPartners(<DesktopPartners />)
 				if (!info) setInfo(<DesktopInfo />)
 		}, [])
 
-		console.log('RENDER DESKTOP CONTENT');
+		console.log('RENDER DESKTOP CONTENT')
 
 		return (
 				<StlContent>
@@ -28,7 +27,7 @@ const Content = memo(() => {
 								<Logo src={Lo('logo', false, 'svg')} key='logo' alt='logo' />
 								<PartnersContainer>{partners}</PartnersContainer>
 								<InfoContainer>{info}</InfoContainer>
-							</Container>
+						</Container>
 				</StlContent>
 		)
 })

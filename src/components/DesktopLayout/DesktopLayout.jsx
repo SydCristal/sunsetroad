@@ -17,7 +17,7 @@ const DesktopLayout = memo(() => {
 								<Heading />
 								<ContentContainer>
 										<Content />
-										<Contacts	/>
+										<Contacts />
 								</ContentContainer>
 						</Main>
 						<DesktopFooter />

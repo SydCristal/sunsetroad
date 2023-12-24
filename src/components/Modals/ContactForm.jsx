@@ -3,11 +3,10 @@ import { useLanguageContext, useModalContext } from '../../Contexts'
 import { C, Ic } from '../../Utils'
 import { Heading, Input } from '../Common'
 import { l } from './'
-import { useState, useEffect, useMemo, forwardRef, memo } from 'react'
+import { useState, useMemo, forwardRef, memo } from 'react'
 import * as EmailValidator from 'email-validator'
 
-const ContactForm = memo(forwardRef((props, ref) => {
-		const { displayedModal, setDisplayedModal } = useModalContext()
+const ContactForm = memo(forwardRef(({ close, isVisible }, ref) => {
 		const { language } = useLanguageContext()
 		const [name, setName] = useState('')
 		const [email, setEmail] = useState('')
@@ -17,12 +16,12 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		useMemo(() => l.setLanguage(language), [language])
 
 		useMemo(() => {
-				if (displayedModal !== 'ContactForm') return
+				if (!isVisible) return
 				setName('')
 				setEmail('')
 				setMessage('')
 				setInvalidFields([])
-		}, [displayedModal])
+		}, [isVisible])
 
 		const onInputChange = (inputName, value, isValid) => {
 				if (isValid && invalidFields.includes(inputName)) {
@@ -58,10 +57,10 @@ const ContactForm = memo(forwardRef((props, ref) => {
 						From: C.SENDER_EMAIL,
 						Subject: email,
 						Body: `${name} отправил(а) вам сообщение:<br /><br />${message}`
-				}).then(() => setDisplayedModal(null))
+				}).then(close)
 		}
 
-		console.log('RENDER CONTACT FORM');
+		console.log('RENDER CONTACT FORM')
 
 		return (
 				<StlContactForm ref={ref}>
@@ -71,7 +70,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 										<CloseModalIcon
 												src={Ic('close', false, 'svg')}
 												alt='close'
-												onPointerDown={e => setDisplayedModal(null)} />
+												onPointerDown={close} />
 								</ModalHeader>
 								<InputContainer>
 										<Input
@@ -79,7 +78,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 												onChange={(value, isValid) => onInputChange('name', value, isValid)}
 												$validate={value => value?.length > 2}
 												placeholder={l.name}
-												$errorTip={l.nameIsInvalid}/>
+												$errorTip={l.nameIsInvalid} />
 										<Input
 												type='email'
 												value={email}
@@ -100,7 +99,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 								<ControlButton
 										disabled={false}
 										$opacity={1}
-										onClick={e => setDisplayedModal(null)}>
+										onClick={close}>
 										{l.cancel}
 								</ControlButton>
 								<ControlButton
@@ -215,7 +214,7 @@ const ControlButton = styled.button`
 		&:focus {
 				outline: none;
 		};
-		&:not(:disabled) {			
+		&:not(:disabled) {
 				cursor: pointer;
 		};
 		${isFlipped} {

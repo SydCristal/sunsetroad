@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Disclaimer, ContactForm, DistributorMap } from './'
 import { useModalContext, useScrollTopContext } from '../../Contexts'
-import { memo, useRef, useEffect } from 'react'
+import { memo, useRef, useEffect, useState } from 'react'
 
 const Modal = memo(({ appRef }) => {
 		const { displayedModal, setDisplayedModal } = useModalContext()
@@ -9,8 +9,16 @@ const Modal = memo(({ appRef }) => {
 		const disclaimerRef = useRef(null)
 		const contactFormRef = useRef(null)
 		const distributorMapRef = useRef(null)
+		const [contactForm, setContactForm] = useState(null)
+		const [distributorMap, setDistributorMap] = useState(null)
 		const shadowRef = useRef(null)
-		const modalRef = useRef(null)
+		const modalRef = useRef('Disclaimer')
+		const close = () => setDisplayedModal(null)
+
+		useEffect(() => {
+				setContactForm(<ContactForm ref={contactFormRef} isVisible={displayedModal === 'ContactForm'} close={close} />)
+				setDistributorMap(<DistributorMap ref={distributorMapRef} />)
+		}, [])
 
 		const onShadowClick = ({ target }) => {
 				if (target !== shadowRef.current || !displayedModal || displayedModal === 'Disclaimer') return
@@ -25,38 +33,26 @@ const Modal = memo(({ appRef }) => {
 
 				if (!shadowEl || displayedModal === modalRef.current) return
 
+				let targetModal = displayedModal || modalRef.current
+
+				switch (targetModal) {
+						case 'ContactForm':
+								targetModal = contactFormRef.current
+								break
+						case 'DistributorMap':
+								targetModal = distributorMapRef.current
+								break
+						default:
+								targetModal = disclaimerRef.current
+				}
+
 				if (displayedModal) {
 						modalRef.current = displayedModal
-						let targetModal
-
-						switch (displayedModal) {
-								case 'ContactForm':
-										targetModal = contactFormRef.current
-										break
-								case 'DistributorMap':
-										targetModal = distributorMapRef.current
-										break
-								default:
-										targetModal = disclaimerRef.current
-						}
-
 						targetModal.style.display = 'flex'
 						shadowEl.style.transform = `translateY(${scrollTop}px)`
 						shadowEl.style.height = '100vh'
 						setTimeout(() => appRef.current.classList.add('blurred'), 1)
 				} else {
-						let targetModal
-						switch (modalRef.current) {
-								case 'ContactForm':
-										targetModal = contactFormRef.current
-										break
-								case 'DistributorMap':
-										targetModal = distributorMapRef.current
-										break
-								default:
-										targetModal = disclaimerRef.current
-						}
-
 						modalRef.current = null
 						appRef.current.classList.remove('blurred')
 						setTimeout(() => {
@@ -73,13 +69,16 @@ const Modal = memo(({ appRef }) => {
 				<StlModal
 						ref={shadowRef}
 						onPointerDown={onShadowClick}>
-						<Disclaimer ref={disclaimerRef} />
-						<ContactForm ref={contactFormRef} />
-						<DistributorMap ref={distributorMapRef} />
+						<Disclaimer ref={disclaimerRef} close={close} />
+						{contactForm}
+						{distributorMap}
 				</StlModal>
 		)
 })
 
+//< Disclaimer ref = { disclaimerRef } />
+//				<ContactForm ref={contactFormRef} />
+//				<DistributorMap ref={distributorMapRef} />
 const StlModal = styled.div`
 		position: fixed;
 		z-index: 6;

@@ -9,7 +9,7 @@ const Contacts = () => {
 		const { language } = useLanguageContext()
 		useMemo(() => l.setLanguage(language), [language])
 
-		console.log('RENDER DESKTOP CONTACTS');
+		console.log('RENDER DESKTOP CONTACTS')
 
 		return (
 				<StlContacts>

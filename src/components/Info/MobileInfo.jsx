@@ -10,7 +10,7 @@ const MobileInfo = () => {
 		useMemo(() => l.setLanguage(language), [language])
 
 		return (
-				<StlMobileInfo>	
+				<StlMobileInfo>
 						<Text>{l.text}</Text>
 						<DistributorMapTrigger
 								device='mobile'>

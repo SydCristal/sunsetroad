@@ -32,7 +32,7 @@ const Carousel = memo(({ dataSet, content, className }) => {
 		const defaultShiftChild = (j, direction, shiftX) => {
 				const nextI = (total + j - direction) % total
 				const opacity = (j && nextI && direction) ? 0 : 1
-				const coef = (nextI !== total - 1) ? nextI : -1 
+				const coef = (nextI !== total - 1) ? nextI : -1
 				return {
 						transform: `translateX(${coef * shiftX}px)`,
 						opacity,
@@ -84,7 +84,7 @@ const Carousel = memo(({ dataSet, content, className }) => {
 		const onSwipeMove = e => {
 				if (disabledRef.current) return
 				const { changedTouches } = e
-				const { startX, offsetLeft, containerWidh } = swipeStartRef.current 
+				const { startX, offsetLeft, containerWidh } = swipeStartRef.current
 				const swipeX = changedTouches[0].clientX - offsetLeft
 				if (swipeX <= 0) return
 				if (swipeX >= containerWidh) return
@@ -110,7 +110,7 @@ const Carousel = memo(({ dataSet, content, className }) => {
 				rotateCarousel(direction)
 		}
 
-		console.log('RENDER CAROUSEL');
+		console.log('RENDER CAROUSEL')
 
 		return (
 				<StlCarousel className={className}>

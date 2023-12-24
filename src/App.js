@@ -16,13 +16,12 @@ const App = () => {
 		const desktopLayoutRef = useRef(isDesktop ? <DesktopLayout /> : null)
 		const mobileLayoutRef = useRef(isDesktop ? null : <MobileLayout />)
 
-		console.log('RENDER APP');
+		console.log('RENDER APP')
 
 		useEffect(() => {
 				appRef.current?.scrollTo(0, 0)
 
-					const onScroll = ({ target }) => {
-						appRef.current.dataset.scrollTop = target.scrollTop
+				const onScroll = ({ target }) => {
 						setScrollTop(target.scrollTop)
 				}
 
@@ -32,7 +31,7 @@ const App = () => {
 						const isCurrentlyDesktop = clientWidth > C.MAX_MOBILE_WIDTH
 						setScreenWidth(clientWidth)
 
-						console.log('ON RESIZE');
+						console.log('ON RESIZE')
 
 						if (isCurrentlyDesktop) {
 								appRef.current.scrollTo(0, 0)
@@ -65,10 +64,10 @@ const App = () => {
 				</StlApp>
 		)
 }
-	
+
 const StlApp = styled.div`
 		height: 100vh;
-		overflow-y: scroll;
+		overflow-y: auto;
 		overflow-x: hidden;
 		perspective: 2px;
 		width: 100%;

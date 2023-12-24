@@ -18,7 +18,7 @@ const MobileProducts = () => {
 								flexDirection: 'row',
 								justifyContent: 'center',
 						},
-						bottleProps: [ {
+						bottleProps: [{
 								rotate: 0,
 								scale: 1,
 								translateX: 0,
@@ -60,6 +60,5 @@ const StlMobileProducts = styled.section`
 				flex-direction: column-reverse;
 		}
 `
-
 
 export { MobileProducts }

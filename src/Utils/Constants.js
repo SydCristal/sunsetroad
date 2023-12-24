@@ -29,6 +29,7 @@ export const mediaOr = arr => `@media ${arr.map(m => m.slice(7)).join(', ')}`
 export const mediaAnd = arr => `@media ${arr.map(m => m.slice(7)).join(' and ')}`
 export const sections = ['products', 'partners', 'info']
 
+export const GOOGLE_API_KEY = 'AIzaSyDKm6e9ZygDCRxtlvOKAShtM6Qie7KhKUQ'
 export const GOOGLE_MAPS_API_KEY = 'AIzaSyBxT3wp37bKCxRFDvAh0S3ecUOyynfEWQM'
 export const EMAIL_SECURITY_KEY = '773f46eb-8c97-4e10-8cae-f4bd15432259'
 export const RECEIVING_EMAIL = 'info@sunsetroad.beer'

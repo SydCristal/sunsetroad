@@ -43,7 +43,7 @@ const DesktopProducts = memo(() => {
 				}
 		}
 
-		console.log('RENDER DESKTOP PRODUCTS');
+		console.log('RENDER DESKTOP PRODUCTS')
 
 		return <ProductCarousel {...carouselProps} />
 })

@@ -1,42 +1,74 @@
 import styled from 'styled-components'
-import { useModalContext, useLanguageContext } from '../../Contexts'
-import { forwardRef, useMemo, useState, memo } from 'react'
-import { C } from '../../Utils'
-import { Loader	} from '@googlemaps/js-api-loader'
+import { useLanguageContext } from '../../Contexts'
+import { forwardRef, useEffect, useState, memo, useMemo } from 'react'
+import { C, Ic } from '../../Utils'
+import { Loader } from '@googlemaps/js-api-loader'
+import distributors from './distributors.json'
 
 const DistributorMap = memo(forwardRef((props, ref) => {
-		const { displayedModal } = useModalContext()
 		const { language } = useLanguageContext()
 		const [map, setMap] = useState(null)
-		const center = { lat: -8.502865, lng: 115.2053773 }
-		const zoom = 10.83
-		//const mapContainerRef = useRef(null)
+		const center = { lat: -8.662793, lng: 115.184232 }
+		const zoom = 11
 		const loader = new Loader({
-				apiKey: 'AIzaSyBxT3wp37bKCxRFDvAh0S3ecUOyynfEWQM',
-				version: 'weekly'
+				apiKey: C.GOOGLE_MAPS_API_KEY,
+				version: 'beta',
+				libraries: ['places', 'marker']
 		})
+		distributors.sort((a, b) => a.location.lat < b.location.lat)
 
-		console.log('RENDER DISTRIBUTOR MODAL');
+		useEffect(() => {
+				console.log('FETCHING GOOGLE MAP')
+				loader.load().then((google) => {
+						const { maps: { Map, InfoWindow, marker: { AdvancedMarkerElement, PinElement }}} = google
+						const map = new Map(ref.current, {
+								center,
+								zoom,
+								mapId: '2229b22e8f947ffa',
+								disableDefaultUI: true
+						})
 
-		useMemo(() => {
-				console.log('Zorg!')
-				if (!ref?.current) return
-				console.log('Bleurge!!!');
+						const infoWindow = new InfoWindow()
+						infoWindow.setContent(`<div id='info-window-child' />`)
 
-				loader.load().then(google => {
-						setMap(new google.maps.Map(ref.current, {
-								center, zoom
-						}))
+						distributors.map(distributor => {
+								const markerImg = document.createElement('img')
+								markerImg.src = Ic('marker', false, 'svg')
+								markerImg.alt = 'marker'
+
+								const marker = new AdvancedMarkerElement({
+										map,
+										content: markerImg,
+										title: distributor.displayName,
+										position: distributor.location
+								})
+
+								//const info = 
+
+								marker.addListener("click", ({ domEvent, latLng }) => {
+										console.log(distributor);
+										const { target } = domEvent
+
+										infoWindow.close()
+										infoWindow.setContent(marker.title)
+										infoWindow.open(marker.map, marker)
+										console.log(infoWindow);
+								})
+						})
+
+						setMap(map)
 				})
-				//const { Map } = await google.maps.importLibrary('maps')
-				//const { AdvancedMarkerElement } = await google.maps.importLibrary('marker')
-				//const map = new 
+		}, [])
 
-		}, [ref?.current])
+		useEffect(() => {
+				const iw = document.getElementById('info-window-child')
+				console.log(iw)
+		}, [map])
+
+		console.log('RENDER DISTRIBUTOR MODAL')
 
 		return (
-				<StlDistributorMap ref={ref}>
-				</StlDistributorMap>
+				<StlDistributorMap ref={ref} />
 		)
 }))
 
@@ -57,6 +89,34 @@ const StlDistributorMap = styled.div`
 		.blurred & {
 				opacity: 1;
 		};
+		> div {
+				background-color: ${C.MODAL_SHADOW} !important;
+				.gm-style > :last-child {
+						display: none;
+				};
+				.gm-style-iw-t > * {
+						&:first-child {
+								background-color: rgba(0, 0, 0, 0.7) !important;
+								span {
+										background-color: white !important;
+								};
+						};
+						&:last-child::after {
+								background: rgba(0, 0, 0, 0.6) !important;
+								transform: translateY(1px) !important;
+						};
+				};
+				img[src*='sunsetroad'] {
+						width: 25px !important;
+						height: 25px !important;
+				};
+		};
+`
+
+const MarkerIcon = styled.div`
+		width: 18px;
+		height: 18px;
+		background: ${Ic('marker', true, 'svg')} center center / contain no-repeat;
 `
 
 export { DistributorMap }

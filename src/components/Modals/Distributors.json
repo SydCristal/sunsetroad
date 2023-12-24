@@ -1,2030 +1,439 @@
-{
-		"distributors": [
-				{
-						"address_components": [
-								{
-										"long_name": "No. 20",
-										"short_name": "No. 20",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Kartika Plaza",
-										"short_name": "Jl. Kartika Plaza",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Kuta",
-										"short_name": "Kuta",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta",
-										"short_name": "Kec. Kuta",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Kartika Plaza No.20, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.7370299,
-										"lng": 115.1670756
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.738336930291503,
-										"west": 115.1657543197085,
-										"north": -8.735638969708498,
-										"east": 115.1684522802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJ2Tq1Cx9E0i0RDDE7WmH2P8k",
-						"plus_code": {
-								"compound_code": "7578+5R Kuta, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q7578+5R"
-						},
-						"types": [
-								"establishment",
-								"lodging",
-								"point_of_interest"
-						]
+[
+		{
+				"id": "ChIJA7G3YDtH0i0RZ4_jF5kb8WY",
+				"location": {
+						"lat": -8.654846199999998,
+						"lng": 115.1518152
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Ubud",
-										"short_name": "Ubud",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Ubud",
-										"short_name": "Kecamatan Ubud",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Gianyar",
-										"short_name": "Kabupaten Gianyar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80571",
-										"short_name": "80571",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jalan Raya Pengosekan (Hanoman) No.22X, Ubud, Gianyar, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.5194391,
-										"lng": 115.2636971
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.5207427302915,
-										"west": 115.2622825197085,
-										"north": -8.518044769708498,
-										"east": 115.2649804802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJM1WLnnM90i0RvvipdKXcAqU",
-						"plus_code": {
-								"compound_code": "F7J7+6F Ubud, Gianyar Regency, Bali, Indonesia",
-								"global_code": "6P3QF7J7+6F"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "Liga.Tennis Padel @Umalas",
+				"formattedAddress": "85W2+2P6, Jl. Bumbak Dauh, Kerobokan, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"7:00 AM – 10:00 PM",
+						"7:00 AM – 10:00 PM",
+						"7:00 AM – 10:00 PM",
+						"7:00 AM – 10:00 PM",
+						"7:00 AM – 10:00 PM",
+						"7:00 AM – 10:00 PM",
+						"7:00 AM – 10:00 PM"
+				]
+		},
+		{
+				"id": "ChIJ-2owK5Q50i0RjSmJUb2SWgM",
+				"location": {
+						"lat": -8.6624692,
+						"lng": 115.1478448
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No.78",
-										"short_name": "No.78",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Pantai Pererenan",
-										"short_name": "Jl. Pantai Pererenan",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Pererenan",
-										"short_name": "Pererenan",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Mengwi",
-										"short_name": "Kec. Mengwi",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80351",
-										"short_name": "80351",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Pantai Pererenan No.78, Pererenan, Kec. Mengwi, Kabupaten Badung, Bali 80351, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.642302299999999,
-										"lng": 115.1293749
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.643647130291502,
-										"west": 115.1280189697085,
-										"north": -8.640949169708497,
-										"east": 115.1307169302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJO9O2ckM50i0RkCDgkI1cI_I",
-						"plus_code": {
-								"compound_code": "945H+3P Pererenan, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q945H+3P"
-						},
-						"types": [
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "FINNS Recreation Club",
+				"formattedAddress": "Jl. Pantai Berawa No.15, Canggu, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.2,
+				"openingHours": [
+						"6:00 AM – 9:00 PM",
+						"6:00 AM – 9:00 PM",
+						"6:00 AM – 9:00 PM",
+						"6:00 AM – 9:00 PM",
+						"6:00 AM – 9:00 PM",
+						"6:00 AM – 9:00 PM",
+						"6:00 AM – 9:00 PM"
+				]
+		},
+		{
+				"id": "ChIJzzE0rV9F0i0RKeZjVicxuE4",
+				"location": {
+						"lat": -8.7861459,
+						"lng": 115.187602
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No.3",
-										"short_name": "No.3",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Munduk Catu",
-										"short_name": "Jl. Munduk Catu",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Canggu",
-										"short_name": "Canggu",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Munduk Catu No.3, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.653127,
-										"lng": 115.1309695
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.654456730291502,
-										"west": 115.1295810197085,
-										"north": -8.651758769708497,
-										"east": 115.1322789802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJ4ZiWoeM50i0RoHmfSiOSVbk",
-						"plus_code": {
-								"compound_code": "84WJ+P9 Canggu, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q84WJ+P9"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"point_of_interest"
-						]
-				}
-				{
-						"address_components": [
-								{
-										"long_name": "85W2+2P6",
-										"short_name": "85W2+2P6",
-										"types": [
-												"plus_code"
-										]
-								},
-								{
-										"long_name": "Jalan Bumbak Dauh",
-										"short_name": "Jl. Bumbak Dauh",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Kerobokan",
-										"short_name": "Kerobokan",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "85W2+2P6, Jl. Bumbak Dauh, Kerobokan, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6548462,
-										"lng": 115.1518152
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.656201530291503,
-										"west": 115.1505672197085,
-										"north": -8.653503569708498,
-										"east": 115.1532651802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJA7G3YDtH0i0RZ4_jF5kb8WY",
-						"types": [
-								"establishment",
-								"point_of_interest"
-						]
+				"displayName": "Sushi Shop Jimbaran",
+				"formattedAddress": "Jl. Danau Batur Raya No.6, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.1,
+				"openingHours": [
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours"
+				]
+		},
+		{
+				"id": "ChIJq35d_nBH0i0RPT4mhD9owZk",
+				"location": {
+						"lat": -8.657159199999999,
+						"lng": 115.1346973
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "no 63",
-										"short_name": "no 63",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Labuansait",
-										"short_name": "Jl. Labuansait",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Pecatu",
-										"short_name": "Pecatu",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Selatan",
-										"short_name": "Kec. Kuta Sel.",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80364",
-										"short_name": "80364",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Labuansait No.63, Pecatu, Kec. Kuta Sel., Kabupaten Badung, Bali 80364, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.8139965,
-										"lng": 115.1106841
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.815260530291502,
-										"west": 115.1093007697085,
-										"north": -8.812562569708499,
-										"east": 115.1119987302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJ-8wt4RdF0i0RygR5_pniRHw",
-						"plus_code": {
-								"compound_code": "54P6+C7 Pecatu, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q54P6+C7"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "ACCENT gastro bistro",
+				"formattedAddress": "Jl. Nelayan No.34, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.7,
+				"openingHours": [
+						"8:00 AM – 11:00 PM",
+						"8:00 AM – 11:00 PM",
+						"8:00 AM – 11:00 PM",
+						"8:00 AM – 11:00 PM",
+						"8:00 AM – 11:00 PM",
+						"8:00 AM – 11:00 PM",
+						"8:00 AM – 11:00 PM"
+				]
+		},
+		{
+				"id": "ChIJ4ZiWoeM50i0RoHmfSiOSVbk",
+				"location": {
+						"lat": -8.653127,
+						"lng": 115.1309695
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No.38",
-										"short_name": "No.38",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Batu Belig",
-										"short_name": "Jl. Batu Belig",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Kerobokan Kelod",
-										"short_name": "Kerobokan Kelod",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Batu Belig No.38, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6728005,
-										"lng": 115.151829
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.674211880291502,
-										"west": 115.1504822197085,
-										"north": -8.671513919708497,
-										"east": 115.1531801802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJQzwvTf5H0i0RwI9gcUzjjQQ",
-						"plus_code": {
-								"compound_code": "85G2+VP Kerobokan Kelod, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q85G2+VP"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "Baliwood",
+				"formattedAddress": "Jl. Munduk Catu No.3, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"4:00 PM – 1:00 AM",
+						"4:00 PM – 1:00 AM",
+						"4:00 PM – 1:00 AM",
+						"4:00 PM – 1:00 AM",
+						"4:00 PM – 1:00 AM",
+						"4:00 PM – 1:00 AM",
+						"4:00 PM – 1:00 AM"
+				]
+		},
+		{
+				"id": "ChIJzzE0rV9F0i0RKeZjVicxuE4",
+				"location": {
+						"lat": -8.7861459,
+						"lng": 115.187602
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Jalan Pengubengan Kauh",
-										"short_name": "Jl. Pengubengan Kauh",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Kerobokan Kelod",
-										"short_name": "Kerobokan Kelod",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "denpasar",
-										"short_name": "denpasar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Pengubengan Kauh, Kerobokan Kelod, Kec. Kuta Utara, denpasar, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.662961899999999,
-										"lng": 115.1689444
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.6643529802915,
-										"west": 115.1675837697085,
-										"north": -8.661655019708496,
-										"east": 115.1702817302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJHYDSLj9H0i0R75_OWxc2XBo",
-						"plus_code": {
-								"compound_code": "85P9+RH Kerobokan Kelod, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q85P9+RH"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "Sushi Shop Jimbaran",
+				"formattedAddress": "Jl. Danau Batur Raya No.6, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.1,
+				"openingHours": [
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours"
+				]
+		},
+		{
+				"id": "ChIJQzwvTf5H0i0RwI9gcUzjjQQ",
+				"location": {
+						"lat": -8.6728005,
+						"lng": 115.151829
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No. 95",
-										"short_name": "No. 95",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Raya Andong",
-										"short_name": "Jl. Raya Andong",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Petulu",
-										"short_name": "Petulu",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Ubud",
-										"short_name": "Kecamatan Ubud",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Gianyar",
-										"short_name": "Kabupaten Gianyar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80571",
-										"short_name": "80571",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Raya Andong No.95, Petulu, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.500383,
-										"lng": 115.2724704
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.5017395802915,
-										"west": 115.2711775697085,
-										"north": -8.499041619708496,
-										"east": 115.2738755302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJJ4sVQEM90i0RX6_vE45sOSE",
-						"plus_code": {
-								"compound_code": "F7XC+RX Petulu, Gianyar Regency, Bali, Indonesia",
-								"global_code": "6P3QF7XC+RX"
-						},
-						"types": [
-								"bar",
-								"cafe",
-								"establishment",
-								"food",
-								"meal_takeaway",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "HOOKAH IZZI BAR & SHISHA LOUNGE RESTAURANT",
+				"formattedAddress": "Jl. Batu Belig No.38, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"5:30 PM – 2:30 AM",
+						"5:30 PM – 2:30 AM",
+						"5:30 PM – 2:30 AM",
+						"5:30 PM – 2:30 AM",
+						"5:30 PM – 2:30 AM",
+						"5:30 PM – 2:30 AM",
+						"5:30 PM – 2:30 AM"
+				]
+		},
+		{
+				"id": "ChIJn-Pt1DxB0i0RsQVw5Vp3HPQ",
+				"location": {
+						"lat": -8.693702000000002,
+						"lng": 115.2635334
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No.16b",
-										"short_name": "No.16b",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Gang Jalak",
-										"short_name": "Gg. Jalak",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Tibubeneng",
-										"short_name": "Tibubeneng",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Gg. Jalak No.16b, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6531107,
-										"lng": 115.1428973
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.654459280291503,
-										"west": 115.1415470697085,
-										"north": -8.651761319708498,
-										"east": 115.1442450302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJn7sqzaM50i0R5e39JkdUGXM",
-						"plus_code": {
-								"compound_code": "84WV+Q5 Tibubeneng, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q84WV+Q5"
-						},
-						"types": [
-								"cafe",
-								"establishment",
-								"food",
-								"point_of_interest"
-						]
+				"displayName": "Lola's - Tap Craft Beer Bar",
+				"formattedAddress": "Jl. Danau Tamblingan No.148, Sanur, Denpasar Selatan, Kota Denpasar, Bali 80228, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"2:00 – 11:00 PM",
+						"1:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 1:00 AM",
+						"1:00 PM – 1:00 AM",
+						"1:00 PM – 12:00 AM"
+				]
+		},
+		{
+				"id": "ChIJR-Yc08dH0i0RMqXjBMhUZFY",
+				"location": {
+						"lat": -8.6865258,
+						"lng": 115.164843
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "34",
-										"short_name": "34",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Nelayan",
-										"short_name": "Jl. Nelayan",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Canggu",
-										"short_name": "Canggu",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Nelayan No.34, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.657159199999999,
-										"lng": 115.1346973
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.658502630291501,
-										"west": 115.1333335197085,
-										"north": -8.655804669708498,
-										"east": 115.1360314802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJq35d_nBH0i0RPT4mhD9owZk",
-						"plus_code": {
-								"compound_code": "84VM+4V Canggu, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q84VM+4V"
-						},
-						"types": [
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "CRAYFISH Seafood&Bar Seminyak",
+				"formattedAddress": "Jl. Drupadi No.2000, Seminyak, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM",
+						"1:00 PM – 12:00 AM"
+				]
+		},
+		{
+				"id": "ChIJLwHMoCBB0i0RCBwTAiYTMdQ",
+				"location": {
+						"lat": -8.6881506,
+						"lng": 115.2583372
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Jalan Pantai Batu Mejan",
-										"short_name": "Jl. Pantai Batu Mejan",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Canggu",
-										"short_name": "Canggu",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80351",
-										"short_name": "80351",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Pantai Batu Mejan, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80351, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.652430599999999,
-										"lng": 115.1307766
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.653795680291502,
-										"west": 115.1294581197085,
-										"north": -8.651097719708497,
-										"east": 115.1321560802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJf_dTwXk40i0R4f3nJ34ReEo",
-						"plus_code": {
-								"compound_code": "84XJ+28 Canggu, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q84XJ+28"
-						},
-						"types": [
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "Liga.Tennis Padel @Sanur",
+				"formattedAddress": "Jl. Bypass Ngurah Rai No.314 Studio 1, Sanur, Denpasar Selatan, Kota Denpasar, Bali 80228, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"7:00 AM – 9:00 PM",
+						"7:00 AM – 9:00 PM",
+						"7:00 AM – 9:00 PM",
+						"7:00 AM – 9:00 PM",
+						"7:00 AM – 9:00 PM",
+						"7:00 AM – 9:00 PM",
+						"7:00 AM – 9:00 PM"
+				]
+		},
+		{
+				"id": "ChIJHYDSLj9H0i0R75_OWxc2XBo",
+				"location": {
+						"lat": -8.662961899999999,
+						"lng": 115.1689444
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No. 110",
-										"short_name": "No. 110",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Raya Babakan Canggu",
-										"short_name": "Jl. Raya Babakan Canggu",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Canggu",
-										"short_name": "Canggu",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Raya Babakan Canggu No.110, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.622782299999999,
-										"lng": 115.1543125
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.624123680291502,
-										"west": 115.1529477197085,
-										"north": -8.6214257197085,
-										"east": 115.1556456802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJB-Rt7VxH0i0RSDuCzp9PwoM",
-						"plus_code": {
-								"compound_code": "95G3+VP Canggu, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q95G3+VP"
-						},
-						"types": [
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "South+East Brewing Co.",
+				"formattedAddress": "Jl. Pengubengan Kauh, Kerobokan Kelod, Kec. Kuta Utara, denpasar, Bali 80361, Indonesia",
+				"rating": 4.6,
+				"openingHours": [
+						"12:00 PM – 12:00 AM",
+						"12:00 PM – 12:00 AM",
+						"12:00 PM – 12:00 AM",
+						"12:00 PM – 12:00 AM",
+						"12:00 PM – 12:00 AM",
+						"12:00 PM – 12:00 AM",
+						"12:00 PM – 12:00 AM"
+				]
+		},
+		{
+				"id": "ChIJf_dTwXk40i0R4f3nJ34ReEo",
+				"location": {
+						"lat": -8.652430599999999,
+						"lng": 115.1307766
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "75QH+MP",
-										"short_name": "75QH+MP",
-										"types": [
-												"plus_code"
-										]
-								},
-								{
-										"long_name": "Kuta",
-										"short_name": "Kuta",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Badung Regency",
-										"short_name": "Badung Regency",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								}
-						],
-						"formatted_address": "75QH+MP, Kuta, Badung Regency, Bali, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.7108125,
-										"lng": 115.1793125
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.7121614802915,
-										"west": 115.1779635197085,
-										"north": -8.709463519708496,
-										"east": 115.1806614802915
-								}
-						},
-						"place_id": "Ei43NVFIK01QLCBLdXRhLCBCYWR1bmcgUmVnZW5jeSwgQmFsaSwgSW5kb25lc2lhIiY6JAoKDePVzvoV5femRBAKGhQKEgnT-9aGpEbSLRFt4qP6OZiDhA",
-						"plus_code": {
-								"compound_code": "75QH+MP Kuta, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q75QH+MP"
-						},
-						"types": [
-								"street_address"
-						]
+				"displayName": "Pizza Fabbrica Canggu",
+				"formattedAddress": "Jl. Pantai Batu Mejan, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80351, Indonesia",
+				"rating": 4.6,
+				"openingHours": [
+						"10:00 AM – 11:45 PM",
+						"10:00 AM – 11:45 PM",
+						"10:00 AM – 11:45 PM",
+						"10:00 AM – 11:45 PM",
+						"10:00 AM – 11:45 PM",
+						"10:00 AM – 11:45 PM",
+						"10:00 AM – 11:45 PM"
+				]
+		},
+		{
+				"id": "ChIJYZoDy4490i0RqQBo3uGSmTs",
+				"location": {
+						"lat": -8.5133792,
+						"lng": 115.2643138
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Tibubeneng",
-										"short_name": "Tibubeneng",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kuta Utara",
-										"short_name": "Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Badung Regency",
-										"short_name": "Badung Regency",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Tibubeneng, Kuta Utara, Badung Regency, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6495041,
-										"lng": 115.1460156
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.650829280291502,
-										"west": 115.1446927197085,
-										"north": -8.648131319708497,
-										"east": 115.1473906802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJdYIkyzI50i0R9aQEkzc-zAA",
-						"plus_code": {
-								"compound_code": "942W+5C Tibubeneng, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q942W+5C"
-						},
-						"types": [
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "Anything Brew",
+				"formattedAddress": "Jalan Bimauka, Ubud, Kec. Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"11:00 AM – 10:00 PM",
+						"11:00 AM – 10:00 PM",
+						"11:00 AM – 10:00 PM",
+						"11:00 AM – 10:00 PM",
+						"11:00 AM – 10:00 PM",
+						"11:00 AM – 10:00 PM",
+						"11:00 AM – 10:00 PM"
+				]
+		},
+		{
+				"id": "ChIJO9O2ckM50i0RkCDgkI1cI_I",
+				"location": {
+						"lat": -8.642302299999999,
+						"lng": 115.1293749
 				},
-				{
-						"address_components:": [
-								{
-										"long_name": "No.6",
-										"short_name": "No.6",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Danau Batur Raya",
-										"short_name": "Jl. Danau Batur Raya",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Jimbaran",
-										"short_name": "Jimbaran",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Selatan",
-										"short_name": "Kec. Kuta Sel.",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Danau Batur Raya No.6, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.7861459,
-										"lng": 115.187602
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.787394530291502,
-										"west": 115.1863206697085,
-										"north": -8.784696569708498,
-										"east": 115.1890186302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJzzE0rV9F0i0RKeZjVicxuE4",
-						"plus_code": {
-								"compound_code": "657Q+G2 Jimbaran, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q657Q+G2"
-						},
-						"types": [
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "DRANIKI",
+				"formattedAddress": "Jl. Pantai Pererenan No.78, Pererenan, Kec. Mengwi, Kabupaten Badung, Bali 80351, Indonesia",
+				"rating": 4.7,
+				"openingHours": [
+						"9:00 AM – 9:00 PM",
+						"9:00 AM – 9:00 PM",
+						"9:00 AM – 9:00 PM",
+						"9:00 AM – 9:00 PM",
+						"9:00 AM – 9:00 PM",
+						"9:00 AM – 9:00 PM",
+						"9:00 AM – 9:00 PM"
+				]
+		},
+		{
+				"id": "ChIJn7sqzaM50i0R5e39JkdUGXM",
+				"location": {
+						"lat": -8.6531107,
+						"lng": 115.1428973
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Jalan Subak Sari",
-										"short_name": "Jl. Subak Sari",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Tibubeneng",
-										"short_name": "Tibubeneng",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Subak Sari, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6644747,
-										"lng": 115.1477647
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.665861230291503,
-										"west": 115.1464364697085,
-										"north": -8.663163269708498,
-										"east": 115.1491344302915
-								}
-						},
-						"place_id": "ChIJ18UUrFtH0i0RivdULgaSHX0",
-						"plus_code": {
-								"compound_code": "84PX+64 Tibubeneng, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q84PX+64"
-						},
-						"types": [
-								"bakery",
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant",
-								"store"
-						]
+				"displayName": "Eat Me! Canggu",
+				"formattedAddress": "Gg. Jalak No.16b, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": "4.6",
+				"openingHours": [
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM"
+				]
+		},
+		{
+				"id": "ChIJ18UUrFtH0i0RivdULgaSHX0",
+				"location": {
+						"lat": -8.6644747,
+						"lng": 115.1477647
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "148",
-										"short_name": "148",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Danau Tamblingan",
-										"short_name": "Jl. Danau Tamblingan",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Sanur",
-										"short_name": "Sanur",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Denpasar Selatan",
-										"short_name": "Kec. Denpasar Sel.",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kota Denpasar",
-										"short_name": "Kota Denpasar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80228",
-										"short_name": "80228",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Danau Tamblingan No.148, Sanur, Denpasar Selatan, Kota Denpasar, Bali 80228, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.693702000000002,
-										"lng": 115.2635334
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.695044680291504,
-										"west": 115.2622363197085,
-										"north": -8.6923467197085,
-										"east": 115.2649342802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJn-Pt1DxB0i0RsQVw5Vp3HPQ",
-						"plus_code": {
-								"compound_code": "8747+GC Sanur, Denpasar City, Bali, Indonesia",
-								"global_code": "6P3Q8747+GC"
-						},
-						"types": [
-								"establishment",
-								"liquor_store",
-								"point_of_interest",
-								"store"
-						]
+				"displayName": "HUBBLE",
+				"formattedAddress": "Jl. Subak Sari, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.8,
+				"openingHours": [
+						"9:00 AM – 2:00 AM",
+						"9:00 AM – 2:00 AM",
+						"9:00 AM – 2:00 AM",
+						"9:00 AM – 2:00 AM",
+						"9:00 AM – 2:00 AM",
+						"9:00 AM – 2:00 AM",
+						"9:00 AM – 2:00 AM"
+				]
+		},
+		{
+				"id": "ChIJ2Tq1Cx9E0i0RDDE7WmH2P8k",
+				"location": {
+						"lat": -8.7370299,
+						"lng": 115.1670756
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Jalan Bimauka",
-										"short_name": "Jalan Bimauka",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Ubud",
-										"short_name": "Ubud",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Gianyar",
-										"short_name": "Kec. Gianyar",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Gianyar",
-										"short_name": "Kabupaten Gianyar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80571",
-										"short_name": "80571",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jalan Bimauka, Ubud, Kec. Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.5133792,
-										"lng": 115.2643138
-								},
-								"location_type": "GEOMETRIC_CENTER",
-								"viewport": {
-										"south": -8.514724730291503,
-										"west": 115.2629656197085,
-										"north": -8.512026769708498,
-										"east": 115.2656635802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJYZoDy4490i0RqQBo3uGSmTs",
-						"plus_code": {
-								"compound_code": "F7P7+JP Ubud, Gianyar Regency, Bali, Indonesia",
-								"global_code": "6P3QF7P7+JP"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "Stark Boutique Hotel & Spa",
+				"formattedAddress": "Jl. Kartika Plaza No.20, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.2,
+				"openingHours": [
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours"
+				]
+		},
+		{
+				"id": "ChIJEzNCqxQ90i0R4tw-0wrRUy4",
+				"location": {
+						"lat": -8.5063213,
+						"lng": 115.2626185
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "No. 15",
-										"short_name": "No. 15",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Pantai Berawa",
-										"short_name": "Jl. Pantai Berawa",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Canggu",
-										"short_name": "Canggu",
-										"types": [
-												"administrative_area_level_5",
-												"political"
-										]
-								},
-								{
-										"long_name": "Tibubeneng",
-										"short_name": "Tibubeneng",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta Utara",
-										"short_name": "Kec. Kuta Utara",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Pantai Berawa No.15, Canggu, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6624692,
-										"lng": 115.1478448
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.663886330291502,
-										"west": 115.1464887197085,
-										"north": -8.661188369708498,
-										"east": 115.1491866802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJ-2owK5Q50i0RjSmJUb2SWgM",
-						"plus_code": {
-								"compound_code": "84QX+24 Tibubeneng, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q84QX+24"
-						},
-						"types": [
-								"amusement_park",
-								"establishment",
-								"point_of_interest"
-						]
+				"displayName": "Eat Me! Ubud",
+				"formattedAddress": "Jl. Suweta No.110, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+				"rating": 4.5,
+				"openingHours": [
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM",
+						"12:00 PM – 4:00 AM"
+				]
+		},
+		{
+				"id": "ChIJ-8wt4RdF0i0RygR5_pniRHw",
+				"location": {
+						"lat": -8.813996499999998,
+						"lng": 115.1106841
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "2000",
-										"short_name": "2000",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Drupadi",
-										"short_name": "Jl. Drupadi",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Seminyak",
-										"short_name": "Seminyak",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Kuta",
-										"short_name": "Kec. Kuta",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Badung",
-										"short_name": "Kabupaten Badung",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80361",
-										"short_name": "80361",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Drupadi No.2000, Seminyak, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6865258,
-										"lng": 115.164843
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.687874980291504,
-										"west": 115.1635518197085,
-										"north": -8.6851770197085,
-										"east": 115.1662497802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJR-Yc08dH0i0RMqXjBMhUZFY",
-						"plus_code": {
-								"compound_code": "8577+9W Seminyak, Badung Regency, Bali, Indonesia",
-								"global_code": "6P3Q8577+9W"
-						},
-						"types": [
-								"bar",
-								"establishment",
-								"food",
-								"point_of_interest",
-								"restaurant"
-						]
+				"displayName": "GABET’S",
+				"formattedAddress": "Jl. Labuansait No.63, Pecatu, Kec. Kuta Sel., Kabupaten Badung, Bali 80364, Indonesia",
+				"rating": 4.8,
+				"openingHours": [
+						"12:00 PM – 1:00 AM",
+						"12:00 PM – 1:00 AM",
+						"12:00 PM – 1:00 AM",
+						"12:00 PM – 1:00 AM",
+						"12:00 PM – 1:00 AM",
+						"12:00 PM – 1:00 AM",
+						"12:00 PM – 1:00 AM"
+				]
+		},
+		{
+				"id": "ChIJB-Rt7VxH0i0RSDuCzp9PwoM",
+				"location": {
+						"lat": -8.622782299999999,
+						"lng": 115.1543125
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "Studio 1",
-										"short_name": "Studio 1",
-										"types": [
-												"subpremise"
-										]
-								},
-								{
-										"long_name": "314",
-										"short_name": "314",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Bypass Ngurah Rai",
-										"short_name": "Jl. Bypass Ngurah Rai",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Sanur",
-										"short_name": "Sanur",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Denpasar Selatan",
-										"short_name": "Kec. Denpasar Sel.",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kota Denpasar",
-										"short_name": "Kota Denpasar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80228",
-										"short_name": "80228",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Studio 1, Jl. Bypass Ngurah Rai No.314, Sanur, Denpasar Selatan, Kota Denpasar, Bali 80228, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.6881506,
-										"lng": 115.2583372
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.689461530291503,
-										"west": 115.2569892197085,
-										"north": -8.686763569708498,
-										"east": 115.2596871802915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJLwHMoCBB0i0RCBwTAiYTMdQ",
-						"plus_code": {
-								"compound_code": "8765+P8 Sanur, Denpasar City, Bali, Indonesia",
-								"global_code": "6P3Q8765+P8"
-						},
-						"types": [
-								"establishment",
-								"point_of_interest"
-						]
+				"displayName": "2080 Burger Canggu",
+				"formattedAddress": "Jl. Raya Babakan Canggu No.110, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+				"rating": 4.7,
+				"openingHours": [
+						"9:00 AM – 10:45 PM",
+						"9:00 AM – 10:45 PM",
+						"9:00 AM – 10:45 PM",
+						"9:00 AM – 10:45 PM",
+						"9:00 AM – 11:30 PM",
+						"9:00 AM – 11:30 PM",
+						"9:00 AM – 11:30 PM"
+				]
+		},
+		{
+				"id": "ChIJJ4sVQEM90i0RX6_vE45sOSE",
+				"location": {
+						"lat": -8.500382999999998,
+						"lng": 115.2724704
 				},
-				{
-						"address_components": [
-								{
-										"long_name": "110",
-										"short_name": "110",
-										"types": [
-												"street_number"
-										]
-								},
-								{
-										"long_name": "Jalan Suweta",
-										"short_name": "Jl. Suweta",
-										"types": [
-												"route"
-										]
-								},
-								{
-										"long_name": "Ubud",
-										"short_name": "Ubud",
-										"types": [
-												"administrative_area_level_4",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kecamatan Ubud",
-										"short_name": "Kecamatan Ubud",
-										"types": [
-												"administrative_area_level_3",
-												"political"
-										]
-								},
-								{
-										"long_name": "Kabupaten Gianyar",
-										"short_name": "Kabupaten Gianyar",
-										"types": [
-												"administrative_area_level_2",
-												"political"
-										]
-								},
-								{
-										"long_name": "Bali",
-										"short_name": "Bali",
-										"types": [
-												"administrative_area_level_1",
-												"political"
-										]
-								},
-								{
-										"long_name": "Indonesia",
-										"short_name": "ID",
-										"types": [
-												"country",
-												"political"
-										]
-								},
-								{
-										"long_name": "80571",
-										"short_name": "80571",
-										"types": [
-												"postal_code"
-										]
-								}
-						],
-						"formatted_address": "Jl. Suweta No.110, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
-						"geometry": {
-								"location": {
-										"lat": -8.5063213,
-										"lng": 115.2626185
-								},
-								"location_type": "ROOFTOP",
-								"viewport": {
-										"south": -8.507657780291503,
-										"west": 115.2612342697085,
-										"north": -8.504959819708498,
-										"east": 115.2639322302915
-								}
-						},
-						"partial_match": true,
-						"place_id": "ChIJEzNCqxQ90i0R4tw-0wrRUy4",
-						"plus_code": {
-								"compound_code": "F7V7+F2 Ubud, Gianyar Regency, Bali, Indonesia",
-								"global_code": "6P3QF7V7+F2"
-						},
-						"types": [
-								"cafe",
-								"establishment",
-								"food",
-								"point_of_interest"
-						]
-				}
-		]
-}
+				"displayName": "NowBeerBar Раковая",
+				"formattedAddress": "Jl. Raya Andong No.95, Petulu, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+				"rating": 4.9,
+				"openingHours": [
+						"2:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM",
+						"2:00 PM – 12:00 AM"
+				]
+		},
+		{
+				"id": "ChIJdYIkyzI50i0R9aQEkzc-zAA",
+				"location": {
+						"lat": -8.6495041,
+						"lng": 115.1460156
+				},
+				"displayName": "Warung Canteen Canggu",
+				"formattedAddress": "Tibubeneng, Kuta Utara, Badung Regency, Bali 80361, Indonesia",
+				"rating": 4.4,
+				"openingHours": [
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours",
+						"Open 24 hours"
+				]
+		},
+		{
+				"id": "ChIJM1WLnnM90i0RvvipdKXcAqU",
+				"location": {
+						"lat": -8.5194391,
+						"lng": 115.2636971
+				},
+				"displayName": "The Melting Pot Saloon",
+				"formattedAddress": "Jalan Raya Pengosekan (Hanoman) No.22X, Ubud, Gianyar, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
+				"rating": 4,
+				"openingHours": [
+						"10:30 AM – 2:00 AM",
+						"10:30 AM – 2:00 AM",
+						"10:30 AM – 2:00 AM",
+						"10:30 AM – 2:00 AM",
+						"10:30 AM – 2:00 AM",
+						"10:30 AM – 2:00 AM",
+						"10:30 AM – 2:00 AM"
+				]
+		}
+]

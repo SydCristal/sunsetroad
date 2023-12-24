@@ -1,6 +1,6 @@
-import { useSectionContext, useModalContext } from '../../Contexts'
+import { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import { useState } from 'react'
+import { useSectionContext } from '../../Contexts'
 import { Bg } from '../../Utils'
 
 const Background = () => {
@@ -9,16 +9,13 @@ const Background = () => {
 		const [partnersBg, setPartnersBg] = useState(section === 'partners' ? <PartnersBackground /> : null)
 		const [infoBg, setInfoBg] = useState(section === 'info' ? <InfoBackground /> : null)
 
-		if (!productsBg || !partnersBg || !infoBg) {
-				setTimeout(() => {
-						console.log('Zorg!');
-						if (!productsBg) setProductsBg(<ProductsBackground />)
-						if (!partnersBg) setPartnersBg(<PartnersBackground />)
-						if (!infoBg) setInfoBg(<InfoBackground />)
-				}, 500)
-		}
+		useEffect(() => {
+				if (!productsBg) setProductsBg(<ProductsBackground />)
+				if (!partnersBg) setPartnersBg(<PartnersBackground />)
+				if (!infoBg) setInfoBg(<InfoBackground />)
+		}, [])
 
-		console.log('RENDER DESKTOP BACKGROUND');
+		console.log('RENDER DESKTOP BACKGROUND')
 
 		return (
 				<StlBackground>
@@ -43,7 +40,7 @@ const sectionStyles = css`
 		transition: opacity 0.5s ease-in-out;
 		opacity: 0;
 `
- 
+
 const StlBackground = styled.div`
 		${commonStyles};
 `

@@ -1,16 +1,15 @@
 import styled from 'styled-components'
-import { useModalContext, useLanguageContext } from '../../Contexts'
+import { useLanguageContext } from '../../Contexts'
 import { l } from './'
 import { Lo, C } from '../../Utils'
-import { useMemo, forwardRef } from 'react'
+import { useMemo, forwardRef, memo } from 'react'
 
-const Disclaimer = forwardRef((props, ref) => {
-		const { setDisplayedModal } = useModalContext()
+const Disclaimer = memo(forwardRef(({ close }, ref) => {
 		const { language } = useLanguageContext()
 
 		useMemo(() => l.setLanguage(language), [language])
 
-		console.log('RENDER DISCLAIMER');
+		console.log('RENDER DISCLAIMER')
 
 		return (
 				<StlDisclaimer ref={ref} id='Disclaimer'>
@@ -18,12 +17,12 @@ const Disclaimer = forwardRef((props, ref) => {
 						<DisclaimerText>
 								{l.ageFilterText}
 						</DisclaimerText>
-						<ConfirmationButton onClick={() => setDisplayedModal(null)}>
+						<ConfirmationButton onClick={close}>
 								{l.confirm}
 						</ConfirmationButton>
 				</StlDisclaimer>
 		)
-})
+}))
 
 const StlDisclaimer = styled.div`
 		margin: 0px auto;
