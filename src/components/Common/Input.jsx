@@ -1,14 +1,12 @@
 import styled from 'styled-components'
 import { C } from '../../Utils'
-import { useState } from 'react'
 
-const Input = ({ onChange, $validate = false, $errorTip = '', className, ...restProps }) => {
-		const [isHighlighted, setIsHighlighted] = useState(false)
+const Input = ({ onChange, $validate = false, $errorTip = '', className, $isHighlighted, $setIsHighlighted, ...restProps }) => {
 		const inputProps = {
 				...restProps,
-				$isHighlighted: isHighlighted,
+				$isHighlighted,
 				onChange: ({ target: { value } }) => {
-						if (isHighlighted) setIsHighlighted(false)
+						if ($isHighlighted) $setIsHighlighted(false)
 
 						onChange(value, $validate ? $validate(value.trim()) : true)
 				},
@@ -16,7 +14,7 @@ const Input = ({ onChange, $validate = false, $errorTip = '', className, ...rest
 						value = value.trim()
 						let isValid = $validate ? $validate(value) : true
 
-						if (isHighlighted === isValid) setIsHighlighted(!isValid)
+						if ($isHighlighted === isValid) $setIsHighlighted(!isValid)
 
 						onChange(value, isValid)
 				}
@@ -25,7 +23,7 @@ const Input = ({ onChange, $validate = false, $errorTip = '', className, ...rest
 		return (
 				<InputContainer className={className}>
 						<StlInput {...inputProps} />
-						<ErrorTip>{isHighlighted ? $errorTip : ''}</ErrorTip>
+						<ErrorTip>{$isHighlighted ? $errorTip : ''}</ErrorTip>
 				</InputContainer>
 		)
 }

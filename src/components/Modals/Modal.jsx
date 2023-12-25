@@ -16,7 +16,7 @@ const Modal = memo(({ appRef }) => {
 		const close = () => setDisplayedModal(null)
 
 		useEffect(() => {
-				setContactForm(<ContactForm ref={contactFormRef} isVisible={displayedModal === 'ContactForm'} close={close} />)
+				setContactForm(<ContactForm ref={contactFormRef} />)
 				setDistributorMap(<DistributorMap ref={distributorMapRef} />)
 		}, [])
 

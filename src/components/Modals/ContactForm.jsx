@@ -3,10 +3,11 @@ import { useLanguageContext, useModalContext } from '../../Contexts'
 import { C, Ic } from '../../Utils'
 import { Heading, Input } from '../Common'
 import { l } from './'
-import { useState, useMemo, forwardRef, memo } from 'react'
+import { useState, useMemo, forwardRef, memo, useEffect } from 'react'
 import * as EmailValidator from 'email-validator'
 
-const ContactForm = memo(forwardRef(({ close, isVisible }, ref) => {
+const ContactForm = memo(forwardRef((props, ref) => {
+		const { displayedModal, setDisplayedModal } = useModalContext()
 		const { language } = useLanguageContext()
 		const [name, setName] = useState('')
 		const [email, setEmail] = useState('')
@@ -15,15 +16,17 @@ const ContactForm = memo(forwardRef(({ close, isVisible }, ref) => {
 
 		useMemo(() => l.setLanguage(language), [language])
 
-		useMemo(() => {
-				if (!isVisible) return
+		useEffect(() => {
+				if (displayedModal !== 'ContactForm') return
 				setName('')
 				setEmail('')
 				setMessage('')
 				setInvalidFields([])
-		}, [isVisible])
+		}, [displayedModal])
 
-		const onInputChange = (inputName, value, isValid) => {
+		const close = () => setDisplayedModal(null)
+
+		const highlight = (inputName, isValid) => {
 				if (isValid && invalidFields.includes(inputName)) {
 						setInvalidFields(invalidFields.filter(field => field !== inputName))
 				}
@@ -31,6 +34,10 @@ const ContactForm = memo(forwardRef(({ close, isVisible }, ref) => {
 				if (!isValid && !invalidFields.includes(inputName)) {
 						setInvalidFields([...invalidFields, inputName])
 				}
+		}
+
+		const onInputChange = (inputName, value, isValid) => {
+				highlight(inputName, isValid)
 
 				switch (inputName) {
 						case 'email':
@@ -75,12 +82,16 @@ const ContactForm = memo(forwardRef(({ close, isVisible }, ref) => {
 								<InputContainer>
 										<Input
 												value={name}
+												$isHighlighted={invalidFields.includes('name')}
+												$setIsHighlighted={isValid => highlight('name', isValid)}
 												onChange={(value, isValid) => onInputChange('name', value, isValid)}
 												$validate={value => value?.length > 2}
 												placeholder={l.name}
 												$errorTip={l.nameIsInvalid} />
 										<Input
 												type='email'
+												$isHighlighted={invalidFields.includes('email')}
+												$setIsHighlighted={isValid => highlight('email', isValid)}
 												value={email}
 												onChange={(value, isValid) => onInputChange('email', value, isValid)}
 												$validate={value => EmailValidator.validate(value)}
@@ -90,6 +101,8 @@ const ContactForm = memo(forwardRef(({ close, isVisible }, ref) => {
 						</UpperBlock>
 						<Textarea
 								forwardedAs='textarea'
+								$isHighlighted={invalidFields.includes('textarea')}
+								$setIsHighlighted={isValid => highlight('textarea', isValid)}
 								value={message}
 								onChange={(value, isValid) => onInputChange('message', value, isValid)}
 								$validate={value => value?.length > 2}

@@ -6,6 +6,7 @@
 						"lng": 115.1518152
 				},
 				"displayName": "Liga.Tennis Padel @Umalas",
+				"link": "https://maps.app.goo.gl/iFVcRvkq9isqnW4d8",
 				"formattedAddress": "85W2+2P6, Jl. Bumbak Dauh, Kerobokan, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -25,6 +26,7 @@
 						"lng": 115.1478448
 				},
 				"displayName": "FINNS Recreation Club",
+				"link": "https://maps.app.goo.gl/oHAQDiA8Zuk6e9kB7",
 				"formattedAddress": "Jl. Pantai Berawa No.15, Canggu, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.2,
 				"openingHours": [
@@ -44,6 +46,7 @@
 						"lng": 115.187602
 				},
 				"displayName": "Sushi Shop Jimbaran",
+				"link": "https://maps.app.goo.gl/vjjT5aAorWpTHpCT6",
 				"formattedAddress": "Jl. Danau Batur Raya No.6, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.1,
 				"openingHours": [
@@ -63,6 +66,7 @@
 						"lng": 115.1346973
 				},
 				"displayName": "ACCENT gastro bistro",
+				"link": "https://maps.app.goo.gl/uf1621Gp6RQEsh458",
 				"formattedAddress": "Jl. Nelayan No.34, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.7,
 				"openingHours": [
@@ -82,6 +86,7 @@
 						"lng": 115.1309695
 				},
 				"displayName": "Baliwood",
+				"link": "https://maps.app.goo.gl/z5b1rr6SVJwuWLBA7",
 				"formattedAddress": "Jl. Munduk Catu No.3, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -95,31 +100,13 @@
 				]
 		},
 		{
-				"id": "ChIJzzE0rV9F0i0RKeZjVicxuE4",
-				"location": {
-						"lat": -8.7861459,
-						"lng": 115.187602
-				},
-				"displayName": "Sushi Shop Jimbaran",
-				"formattedAddress": "Jl. Danau Batur Raya No.6, Jimbaran, Kec. Kuta Sel., Kabupaten Badung, Bali 80361, Indonesia",
-				"rating": 4.1,
-				"openingHours": [
-						"Open 24 hours",
-						"Open 24 hours",
-						"Open 24 hours",
-						"Open 24 hours",
-						"Open 24 hours",
-						"Open 24 hours",
-						"Open 24 hours"
-				]
-		},
-		{
 				"id": "ChIJQzwvTf5H0i0RwI9gcUzjjQQ",
 				"location": {
 						"lat": -8.6728005,
 						"lng": 115.151829
 				},
 				"displayName": "HOOKAH IZZI BAR & SHISHA LOUNGE RESTAURANT",
+				"link": "https://maps.app.goo.gl/JrG8MocCqWorXNGG6",
 				"formattedAddress": "Jl. Batu Belig No.38, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -139,6 +126,7 @@
 						"lng": 115.2635334
 				},
 				"displayName": "Lola's - Tap Craft Beer Bar",
+				"link": "https://maps.app.goo.gl/7c6DWYVbUDLZZWHi9",
 				"formattedAddress": "Jl. Danau Tamblingan No.148, Sanur, Denpasar Selatan, Kota Denpasar, Bali 80228, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -158,6 +146,7 @@
 						"lng": 115.164843
 				},
 				"displayName": "CRAYFISH Seafood&Bar Seminyak",
+				"link": "https://maps.app.goo.gl/2C18EUYGKhHmdBng9",
 				"formattedAddress": "Jl. Drupadi No.2000, Seminyak, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -177,6 +166,7 @@
 						"lng": 115.2583372
 				},
 				"displayName": "Liga.Tennis Padel @Sanur",
+				"link": "https://maps.app.goo.gl/ipKn6NjWtQ5LvP8H9",
 				"formattedAddress": "Jl. Bypass Ngurah Rai No.314 Studio 1, Sanur, Denpasar Selatan, Kota Denpasar, Bali 80228, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -196,6 +186,7 @@
 						"lng": 115.1689444
 				},
 				"displayName": "South+East Brewing Co.",
+				"link": "https://maps.app.goo.gl/1JvkhLrbVF8P9j126",
 				"formattedAddress": "Jl. Pengubengan Kauh, Kerobokan Kelod, Kec. Kuta Utara, denpasar, Bali 80361, Indonesia",
 				"rating": 4.6,
 				"openingHours": [
@@ -215,6 +206,7 @@
 						"lng": 115.1307766
 				},
 				"displayName": "Pizza Fabbrica Canggu",
+				"link": "https://maps.app.goo.gl/vHGSbSv6VYs1qDKm7",
 				"formattedAddress": "Jl. Pantai Batu Mejan, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80351, Indonesia",
 				"rating": 4.6,
 				"openingHours": [
@@ -234,6 +226,7 @@
 						"lng": 115.2643138
 				},
 				"displayName": "Anything Brew",
+				"link": "https://maps.app.goo.gl/8MdKZ9e82K3cvSXg7",
 				"formattedAddress": "Jalan Bimauka, Ubud, Kec. Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -253,6 +246,7 @@
 						"lng": 115.1293749
 				},
 				"displayName": "DRANIKI",
+				"link": "https://maps.app.goo.gl/TTN1jKMktL1MEExZ6",
 				"formattedAddress": "Jl. Pantai Pererenan No.78, Pererenan, Kec. Mengwi, Kabupaten Badung, Bali 80351, Indonesia",
 				"rating": 4.7,
 				"openingHours": [
@@ -272,6 +266,7 @@
 						"lng": 115.1428973
 				},
 				"displayName": "Eat Me! Canggu",
+				"link": "https://maps.app.goo.gl/NtAvDFSKci5opY7WA",
 				"formattedAddress": "Gg. Jalak No.16b, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": "4.6",
 				"openingHours": [
@@ -291,6 +286,7 @@
 						"lng": 115.1477647
 				},
 				"displayName": "HUBBLE",
+				"link": "https://maps.app.goo.gl/SMCRY8gsNFpGPFbe8",
 				"formattedAddress": "Jl. Subak Sari, Tibubeneng, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.8,
 				"openingHours": [
@@ -310,6 +306,7 @@
 						"lng": 115.1670756
 				},
 				"displayName": "Stark Boutique Hotel & Spa",
+				"link": "https://maps.app.goo.gl/RtHM92gjRhVxBCk7A",
 				"formattedAddress": "Jl. Kartika Plaza No.20, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.2,
 				"openingHours": [
@@ -329,6 +326,7 @@
 						"lng": 115.2626185
 				},
 				"displayName": "Eat Me! Ubud",
+				"link": "https://maps.app.goo.gl/T5W1DUayD97Ej5oZA",
 				"formattedAddress": "Jl. Suweta No.110, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
 				"rating": 4.5,
 				"openingHours": [
@@ -348,6 +346,7 @@
 						"lng": 115.1106841
 				},
 				"displayName": "GABET’S",
+				"link": "https://maps.app.goo.gl/9zvd9H9EErbozaLfA",
 				"formattedAddress": "Jl. Labuansait No.63, Pecatu, Kec. Kuta Sel., Kabupaten Badung, Bali 80364, Indonesia",
 				"rating": 4.8,
 				"openingHours": [
@@ -367,6 +366,7 @@
 						"lng": 115.1543125
 				},
 				"displayName": "2080 Burger Canggu",
+				"link": "https://maps.app.goo.gl/pZU9NSu9Y1T6DH8u7",
 				"formattedAddress": "Jl. Raya Babakan Canggu No.110, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
 				"rating": 4.7,
 				"openingHours": [
@@ -386,6 +386,7 @@
 						"lng": 115.2724704
 				},
 				"displayName": "NowBeerBar Раковая",
+				"link": "https://maps.app.goo.gl/KG6JLctkb2VDfwSc8",
 				"formattedAddress": "Jl. Raya Andong No.95, Petulu, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
 				"rating": 4.9,
 				"openingHours": [
@@ -405,6 +406,7 @@
 						"lng": 115.1460156
 				},
 				"displayName": "Warung Canteen Canggu",
+				"link": "https://maps.app.goo.gl/Z6M46uhLQhpKrXrW8",
 				"formattedAddress": "Tibubeneng, Kuta Utara, Badung Regency, Bali 80361, Indonesia",
 				"rating": 4.4,
 				"openingHours": [
@@ -424,6 +426,7 @@
 						"lng": 115.2636971
 				},
 				"displayName": "The Melting Pot Saloon",
+				"link": "https://maps.app.goo.gl/pWru1sdWGUF2s39w5",
 				"formattedAddress": "Jalan Raya Pengosekan (Hanoman) No.22X, Ubud, Gianyar, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
 				"rating": 4,
 				"openingHours": [

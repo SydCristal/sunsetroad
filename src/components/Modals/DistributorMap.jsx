@@ -15,7 +15,8 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 				version: 'beta',
 				libraries: ['places', 'marker']
 		})
-		distributors.sort((a, b) => a.location.lat < b.location.lat)
+
+		const sortedDistributors = useMemo(() => distributors.sort((a, b) => b.location.lat - a.location.lat), [])
 
 		useEffect(() => {
 				console.log('FETCHING GOOGLE MAP')
@@ -28,10 +29,9 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 								disableDefaultUI: true
 						})
 
-						const infoWindow = new InfoWindow()
-						infoWindow.setContent(`<div id='info-window-child' />`)
+						const infoWindow = new InfoWindow({ shouldFocus: false })
 
-						distributors.map(distributor => {
+						sortedDistributors.map(distributor => {
 								const markerImg = document.createElement('img')
 								markerImg.src = Ic('marker', false, 'svg')
 								markerImg.alt = 'marker'
@@ -43,27 +43,16 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 										position: distributor.location
 								})
 
-								//const info = 
-
-								marker.addListener("click", ({ domEvent, latLng }) => {
-										console.log(distributor);
-										const { target } = domEvent
-
+								marker.addListener('gmp-click', () => {
 										infoWindow.close()
-										infoWindow.setContent(marker.title)
+										infoWindow.setContent(`<a href='${distributor.link}' target='_blank'>${marker.title}</a>`)
 										infoWindow.open(marker.map, marker)
-										console.log(infoWindow);
 								})
 						})
 
 						setMap(map)
 				})
 		}, [])
-
-		useEffect(() => {
-				const iw = document.getElementById('info-window-child')
-				console.log(iw)
-		}, [map])
 
 		console.log('RENDER DISTRIBUTOR MODAL')
 
@@ -94,14 +83,29 @@ const StlDistributorMap = styled.div`
 				.gm-style > :last-child {
 						display: none;
 				};
-				.gm-style-iw-t > * {
-						&:first-child {
-								background-color: rgba(0, 0, 0, 0.7) !important;
+				.poi-info-window div {
+						background-color: transparent !important;
+						color: white !important;
+				};
+				[role='dialog'] {
+						padding: 12px !important;
+						background-color: rgba(0, 0, 0, 0.7) !important;
+						a {
+								font-weight: bold;
+								text-decoration: none !important;
+								&:hover {
+									 color: ${C.TEXT_GOLDEN_COLOR} !important;
+								};
+						};
+						button {
 								span {
 										background-color: white !important;
 								};
+								&:hover span {
+									 background-color: ${C.TEXT_GOLDEN_COLOR} !important;
+								};
 						};
-						&:last-child::after {
+						& ~ div::after {
 								background: rgba(0, 0, 0, 0.6) !important;
 								transform: translateY(1px) !important;
 						};
@@ -111,12 +115,6 @@ const StlDistributorMap = styled.div`
 						height: 25px !important;
 				};
 		};
-`
-
-const MarkerIcon = styled.div`
-		width: 18px;
-		height: 18px;
-		background: ${Ic('marker', true, 'svg')} center center / contain no-repeat;
 `
 
 export { DistributorMap }

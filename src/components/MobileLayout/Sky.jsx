@@ -19,6 +19,7 @@ const StlSky = styled.div`
 		height: 100vh;
 		position: absolute;
 		transform-style: preserve-3d;
+		display: contents;
 `
 
 
