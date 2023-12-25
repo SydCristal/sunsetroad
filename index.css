@@ -1,5 +1,4 @@
 html {
-		min-height: 100vh;
 		height: 100%;
 		overflow-x: hidden;
 }
@@ -27,4 +26,13 @@ body {
 		box-sizing: border-box;
 		font-family: 'Bitter';
 		color: white;
+}
+
+*::-webkit-scrollbar {
+		display: none;
+}
+
+* {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 }
