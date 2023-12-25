@@ -7,6 +7,7 @@ import { useMemo, memo } from 'react'
 const Navigation = memo(() => {
 		const { setSection } = useSectionContext()
 		const { language } = useLanguageContext()
+		useMemo(() => l.setLanguage(language), [language])
 		const sections = [{
 				value: 'products',
 				label: l.products
@@ -18,7 +19,6 @@ const Navigation = memo(() => {
 				label: l.info
 		}]
 
-		useMemo(() => l.setLanguage(language), [language])
 
 		const onLinkClink = (e, value) => {
 				e.preventDefault()
