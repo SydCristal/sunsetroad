@@ -36,7 +36,7 @@ const StlMobileLayout = styled.div`
 				display: none;
 		};
 		height: fit-content;
-		padding: 70px 0 285px;
+		padding: 70px 0 300px;
 		position: relative;
 		.blurred & {
 				pointer-events: none;
