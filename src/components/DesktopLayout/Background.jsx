@@ -10,10 +10,11 @@ const Background = () => {
 		const [infoBg, setInfoBg] = useState(section === 'info' ? <InfoBackground /> : null)
 
 		useEffect(() => {
-				console.log('Zorg!');
-				if (!productsBg) setProductsBg(<ProductsBackground />)
-				if (!partnersBg) setPartnersBg(<PartnersBackground />)
-				if (!infoBg) setInfoBg(<InfoBackground />)
+				setTimeout(() => {
+						if (!productsBg) setProductsBg(<ProductsBackground />)
+						if (!partnersBg) setPartnersBg(<PartnersBackground />)
+						if (!infoBg) setInfoBg(<InfoBackground />)
+				}, 1000)
 		}, [])
 
 		console.log('RENDER DESKTOP BACKGROUND')
