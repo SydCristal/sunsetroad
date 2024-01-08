@@ -187,7 +187,6 @@ const Content = styled.ul`
 		margin: 0;
 		list-style: none;
 		width: 100%;
-		touch-action: none;
 		${({ $styles }) => $styles};
 `
 
