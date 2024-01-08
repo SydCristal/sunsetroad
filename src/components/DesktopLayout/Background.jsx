@@ -10,6 +10,7 @@ const Background = () => {
 		const [infoBg, setInfoBg] = useState(section === 'info' ? <InfoBackground /> : null)
 
 		useEffect(() => {
+				console.log('Zorg!');
 				if (!productsBg) setProductsBg(<ProductsBackground />)
 				if (!partnersBg) setPartnersBg(<PartnersBackground />)
 				if (!infoBg) setInfoBg(<InfoBackground />)

@@ -20,6 +20,7 @@ const App = () => {
 		console.log('RENDER APP')
 
 		useEffect(() => {
+				appRef.current?.scrollTo(0, 0)
 
 				const onScroll = ({ target }) => {
 						setScrollTop(target.scrollTop)
