@@ -14,7 +14,7 @@ const Background = () => {
 						if (!productsBg) setProductsBg(<ProductsBackground />)
 						if (!partnersBg) setPartnersBg(<PartnersBackground />)
 						if (!infoBg) setInfoBg(<InfoBackground />)
-				}, 1000)
+				}, 3000)
 		}, [])
 
 		console.log('RENDER DESKTOP BACKGROUND')
