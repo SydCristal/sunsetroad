@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { useLanguageContext } from '../../Contexts'
-import { C } from '../../Utils'
 import { useRef, memo } from 'react'
 import { LanguageOption } from './'
 

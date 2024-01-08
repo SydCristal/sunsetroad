@@ -27,18 +27,18 @@ const LanguagePosition = () => {
 }
 
 const StlLanguagePosition = styled.div`
-		transform: translateY(${({ $translateY }) => $translateY}px);
 		position: absolute;
 		cursor: pointer;
 		list-style: none;
 		margin: 0;
 		z-index: 7;
-		transition: transform 0.5s ease-in-out;
 		${C.isDesktop} {
 				top: 5px;
 				right: 30px;
 		};
 		${C.isMobile} {
+				transform: translateY(${({ $translateY }) => $translateY}px);
+				transition: transform 0.5s ease-in-out;
 				top: 25px;
 				right: 40px;
 				width: 100%;

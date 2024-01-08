@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import { Disclaimer, ContactForm, DistributorMap } from './'
 import { useModalContext, useScrollTopContext } from '../../Contexts'
-import { memo, useRef, useEffect, useState } from 'react'
+import { memo, useRef, useEffect, useState, forwardRef } from 'react'
+import { C } from '../../Utils'
 
-const Modal = memo(({ appRef }) => {
+
+const Modal = memo(forwardRef(({ appRef }, shadowRef) => {
 		const { displayedModal, setDisplayedModal } = useModalContext()
 		const { scrollTop } = useScrollTopContext()
 		const disclaimerRef = useRef(null)
@@ -11,7 +13,7 @@ const Modal = memo(({ appRef }) => {
 		const distributorMapRef = useRef(null)
 		const [contactForm, setContactForm] = useState(null)
 		const [distributorMap, setDistributorMap] = useState(null)
-		const shadowRef = useRef(null)
+		//const shadowRef = useRef(null)
 		const modalRef = useRef('Disclaimer')
 		const close = () => setDisplayedModal(null)
 
@@ -74,7 +76,7 @@ const Modal = memo(({ appRef }) => {
 						{distributorMap}
 				</StlModal>
 		)
-})
+}))
 
 //< Disclaimer ref = { disclaimerRef } />
 //				<ContactForm ref={contactFormRef} />
@@ -93,6 +95,9 @@ const StlModal = styled.div`
 		-o-backdrop-filter: blur(0);
 		-ms-backdrop-filter: blur(0);
 		background-color: rgba(0, 0, 0, 0);
+		${C.isDesktop} {
+				transform: translateY(0) !important;
+		};
 		.blurred & {
 				min-height: 350px;
 				backdrop-filter: blur(5px);

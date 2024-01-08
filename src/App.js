@@ -10,6 +10,7 @@ import Modal from './components/Modals/'
 
 const App = () => {
 		const appRef = useRef(null)
+		const shadowRef = useRef(null)
 		const { setScrollTop } = useScrollTopContext()
 		const { setScreenWidth } = useScreenContext()
 		const isDesktop = document.documentElement.clientWidth > C.MAX_MOBILE_WIDTH
@@ -19,7 +20,6 @@ const App = () => {
 		console.log('RENDER APP')
 
 		useEffect(() => {
-				appRef.current?.scrollTo(0, 0)
 
 				const onScroll = ({ target }) => {
 						setScrollTop(target.scrollTop)
@@ -34,7 +34,11 @@ const App = () => {
 						console.log('ON RESIZE')
 
 						if (isCurrentlyDesktop) {
-								appRef.current.scrollTo(0, 0)
+								setScrollTop(0)
+								appRef.current?.scrollTo(0, 0)
+								const shadowEl = shadowRef.current
+								if (shadowEl) shadowEl.style.transform = 'translateY(0)'
+
 								if (!desktopLayoutRef.current) {
 										desktopLayoutRef.current = <DesktopLayout />
 								}
@@ -58,7 +62,7 @@ const App = () => {
 						className='blurred'>
 						<Sky />
 						<LanguageSwitch />
-						<Modal appRef={appRef} />
+						<Modal appRef={appRef} ref={shadowRef} />
 						{desktopLayoutRef.current}
 						{mobileLayoutRef.current}
 				</StlApp>
