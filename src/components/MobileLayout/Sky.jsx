@@ -31,6 +31,9 @@ const SkyContainer = styled.div`
 		left: 0;
 		transform: translateZ(-1.5px) scale(1.75);
 		z-index: -1;
+		${C.isHorizontal} {
+				top: auto;
+		};
 `
 
 export { Sky }
