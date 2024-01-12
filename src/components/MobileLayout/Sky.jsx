@@ -22,7 +22,6 @@ const StlSky = styled.div`
 		display: contents;
 `
 
-
 const SkyContainer = styled.div`
 		width: 100%;
 		position: absolute;

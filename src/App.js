@@ -28,7 +28,7 @@ const App = () => {
 
 				if (!isDesktop) appRef.current.addEventListener('scroll', onScroll)
 				const handleResize = () => {
-						const { clientWidth, clientHeight } = document.documentElement
+						const { clientWidth } = document.documentElement
 						const isCurrentlyDesktop = clientWidth > C.MAX_MOBILE_WIDTH
 						setScreenWidth(clientWidth)
 
