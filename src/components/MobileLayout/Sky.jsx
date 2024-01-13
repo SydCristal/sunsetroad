@@ -19,6 +19,7 @@ const StlSky = styled.div`
 		height: 100vh;
 		position: absolute;
 		transform-style: preserve-3d;
+		-webkit-transform-style: preserve-3d;
 		display: contents;
 `
 
@@ -29,6 +30,7 @@ const SkyContainer = styled.div`
 		right: 0;
 		left: 0;
 		transform: translateZ(-1px) scale(2);
+		-webkit-transform: translateZ(-1px) scale(2);
 		z-index: -1;
 		${C.isHorizontal} {
 				top: auto;
