@@ -77,7 +77,7 @@ const StlApp = styled.div`
 		height: 100vh;
 		overflow-y: auto;
 		overflow-x: hidden;
-		perspective: 2px;
+		perspective: 1px;
 		width: 100%;
 		position: relative;
 		transform-style: preserve-3d;

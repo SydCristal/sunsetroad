@@ -25,10 +25,10 @@ const StlSky = styled.div`
 const SkyContainer = styled.div`
 		width: 100%;
 		position: absolute;
-		top: 125px;
+		top: 100px;
 		right: 0;
 		left: 0;
-		transform: translateZ(-1.5px) scale(1.75);
+		transform: translateZ(-1px) scale(2);
 		z-index: -1;
 		${C.isHorizontal} {
 				top: auto;
