@@ -438,5 +438,69 @@
 						"10:30 AM – 2:00 AM",
 						"10:30 AM – 2:00 AM"
 				]
+		},
+		{
+				"location": {
+						"lat": -8.6472118,
+						"lng": 115.1375664
+				},
+				"displayName": "ELE Restorant",
+				"link": "https://maps.app.goo.gl/DkX6ysTyXSQWeA8r8"
+		},
+		{
+				"location": {
+						"lat": -8.8422277,
+						"lng": 115.1360703
+				},
+				"displayName": "Joy cafe and bakery",
+				"link": "https://maps.app.goo.gl/AhpTQKiSb3CmGs246"
+		},
+		{
+				"location": {
+						"lat": -8.8036711,
+						"lng": 115.2332213
+				},
+				"displayName": "Grand Hyatt Bali",
+				"link": "https://maps.app.goo.gl/KYWH9YsPkbvNwyk56"
+		},
+		{
+				"location": {
+						"lat": -8.8233541,
+						"lng": 115.1426444
+				},
+				"displayName": "2080 Burger Uluwatu",
+				"link": "https://maps.app.goo.gl/LXZaCWRRyNa9afZj9"
+		},
+		{
+				"location": {
+						"lat": -8.8204446,
+						"lng": 115.1506066
+				},
+				"displayName": "HEDONIST restaurant",
+				"link": "https://maps.app.goo.gl/oGzVSudQsebVkGP56"
+		},
+		{
+				"location": {
+						"lat": -8.6595108,
+						"lng": 115.1633754
+				},
+				"displayName": "Amplitude",
+				"link": "https://maps.app.goo.gl/QMYHgms1qgaksm3v8"
+		},
+		{
+				"location": {
+						"lat": -8.5242037,
+						"lng": 115.2652373
+				},
+				"displayName": "MAMU Ubud Cafe",
+				"link": "https://maps.app.goo.gl/EVN7jTcJMJeQzcWQ8"
+		},
+		{
+				"location": {
+						"lat": -8.8081843,
+						"lng": 115.114749
+				},
+				"displayName": "Blueseed restaurant",
+				"link": "https://maps.app.goo.gl/9EdbKgvwzj6z9G5F6"
 		}
 ]

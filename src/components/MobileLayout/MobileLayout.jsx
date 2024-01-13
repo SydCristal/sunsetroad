@@ -35,9 +35,11 @@ const StlMobileLayout = styled.div`
 		${C.isDesktop} {
 				display: none;
 		};
+		position: absolute;
+		top: 0;
+		width: 100%;
 		height: fit-content;
 		padding: 70px 0 300px;
-		position: relative;
 		.blurred & {
 				pointer-events: none;
 		};
@@ -58,8 +60,6 @@ const Content = styled.div`
 		position: relative;
 		top: 0;
 		width: 100%;
-		perspective: 2px;
-		-webkit-perspective: 2px;
 		> :not(:first-child) {
 				${contentStyles}
 		};

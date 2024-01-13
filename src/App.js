@@ -80,6 +80,7 @@ const StlApp = styled.div`
 		perspective: 2px;
 		width: 100%;
 		position: relative;
+		transform-style: preserve-3d;
 		&.blurred {
 				overflow: hidden;
 		}

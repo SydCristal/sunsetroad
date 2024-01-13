@@ -1,8 +1,8 @@
-import { useRef, memo } from 'react'
+import { useRef, memo, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { C } from '../../Utils'
 
-const Carousel = memo(({ dataSet, content, className }) => {
+const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 		const displayedIndexRef = useRef(0)
 		const setDisplayedIndex = j => displayedIndexRef.current = j
 		const disabledRef = useRef(false)
@@ -10,6 +10,7 @@ const Carousel = memo(({ dataSet, content, className }) => {
 		const swipeStartRef = useRef({ startX: 0, offsetLeft: 0, containerWidh: 0, startTime: 0 })
 		const setSwipeStart = data => swipeStartRef.current = { ...data }
 		const total = dataSet.length
+		let autoRunTimeout
 		const rotateCarousel = (direction = 0) => {
 				if (disabledRef.current) return
 				setDisabled(true)
@@ -27,7 +28,16 @@ const Carousel = memo(({ dataSet, content, className }) => {
 
 				const newDisplayedIndex = (total + displayedIndex + direction) % total
 				setDisplayedIndex(newDisplayedIndex)
+				if (autoRun) {
+						if (autoRunTimeout) clearTimeout(autoRunTimeout)
+						autoRunTimeout = setTimeout(() => rotateCarousel(1), 5000)
+				}
 		}
+
+		useEffect(() => {
+				if (autoRunTimeout) clearTimeout(autoRunTimeout)
+				if (autoRun) autoRunTimeout = setTimeout(() => rotateCarousel(1), 5000)
+		}, [])
 
 		const defaultShiftChild = (j, direction, shiftX) => {
 				const nextI = (total + j - direction) % total
@@ -104,7 +114,7 @@ const Carousel = memo(({ dataSet, content, className }) => {
 				if (swipeX >= containerWidh) return rotateCarousel(-1)
 				const shiftX = swipeX - startX
 				const coef = shiftX / containerWidh
-				if (Math.abs(coef) < 0.3) return rotateCarousel(0)
+				if (Math.abs(coef) < 0.2) return rotateCarousel(0)
 
 				const direction = shiftX > 0 ? -1 : 1
 				rotateCarousel(direction)
