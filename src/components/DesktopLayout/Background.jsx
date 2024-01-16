@@ -40,6 +40,9 @@ const commonStyles = css`
 const sectionStyles = css`
 		${commonStyles};
 		background-color: transparent;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
 		transition: opacity 0.5s ease-in-out;
 		opacity: 0;
 `
@@ -50,7 +53,7 @@ const StlBackground = styled.div`
 
 const ProductsBackground = styled.div`
 		${sectionStyles};
-		background: ${Bg('products')} center center / cover no-repeat, ${C.productsGradient};
+		background-image: ${Bg('products')}, ${C.productsGradient};
 		.products & {
 				opacity: 1;
 		}
@@ -58,7 +61,7 @@ const ProductsBackground = styled.div`
 
 const PartnersBackground = styled.div`
 		${sectionStyles};
-		background: ${Bg('partners')} center center / cover no-repeat, ${C.partnersGradient};
+		background-image: ${Bg('partners')}, ${C.partnersGradient};
 		.partners & {
 				opacity: 1;
 		}
@@ -66,7 +69,7 @@ const PartnersBackground = styled.div`
 
 const InfoBackground = styled.div`
 		${sectionStyles};
-		background: ${Bg('info')} center center / cover no-repeat, ${C.infoGradient};
+		background-image: ${Bg('info')}, ${C.infoGradient};
 		.info & {
 				opacity: 1;
 		}
