@@ -5,27 +5,34 @@ import { Bg, C } from '../../Utils'
 
 const Background = () => {
 		const { section } = useSectionContext()
-		const [productsBg, setProductsBg] = useState(section === 'products' ? <ProductsBackground src={Bg('products', false)} alt='products' /> : null)
-		const [partnersBg, setPartnersBg] = useState(section === 'partners' ? <PartnersBackground src={Bg('partners', false)} alt='partners' /> : null)
-		const [infoBg, setInfoBg] = useState(section === 'info' ? <InfoBackground src={Bg('info', false)} alt='info' /> : null)
+		const productsImg = <ProductsBackground onLoad={onPictureLoad} src={Bg('products', false)} alt='products' />
+		const partnersImg = <PartnersBackground onLoad={onPictureLoad} src={Bg('partners', false)} alt='partners' />
+		const infoImg = <InfoBackground onLoad={onPictureLoad} src={Bg('info', false)} alt='info' />
+		const [productsBg, setProductsBg] = useState(section === 'products' ? productsImg : null)
+		const [partnersBg, setPartnersBg] = useState(section === 'partners' ? partnersImg : null)
+		const [infoBg, setInfoBg] = useState(section === 'info' ? infoImg : null)
 
 		useEffect(() => {
 				setTimeout(() => {
-						if (!productsBg) setProductsBg(<ProductsBackground src={Bg('products', false)} alt='products' />)
-						if (!partnersBg) setPartnersBg(<PartnersBackground src={Bg('partners', false)} alt='partners' />)
-						if (!infoBg) setInfoBg(<InfoBackground src={Bg('info', false)} alt='info' />)
+						if (!productsBg) setProductsBg(productsImg)
+						if (!partnersBg) setPartnersBg(partnersImg)
+						if (!infoBg) setInfoBg(infoImg)
 				}, 1000)
 		}, [])
 
 		console.log('RENDER DESKTOP BACKGROUND')
 
 		return (
-				<StlBackground>
+				<StlBackground $section={section}>
 						{productsBg}
 						{partnersBg}
 						{infoBg}
 				</StlBackground>
 		)
+}
+
+const onPictureLoad = ({ target }) => {
+		target.classList.add('loaded')
 }
 
 const commonStyles = css`
@@ -40,9 +47,6 @@ const commonStyles = css`
 const sectionStyles = css`
 		${commonStyles};
 		background-color: transparent;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center center;
 		transition: opacity 0.5s ease-in-out;
 		object-fit: cover;
 		opacity: 0;
@@ -50,28 +54,30 @@ const sectionStyles = css`
 
 const StlBackground = styled.div`
 		${commonStyles};
+		background-image: ${({ $section }) => {
+				if ($section === 'products') return C.productsGradient
+				if ($section === 'partners') return C.partnersGradient
+				if ($section === 'info') return C.infoGradient
+		}};
 `
 
 const ProductsBackground = styled.img`
 		${sectionStyles};
-		background-image: ${C.productsGradient };
-		.products & {
+		.products &.loaded {
 				opacity: 1;
 		}
 `
 
 const PartnersBackground = styled.img`
 		${sectionStyles};
-		background-image: ${C.partnersGradient};
-		.partners & {
+		.partners &.loaded {
 				opacity: 1;
 		}
 `
 
 const InfoBackground = styled.img`
 		${sectionStyles};
-		background-image: ${C.infoGradient};
-		.info & {
+		.info &.loaded {
 				opacity: 1;
 		}
 `

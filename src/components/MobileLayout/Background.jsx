@@ -26,6 +26,7 @@ const Background = () => {
 		return (
 				<StlBackground ref={bgRef}>
 						<Sky
+								onLoad={onPictureLoad}
 								ref={skyRef}
 								src={Bg('sky', false, 'jpg')}
 								alt='sky'/>
@@ -33,6 +34,10 @@ const Background = () => {
 						<Landscape	/>
 				</StlBackground>
 		)
+}
+
+const onPictureLoad = ({ target }) => {
+		target.classList.add('loaded')
 }
 
 const StlBackground = styled.div`
@@ -46,6 +51,11 @@ const StlBackground = styled.div`
 
 const Sky = styled.img`
 		transform: translateY(-50px);
+		opacity: 0;
+		transition: opacity 1s;
+		&.loaded {
+				opacity: 1;
+		};
 `
 
 export { Background }
