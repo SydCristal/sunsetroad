@@ -1,19 +1,17 @@
 import styled from 'styled-components'
 import { Disclaimer, ContactForm, DistributorMap } from './'
-import { useModalContext, useScrollTopContext } from '../../Contexts'
+import { useModalContext } from '../../Contexts'
 import { memo, useRef, useEffect, useState, forwardRef } from 'react'
 import { C } from '../../Utils'
 
 
 const Modal = memo(forwardRef(({ appRef }, shadowRef) => {
 		const { displayedModal, setDisplayedModal } = useModalContext()
-		const { scrollTop } = useScrollTopContext()
 		const disclaimerRef = useRef(null)
 		const contactFormRef = useRef(null)
 		const distributorMapRef = useRef(null)
 		const [contactForm, setContactForm] = useState(null)
 		const [distributorMap, setDistributorMap] = useState(null)
-		//const shadowRef = useRef(null)
 		const modalRef = useRef('Disclaimer')
 		const close = () => setDisplayedModal(null)
 
@@ -51,19 +49,17 @@ const Modal = memo(forwardRef(({ appRef }, shadowRef) => {
 				if (displayedModal) {
 						modalRef.current = displayedModal
 						targetModal.style.display = 'flex'
-						shadowEl.style.transform = `translateY(${scrollTop}px)`
 						shadowEl.style.height = '100vh'
 						setTimeout(() => appRef.current.classList.add('blurred'), 1)
 				} else {
 						modalRef.current = null
 						appRef.current.classList.remove('blurred')
 						setTimeout(() => {
-								shadowEl.style.transform = `translateY(0)`
 								shadowEl.style.height = 0
 								targetModal.style.display = 'none'
 						}, 500)
 				}
-		}, [displayedModal, scrollTop, appRef])
+		}, [displayedModal, appRef])
 
 		console.log('RENDER MASK')
 
@@ -78,9 +74,6 @@ const Modal = memo(forwardRef(({ appRef }, shadowRef) => {
 		)
 }))
 
-//< Disclaimer ref = { disclaimerRef } />
-//				<ContactForm ref={contactFormRef} />
-//				<DistributorMap ref={distributorMapRef} />
 const StlModal = styled.div`
 		position: fixed;
 		z-index: 6;

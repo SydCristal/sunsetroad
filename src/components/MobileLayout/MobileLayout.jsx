@@ -29,17 +29,15 @@ const MobileLayout = memo(() => {
 })
 
 const StlMobileLayout = styled.div`
-		${C.mediaAnd([C.isMobile, C.isTall])} {
-				display: auto;
-		};
 		${C.isDesktop} {
 				display: none;
 		};
-		position: absolute;
-		top: 0;
-		width: 100%;
+		width: 100vw;
+		height: 100vh;
+		position: relative;
 		height: fit-content;
 		padding: 70px 0 300px;
+		overflow: hidden;
 		.blurred & {
 				pointer-events: none;
 		};

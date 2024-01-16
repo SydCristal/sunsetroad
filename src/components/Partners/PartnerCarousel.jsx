@@ -9,62 +9,78 @@ const PartnerCarousel = ({ maxGroupSize = 5, getControls, ...restProps }) => {
 				const singlePartnerArray = Object.keys(singlePartnerMap)
 				let result = []
 
-				const totalGroupSlots = singlePartnerArray.length + doublePartnerArray.length * 2
-				const partnerGroupCount = Math.ceil(totalGroupSlots / maxGroupSize)
-				console.log(totalGroupSlots, maxGroupSize, partnerGroupCount);
-				const averageGroupSize = Math.ceil(totalGroupSlots / partnerGroupCount)
-				console.log(averageGroupSize);
-				const doublePartnerPerGroupCount = Math.floor(doublePartnerArray.length / partnerGroupCount)
-				let doublePartnerPerGroupRemainder = doublePartnerArray.length % partnerGroupCount
+				const maxShortRowSize = Math.floor(maxGroupSize / 2)
+				const maxLongRowSize = maxGroupSize - maxShortRowSize
+				const maxDoublePartnerPerGroupCount = Math.floor(maxLongRowSize / 2) + Math.floor(maxShortRowSize / 2)
+				const doublePartnerRemainder = doublePartnerArray.length % maxDoublePartnerPerGroupCount
+				let totalGroupCount = Math.floor(doublePartnerArray.length / maxDoublePartnerPerGroupCount)
+				let singlePartnerCount = singlePartnerArray.length - totalGroupCount * (maxGroupSize - maxDoublePartnerPerGroupCount * 2)
+				if (doublePartnerRemainder) {
+						totalGroupCount++
+						singlePartnerCount -= maxGroupSize - doublePartnerRemainder * 2
+				}
 
-				for (let i = 0; i < partnerGroupCount; i++) {
-						const totalGroupsRemains = singlePartnerArray.length + doublePartnerArray.length * 2
-						const currentGroupSize = totalGroupsRemains >= averageGroupSize ? averageGroupSize : totalGroupsRemains
-						const shortRowSlotCount = Math.floor(currentGroupSize / 2)
-						const longRowSlotCount = currentGroupSize - shortRowSlotCount
-						let doublePartnerPerCurrentGroupCount = doublePartnerPerGroupCount
+				if (singlePartnerCount > 0) totalGroupCount += Math.ceil(singlePartnerCount / maxGroupSize)
+				const minDoublePartnerPerGroupCount = Math.floor(doublePartnerArray.length / totalGroupCount)
+				let doublePartnerPerGroupRemainder = doublePartnerArray.length % totalGroupCount
+				let compensatingSinglePartnerPerGroupCount = (totalGroupCount - doublePartnerPerGroupRemainder) * 2
+				if (compensatingSinglePartnerPerGroupCount > singlePartnerArray.length) compensatingSinglePartnerPerGroupCount = singlePartnerArray.length
+				let singlePartnerPerGroupRemainder = (singlePartnerArray.length - compensatingSinglePartnerPerGroupCount) % totalGroupCount
+				if (singlePartnerPerGroupRemainder < 0) singlePartnerPerGroupRemainder = 0
+
+				for (let i = 0; i < totalGroupCount; i++) {
+						let shortRowSlotCount = maxShortRowSize
+						let longRowSlotCount = maxLongRowSize
+						let doublePartnerPerCurrentGroupCount = minDoublePartnerPerGroupCount
+						let singlePartnerPerCurrentGroupCount = 0
 						if (doublePartnerPerGroupRemainder) {
 								doublePartnerPerCurrentGroupCount++
 								doublePartnerPerGroupRemainder--
+						} else if (compensatingSinglePartnerPerGroupCount) {
+								singlePartnerPerCurrentGroupCount += compensatingSinglePartnerPerGroupCount > 1 ? 2 : 1
 						}
-						let longRowVacantSlots = longRowSlotCount
-						let doublePartnerPerShortRowCount = Math.ceil(doublePartnerPerCurrentGroupCount / 2)
-						let shortRowVacantSlots = shortRowSlotCount
-						let doublePartnerPerLongRowCount = doublePartnerPerCurrentGroupCount - doublePartnerPerShortRowCount
+
+						if (singlePartnerPerGroupRemainder) {
+								singlePartnerPerCurrentGroupCount++
+								singlePartnerPerGroupRemainder--
+						}
+
+						let doublePartnerPerLongRowCount = Math.ceil(doublePartnerPerCurrentGroupCount / 2)
+						let doublePartnerPerShortRowCount = doublePartnerPerCurrentGroupCount - doublePartnerPerLongRowCount
+						shortRowSlotCount -= doublePartnerPerShortRowCount * 2
+						longRowSlotCount -= doublePartnerPerLongRowCount * 2
 						let longRow = []
 						let shortRow = []
 
-						while ((doublePartnerPerLongRowCount || singlePartnerArray.length) && shortRowVacantSlots > 0) {
+						while (singlePartnerPerCurrentGroupCount || doublePartnerPerLongRowCount || doublePartnerPerShortRowCount) {
 								if (doublePartnerPerShortRowCount) {
 										const $partnerName = doublePartnerArray.pop()
 										const $link = doublePartnerMap[$partnerName]
 										shortRow.push({ $partnerName, $link, $double: true })
+
 										doublePartnerPerShortRowCount--
-										shortRowVacantSlots -= 2
 								}
 
-								if (shortRowVacantSlots && singlePartnerArray.length) {
+								if (singlePartnerPerCurrentGroupCount) {
 										const $partnerName = singlePartnerArray.pop()
 										const $link = singlePartnerMap[$partnerName]
-										shortRow.push({ $partnerName, $link })
-										shortRowVacantSlots--
-								}
-						}
+										if (shortRowSlotCount >= longRowSlotCount) {
+												shortRow.push({ $partnerName, $link })
+												shortRowSlotCount--
+										} else {
+												longRow.push({ $partnerName, $link })
+												longRowSlotCount--
+										}
 
-						while ((doublePartnerPerLongRowCount || singlePartnerArray.length) && longRowVacantSlots > 0) {
-								if (singlePartnerArray.length) {
-										const $partnerName = singlePartnerArray.pop()
-										const $link = singlePartnerMap[$partnerName]
-										longRow.push({ $partnerName, $link })
-										longRowVacantSlots--
+										singlePartnerPerCurrentGroupCount--
 								}
 
-								if (longRowVacantSlots && doublePartnerPerLongRowCount) {
+								if (doublePartnerPerLongRowCount) {
 										const $partnerName = doublePartnerArray.pop()
 										const $link = doublePartnerMap[$partnerName]
 										longRow.push({ $partnerName, $link, $double: true })
+
 										doublePartnerPerLongRowCount--
-										longRowVacantSlots -= 2
 								}
 						}
 
@@ -107,7 +123,8 @@ const doublePartnerMap = {
 		Lolas: 'https://www.instagram.com/reel/CtTW90gxePE/?igsh=b3dzNjdwcHpiMWRv',
 		NowBeer: 'https://instagram.com/nowbeerbar?igshid=MzRlODBiNWFlZA==',
 		Mamu: 'https://www.instagram.com/mamu_bali?igsh=MTF3anAzOTg5cGMxYQ==',
-		WowBooze: 'https://www.instagram.com/wow_booze_bali/?igsh=MXJqaTF0bDdtemM4Nw%3D%3D'
+		WowBooze: 'https://www.instagram.com/wow_booze_bali/?igsh=MXJqaTF0bDdtemM4Nw%3D%3D',
+		Crayfish: 'https://www.instagram.com/crayfish_bar/?igshid=MzRlODBiNWFlZA%3D%3D'
 }
 
 const singlePartnerMap = {

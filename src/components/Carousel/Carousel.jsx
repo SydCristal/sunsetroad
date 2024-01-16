@@ -39,7 +39,8 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 				if (autoRun) autoRunTimeout = setTimeout(() => rotateCarousel(1), 5000)
 		}, [])
 
-		const defaultShiftChild = (j, direction, shiftX) => {
+		const defaultShiftChild = (j, direction, contentWidth) => {
+				const shiftX = contentWidth + ((document.documentElement.clientWidth - contentWidth) / 2)
 				const nextI = (total + j - direction) % total
 				const opacity = (j && nextI && direction) ? 0 : 1
 				const coef = (nextI !== total - 1) ? nextI : -1
@@ -129,7 +130,7 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 								const $shiftDistance = contentWidth + spaceBetween
 								content[i].$shiftDistance = $shiftDistance
 								if (!shiftChild) {
-										shiftChild = (j, direction) => defaultShiftChild(j, direction, $shiftDistance)
+										shiftChild = (j, direction) => defaultShiftChild(j, direction, contentWidth)
 										content[i].shiftChild = shiftChild
 								}
 

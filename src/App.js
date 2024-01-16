@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Sky } from './components/MobileLayout'
 import LanguageSwitch from './components/LanguageSwitch'
 import { useEffect, useRef } from 'react'
 import { C } from './Utils'
@@ -16,15 +15,14 @@ const App = () => {
 		const isDesktop = document.documentElement.clientWidth > C.MAX_MOBILE_WIDTH
 		const desktopLayoutRef = useRef(isDesktop ? <DesktopLayout /> : null)
 		const mobileLayoutRef = useRef(isDesktop ? null : <MobileLayout />)
+		const onScroll = ({ target }) => {
+				setScrollTop(target.scrollTop)
+		}
 
 		console.log('RENDER APP')
 
 		useEffect(() => {
 				appRef.current?.scrollTo(0, 0)
-
-				const onScroll = ({ target }) => {
-						setScrollTop(target.scrollTop)
-				}
 
 				if (!isDesktop) appRef.current.addEventListener('scroll', onScroll)
 				const handleResize = () => {
@@ -64,7 +62,6 @@ const App = () => {
 						id='app'
 						ref={appRef}
 						className='blurred'>
-						<Sky />
 						<LanguageSwitch />
 						<Modal appRef={appRef} ref={shadowRef} />
 						{desktopLayoutRef.current}
@@ -77,12 +74,8 @@ const StlApp = styled.div`
 		height: 100vh;
 		overflow-y: auto;
 		overflow-x: hidden;
-		perspective: 1px;
-		-webkit-perspective: 1px;
-		width: 100%;
+		width: 100vw;
 		position: relative;
-		transform-style: preserve-3d;
-		-webkit-transform-style: preserve-3d;
 		&.blurred {
 				overflow: hidden;
 		}
