@@ -106,7 +106,7 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 				const { startX, offsetLeft, containerWidh, startTime } = swipeStartRef.current
 				const { changedTouches, timeStamp: endTime } = e
 				const swipeX = changedTouches[0].clientX - offsetLeft
-				if (endTime - startTime < 300) {
+				if (endTime - startTime < 100) {
 						return rotateCarousel(0)
 				}
 				e.preventDefault()
@@ -115,7 +115,7 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 				if (swipeX >= containerWidh) return rotateCarousel(-1)
 				const shiftX = swipeX - startX
 				const coef = shiftX / containerWidh
-				if (Math.abs(coef) < 0.2) return rotateCarousel(0)
+				if (Math.abs(coef) < 0.1) return rotateCarousel(0)
 
 				const direction = shiftX > 0 ? -1 : 1
 				rotateCarousel(direction)
