@@ -39,6 +39,7 @@ const commonStyles = css`
 
 const sectionStyles = css`
 		${commonStyles};
+		background-color: transparent;
 		transition: opacity 0.5s ease-in-out;
 		opacity: 0;
 `
