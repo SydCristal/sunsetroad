@@ -30,10 +30,15 @@ const StlPalm = styled.div`
 		img {
 				width: 100%;
 				transform: ${({ $position, $coefX }) => {
-						let shiftX = 100 + (60 * $coefX)
-						let shiftY = -10 * $coefX
-						let scale = 0.75
-						let rotate = 25 + (10 * $coefX)
+						//let shiftX = 100 + (60 * $coefX)
+						//let shiftY = -10 * $coefX
+						//let scale = 0.75
+						//let rotate = 25 + (10 * $coefX)
+
+						let shiftX = 115 + (60 * $coefX)
+						let shiftY = -1 * $coefX
+						let scale = 0.85
+						let rotate = 14 + (10 * $coefX)
 
 						if ($position > 0) {
 								shiftX = 0

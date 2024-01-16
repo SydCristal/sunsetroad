@@ -70,7 +70,9 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		console.log('RENDER CONTACT FORM')
 
 		return (
-				<StlContactForm ref={ref}>
+				<StlContactForm
+						ref={ref}
+						name='ContactForm'>
 						<UpperBlock>
 								<ModalHeader>
 										<Heading $styles={headingStyles} />
