@@ -9,7 +9,10 @@ const Disclaimer = memo(forwardRef(({ close }, ref) => {
 
 		return (
 				<StlDisclaimer ref={ref} id='Disclaimer'>
-						<Logo />
+						<LogoContainer>
+								<Logo src={Lo('logo', false, 'svg')} alt='logo' />
+								<Heading src={Lo('heading', false, 'svg')} alt='heading' />
+						</LogoContainer>
 						<DisclaimerText localization={l.ageFilterText} tag='p'/>
 						<ConfirmationButton onClick={close}>
 								<Localizer localization={l.confirm} />
@@ -66,7 +69,7 @@ const DisclaimerText = styled(Localizer)`
 		};
 `
 
-const Logo = styled.div`
+const LogoContainer = styled.div`
 		${C.mediaOr([C.isDesktop, C.isShort])} {
 				opacity: 0;
 				transition: opacity 0.5s ease-in-out;
@@ -78,15 +81,35 @@ const Logo = styled.div`
 		${C.isShort} {
 				height: 100px;
 				margin: 0 auto;
-				background: ${Lo('heading', true, 'svg')} center center / contain no-repeat;
 		};
 		${C.isTall} {
 				height: 195px;
 				width: 191px;
 				margin: 0 auto 55px;
-				background: ${Lo('logo', true, 'svg')} center center / contain no-repeat;
 		};
 		width: 100%;
+		position: relative;
+		> img {
+				height: 100%;
+				z-index: 2;
+		};
+`
+
+const Logo = styled.img`
+		position: absolute;
+		display: block;
+		width: 100%;
+		${C.isShort} {
+				display: none;
+		};
+`
+
+const Heading = styled.img`
+		display: none;
+		margin: 0 auto;
+		${C.isShort} {
+				display: block;
+		};
 `
 
 const ConfirmationButton = styled.button`
