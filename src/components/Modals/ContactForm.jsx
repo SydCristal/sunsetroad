@@ -215,7 +215,7 @@ const FormControls = styled.div`
 
 const ControlButton = styled.button`
 		opacity: ${({ $opacity }) => $opacity};
-		min-width: 125px;
+		min-width: 150px;
 		border: none;
 		background-color: transparent;
 		padding: 0;
@@ -227,6 +227,7 @@ const ControlButton = styled.button`
 		-webkit-text-stroke: 1.5px rgb(34, 30, 31);
 		text-shadow: ${C.TEXT_OUTLINE};
 		transition: opacity 0.3s ease-in-out;
+		flex: 1;		
 		&:focus {
 				outline: none;
 		};
@@ -239,7 +240,8 @@ const ControlButton = styled.button`
 		&:not(:first-child) {
 				display: block;
 		};
-		> * {
+		> *,
+		> * span {
 				display: inline-block;
 				width: 100%;
 		};

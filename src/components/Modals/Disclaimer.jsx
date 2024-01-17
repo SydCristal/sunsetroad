@@ -51,6 +51,10 @@ const DisclaimerText = styled(Localizer)`
 		transition: opacity 0.5s ease-in-out;
 		padding: 0 15px;
 		opacity: 0;
+		> * {
+				width: 320px;
+				margin: 0 auto;
+		};
 		${C.isShort} {
 				font-size: 20px;
 				margin: 15px 0;
@@ -58,6 +62,7 @@ const DisclaimerText = styled(Localizer)`
 		${C.isTall} {
 				font-size: 25px;
 				margin: 50px 0;
+				height: 120px;
 		};
 `
 
@@ -101,6 +106,9 @@ const ConfirmationButton = styled.button`
 		transition: opacity 0.5s ease-in-out;
 		cursor: pointer;
 		opacity: 0;
+		> * {
+			width: 100%;
+		};
 `
 
 export { Disclaimer }
