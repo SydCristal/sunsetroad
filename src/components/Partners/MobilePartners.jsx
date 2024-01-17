@@ -1,14 +1,10 @@
 import { PartnerCarousel, l } from './'
-import { useLanguageContext, useScreenContext } from '../../Contexts'
+import { Localizer } from '../Common'
 import styled from 'styled-components'
 import { Ic, C } from '../../Utils'
-import { useMemo, memo } from 'react'
+import { memo } from 'react'
 
 const MobilePartners = memo(() => {
-		const { language } = useLanguageContext()
-		const { screenWidth } = useScreenContext()
-		useMemo(() => l.setLanguage(language), [language])
-
 		return (
 				<StlMobilePartners>
 						<PartnerCarousel
@@ -26,7 +22,7 @@ const getControls = rotateCarousel => (
 						src={Ic('scroll-left', false)}
 						alt='scroll-left'
 						onPointerDown={e => rotateCarousel(1)} />
-				<Heading>{l.partners}</Heading>
+				<Heading tag='h2' localization={l.partners} />
 				<Arrow
 						key='right'
 						src={Ic('scroll-right', false)}
@@ -48,7 +44,7 @@ const ControlContainer = styled.div`
 		width: fit-content;
 `
 
-const Heading = styled.h2`
+const Heading = styled(Localizer)`
 		margin: 0 10px;
 		font-family: 'Orelega One';
 		font-size: 35px;

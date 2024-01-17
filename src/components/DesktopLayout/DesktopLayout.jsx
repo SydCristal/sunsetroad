@@ -1,8 +1,8 @@
-import { C, Bg, Lo } from '../../Utils'
+import { C } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
 import { DesktopFooter } from '../Footer'
-import { Heading, ContactFormTrigger, DistributorMapTrigger } from '../Common'
+import { Heading } from '../Common'
 import { Content, Contacts, Background } from './'
 import { memo } from 'react'
 

@@ -1,19 +1,15 @@
 import styled from 'styled-components'
 import { C, Bg } from '../../Utils'
 import { l } from './'
-import { useLanguageContext } from '../../Contexts'
-import { useMemo } from 'react'
+import { Localizer } from '../Common'
 
 const ProductDescription = (productName, i, transformStyles) => {
-		const { language } = useLanguageContext()
-		useMemo(() => l.setLanguage(language), [language])
-
 		return (
 				<StlDescription
 						key={productName}
 						style={transformStyles}>
 						<DescriptionHeading src={Bg(`${productName}-heading`, false)} alt={productName} />
-						<DescriptionText >{l[`${productName}Description`]}</DescriptionText>
+						<DescriptionText tag='p' localization={l[`${productName}Description`]} />
 				</StlDescription>
 		)
 }
@@ -37,7 +33,7 @@ const DescriptionHeading = styled.img`
 		};
 `
 
-const DescriptionText = styled.p`
+const DescriptionText = styled(Localizer)`
 		margin: 0;
 		font-weight: 600;
 		${C.isMobile} {

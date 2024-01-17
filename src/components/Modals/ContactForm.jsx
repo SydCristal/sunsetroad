@@ -1,9 +1,9 @@
 ﻿import styled, { css } from 'styled-components'
 import { useLanguageContext, useModalContext } from '../../Contexts'
 import { C, Ic } from '../../Utils'
-import { Heading, Input } from '../Common'
+import { Heading, Input, Localizer } from '../Common'
 import { l } from './'
-import { useState, useMemo, forwardRef, memo, useEffect } from 'react'
+import { useState, forwardRef, memo, useEffect } from 'react'
 import * as EmailValidator from 'email-validator'
 
 const ContactForm = memo(forwardRef((props, ref) => {
@@ -14,8 +14,6 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		const [message, setMessage] = useState('')
 		const [invalidFields, setInvalidFields] = useState([])
 
-		useMemo(() => l.setLanguage(language), [language])
-
 		useEffect(() => {
 				if (displayedModal !== 'ContactForm') return
 				setName('')
@@ -24,7 +22,11 @@ const ContactForm = memo(forwardRef((props, ref) => {
 				setInvalidFields([])
 		}, [displayedModal])
 
-		const close = () => setDisplayedModal(null)
+		const close = e => {
+				e?.preventDefault()
+				e?.stopPropagation()
+				setDisplayedModal(null)
+		}
 
 		const highlight = (inputName, isValid) => {
 				if (isValid && invalidFields.includes(inputName)) {
@@ -37,8 +39,6 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		}
 
 		const onInputChange = (inputName, value, isValid) => {
-				highlight(inputName, isValid)
-
 				switch (inputName) {
 						case 'email':
 								setEmail(value)
@@ -64,7 +64,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 						From: C.SENDER_EMAIL,
 						Subject: email,
 						Body: `${name} отправил(а) вам сообщение:<br /><br />${message}`
-				}).then(close)
+				}).then(() => close())
 		}
 
 		console.log('RENDER CONTACT FORM')
@@ -88,7 +88,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 												$setIsHighlighted={isValid => highlight('name', isValid)}
 												onChange={(value, isValid) => onInputChange('name', value, isValid)}
 												$validate={value => value?.length > 2}
-												placeholder={l.name}
+												placeholder={l.name[language]}
 												$errorTip={l.nameIsInvalid} />
 										<Input
 												type='email'
@@ -97,7 +97,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 												value={email}
 												onChange={(value, isValid) => onInputChange('email', value, isValid)}
 												$validate={value => EmailValidator.validate(value)}
-												placeholder={l.email}
+												placeholder='Email'
 												$errorTip={l.emailIsInvalid} />
 								</InputContainer>
 						</UpperBlock>
@@ -108,20 +108,20 @@ const ContactForm = memo(forwardRef((props, ref) => {
 								value={message}
 								onChange={(value, isValid) => onInputChange('message', value, isValid)}
 								$validate={value => value?.length > 2}
-								placeholder={l.message}
+								placeholder={l.message[language]}
 								$errorTip={l.messageIsInvalid} />
 						<FormControls>
 								<ControlButton
 										disabled={false}
 										$opacity={1}
 										onClick={close}>
-										{l.cancel}
+										<Localizer localization={l.cancel}/>
 								</ControlButton>
 								<ControlButton
 										disabled={!submitButtonIsActive}
 										$opacity={submitButtonIsActive ? 1 : 0.5}
 										onClick={onFormSubmit}>
-										{l.submit}
+										<Localizer localization={l.submit} />
 								</ControlButton>
 						</FormControls>
 				</StlContactForm>
@@ -215,6 +215,7 @@ const FormControls = styled.div`
 
 const ControlButton = styled.button`
 		opacity: ${({ $opacity }) => $opacity};
+		min-width: 125px;
 		border: none;
 		background-color: transparent;
 		padding: 0;
@@ -237,6 +238,10 @@ const ControlButton = styled.button`
 		};
 		&:not(:first-child) {
 				display: block;
+		};
+		> * {
+				display: inline-block;
+				width: 100%;
 		};
 `
 

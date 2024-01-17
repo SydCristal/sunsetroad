@@ -1,14 +1,14 @@
-﻿import LocalizedStrings from 'react-localization'
-
-export const l = new LocalizedStrings({
-		en: {
-				products: 'Products',
-				partners: 'Partners',
-				info: 'Info'
+﻿export const l = {
+		products: {
+				en: 'Products',
+				id: 'Produk'
 		},
-		id: {
-				products: 'Produk',
-				partners: 'Mitra',
-				info: 'Info'
+		partners: {
+				en: 'Partners',
+				id: 'Mitra'
+		},
+		info: {
+				en: 'Info',
+				id: 'Info'
 		}
-})
+}

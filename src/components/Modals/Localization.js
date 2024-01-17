@@ -1,28 +1,38 @@
-import LocalizedStrings from 'react-localization'
-
-export const l = new LocalizedStrings({
-		en: {
-				ageFilterText: 'By clicking on the button, you confirm that you are over 21 years old',
-				confirm: 'Confirm',
-				name: 'Name',
-				email: 'Email',
-				message: 'Message',
-				nameIsInvalid: 'Name cannot be less than 2 characters',
-				emailIsInvalid: 'Email is invalid',
-				messageIsInvalid: 'Message cannot be less than 2 characters',
-				submit: 'Submit',
-				cancel: 'Cancel'
+export const l = {
+		ageFilterText: {
+				en: 'By clicking on the button, you confirm that you are over 21 years old',
+				id: 'Dengan mengklik tombol, Anda mengkonfirmasi bahwa Anda berusia di atas 21 tahun'
 		},
-		id: {
-				ageFilterText: 'Dengan mengklik tombol, Anda mengkonfirmasi bahwa Anda berusia di atas 21 tahun',
-				confirm: 'Konfirmasi',
-				name: 'Nama',
-				email: 'Email',
-				message: 'Pesan',
-				nameIsInvalid: 'Nama tidak boleh kurang dari 2 karakter',
-				emailIsInvalid: 'Email tidak valid',
-				messageIsInvalid: 'Pesan tidak boleh kurang dari 2 karakter',
-				submit: 'Kirim',
-				cancel: 'Batal'
+		confirm: {
+				en: 'Confirm',
+				id: 'Konfirmasi' 
+		},
+		name: {
+				en: 'Name',
+				id: 'Nama'
+		},
+		message: {
+				en: 'Message',
+				id: 'Pesan'
+		},
+		nameIsInvalid: {
+				en: 'Name cannot be less than 2 characters',
+				id: 'Nama tidak boleh kurang dari 2 karakter'
+		},
+		emailIsInvalid: {
+				en: 'Email is invalid',
+				id: 'Email tidak valid'
+		},
+		messageIsInvalid: {
+				en: 'Message cannot be less than 2 characters',
+				id: 'Pesan tidak boleh kurang dari 2 karakter'
+		},
+		submit: {
+				en: 'Submit',
+				id: 'Kirim'
+		},
+		cancel: {
+				en: 'Cancel',
+				id: 'Batal'
 		}
-})
+}

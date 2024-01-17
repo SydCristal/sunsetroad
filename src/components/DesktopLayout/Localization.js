@@ -1,12 +1,10 @@
-﻿import LocalizedStrings from 'react-localization'
-
-export const l = new LocalizedStrings({
-		en: {
-				brewed: 'Brewed in Bali',
-				map: 'map'
+﻿export const l = {
+		brewed: {
+				en: 'Brewed in Bali',
+				id: 'Dibuat  di Bali'
 		},
-		id: {
-				brewed: 'Dibuat  di Bali',
-				map: 'peta'
+		map: {
+				en: 'map',
+				id: 'peta'
 		}
-})
+}

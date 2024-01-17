@@ -1,24 +1,18 @@
 import styled from 'styled-components'
-import { useLanguageContext } from '../../Contexts'
 import { l } from './'
 import { Lo, C } from '../../Utils'
-import { useMemo, forwardRef, memo } from 'react'
+import { forwardRef, memo } from 'react'
+import { Localizer } from '../Common'
 
 const Disclaimer = memo(forwardRef(({ close }, ref) => {
-		const { language } = useLanguageContext()
-
-		useMemo(() => l.setLanguage(language), [language])
-
 		console.log('RENDER DISCLAIMER')
 
 		return (
 				<StlDisclaimer ref={ref} id='Disclaimer'>
 						<Logo />
-						<DisclaimerText>
-								{l.ageFilterText}
-						</DisclaimerText>
+						<DisclaimerText localization={l.ageFilterText} tag='p'/>
 						<ConfirmationButton onClick={close}>
-								{l.confirm}
+								<Localizer localization={l.confirm} />
 						</ConfirmationButton>
 				</StlDisclaimer>
 		)
@@ -46,7 +40,7 @@ const StlDisclaimer = styled.div`
 		};
 `
 
-const DisclaimerText = styled.p`
+const DisclaimerText = styled(Localizer)`
 		color: #FFF;
 		text-align: center;
 		text-shadow: ${C.TEXT_SHADOW};

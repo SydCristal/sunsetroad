@@ -1,24 +1,19 @@
 import { C } from '../../Utils'
 import styled from 'styled-components'
-import { useLanguageContext } from '../../Contexts'
-import { ContactFormTrigger, DistributorMapTrigger } from '../Common'
+import { ContactFormTrigger, DistributorMapTrigger, Localizer } from '../Common'
 import { l } from './'
-import { useMemo } from 'react'
 
 const Contacts = () => {
-		const { language } = useLanguageContext()
-		useMemo(() => l.setLanguage(language), [language])
-
 		console.log('RENDER DESKTOP CONTACTS')
 
 		return (
 				<StlContacts>
-						<Brewed><h2>{l.brewed}</h2></Brewed>
+						<div><Brewed tag='h2' localization={l.brewed} /></div>
 						<div>
 								<StlContactFormTrigger />
 						</div>
 						<StlDistributorMapTrigger device='desktop'>
-								{l.map}
+								<MapLocalizer localization={l.map} />
 						</StlDistributorMapTrigger>
 				</StlContacts>
 		)
@@ -30,11 +25,11 @@ const StlContacts = styled.div`
 		flex-direction: row;
 		align-items: center;
 		margin: 0 10px;
-		* {
-				transition: opacity 0.2s ease-in-out;
-		};
 		> div	{
 				flex: 1;
+				> * {
+					transition: opacity 0.2s ease-in-out;
+				};
 		};
 		h2 {
 				opacity: 0.55;
@@ -48,12 +43,10 @@ const StlContacts = styled.div`
 		}
 `
 
-const Brewed = styled.div`
-		h2 {
-			display: block;
-			width: 195px;
-			text-align: center;
-		};
+const Brewed = styled(Localizer)`
+		display: block;
+		width: 195px;
+		text-align: center;
 `
 
 const StlContactFormTrigger = styled(ContactFormTrigger)`
@@ -67,5 +60,13 @@ const StlDistributorMapTrigger = styled(DistributorMapTrigger)`
 			margin-right: 20px;
 		};
 `
+
+const MapLocalizer = styled(Localizer)`
+		span {
+				display: inline-block;
+				width: 50px;
+				text-align: end;
+		};
+` 
 
 export { Contacts }

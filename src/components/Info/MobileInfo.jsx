@@ -1,39 +1,38 @@
-import styled, { css } from 'styled-components'
-import { DistributorMapTrigger } from '../Common'
+import styled from 'styled-components'
+import { DistributorMapTrigger, Localizer } from '../Common'
 import { l } from './'
-import { useLanguageContext } from '../../Contexts'
-import { useMemo } from 'react'
-import { C } from '../../Utils'
 
 const MobileInfo = () => {
-		const { language } = useLanguageContext()
-		useMemo(() => l.setLanguage(language), [language])
-
 		return (
 				<StlMobileInfo>
-						<Text>{l.text}</Text>
+						<Text
+								tag='p'
+								localization={l.text} />
 						<DistributorMapTrigger
 								device='mobile'>
-								{l.slogan}
-						</DistributorMapTrigger>
+								Find your pleasing
+							</DistributorMapTrigger>
 				</StlMobileInfo>
 		)
 }
 
 const StlMobileInfo = styled.section`
 		margin-bottom: 50px;
-		min-height: 300px;
+		min-height: 315px;
 		position: relative;
 `
 
-const Text = styled.p`
+const Text = styled(Localizer)`
 		font-size: 18px;
   line-height: 20px;
   font-weight: 600;
   padding: 0px;
-  margin: 0px 0px 10px;
 		color: black;
-		font-family: 'Bitter';
+		margin: 0;
+		align-items: bottom;
+		& .en-string {
+				padding: 0 15px;
+		};
 `
 
 export { MobileInfo }

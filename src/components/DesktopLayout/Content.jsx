@@ -1,4 +1,4 @@
-import { useSectionContext, useModalContext } from '../../Contexts'
+import { useSectionContext } from '../../Contexts'
 import { Lo } from '../../Utils'
 import styled from 'styled-components'
 import { DesktopInfo } from '../Info'

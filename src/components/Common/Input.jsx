@@ -1,20 +1,22 @@
 import styled from 'styled-components'
 import { C } from '../../Utils'
+import { Localizer } from './'
 
 const Input = ({ onChange, $validate = false, $errorTip = '', className, $isHighlighted, $setIsHighlighted, ...restProps }) => {
 		const inputProps = {
 				...restProps,
 				$isHighlighted,
 				onChange: ({ target: { value } }) => {
-						if ($isHighlighted) $setIsHighlighted(false)
+						if ($isHighlighted) $setIsHighlighted(true)
 
 						onChange(value, $validate ? $validate(value.trim()) : true)
 				},
 				onBlur: ({ target: { value } }) => {
 						value = value.trim()
 						let isValid = $validate ? $validate(value) : true
+						console.log($isHighlighted, isValid);
 
-						if ($isHighlighted === isValid) $setIsHighlighted(!isValid)
+						if ($isHighlighted === isValid) $setIsHighlighted(isValid)
 
 						onChange(value, isValid)
 				}
@@ -23,7 +25,7 @@ const Input = ({ onChange, $validate = false, $errorTip = '', className, $isHigh
 		return (
 				<InputContainer className={className}>
 						<StlInput {...inputProps} />
-						<ErrorTip>{$isHighlighted ? $errorTip : ''}</ErrorTip>
+						<ErrorTip>{$isHighlighted ? <Localizer localization={$errorTip} /> : ''}</ErrorTip>
 				</InputContainer>
 		)
 }
@@ -58,6 +60,10 @@ const ErrorTip = styled.p`
 		height: 17px;
 		margin: 0;
 		font-size: 15px;
+		> * {
+				width: 100%;
+				display: inline-box;
+		}
 `
 
 export { Input }

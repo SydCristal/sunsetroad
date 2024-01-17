@@ -1,19 +1,18 @@
-import { useLanguageContext } from '../../Contexts'
 import { l } from './Localization'
 import styled from 'styled-components'
 import { C } from '../../Utils'
-import { useMemo, memo } from 'react'
+import { memo } from 'react'
+import { Localizer } from '../Common'
 
 const DesktopInfo = memo(() => {
-		const { language } = useLanguageContext()
-		useMemo(() => l.setLanguage(language), [language])
-
 		console.log('RENDER DESKTOP INFO')
 
 		return (
 				<StlDesktopInfo>
-						<Slogan>{l.slogan}</Slogan>
-						<Text>{l.text}</Text>
+						<Slogan>Find your pleasing</Slogan>
+						<Text
+								tag='p'
+								localization={l.text} />
 				</StlDesktopInfo>
 		)
 })
@@ -32,7 +31,7 @@ const Slogan = styled.h1`
 		font-size: 24px;
 `
 
-const Text = styled.p`
+const Text = styled(Localizer)`
 		margin: 0;
 		font-size: 18px;
 		line-height: 22px;

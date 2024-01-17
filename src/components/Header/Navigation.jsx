@@ -1,13 +1,12 @@
 ﻿import styled from 'styled-components'
-import { useSectionContext, useLanguageContext } from '../../Contexts'
+import { useSectionContext } from '../../Contexts'
 import { l } from './'
 import { C } from '../../Utils'
-import { useMemo, memo } from 'react'
+import { memo } from 'react'
+import { Localizer } from '../Common'
 
 const Navigation = memo(() => {
 		const { setSection } = useSectionContext()
-		const { language } = useLanguageContext()
-		useMemo(() => l.setLanguage(language), [language])
 		const sections = [{
 				value: 'products',
 				label: l.products
@@ -32,11 +31,9 @@ const Navigation = memo(() => {
 						{sections.map(({ value, label }) => (
 								<Link
 										key={value}
-										href={`/${value}`}
-										target='_blank'
 										$section={value}
 										onClick={e => onLinkClink(e, value)}>
-										{label}
+										<Localizer localization={label} />
 								</Link>
 						))}
 				</StlNavigation>
@@ -47,16 +44,27 @@ const StlNavigation = styled.nav`
 		display: flex;
 		align-items: center;
 `
-const Link = styled.a`
+const Link = styled.span`
 		.${({ $section }) => $section} & {
 				opacity: ${C.ACTIVE_UI_EL_OPACITY};
 		};
 		opacity: ${C.UI_EL_OPACITY};
 		transition: opacity 0.2s ease-in-out;
-		text-decoration: none;
 		margin-right: 30px;
 		font-family: 'Fira Sans', sans-serif;
 		font-size: 20px;
+		width: 80px;
+		cursor: pointer;
+		&:first-child {
+				text-align: end;
+		};
+		text-align: center;
+		&:last-child {
+				text-align: start;
+		};
+		> span {
+				width: 80px;
+		};
 		&:hover {
 				opacity: ${C.ACTIVE_UI_EL_OPACITY};
 		};
