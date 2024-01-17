@@ -54,6 +54,8 @@ const sectionStyles = css`
 
 const StlBackground = styled.div`
 		${commonStyles};
+		background-color: rgba(0, 0, 0, 0.5);
+		background-blend-mode: color;
 		background-image: ${({ $section }) => {
 				if ($section === 'products') return C.productsGradient
 				if ($section === 'partners') return C.partnersGradient

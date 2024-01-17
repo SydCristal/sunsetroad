@@ -25,6 +25,7 @@ const inheritedStyles = `
 		text-shadow: inherit;
 		color: inherit;
 		line-height: inherit;
+		text-shadow: inherit;
 `
 
 const StlLocalizer = styled.span`
