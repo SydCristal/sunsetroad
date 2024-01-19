@@ -27,7 +27,7 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 		useEffect(() => {
 				const markerImgArr = sortedDistributors.map(distributor => {
 						const markerImg = document.createElement('img')
-						markerImg.src = Ic('marker', false, 'svg')
+						markerImg.src = Ic('marker-ugly', false, 'svg')
 						markerImg.alt = 'marker'
 						return markerImg
 				})

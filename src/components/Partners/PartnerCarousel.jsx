@@ -123,7 +123,7 @@ const doublePartnerMap = {
 		Lolas: 'https://www.instagram.com/reel/CtTW90gxePE/?igsh=b3dzNjdwcHpiMWRv',
 		NowBeer: 'https://instagram.com/nowbeerbar?igshid=MzRlODBiNWFlZA==',
 		Mamu: 'https://www.instagram.com/mamu_bali?igsh=MTF3anAzOTg5cGMxYQ==',
-		WowBooze: 'https://www.instagram.com/wow_booze_bali/?igsh=MXJqaTF0bDdtemM4Nw%3D%3D',
+		WowBooze: 'https://www.wowbooze.com/',
 		Crayfish: 'https://www.instagram.com/crayfish_bar/?igshid=MzRlODBiNWFlZA%3D%3D'
 }
 
