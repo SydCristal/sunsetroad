@@ -53,10 +53,12 @@ const App = () => {
 				}
 
 				window.addEventListener('resize', handleResize)
-				screen.orientation.addEventListener('change', handleResize)
+				const orientation = window.matchMedia('(orientation: portrait)')
+
+				orientation.addEventListener('change', handleResize)
 				return () => {
 						window.removeEventListener('resize', handleResize)
-						screen.orientation.removeEventListener('change', handleResize)
+						orientation.removeEventListener('change', handleResize)
 				}
 		}, [])
 
