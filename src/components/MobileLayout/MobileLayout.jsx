@@ -6,6 +6,7 @@ import { MobileProducts } from '../Products'
 import { MobilePartners } from '../Partners'
 import { MobileFooter } from '../Footer'
 import { memo } from 'react'
+import { DeliveryLink } from '../Common/'
 
 const MobileLayout = memo(() => {
 		console.log('RENDER MOBILE LAYOUT')
@@ -18,6 +19,7 @@ const MobileLayout = memo(() => {
 										<Logo id='main-logo' src={Lo('logo', false, 'svg')} alt='logo' />
 								</LogoContainer>
 								<main>
+										<StlDeliveryLink />
 										<MobileInfo />
 										<MobileProducts />
 										<MobilePartners />
@@ -66,7 +68,7 @@ const Content = styled.div`
 const LogoContainer = styled.div`
 		width: 191px;
 		height: 195px;
-		margin: 0	auto 55px;
+		margin: 0	auto 20px;
 		position: relative;
 `
 
@@ -83,6 +85,10 @@ const Logo = styled.img`
 							z-index: 5;
 				};
 		};
+`
+
+const StlDeliveryLink = styled(DeliveryLink)`
+		margin: 0 auto 15px;
 `
 
 export default MobileLayout

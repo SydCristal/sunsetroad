@@ -17,7 +17,7 @@ const Background = () => {
 				const screenHeight = window.innerHeight
 				const scrollHeight = totalHeight - screenHeight
 				const coefY = scrollTop / scrollHeight
-				const shiftY = -50 + coefY * 275
+				const shiftY = -50 + coefY * 350
 				if (sky) sky.style.transform = `translateY(${shiftY}px)`
 		}, [scrollTop])
 

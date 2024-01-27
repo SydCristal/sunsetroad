@@ -9,7 +9,7 @@ const DesktopInfo = memo(() => {
 
 		return (
 				<StlDesktopInfo>
-						<Slogan>Find your pleasing</Slogan>
+						<Slogan>Find your pleasure</Slogan>
 						<Text
 								tag='p'
 								localization={l.text} />

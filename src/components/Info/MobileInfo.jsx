@@ -10,7 +10,7 @@ const MobileInfo = () => {
 								localization={l.text} />
 						<DistributorMapTrigger
 								device='mobile'>
-								Find your pleasing
+								Find your pleasure
 							</DistributorMapTrigger>
 				</StlMobileInfo>
 		)

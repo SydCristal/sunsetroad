@@ -4,7 +4,7 @@
 				id: 'Dibuat  di Bali'
 		},
 		map: {
-				en: 'map',
-				id: 'peta'
+				en: 'Our distributors',
+				id: 'Distributor kami'
 		}
 }

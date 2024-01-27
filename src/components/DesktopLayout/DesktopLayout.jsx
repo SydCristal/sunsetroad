@@ -2,7 +2,7 @@ import { C } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
 import { DesktopFooter } from '../Footer'
-import { Heading } from '../Common'
+import { Heading, DeliveryLink } from '../Common'
 import { Content, Contacts, Background } from './'
 import { memo } from 'react'
 
@@ -14,7 +14,15 @@ const DesktopLayout = memo(() => {
 						<Background />
 						<Header />
 						<Main>
-								<Heading />
+								<UpperContainer>
+										<div>
+												<DeliveryLink />
+										</div>
+										<div>
+												<Heading />
+										</div>
+										<div></div>
+								</UpperContainer>
 								<ContentContainer>
 										<Content />
 										<Contacts />
@@ -58,6 +66,20 @@ const Main = styled.main`
 		.blurred & {
 				opacity: 0;
 		};
+`
+
+const UpperContainer = styled.div`
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		>	div {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				> * {
+						margin-bottom: 0;
+				};
+		}
 `
 
 const ContentContainer = styled.div`

@@ -64,7 +64,7 @@ const StlDistributorMapTrigger = styled(DistributorMapTrigger)`
 const MapLocalizer = styled(Localizer)`
 		span {
 				display: inline-block;
-				width: 50px;
+				width: 200px;
 				text-align: end;
 		};
 ` 

@@ -31,6 +31,7 @@ const App = () => {
 						setScreenWidth(clientWidth)
 
 						console.log('ON RESIZE')
+						alert('ON RESIZE')
 
 						if (isCurrentlyDesktop) {
 								setScrollTop(0)
