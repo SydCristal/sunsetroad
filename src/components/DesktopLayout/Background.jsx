@@ -20,7 +20,7 @@ const Background = () => {
 				}, 1000)
 		}, [])
 
-		console.log('RENDER DESKTOP BACKGROUND')
+		//console.log('RENDER DESKTOP BACKGROUND')
 
 		return (
 				<StlBackground $section={section}>

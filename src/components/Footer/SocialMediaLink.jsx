@@ -6,7 +6,8 @@ const SocialMediaLink = ({ href, contact }) => {
 				<li>
 						<a
 								href={href}
-								target='_blank'>
+								target='_blank'
+								rel='noreferrer'>
 								<Icon
 										src={Ic(contact, false)}
 										alt={contact} />

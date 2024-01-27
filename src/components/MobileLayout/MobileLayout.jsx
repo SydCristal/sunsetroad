@@ -9,7 +9,7 @@ import { memo } from 'react'
 import { DeliveryLink } from '../Common/'
 
 const MobileLayout = memo(() => {
-		console.log('RENDER MOBILE LAYOUT')
+		//console.log('RENDER MOBILE LAYOUT')
 
 		return (<>
 				<StlMobileLayout>

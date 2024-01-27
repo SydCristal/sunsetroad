@@ -4,7 +4,7 @@ import { ContactFormTrigger, DistributorMapTrigger, Localizer } from '../Common'
 import { l } from './'
 
 const Contacts = () => {
-		console.log('RENDER DESKTOP CONTACTS')
+		//console.log('RENDER DESKTOP CONTACTS')
 
 		return (
 				<StlContacts>

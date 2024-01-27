@@ -14,7 +14,7 @@ const Input = ({ onChange, $validate = false, $errorTip = '', className, $isHigh
 				onBlur: ({ target: { value } }) => {
 						value = value.trim()
 						let isValid = $validate ? $validate(value) : true
-						console.log($isHighlighted, isValid);
+						//console.log($isHighlighted, isValid);
 
 						if ($isHighlighted === isValid) $setIsHighlighted(isValid)
 

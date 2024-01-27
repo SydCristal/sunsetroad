@@ -19,7 +19,7 @@ const App = () => {
 				setScrollTop(target.scrollTop)
 		}
 
-		console.log('RENDER APP')
+		//console.log('RENDER APP')
 
 		useEffect(() => {
 				appRef.current?.scrollTo(0, 0)
@@ -30,8 +30,7 @@ const App = () => {
 						const isCurrentlyDesktop = clientWidth > C.MAX_MOBILE_WIDTH
 						setScreenWidth(clientWidth)
 
-						console.log('ON RESIZE')
-						alert('ON RESIZE')
+						//console.log('ON RESIZE')
 
 						if (isCurrentlyDesktop) {
 								setScrollTop(0)

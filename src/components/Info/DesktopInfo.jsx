@@ -5,7 +5,7 @@ import { memo } from 'react'
 import { Localizer } from '../Common'
 
 const DesktopInfo = memo(() => {
-		console.log('RENDER DESKTOP INFO')
+		//console.log('RENDER DESKTOP INFO')
 
 		return (
 				<StlDesktopInfo>

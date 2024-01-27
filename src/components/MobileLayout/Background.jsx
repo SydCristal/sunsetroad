@@ -21,7 +21,7 @@ const Background = () => {
 				if (sky) sky.style.transform = `translateY(${shiftY}px)`
 		}, [scrollTop])
 
-		console.log('RENDER BACKGROUND')
+		//console.log('RENDER BACKGROUND')
 
 		return (
 				<StlBackground ref={bgRef}>

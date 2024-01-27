@@ -18,7 +18,7 @@ const Content = memo(() => {
 				if (!info) setInfo(<DesktopInfo />)
 		}, [])
 
-		console.log('RENDER DESKTOP CONTENT')
+		//console.log('RENDER DESKTOP CONTENT')
 
 		return (
 				<StlContent>

@@ -121,7 +121,7 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 				rotateCarousel(direction)
 		}
 
-		console.log('RENDER CAROUSEL')
+		//console.log('RENDER CAROUSEL')
 
 		return (
 				<StlCarousel className={className}>
@@ -134,7 +134,7 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 										content[i].shiftChild = shiftChild
 								}
 
-								console.log('RENDER CAROUSEL CONTAINER')
+								//console.log('RENDER CAROUSEL CONTAINER')
 
 								const touchListeners = {}
 
@@ -155,7 +155,7 @@ const Carousel = memo(({ dataSet, content, className, autoRun = false }) => {
 														$styles={contentStyles}
 														{...touchListeners}>
 														{dataSet.map((item, i) => {
-																console.log('RENDER CAROUSEL ITEM')
+																//console.log('RENDER CAROUSEL ITEM')
 																return childEl(item, i, shiftChild(i, displayedIndexRef.current), onChildClick)
 														})}
 												</Content>

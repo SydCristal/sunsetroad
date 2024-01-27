@@ -104,7 +104,7 @@ const PartnerCarousel = ({ maxGroupSize = 5, getControls, ...restProps }) => {
 				autoRun: true
 		}
 
-		console.log('RENDER PARTNER CAROUSEL')
+		//console.log('RENDER PARTNER CAROUSEL')
 
 		return (
 				<Carousel {...carouselProps} />

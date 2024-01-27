@@ -33,7 +33,7 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 						markerImg.alt = 'marker'
 						return markerImg
 				})
-				console.log('FETCHING GOOGLE MAP')
+				//console.log('FETCHING GOOGLE MAP')
 				loader.load().then(({ maps: { Map, StyledMapType, InfoWindow, marker: { AdvancedMarkerElement } } }) => {
 						const styledMapType = new StyledMapType(distributorMapStyles, { name: 'Sunset Road Map' })
 						const map = new Map(mapRef.current, {
@@ -50,7 +50,7 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 
 						const infoWindow = new InfoWindow()
 
-						sortedDistributors.map((distributor, i) => {
+						sortedDistributors.forEach((distributor, i) => {
 								const markerImg = markerImgArr[i]
 
 								const marker = new AdvancedMarkerElement({
@@ -69,7 +69,7 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 				})
 		}, [])
 
-		console.log('RENDER DISTRIBUTOR MODAL')
+		//console.log('RENDER DISTRIBUTOR MODAL')
 
 		return (
 				<StlDistributorMap ref={ref} >

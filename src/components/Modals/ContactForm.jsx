@@ -67,7 +67,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 				}).then(() => close())
 		}
 
-		console.log('RENDER CONTACT FORM')
+		//console.log('RENDER CONTACT FORM')
 
 		return (
 				<StlContactForm

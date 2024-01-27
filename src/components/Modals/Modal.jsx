@@ -23,7 +23,7 @@ const Modal = memo(forwardRef(({ appRef }, shadowRef) => {
 		const onShadowClick = ({ target }) => {
 				if (target !== shadowRef.current || !displayedModal || displayedModal === 'Disclaimer') return
 
-				console.log('ON MASK CLICK')
+				//console.log('ON MASK CLICK')
 
 				setDisplayedModal(null)
 		}
@@ -61,7 +61,7 @@ const Modal = memo(forwardRef(({ appRef }, shadowRef) => {
 				}
 		}, [displayedModal, appRef])
 
-		console.log('RENDER MASK')
+		//console.log('RENDER MASK')
 
 		return (
 				<StlModal

@@ -11,7 +11,7 @@ const LanguageSwitch = memo(({ className }) => {
 				id: 'Indonesia'
 		}
 
-		console.log('RENDER LANGUAGE SWITCH')
+		//console.log('RENDER LANGUAGE SWITCH')
 
 		return (
 				<StlLanguageSwitch

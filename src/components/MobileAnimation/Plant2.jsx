@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { Bg } from '../../Utils'
 
 const RenderPlant = memo(({ $position = 0, $coefX = 0 }) => {
-		console.log('RENDER PLANT 2');
+		//console.log('RENDER PLANT 2');
 		return (
 				<StlPlant $position={$position} $coefX={$coefX}>
 						<img src={Bg('plant2', false)} alt='plant2' />

@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { Bg } from '../../Utils'
 
 const RenderPalm = memo(({ $position = 0, $coefX = 0 }) => {
-		console.log('RENDER PALM 2');
+		//console.log('RENDER PALM 2');
 		return (
 				<StlPalm $position={$position} $coefX={$coefX}>
 						<img src={Bg('palm2', false)} alt='palm2' />

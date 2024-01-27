@@ -24,7 +24,7 @@ const Navigation = memo(() => {
 				setSection(value)
 		}
 
-		console.log('RENDER DESKTOP NAVIGATION');
+		//console.log('RENDER DESKTOP NAVIGATION');
 
 		return (
 				<StlNavigation>
