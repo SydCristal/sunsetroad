@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/sunsetroad/static/js/main.977513dc.js",
+    "main.js": "/sunsetroad/static/js/main.350ff518.js",
     "index.html": "/sunsetroad/index.html",
-    "main.977513dc.js.map": "/sunsetroad/static/js/main.977513dc.js.map"
+    "main.350ff518.js.map": "/sunsetroad/static/js/main.350ff518.js.map"
   },
   "entrypoints": [
-    "static/js/main.977513dc.js"
+    "static/js/main.350ff518.js"
   ]
 }
