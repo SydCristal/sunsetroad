@@ -13,6 +13,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		const [email, setEmail] = useState('')
 		const [message, setMessage] = useState('')
 		const [invalidFields, setInvalidFields] = useState([])
+		const [notificationMode, setNotificationMode] = useState('')
 
 		useEffect(() => {
 				if (displayedModal !== 'ContactForm') return
@@ -20,6 +21,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 				setEmail('')
 				setMessage('')
 				setInvalidFields([])
+				setNotificationMode('')
 		}, [displayedModal])
 
 		const close = e => {
@@ -64,7 +66,13 @@ const ContactForm = memo(forwardRef((props, ref) => {
 						From: C.SENDER_EMAIL,
 						Subject: email,
 						Body: `${name} отправил(а) вам сообщение:<br /><br />${message}`
-				}).then(() => close())
+				}).then(res => {
+						if (res === 'OK') {
+								setNotificationMode('success')
+						} else {
+								setNotificationMode('error')
+						}
+				})
 		}
 
 		//console.log('RENDER CONTACT FORM')
@@ -72,7 +80,8 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		return (
 				<StlContactForm
 						ref={ref}
-						name='ContactForm'>
+						name='ContactForm'
+						className={notificationMode}>
 						<UpperBlock>
 								<ModalHeader>
 										<Heading $styles={headingStyles} />
@@ -101,6 +110,10 @@ const ContactForm = memo(forwardRef((props, ref) => {
 												$errorTip={l.emailIsInvalid} />
 								</InputContainer>
 						</UpperBlock>
+						<MessageBlock>
+								<Localizer localization={notificationMode === 'success' ? l.sucessHeading : l.errorHeading} tag='h2' />
+								<Localizer localization={notificationMode === 'success' ? l.sucessMessage : l.errorMessage} tag='p' />
+						</MessageBlock>
 						<Textarea
 								forwardedAs='textarea'
 								$isHighlighted={invalidFields.includes('textarea')}
@@ -118,6 +131,12 @@ const ContactForm = memo(forwardRef((props, ref) => {
 										<Localizer localization={l.cancel}/>
 								</ControlButton>
 								<ControlButton
+										disabled={false}
+										$opacity={0}
+										onClick={close}>
+										Ok
+								</ControlButton>
+								<ControlButton
 										disabled={!submitButtonIsActive}
 										$opacity={submitButtonIsActive ? 1 : 0.5}
 										onClick={onFormSubmit}>
@@ -131,7 +150,7 @@ const ContactForm = memo(forwardRef((props, ref) => {
 const isFlipped = C.mediaAnd([C.isMobile, C.isHorizontal, C.isShort])
 
 const StlContactForm = styled.form`
-		width: ${C.MOBILE_CONTENT_WIDTH}px;
+		min-width: ${C.MOBILE_CONTENT_WIDTH}px;
 		opacity: 0;
 		display: none;
 		position: absolute;
@@ -146,7 +165,7 @@ const StlContactForm = styled.form`
 		flex-direction: column;
 		align-items: center;
 		padding: ${C.MODAL_PADDING};
-		transition: opacity 0.5s ease-in-out;
+		transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
 		${isFlipped} {
 				width: 70%;
 				height: 80%;
@@ -154,6 +173,12 @@ const StlContactForm = styled.form`
 		};
 		.blurred & {
 				opacity: 1;
+		};
+		&.error,
+		&.success {
+				width: 0;
+				height: 350px;
+				min-height: 350px;
 		};
 `
 
@@ -176,14 +201,26 @@ const ModalHeader = styled.div`
 		${isFlipped} {
 				flex: 0;
 		};
+		.error &,
+		.success & {
+				flex: 1;
+		};
 `
 
 const CloseModalIcon = styled.img`
 		height: 25px;
 		cursor: pointer;
 		${isFlipped} {
-				display: none;
+				pointer-events: none;
+				opacity: 0;
 		};
+		transition: opacity 0.5s ease-in-out 0.5s;
+		.error &,
+		.success & {
+				opacity: 1;
+				pointer-events: all;
+		};
+
 `
 
 const headingStyles = css`
@@ -193,17 +230,62 @@ const headingStyles = css`
 		margin-right: 5px;
 `
 
-const InputContainer = styled.div`
-		${isFlipped} {
-				flex: 1;
+const visibilityStyles = `
+		opacity: 1;
+		transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, flex 0s ease-in-out 0.5s, height 0 ease-in-out 0.5s;
+		.error &,
+		.success & {
+				opacity: 0;
+				pointer-events: none;
 		};
 `
 
+const shrinkStyles = `
+		.error &,
+		.success & {
+				flex: 0;		
+				width: 0;
+				min-width: 0;
+		};
+`
+
+const InputContainer = styled.div`
+		${visibilityStyles};
+		${isFlipped} {
+				flex: 1;
+				${shrinkStyles};
+		};
+		.error &,
+		.success & {
+				height: 0;
+		};
+`		
+
 const Textarea = styled(Input)`
+		${visibilityStyles};
 		flex: 1;
 		width: 100%;
 		> * {
 			resize: none;
+		};
+		.error &,
+		.success & {
+				height: 0;
+		};
+`
+
+const MessageBlock = styled.div`
+		height: 0;
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out 0.5s, height 0s ease-in-out 0.5s;
+		.error &,
+		.success & {
+				height: 100%;
+				opacity: 1;
+		};
+		h2 {
+				font-size: 24px;
+				margin: 5px 0 10px;
 		};
 `
 
@@ -220,13 +302,13 @@ const ControlButton = styled.button`
 		background-color: transparent;
 		padding: 0;
 		margin: 0px auto;
-		display: none;
+		display: block;
 		font-family: 'Orelega One', serif;
 		font-size: 40px;
 		color: #fff;
 		-webkit-text-stroke: 1.5px rgb(34, 30, 31);
 		text-shadow: ${C.TEXT_OUTLINE};
-		transition: opacity 0.3s ease-in-out;
+		transition: opacity 0.3s ease-in-out, width 0s ease-in-out 0.5s, flex 0s ease-in-out 0.5s;
 		flex: 1;		
 		&:focus {
 				outline: none;
@@ -234,11 +316,29 @@ const ControlButton = styled.button`
 		&:not(:disabled) {
 				cursor: pointer;
 		};
-		${isFlipped} {
-				display: block;
+		&:first-child {
+				display: none;
+				${isFlipped} {
+						display: block;
+				};
 		};
-		&:not(:first-child) {
-				display: block;
+		&:last-child,
+		&:first-child {
+				${visibilityStyles};
+				${shrinkStyles};
+		};
+		&:nth-child(2) {
+				min-width: 0;
+				width: 0;
+				flex: 0;
+				pointer-events: none;
+				transition: opacity 0.5s ease-in-out 0.5s, width 0s ease-in-out 0.5s, flex 0s ease-in-out 0.5s;
+				.error &,
+				.success & {
+						flex: 1;
+						pointer-events: all;
+						opacity: 1;
+				};
 		};
 		> *,
 		> * span {

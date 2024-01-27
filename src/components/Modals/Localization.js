@@ -34,5 +34,21 @@ export const l = {
 		cancel: {
 				en: 'Cancel',
 				id: 'Batal'
+		},
+		sucessHeading: {
+				en: 'Your message has been successfully delivered!',
+				id: 'Pesan Anda telah berhasil dikirim!'
+		},
+		sucessMessage: {
+				en: 'We will answer you shortly.',
+				id: 'Kami akan segera menjawab Anda.'
+		},
+		errorHeading: {
+				en: 'Something went wrong!',
+				id: 'Ada yang salah!'
+		},
+		errorMessage: {
+				en: 'Please use your mail client or contact us using one of the links below.',
+				id: 'Silakan gunakan klien email Anda atau hubungi kami menggunakan salah satu tautan di bawah ini.'
 		}
 }
