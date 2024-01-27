@@ -15,19 +15,24 @@ const ContactForm = memo(forwardRef((props, ref) => {
 		const [invalidFields, setInvalidFields] = useState([])
 		const [notificationMode, setNotificationMode] = useState('')
 
-		useEffect(() => {
-				if (displayedModal !== 'ContactForm') return
+		const clearForm = () => {
 				setName('')
 				setEmail('')
 				setMessage('')
 				setInvalidFields([])
 				setNotificationMode('')
+		}
+
+		useEffect(() => {
+				if (displayedModal !== 'ContactForm') return
+				clearForm()
 		}, [displayedModal])
 
 		const close = e => {
 				e?.preventDefault()
 				e?.stopPropagation()
 				setDisplayedModal(null)
+				setTimeout(() => clearForm(), 500)
 		}
 
 		const highlight = (inputName, isValid) => {
@@ -232,7 +237,7 @@ const headingStyles = css`
 
 const visibilityStyles = `
 		opacity: 1;
-		transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, flex 0s ease-in-out 0.5s, height 0 ease-in-out 0.5s;
+		transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, flex 0s ease-in-out 0.5s, height 0s ease-in-out 0.5s;
 		.error &,
 		.success & {
 				opacity: 0;
