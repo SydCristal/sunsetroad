@@ -18,8 +18,6 @@ const Content = memo(() => {
 				if (!info) setInfo(<DesktopInfo />)
 		}, [])
 
-		//console.log('RENDER DESKTOP CONTENT')
-
 		return (
 				<StlContent>
 						<ProductsContainer>{products}</ProductsContainer>

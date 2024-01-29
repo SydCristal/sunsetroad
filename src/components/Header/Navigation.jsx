@@ -24,8 +24,6 @@ const Navigation = memo(() => {
 				setSection(value)
 		}
 
-		//console.log('RENDER DESKTOP NAVIGATION');
-
 		return (
 				<StlNavigation>
 						{sections.map(({ value, label }) => (

@@ -17,11 +17,9 @@ const Background = () => {
 				const screenHeight = window.innerHeight
 				const scrollHeight = totalHeight - screenHeight
 				const coefY = scrollTop / scrollHeight
-				const shiftY = -50 + coefY * 350
+				const shiftY = -50 + coefY * 400
 				if (sky) sky.style.transform = `translateY(${shiftY}px)`
 		}, [scrollTop])
-
-		//console.log('RENDER BACKGROUND')
 
 		return (
 				<StlBackground ref={bgRef}>

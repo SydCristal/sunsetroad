@@ -5,8 +5,6 @@ import { forwardRef, memo } from 'react'
 import { Localizer } from '../Common'
 
 const Disclaimer = memo(forwardRef(({ close }, ref) => {
-		//console.log('RENDER DISCLAIMER')
-
 		return (
 				<StlDisclaimer ref={ref} id='Disclaimer'>
 						<LogoContainer>

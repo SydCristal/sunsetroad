@@ -6,11 +6,9 @@ import { MobileProducts } from '../Products'
 import { MobilePartners } from '../Partners'
 import { MobileFooter } from '../Footer'
 import { memo } from 'react'
-import { DeliveryLink } from '../Common/'
+import { DeliveryLink, DistributorMapTrigger } from '../Common'
 
 const MobileLayout = memo(() => {
-		//console.log('RENDER MOBILE LAYOUT')
-
 		return (<>
 				<StlMobileLayout>
 						<Background />
@@ -22,6 +20,7 @@ const MobileLayout = memo(() => {
 										<StlDeliveryLink />
 										<MobileInfo />
 										<MobileProducts />
+										<DistributorMapTrigger />
 										<MobilePartners />
 								</main>
 								<MobileFooter />

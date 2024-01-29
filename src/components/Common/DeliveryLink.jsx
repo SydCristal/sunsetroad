@@ -3,8 +3,11 @@ import { C, Lo } from '../../Utils'
 
 const DeliveryLink = ({ className }) => {
 		return (
-				<StlDeliveryLink className={className} href='https://www.wowbooze.com/' target='_blank' rel='noreferrer'>
-				</StlDeliveryLink>
+				<StlDeliveryLink
+						className={className}
+						href='https://www.wowbooze.com/'
+						target='_blank'
+						rel='noreferrer' />
 		)
 }
 
@@ -17,7 +20,7 @@ const StlDeliveryLink = styled.a`
 		${C.isMobile} {
 				background-image: ${Lo('delivery-mobile', true, 'svg')};
 				width: 200px;
-				height: 51px;
+				height: 45px;
 		}
 		background-size: contain;
 		background-repeat: no-repeat;

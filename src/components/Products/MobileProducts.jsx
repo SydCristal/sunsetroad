@@ -54,7 +54,6 @@ const MobileProducts = () => {
 
 const StlMobileProducts = styled.section`
 		min-height: 660px;
-		margin-bottom: 55px;
 		>	div {
 				min-height: 660px;
 				flex-direction: column-reverse;

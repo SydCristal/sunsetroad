@@ -17,8 +17,6 @@ const LanguagePosition = () => {
 				}
 		}, [displayedModal, scrollTop])
 
-		//console.log('RENDER LANGUAGE SWITCH POSITION');
-
 		return (
 				<StlLanguagePosition $translateY={translateY}>
 						<LanguageSwitch />

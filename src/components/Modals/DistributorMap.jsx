@@ -29,18 +29,17 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 						const markerImg = document.createElement('img')
 						markerImg.style.width = '25px'
 						markerImg.style.height = '25px'
-						markerImg.src = Ic('marker-ugly', false, 'svg')
+						markerImg.src = Ic('marker', false, 'svg')
 						markerImg.alt = 'marker'
 						return markerImg
 				})
-				//console.log('FETCHING GOOGLE MAP')
+
 				loader.load().then(({ maps: { Map, StyledMapType, InfoWindow, marker: { AdvancedMarkerElement } } }) => {
 						const styledMapType = new StyledMapType(distributorMapStyles, { name: 'Sunset Road Map' })
 						const map = new Map(mapRef.current, {
 								center,
 								zoom,
 								mapId: '2229b22e8f947ffa',
-								//mapTypeId: 'terrain',
 								mapTypeIds: ['styled_map'],
 								disableDefaultUI: true
 						})
@@ -68,8 +67,6 @@ const DistributorMap = memo(forwardRef((props, ref) => {
 						})
 				})
 		}, [])
-
-		//console.log('RENDER DISTRIBUTOR MODAL')
 
 		return (
 				<StlDistributorMap ref={ref} >

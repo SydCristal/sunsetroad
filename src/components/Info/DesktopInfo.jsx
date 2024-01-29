@@ -5,8 +5,6 @@ import { memo } from 'react'
 import { Localizer } from '../Common'
 
 const DesktopInfo = memo(() => {
-		//console.log('RENDER DESKTOP INFO')
-
 		return (
 				<StlDesktopInfo>
 						<Slogan>Find your pleasure</Slogan>
@@ -26,7 +24,7 @@ const StlDesktopInfo = styled.div`
 		width: 625px;
 `
 
-const Slogan = styled.h1`
+const Slogan = styled.h2`
 		margin: 0 0 10px;
 		font-size: 24px;
 `

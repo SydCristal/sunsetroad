@@ -3,7 +3,6 @@ import { memo } from 'react'
 import { Bg } from '../../Utils'
 
 const RenderCloud = memo(({ $position = 0 }) => {
-		//console.log('RENDER CLOUD 3');
 		return (
 				<StlCloud $position={$position}>
 						<img src={Bg('cloud3', false)} alt='cloud3' />

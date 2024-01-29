@@ -33,6 +33,7 @@ const getControls = rotateCarousel => (
 
 const StlMobilePartners = styled.section`
 		height: 270px;
+		margin-top: 55px;
 `
 
 const ControlContainer = styled.div`

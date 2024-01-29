@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { C } from '../../Utils'
 
 const LanguageOption = ({ visible, onPointerDown, short, long }) => {
-		//console.log('RENDER LANGUAGE SWITCH LABEL')
-
 		return (
 				<StlLanguageOption $visible={visible} onPointerDown={onPointerDown}>
 						<DesktopLabel>{long}</DesktopLabel>

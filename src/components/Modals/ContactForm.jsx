@@ -80,8 +80,6 @@ const ContactForm = memo(forwardRef((props, ref) => {
 				})
 		}
 
-		//console.log('RENDER CONTACT FORM')
-
 		return (
 				<StlContactForm
 						ref={ref}
@@ -182,8 +180,8 @@ const StlContactForm = styled.form`
 		&.error,
 		&.success {
 				width: 0;
-				height: 350px;
-				min-height: 350px;
+				height: 300px;
+				min-height: 300px;
 		};
 `
 
@@ -213,6 +211,9 @@ const ModalHeader = styled.div`
 `
 
 const CloseModalIcon = styled.img`
+		position: absolute;
+		right: 0;
+		top: 0;
 		height: 25px;
 		cursor: pointer;
 		${isFlipped} {
@@ -232,7 +233,16 @@ const headingStyles = css`
 		width: 250px;
 		height: 96px;
 		margin-bottom: 0;
-		margin-right: 5px;
+		transition: margin 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+		${isFlipped} {
+				margin-right: 5px;
+		};
+		.error &,
+		.success & {
+				margin-right: 0;
+				width: 100%;
+				height: 65px;
+		};
 `
 
 const visibilityStyles = `
@@ -282,6 +292,7 @@ const Textarea = styled(Input)`
 const MessageBlock = styled.div`
 		height: 0;
 		opacity: 0;
+		text-align: center;
 		transition: opacity 0.5s ease-in-out 0.5s, height 0s ease-in-out 0.5s;
 		.error &,
 		.success & {

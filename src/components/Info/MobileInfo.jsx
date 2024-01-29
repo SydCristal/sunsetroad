@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { DistributorMapTrigger, Localizer } from '../Common'
+import { Localizer } from '../Common'
 import { l } from './'
 
 const MobileInfo = () => {
@@ -8,10 +8,7 @@ const MobileInfo = () => {
 						<Text
 								tag='p'
 								localization={l.text} />
-						<DistributorMapTrigger
-								device='mobile'>
-								Find your pleasure
-							</DistributorMapTrigger>
+						<Slogan>Find your pleasure.</Slogan>
 				</StlMobileInfo>
 		)
 }
@@ -33,6 +30,12 @@ const Text = styled(Localizer)`
 		& .en-string {
 				padding: 0 15px;
 		};
+`
+
+const Slogan = styled.h2`
+		color: black;
+		margin: 10px auto 0;
+		font-size: 24px;
 `
 
 export { MobileInfo }

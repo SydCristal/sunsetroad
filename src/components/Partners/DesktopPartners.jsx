@@ -4,8 +4,6 @@ import { Ic } from '../../Utils'
 import { memo } from 'react'
 
 const DesktopPartners = memo(() => {
-		//console.log('RENDER DESKTOP PARTNERS')
-
 		return (
 				<PartnerCarousel
 						getControls={getControls}

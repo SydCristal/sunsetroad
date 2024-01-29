@@ -6,8 +6,6 @@ import { memo } from 'react'
 const Landscape = memo(() => {
 		const { screenWidth } = useScreenContext()
 
-		//console.log('RENDER LANDSCAPE')
-
 		return (
 				<StlLandscape
 						src={Bg('landscape', false)}

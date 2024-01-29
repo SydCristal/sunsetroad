@@ -1,58 +1,33 @@
 import styled from 'styled-components'
 import { useModalContext } from '../../Contexts'
-import { Ic, C } from '../../Utils'
+import { Lo, C } from '../../Utils'
 
-const DistributorMapTrigger = ({ className, device, children }) => {
+const DistributorMapTrigger = ({ className }) => {
 		const { setDisplayedModal } = useModalContext()
 
 		return (
 				<StlDistributorMapTrigger
 						className={className}
-						onClick={() => setDisplayedModal('DistributorMap')}>
-						<Heading>{children}</Heading>
-						<Marker src={Ic(`marker-${device}`, false, 'svg')} />
-				</StlDistributorMapTrigger>
+						onClick={() => setDisplayedModal('DistributorMap')} />
 		)
 }
 
 const StlDistributorMapTrigger = styled.div`
-		cursor: pointer;
-		display: flex;
-		flex-direction: row;
-		flex: 1;
-		${C.isMobile} {
-				justify-content: center;
-				align-items: center;
-				margin: 10px auto 0;
-		};
 		${C.isDesktop} {
-				justify-content: flex-end;
-				&:hover > * {
-						opacity: ${C.ACTIVE_UI_EL_OPACITY};
-				};
+				background-image: ${Lo('map-trigger-desktop', true, 'svg')};
+				width: 160px;
+				height: 81px;
 		};
-`
-
-const Heading = styled.h2`
-		margin: 0 10px 0 0;
 		${C.isMobile} {
-				font-size: 30px;
-				font-weight: 400;
-				text-decoration: none;
-				font-family: 'Orelega One';
-				text-shadow: ${C.TEXT_OUTLINE};
-				line-height: 30px;
+				background-image: ${Lo('map-trigger-mobile', true, 'svg')};
+				width: 200px;
+				height: 45px;
+				margin: 5px auto 0;
 		}
-`
-
-const Marker = styled.img`
-		${C.isMobile} {
-				height: 26px;
-		};
-		${C.isDesktop} {
-				opacity: 0.6;
-				height: 22px;
-		};
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		cursor: pointer;
 `
 
 export { DistributorMapTrigger }

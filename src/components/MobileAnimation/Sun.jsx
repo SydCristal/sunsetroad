@@ -3,7 +3,6 @@ import { memo } from 'react'
 import	{ Bg } from '../../Utils'
 
 const RenderSun = memo(({ $position = 0 }) => {
-		//console.log('RENDER SUN');
 		return (
 				<StlSun $position={$position}>
 						<img src={Bg('sun', false)} alt='sun' />

@@ -3,8 +3,6 @@ import { Navigation } from './'
 import { C } from '../../Utils'
 
 const Header = () => {
-		//console.log('RENDER DESKTOP HEADER')
-
 		return (
 				<StlHeader>
 						<Navigation />

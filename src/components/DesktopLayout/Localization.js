@@ -3,8 +3,8 @@
 				en: 'Brewed in Bali',
 				id: 'Dibuat  di Bali'
 		},
-		map: {
-				en: 'Our distributors',
-				id: 'Distributor kami'
+		pasteurized: {
+				en: 'Pasteurized',
+				id: 'Dipasteurisasi'
 		}
 }

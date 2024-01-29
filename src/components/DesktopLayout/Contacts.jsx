@@ -1,20 +1,20 @@
 import { C } from '../../Utils'
 import styled from 'styled-components'
-import { ContactFormTrigger, DistributorMapTrigger, Localizer } from '../Common'
+import { ContactFormTrigger, Localizer } from '../Common'
 import { l } from './'
 
 const Contacts = () => {
-		//console.log('RENDER DESKTOP CONTACTS')
-
 		return (
 				<StlContacts>
-						<div><Brewed tag='h2' localization={l.brewed} /></div>
+						<div>
+								<Brewed tag='h2' localization={l.brewed} />
+						</div>
 						<div>
 								<StlContactFormTrigger />
 						</div>
-						<StlDistributorMapTrigger device='desktop'>
-								<MapLocalizer localization={l.map} />
-						</StlDistributorMapTrigger>
+						<div>
+								<Pasteurized tag='h2' localization={l.pasteurized} />
+						</div>
 				</StlContacts>
 		)
 }
@@ -29,6 +29,9 @@ const StlContacts = styled.div`
 				flex: 1;
 				> * {
 					transition: opacity 0.2s ease-in-out;
+				};
+				&:last-child {
+						text-align: end;
 				};
 		};
 		h2 {
@@ -49,24 +52,15 @@ const Brewed = styled(Localizer)`
 		text-align: center;
 `
 
+const Pasteurized = styled(Localizer)`
+		width: 195px;
+		text-align: center;
+`
+
 const StlContactFormTrigger = styled(ContactFormTrigger)`
 		&:hover {
 				opacity: ${C.ACTIVE_UI_EL_OPACITY};
 		};
 `
-
-const StlDistributorMapTrigger = styled(DistributorMapTrigger)`
-		img {
-			margin-right: 20px;
-		};
-`
-
-const MapLocalizer = styled(Localizer)`
-		span {
-				display: inline-block;
-				width: 200px;
-				text-align: end;
-		};
-` 
 
 export { Contacts }

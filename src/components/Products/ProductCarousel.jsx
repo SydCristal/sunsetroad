@@ -59,8 +59,6 @@ const ProductCarousel = memo(({ descriptionCarouselProps, imageCarouselProps }) 
 				}]
 		}
 
-		//console.log('RENDER PRODUCT CAROUSEL')
-
 		return <StlCarousel {...carouselProps} />
 })
 

@@ -2,7 +2,7 @@ import { C } from '../../Utils'
 import styled from 'styled-components'
 import Header from '../Header'
 import { DesktopFooter } from '../Footer'
-import { Heading, DeliveryLink } from '../Common'
+import { Heading, DeliveryLink, DistributorMapTrigger } from '../Common'
 import { Content, Contacts, Background } from './'
 import { memo } from 'react'
 
@@ -21,7 +21,9 @@ const DesktopLayout = memo(() => {
 										<div>
 												<Heading />
 										</div>
-										<div></div>
+										<div>
+												<DistributorMapTrigger />
+										</div>
 								</UpperContainer>
 								<ContentContainer>
 										<Content />
@@ -75,7 +77,13 @@ const UpperContainer = styled.div`
 		>	div {
 				flex: 1;
 				display: flex;
-				align-items: center;
+				align-items: top;
+				&:first-child {
+						justify-content: flex-start;
+				};
+				&:last-child {
+						justify-content: flex-end;
+				};
 				> * {
 						margin-bottom: 0;
 				};
